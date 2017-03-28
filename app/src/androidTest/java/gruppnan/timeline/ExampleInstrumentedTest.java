@@ -1,4 +1,4 @@
-package chalmers.timeline;
+package gruppnan.timeline;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("chalmers.timeline", appContext.getPackageName());
+        assertEquals("gruppnan.timeline", appContext.getPackageName());
     }
 }

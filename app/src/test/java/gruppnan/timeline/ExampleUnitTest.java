@@ -1,4 +1,4 @@
-package chalmers.timeline;
+package gruppnan.timeline;
 
 import org.junit.Test;
 
