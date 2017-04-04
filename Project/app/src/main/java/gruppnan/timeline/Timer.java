@@ -10,4 +10,8 @@ public class Timer {
     private boolean upOrDown;
 
 
+    public Timer(int limit, boolean upOrDown){
+        this.limit = limit;
+        this.upOrDown = upOrDown;
+    }
 }
