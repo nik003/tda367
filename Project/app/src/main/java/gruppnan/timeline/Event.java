@@ -2,11 +2,8 @@ package gruppnan.timeline;
 
 import java.util.Date;
 
-/**
- * Created by Melina on 04/04/2017.
- */
 
-public abstract class Event extends Course{
+public abstract class Event{
 
     protected Date endDate;
     protected String description, name;
@@ -19,9 +16,6 @@ public abstract class Event extends Course{
         this.description = description;
     }
 
-    public Event(String name, Date endDate, String description){
-        this.name = name;
-        this.endDate = endDate;
-        this.description = description;
-    }
+
+
 }

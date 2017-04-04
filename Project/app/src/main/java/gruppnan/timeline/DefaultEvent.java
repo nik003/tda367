@@ -2,9 +2,6 @@ package gruppnan.timeline;
 
 import java.util.Date;
 
-/**
- * Created by Melina on 04/04/2017.
- */
 
 public class DefaultEvent extends Event {
 
@@ -17,8 +14,6 @@ public class DefaultEvent extends Event {
         this.startDate = startDate;
     }
 
-    public DefaultEvent(String name, Date startDate, Date endDate, String description){
-        super(name, endDate, description);
-        this.startDate = startDate;
-    }
+
+
 }
