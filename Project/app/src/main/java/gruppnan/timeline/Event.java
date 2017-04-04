@@ -8,9 +8,9 @@ import java.util.Date;
 
 public abstract class Event extends Course{
 
-    private Date endDate;
-    private String description, name;
-    private Course course;
+    protected Date endDate;
+    protected String description, name;
+    protected Course course;
 
     public Event(Course course, String name, Date endDate, String description){
         this.course = course;
