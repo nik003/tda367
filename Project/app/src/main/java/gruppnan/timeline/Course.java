@@ -7,7 +7,7 @@ package gruppnan.timeline;
 public class Course {
 
     private String name, courseID;
-    //private Timer week, session;
+    private Timer week, session;
 
 
 }
