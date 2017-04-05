@@ -16,6 +16,19 @@ public abstract class Event{
         this.description = description;
     }
 
+    public Date getEndDate (){
+        return this.endDate;
+    }
+    public String getDescription(){
+        return this.description;
+    }
+    public String getName(){
+        return this.name;
+    }
+
+    public Course getCourse(){
+        return this.course;
+    }
 
 
 }
