@@ -14,6 +14,9 @@ public class DefaultEvent extends Event {
         this.startDate = startDate;
     }
 
+    public Date getStartDate(){
+        return this.startDate;
+    }
 
 
 }

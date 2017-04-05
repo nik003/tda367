@@ -4,23 +4,35 @@ import java.util.Date;
 import java.util.TreeMap;
 
 /**
- * Class that handles and contains the created events.
+ * Singleton Class that handles and stores the created events.
  */
 
 public class EventContainer {
 
+
+    private static EventContainer eventContainer = new EventContainer();
 
     private int nrOfDeadlineEvents;
     private int nrOfDefaultEvents;
     private TreeMap<String, DefaultEvent> defaultEventMap = new TreeMap<>();
     private TreeMap<String, DeadlineEvent> deadlineEventMap = new TreeMap<>();
 
+    /**Preventing from new instantations of eventcontainer*/
+    private EventContainer(){}
+
+    /**
+     * method to get the only instance of EventContainer
+     * @return EventContainer object
+     */
+    public static EventContainer getEventContainer(){
+        return eventContainer;
+    }
 
 
     public void createDefaultEvent(Course course,String name, Date startDate, Date endDate, String description){
 
         DefaultEvent event = new DefaultEvent(course, name, startDate, endDate, description);
-        defaultEventMap.put("D" +nrOfDefaultEvents , event);
+        defaultEventMap.put("Def" +nrOfDefaultEvents , event);
         nrOfDefaultEvents++;
     }
 
