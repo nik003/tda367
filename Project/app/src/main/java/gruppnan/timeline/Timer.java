@@ -2,14 +2,22 @@ package gruppnan.timeline;
 
 
 
-public class Timer {
+public class Timer implements TimerInterface{
 
     private int limit;
-    private boolean upOrDown;
+    private boolean countsUp;
 
 
     public Timer(int limit, boolean upOrDown){
         this.limit = limit;
-        this.upOrDown = upOrDown;
+        this.countsUp = upOrDown;
+    }
+
+    public int getLimit(){
+        return this.limit;
+    }
+
+    public boolean isUp(){
+        return countsUp;
     }
 }
