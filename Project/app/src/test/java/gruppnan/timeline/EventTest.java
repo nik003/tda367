@@ -6,6 +6,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import gruppnan.timeline.model.EventContainer;
+
 import static org.junit.Assert.*;
 
 

@@ -1,4 +1,4 @@
-package gruppnan.timeline;
+package gruppnan.timeline.model;
 
 /**
  * Created by Melina on 06/04/2017.

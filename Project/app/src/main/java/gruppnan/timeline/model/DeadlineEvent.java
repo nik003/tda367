@@ -1,4 +1,4 @@
-package gruppnan.timeline;
+package gruppnan.timeline.model;
 
 import java.util.Date;
 
