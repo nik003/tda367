@@ -2,7 +2,7 @@ package gruppnan.timeline;
 
 
 
-public class Course {
+public class Course implements CourseInterface{
 
     private String name, courseID;
     private Timer week, session;
@@ -12,5 +12,14 @@ public class Course {
         this.courseID = courseID;
         this.name = name;
     }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public String getCourseID(){
+        return this.courseID;
+    }
+
 
 }

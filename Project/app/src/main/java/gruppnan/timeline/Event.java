@@ -3,7 +3,7 @@ package gruppnan.timeline;
 import java.util.Date;
 
 
-public abstract class Event{
+public abstract class Event implements EventInterface{
 
     protected Date endDate;
     protected String description, name;
