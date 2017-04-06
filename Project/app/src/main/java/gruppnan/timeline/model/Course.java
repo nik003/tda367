@@ -1,5 +1,4 @@
-package gruppnan.timeline;
-
+package gruppnan.timeline.model;
 
 
 public class Course implements CourseInterface{
