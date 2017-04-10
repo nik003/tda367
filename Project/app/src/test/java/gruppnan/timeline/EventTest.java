@@ -15,7 +15,7 @@ public class EventTest {
 
     private EventContainer container = EventContainer.getEventContainer();
     private SimpleDateFormat dateParser = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-
+    private TimeEditFetcher tf = new TimeEditFetcher();
 
     /**
      * Test to see that right value is stored correctly
@@ -36,5 +36,6 @@ public class EventTest {
         assertTrue(container.getDeadlineEventMap().get("D1").getEndDate()==ninthFeb);
         assertNotEquals(container.getDeadlineEventMap().get("D0").getEndDate(), container.getDefaultEventMap().get("Def0"));
         assertTrue(container.getDefaultEventMap().get("Def0").getDescription().equals("some random lecture"));
+        assertNotEquals(tf.sendHttpGet("http://www.google.com"), null);
     }
 }
