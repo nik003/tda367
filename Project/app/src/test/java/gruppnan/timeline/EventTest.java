@@ -36,6 +36,9 @@ public class EventTest {
         assertTrue(container.getDeadlineEventMap().get("D1").getEndDate()==ninthFeb);
         assertNotEquals(container.getDeadlineEventMap().get("D0").getEndDate(), container.getDefaultEventMap().get("Def0"));
         assertTrue(container.getDefaultEventMap().get("Def0").getDescription().equals("some random lecture"));
-        assertNotEquals(tf.sendHttpGet("http://www.google.com"), null);
+        assertNotEquals(tf.sendHttpGet("https://se.timeedit.net/web/chalmers/db1/public/objects.html?max=15&fr=t&partajax=t&;im=f&sid=3&l=sv_SE&search_text=tda367&types=182"), null);
+        assertNotEquals(tf.searchCourse("tda3"), "No course founs");
+        tf.getIcs("TDA335, Individual project in interaction design, major","20170101","20170502");
+
     }
 }
