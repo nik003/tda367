@@ -1,24 +1,16 @@
 package gruppnan.timeline;
 
-import android.icu.text.SimpleDateFormat;
-
 import org.apache.commons.lang.math.NumberUtils;
-
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import 	java.net.HttpURLConnection;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.GZIPInputStream;
@@ -31,6 +23,7 @@ import java.util.zip.GZIPInputStream;
 
 public class TimeEditFetcher {
     HashMap<String,String> SearchHist;
+    final String[] icsStructure = {"DTSTART","DTEND","UID:","DTSTAMP:","LAST-MODIFIED:","SUMMARY:","LOCATION:","DESCRIPTION:","END:"};
     public TimeEditFetcher(){
         SearchHist = new HashMap<>();
 
@@ -94,9 +87,9 @@ public class TimeEditFetcher {
             }
             HttpURLConnection con = (HttpURLConnection) icsUrl.openConnection();
             con.setRequestProperty("Accept-Encoding","gzip");
-            InputStream in = new BufferedInputStream(new GZIPInputStream(con.getInputStream()));
+            BufferedReader in = new BufferedReader(new InputStreamReader(new GZIPInputStream(con.getInputStream()),"UTF-8"));
 
-            parseIcs(readInStream(in));
+            parseIcs(readInReader(in));
             con.disconnect();
         }catch(MalformedURLException e){
             e.printStackTrace();
@@ -117,12 +110,13 @@ public class TimeEditFetcher {
             con.setReadTimeout(8000);
             con.setConnectTimeout(10000);
             con.setRequestProperty("Accept-Encoding","gzip");
+            con.setRequestProperty("Accept-Charset","utf-8");
             con.setAllowUserInteraction(true);
 
-            InputStream in = new BufferedInputStream(new GZIPInputStream(con.getInputStream()));
+            BufferedReader in = new BufferedReader(new InputStreamReader(new GZIPInputStream(con.getInputStream()),"UTF-8"));
 
 
-            s = readInStream(in);
+            s = readInReader(in);
 
             con.disconnect();
             return s;
@@ -134,10 +128,10 @@ public class TimeEditFetcher {
         return null;
 
     }
-    private String readInStream(InputStream in){
+    private String readInReader(BufferedReader in){
         StringBuffer sb = new StringBuffer();
         try {
-            while (in.available() > 0) {
+            while (in.ready()) {
                 sb.append((char)in.read());
             }
 
@@ -150,58 +144,80 @@ public class TimeEditFetcher {
     private ArrayList<String[]> parseIcs(String icsFile){
         ArrayList<String[]>  events = new ArrayList<>();
         String[] icsLines = icsFile.split("\\r\\n");
+        final String[] wantedFields= {"DTSTART","DTEND","SUMMARY:","LOCATION:","DESCRIPTION:","END:"};
 
-        System.out.println(icsFile);
+       // System.out.println(icsFile);
         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyyMMdd'T'HHmmss'Z'");
         Date dateTest;
-        String[] event;
+        int indx =0;
+        String[] event = null;
 
-        for(int i = 0;i<icsLines.length;i++){
+        for(int i = 0;i<icsLines.length;i++) {
+
 
             try {
 
-                if(icsLines[i].equals("BEGIN:VEVENT")) {
-
+                if (icsLines[i].equals("BEGIN:VEVENT")) {
+                    indx = 0;
                     event = new String[5];
-                    i++;
-                    while(i<icsLines.length && !icsLines[i].equals("END:VEVENT") ){
-                        if((icsLines[i].contains(":"))&& !icsLines[i].equals("BEGIN:VEVENT")) {
-                            switch (icsLines[i].substring(0,icsLines[i].indexOf(':'))) {
-                                case "SUMMARY":
-                                    System.out.println(icsLines[i+1]);
-                                    event[0]= icsLines[i].substring(icsLines[i].indexOf(':')+1,icsLines[i].length());
-                                    break;
-                                case "DTSTART":
-                                    event[1]= sdf.parse(icsLines[i].substring(icsLines[i].indexOf(':')+1,icsLines[i].length())).toString();
-                                    break;
-                                case "DTEND":
-                                    event[2]= sdf.parse(icsLines[i].substring(icsLines[i].indexOf(':')+1,icsLines[i].length())).toString();
-                                    break;
-                                case "DESCRIPTION":
-                                    event[3]=icsLines[i].substring(icsLines[i].indexOf(':')+1,icsLines[i].length());
-                                    break;
-                                case "LOCATION":
-                                    event[4]=icsLines[i].substring(icsLines[i].indexOf(':')+1,icsLines[i].length());
-                                    break;
-                                default:
-                                    //System.out.println(icsLines[i]);
-                                    break;
-                            }
-                        }
-                        i++;
-                        if(icsLines[i].equals("END:VEVENT"))
-                            events.add(event);
+                }
+                //System.out.println(icsLines[i].contains(wantedFields[indx])+ " " + icsLines[i] + " "+ wantedFields[indx]);
+                if(icsLines[i].contains(wantedFields[indx])) {
+
+                    if (indx < 5 && event!=null) {
+
+                        String[] recVars = recuString(icsLines, getNextField(wantedFields[indx]), i);
+
+                        event[indx] = recVars[0].substring(recVars[0].indexOf(':')+1,recVars[0].length());
+
+                        //System.out.println(event[indx]);
+                        try {
+                         if(indx==0||indx==1)
+                            event[indx]=sdf.parse(event[indx]).toString();
+                        }catch (ParseException e){}
+
+                        i = Integer.parseInt(recVars[1]);
+                        indx++;
+
+                    }else{
+                        events.add(event);
+                        event = null;
+
                     }
                 }
-
-            } catch (ParseException e) {
-                e.printStackTrace();
+            } catch(Exception e){
+                    e.printStackTrace();
             }
+
         }
 
-
-
         return events;
+
+    }
+    private String[] recuString(String[] file, String nextMatch, int index){
+            String[] retVals;
+            String s;
+            if(!file[index+1].contains(nextMatch)){
+                retVals = recuString(file,nextMatch,index+1);
+                retVals[0]= file[index] +retVals[0] ;
+                return retVals;
+            }
+            retVals = new String[2];
+            retVals[0] = file[index].trim().replace("\\n"," ").replace("\\", "");
+            //System.out.println(file[index]+"\n");
+            retVals[1] = index+"";
+            return retVals;
+
+
+    }
+    private String getNextField(String curField){
+        for(int i = 0;i<icsStructure.length;i++) {
+            if (icsStructure[i].equals(curField)) {
+                //System.out.println(icsStructure[i + 1]);
+                return icsStructure[i + 1];
+            }
+        }
+        throw new IllegalArgumentException();
 
     }
 }
