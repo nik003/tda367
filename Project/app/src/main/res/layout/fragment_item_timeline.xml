@@ -48,21 +48,6 @@
                 android:textColor="@android:color/black"
                 tools:text="Last Commit" />
 
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/date2_timeline"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:textSize="12sp"
-                tools:text="1 JUNE" />
-
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/text2_timeline"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textColor="@android:color/black"
-                tools:text="Celebrate good times come on" />
 
         </LinearLayout>
 
