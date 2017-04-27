@@ -9,7 +9,7 @@ public class DeadlineEvent extends Event {
     protected String description, name;
     protected Course course;
 
-    public DeadlineEvent(Course course, String name, Date endDate, String description){
+    public DeadlineEvent(Course course, String name, String description, Date endDate){
         super(course, name, endDate, description);
     }
 }

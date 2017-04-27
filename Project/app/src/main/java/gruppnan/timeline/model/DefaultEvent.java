@@ -9,7 +9,7 @@ public class DefaultEvent extends Event {
     private String description, name;
     private Course course;
 
-    public DefaultEvent(Course course, String name, Date startDate, Date endDate, String description){
+    public DefaultEvent(Course course, String name, String description, Date startDate, Date endDate){
         super(course, name, endDate, description);
         this.startDate = startDate;
     }
