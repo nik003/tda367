@@ -1,4 +1,4 @@
-package gruppnan.timeline.view;
+package gruppnan.timeline.controller;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -8,13 +8,12 @@ import android.view.ViewGroup;
 
 import gruppnan.timeline.R;
 
-public class ContentTimelineFragment extends Fragment {
-
+public class ItemTimelineFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_content_timeline,
+        View view = inflater.inflate(R.layout.fragment_item_timeline,
                 container, false);
         return view;
     }

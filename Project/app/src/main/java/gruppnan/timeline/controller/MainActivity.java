@@ -1,9 +1,11 @@
-package gruppnan.timeline;
+package gruppnan.timeline.controller;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+
+import gruppnan.timeline.R;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_weight="2"
         android:layout_height="match_parent"
-        class="gruppnan.timeline.view.ContentTimelineFragment"
+        class="gruppnan.timeline.controller.ContentTimelineFragment"
         tools:layout="@layout/fragment_content_timeline">
     </fragment>
 

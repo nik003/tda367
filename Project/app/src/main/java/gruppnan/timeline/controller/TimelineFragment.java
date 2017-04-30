@@ -1,4 +1,4 @@
-package gruppnan.timeline.view;
+package gruppnan.timeline.controller;
 
 import android.app.Fragment;
 import android.os.Bundle;
