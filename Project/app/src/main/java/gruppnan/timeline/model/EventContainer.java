@@ -1,6 +1,12 @@
 package gruppnan.timeline.model;
 
+import android.support.v4.app.INotificationSideChannel;
+import android.util.Log;
+import android.widget.Toast;
+
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.TreeMap;
 
 /**
@@ -12,12 +18,13 @@ public class EventContainer {
 
     private static EventContainer eventContainer = new EventContainer();
 
-    private int nrOfDeadlineEvents;
-    private int nrOfDefaultEvents;
-    private TreeMap<String, DefaultEvent> defaultEventMap = new TreeMap<>();
-    private TreeMap<String, DeadlineEvent> deadlineEventMap = new TreeMap<>();
 
-    /**Preventing from new instantations of eventcontainer*/
+    private HashMap<Integer, Event> eventMap = new HashMap<>();
+    private HashMap<Integer, DeadlineEvent> deadlineEventMap = new HashMap<>();
+    private HashMap<Integer, DefaultEvent> defaultEventMap = new HashMap<>();
+    private static int nrOfEvents = 1;
+
+    /**Preventing from new instantiations of eventContainer*/
     private EventContainer(){}
 
     /**
@@ -28,32 +35,59 @@ public class EventContainer {
         return eventContainer;
     }
 
-
-    public void createDefaultEvent(Course course,String name, Date startDate, Date endDate, String description){
-
-        DefaultEvent event = new DefaultEvent(course, name, startDate, endDate, description);
-        defaultEventMap.put("Def" +nrOfDefaultEvents , event);
-        nrOfDefaultEvents++;
+    public DefaultEvent createDefaultEvent(Course course, String name, String desc, Date startDate, Date endDate){
+        return new DefaultEvent(course,name,desc,startDate,endDate);
+    }
+    public DeadlineEvent createDeadlineEvent(Course course, String name, String desc, Date endDate){
+        return new DeadlineEvent(course,name,desc,endDate);
     }
 
-    public void createDeadline(Course course, String name, Date endDate, String description){
 
-        DeadlineEvent event = new DeadlineEvent(course, name, endDate, description);
-        deadlineEventMap.put("D" +nrOfDeadlineEvents , event);
-        nrOfDeadlineEvents++;
+    /** adds event instance to map, gives key and increments key for next entry */
+    public void addEvent(Event event){
+        if (eventMap.containsValue(event)){
+            //TODO make this visible on view where user adds event
+            Log.d("duplicate event", "an identical event has already been added to map");
+        }else{
+            eventMap.put(nrOfEvents, event);
+            event.setKey(nrOfEvents);
+            nrOfEvents++;
+        }
     }
 
-    public TreeMap<String, DefaultEvent> getDefaultEventMap(){
+    public HashMap<Integer, Event> getEventMap(){
+        return this.eventMap;
+    }
+
+    /**
+     * iterates through hashmap of all events and returns all instances of DefaultEvent
+     * @return Hashmap of defaultEvents
+     */
+    public HashMap<Integer, DefaultEvent> getDefaultEventMap(){
+        for (Map.Entry<Integer, Event> entry : eventMap.entrySet()){
+            if (entry.getValue() instanceof DefaultEvent){
+                defaultEventMap.put(entry.getKey(),(DefaultEvent) entry.getValue());
+            }
+        }
         return this.defaultEventMap;
     }
-
-    public TreeMap<String, DeadlineEvent> getDeadlineEventMap(){
+    /**
+     * iterates through main map of all events and returns all instances of DeadlineEvent
+     * @return Hashmap of deadlineEvents
+     */
+    public HashMap <Integer, DeadlineEvent> getDeadlineEventMap(){
+        for (Map.Entry<Integer, Event> entry : eventMap.entrySet()){
+            if (entry.getValue() instanceof DeadlineEvent){
+                deadlineEventMap.put(entry.getKey(),(DeadlineEvent) entry.getValue());
+            }
+        }
         return this.deadlineEventMap;
     }
 
-    //method to remove event object from correct list
-    public void removeEvent(){
 
+
+    public void removeEvent(Event event){
+       eventMap.remove(event.getKey());
     }
 
 }
