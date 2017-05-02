@@ -6,11 +6,12 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:stretchColumns="*">
-        <TableRow>
+        <TableRow
+            android:id="@+id/tableRowWeek">
             <TextView
                 android:layout_weight="1"
                 android:layout_width="0dp"
-                android:text="<<"
+                android:text="Back"
                 android:textAlignment="center"
                 android:background="@drawable/cell_shape"
                 android:padding="3dp"
@@ -26,7 +27,7 @@
             <TextView
                 android:layout_weight="1"
                 android:layout_width="0dp"
-                android:text=">>"
+                android:text="Next"
                 android:textAlignment="center"
                 android:background="@drawable/cell_shape"
                 android:padding="3dp"
@@ -37,6 +38,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent">
             <TextView
+                android:text="W 27"
                 android:layout_weight="1"
                 
                 />
@@ -106,7 +108,7 @@
                  />
             <TextView
                 android:layout_weight="1"
-                android:text=""
+
                 android:background="@drawable/cell_shape"
                  />
             <TextView
@@ -139,11 +141,13 @@
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
+
             <TextView
+                android:id="@+id/textView3"
                 android:layout_weight="1"
-                android:text=""
                 android:background="@drawable/cell_shape"
-                 />
+                android:text="" />
+
             <TextView
                 android:text=""
                 android:layout_weight="1"

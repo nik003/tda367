@@ -74,48 +74,9 @@ public class week_view extends Fragment {
         // Inflate the layout for this fragment
         View view  = inflater.inflate(R.layout.fragment_week_view, container, false);
 
-        // Get a reference for the week view in the layout.
-        WeekView mWeekView = (WeekView) getView().findViewById(R.id.weekView);
-
-        // Set an action when any event is clicked.
-        mWeekView.setOnEventClickListener( mEventClickListener);
-
-        // The week view has infinite scrolling horizontally. We have to provide the events of a
-        // month every time the month changes on the week view.
-        mWeekView.setMonthChangeListener( mMonthChangeListener);
-
-        // Set long press listener for events.
-        mWeekView.setEventLongPressListener(mEventLongPressListener);
-
         return view;
     }
-    public MonthLoader.MonthChangeListener  mMonthChangeListener = new MonthLoader.MonthChangeListener() {
-        @Override
-        public List<WeekViewEvent> onMonthChange(int newYear, int newMonth) {
-            WeekViewEvent ev = new WeekViewEvent(1231232,"APA", Calendar.YEAR,Calendar.MONTH,Calendar.DAY_OF_MONTH,Calendar.HOUR,Calendar.MINUTE,Calendar.YEAR+1,Calendar.MONTH+1,Calendar.DAY_OF_MONTH+1,Calendar.HOUR+1,Calendar.MINUTE);
-            List<WeekViewEvent> e = new ArrayList<>();
-            e.add(ev);
-            List<WeekViewEvent> events = e;
-            return events;
 
-        }
-    };
-    protected List<WeekViewEvent> getEvents(int newYear, int newMonth){
-
-        return null;
-    }
-    public WeekView.EventLongPressListener mEventLongPressListener = new WeekView.EventLongPressListener() {
-        @Override
-        public void onEventLongPress(WeekViewEvent event, RectF eventRect) {
-
-        }
-    };
-    public WeekView.EventClickListener mEventClickListener = new WeekView.EventClickListener() {
-        @Override
-        public void onEventClick(WeekViewEvent event, RectF eventRect) {
-
-        }
-    };
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
