@@ -8,6 +8,7 @@ public abstract class Event implements EventInterface{
     protected Date endDate;
     protected String description, name;
     protected Course course;
+    private int key;
 
     public Event(Course course, String name, Date endDate, String description){
         this.course = course;
@@ -29,6 +30,14 @@ public abstract class Event implements EventInterface{
     public Course getCourse(){
         return this.course;
     }
+    public void setKey(int key) {
+        this.key = this.key == 0 ? key : this.key;
+    }
+    public int getKey(){
+        return this.key;
+    }
+
+
 
 
 }
