@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
-    android:orientation="horizontal">
+    >
 
     <com.github.vipulasri.timelineview.TimelineView
         android:id="@+id/time_marker"
@@ -33,13 +33,13 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <android.support.v7.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/date1_timeline"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="12sp" />
+                android:textSize="12sp"/>
 
-            <android.support.v7.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/text1_timeline"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
