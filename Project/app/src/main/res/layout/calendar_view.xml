@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
+    <ListView
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/calendarView"
+        android:layout_toStartOf="@+id/deadlineButton"
+        android:layout_above="@+id/deadlineButton"
+        android:id="@+id/listView" />
+
+    <Button
+        android:id="@+id/mainCalendar_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/calendarView"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/button_bg_round"
+        android:onClick="chooseEvent"
+        android:padding="5dp"
+        android:text="+" />
+
+    <Button
+        android:id="@+id/eventButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/calendarView"
+        android:layout_marginTop="56dp"
+        android:text="New Event" />
+
+    <Button
+        android:id="@+id/deadlineButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignStart="@+id/eventButton"
+        android:layout_below="@+id/eventButton"
+        android:text="New Deadline" />
+
+</RelativeLayout>
