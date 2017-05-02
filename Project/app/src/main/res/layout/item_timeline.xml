@@ -37,16 +37,14 @@
                 android:id="@+id/date1_timeline"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
-                tools:text="28 MAY" />
+                android:textSize="12sp" />
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/text1_timeline"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textColor="@android:color/black"
-                tools:text="Last Commit" />
+                android:textColor="@android:color/black" />
 
 
         </LinearLayout>

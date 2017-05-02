@@ -7,21 +7,13 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
-    <fragment
-        android:id="@+id/itemTimelineFragment"
-        android:layout_width="match_parent"
-        android:layout_weight="2"
-        android:layout_height="match_parent"
-        class="gruppnan.timeline.controller.ItemTimelineFragment"
-        tools:layout="@layout/fragment_item_timeline">
-    </fragment>
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clipToPadding="false"
         android:padding="10dp"
-        android:clipToPadding="false">
+        tools:listitem="@layout/item_timeline">
 
 
     </android.support.v7.widget.RecyclerView>
