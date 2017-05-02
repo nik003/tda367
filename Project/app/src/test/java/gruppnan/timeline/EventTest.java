@@ -17,6 +17,8 @@ public class EventTest {
 
     private EventContainer container = EventContainer.getEventContainer();
     private SimpleDateFormat dateParser = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+
+    private TimeEditFetcher tf = new TimeEditFetcher();
     private Date firstJan;
     private Date ninthFeb;
     private Date tenthFeb;
@@ -72,5 +74,12 @@ public class EventTest {
         container.addEvent(c);
         assertTrue(c.getKey()==2);
 
+        assertTrue(container.getDeadlineEventMap().get("D0").getName().equals("tenta"));
+        assertTrue(container.getDeadlineEventMap().get("D1").getEndDate()==ninthFeb);
+        assertNotEquals(container.getDeadlineEventMap().get("D0").getEndDate(), container.getDefaultEventMap().get("Def0"));
+        assertTrue(container.getDefaultEventMap().get("Def0").getDescription().equals("some random lecture"));
+        assertNotEquals(tf.sendHttpGet("https://se.timeedit.net/web/chalmers/db1/public/objects.html?max=15&fr=t&partajax=t&;im=f&sid=3&l=sv_SE&search_text=tda367&types=182"), null);
+        assertNotEquals(tf.searchCourse("tda3"), "No course found");
+        tf.getIcs("TDA335, Individual project in interaction design, major","20170101","20170502");
     }
 }
