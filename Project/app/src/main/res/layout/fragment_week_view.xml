@@ -5,30 +5,31 @@
         android:id="@+id/weekView"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+       
         android:stretchColumns="*">
         <TableRow
             android:id="@+id/tableRowWeek">
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:text="Back"
-                android:textAlignment="center"
+                
                 android:background="@drawable/cell_shape"
                 android:padding="3dp"
                 />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:text="Week 27"
-                android:textAlignment="center"
+                
                 android:background="@drawable/cell_shape"
                 android:padding="3dp"
                 />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:text="Next"
-                android:textAlignment="center"
+                
                 android:background="@drawable/cell_shape"
                 android:padding="3dp"
                 />
@@ -37,43 +38,44 @@
             android:id="@+id/tableRowDays"
             android:layout_width="0dp"
             android:layout_height="match_parent">
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text="W 27"
                 android:layout_weight="1"
                 
+                
                 />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text="Mon"
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                 />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text="Tue"
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                 />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text="Wed"
                 android:background="@drawable/cell_shape"
                 />
 
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text="Thu"
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                 />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text="Fri"
                 android:background="@drawable/cell_shape"
                 />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text="Satu"
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                 />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text="Sun"
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
@@ -85,43 +87,43 @@
             android:layout_width="0dp"
             android:layout_height="match_parent">
 
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text="00:00"
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
             />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
 
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
 
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
@@ -131,44 +133,44 @@
             android:id="@+id/tableRow2"
             android:layout_width="0dp"
             android:layout_height="match_parent">
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text="01:00"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
 
-            <TextView
+            <TextView android:textAlignment="center"
                 android:id="@+id/textView3"
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                 android:text="" />
 
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
@@ -178,42 +180,42 @@
             android:id="@+id/tableRow3"
             android:layout_width="0dp"
             android:layout_height="match_parent">
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text="02:00"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
@@ -223,42 +225,42 @@
             android:id="@+id/tableRow4"
             android:layout_width="0dp"
             android:layout_height="match_parent">
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text="03:00"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
@@ -268,42 +270,42 @@
             android:id="@+id/tableRow5"
             android:layout_width="0dp"
             android:layout_height="match_parent">
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text="04:00"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
@@ -313,42 +315,42 @@
             android:id="@+id/tableRow6"
             android:layout_width="0dp"
             android:layout_height="match_parent">
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text="05:00"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
@@ -358,42 +360,42 @@
             android:id="@+id/tableRow7"
             android:layout_width="0dp"
             android:layout_height="match_parent">
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text="06:00"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
@@ -403,42 +405,42 @@
             android:id="@+id/tableRow8"
             android:layout_width="0dp"
             android:layout_height="match_parent">
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text="07:00"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
@@ -448,42 +450,42 @@
             android:id="@+id/tableRow9"
             android:layout_width="0dp"
             android:layout_height="match_parent">
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text="08:00"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
@@ -493,42 +495,42 @@
             android:id="@+id/tableRow10"
             android:layout_width="0dp"
             android:layout_height="match_parent">
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text="09:00"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
@@ -538,42 +540,42 @@
             android:id="@+id/tableRow11"
             android:layout_width="0dp"
             android:layout_height="match_parent">
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text="10:00"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
@@ -583,42 +585,42 @@
             android:id="@+id/tableRow12"
             android:layout_width="0dp"
             android:layout_height="match_parent">
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text="11:00"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
@@ -628,42 +630,42 @@
             android:id="@+id/tableRow13"
             android:layout_width="0dp"
             android:layout_height="match_parent">
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text="12:00"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
@@ -673,42 +675,42 @@
             android:id="@+id/tableRow14"
             android:layout_width="0dp"
             android:layout_height="match_parent">
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text="13:00"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
@@ -719,42 +721,42 @@
             android:layout_width="0dp"
             android:layout_height="match_parent">
 
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text="14:00"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
@@ -764,42 +766,42 @@
             android:id="@+id/tableRow16"
             android:layout_width="0dp"
             android:layout_height="match_parent">
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text="15:00"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
@@ -809,42 +811,42 @@
             android:id="@+id/tableRow17"
             android:layout_width="0dp"
             android:layout_height="match_parent">
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text="16:00"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
@@ -854,42 +856,42 @@
             android:id="@+id/tableRow18"
             android:layout_width="0dp"
             android:layout_height="match_parent">
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text="17:00"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
@@ -900,43 +902,43 @@
             android:layout_width="0dp"
             android:layout_height="match_parent">
 
-            <TextView
+            <TextView android:textAlignment="center"
                 android:id="@+id/textView"
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                 android:text="18:00" />
 
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
@@ -946,42 +948,42 @@
             android:id="@+id/tableRow20"
             android:layout_width="0dp"
             android:layout_height="match_parent">
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text="19:00"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
@@ -992,43 +994,43 @@
             android:layout_width="0dp"
             android:layout_height="match_parent">
 
-            <TextView
+            <TextView android:textAlignment="center"
                 android:id="@+id/textView2"
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                 android:text="20:00" />
 
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
@@ -1038,42 +1040,42 @@
             android:id="@+id/tableRow22"
             android:layout_width="0dp"
             android:layout_height="match_parent">
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text="21:00"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
@@ -1083,42 +1085,42 @@
             android:id="@+id/tableRow23"
             android:layout_width="0dp"
             android:layout_height="match_parent">
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text="22:00"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
@@ -1128,42 +1130,42 @@
             android:id="@+id/tableRow24"
             android:layout_width="0dp"
             android:layout_height="match_parent">
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text="23:00"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:layout_weight="1"
                 android:text=""
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                  />
-            <TextView
+            <TextView android:textAlignment="center"
                 android:text=""
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
