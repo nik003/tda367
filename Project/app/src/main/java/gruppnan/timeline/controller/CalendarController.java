@@ -2,9 +2,14 @@ package gruppnan.timeline.controller;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +27,7 @@ import gruppnan.timeline.model.EventContainer;
 public class CalendarController extends Activity {
 
     private EventContainer container;
-    private Button chooseEventButton, eventButton, deadlineButton;
+
 
     /** Will take in a view and model
     public CalendarController(EventContainer eventContainer){
@@ -32,25 +37,17 @@ public class CalendarController extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.calendar_view);
-        setUpView();
-    }
+        Log.d("TAG", "onCreate: loggg i activity");
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        CalendarFragment calendarFragment = new CalendarFragment();
 
-    private void setUpView(){
-        chooseEventButton = (Button) findViewById(R.id.mainCalendar_button);
-
-        eventButton = (Button) findViewById(R.id.eventButton);
-        deadlineButton = (Button) findViewById(R.id.deadlineButton);
+        ft.add(android.R.id.content, calendarFragment).commit();
 
     }
 
-    public void createDefaultEvent(View view){
-        //DefaultEvent defaultEvent = new DefaultEvent(null, )
-
-    }
-    public void chooseEvent(View view){
-
-    }
 
 
 }
