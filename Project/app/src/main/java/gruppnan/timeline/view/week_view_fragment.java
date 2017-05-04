@@ -23,23 +23,23 @@ public class week_view_fragment {
     private Context context;
     private TableLayout tl;
     private LayoutInflater inflater;
-    public week_view_fragment(Context c, TableLayout tl){
+    private View.OnClickListener onCl;
+    public week_view_fragment(Context c, TableLayout tl, View.OnClickListener onCl){
         context = c;
         this.tl = tl;
+        this.onCl = onCl;
 
     }
 
 
     private void createWeekView(){
 
-
-        TableRow tr = new TableRow(tl.getContext());
-        TextView tv = new TextView(context);
-
+        View txtCell;
+        TableRow tr;
+        TextView tv;
 
         inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View txtCell = inflater.inflate(R.layout.textcell,null);
         /*
         tv = (TextView) txtCell.findViewById(R.id.cell);
         tv.setText("Back");
@@ -144,7 +144,7 @@ public class week_view_fragment {
         tv.setText(i + ":00");
         tr.addView(tv);
         for (int j = 0; j < 7; j++) {
-            tr.addView(createCell(tr));
+            tr.addView(createCell(tr,i,j));
         }
 
 
@@ -154,10 +154,14 @@ public class week_view_fragment {
 
 
     }
-    private TextView createCell(TableRow tr){
+    private TextView createCell(TableRow tr,int row,int col){
         View txtCell;
+        int cellNo = ((row)*7)+(col+1);
         txtCell = inflater.inflate(R.layout.textcell,null);
         TextView tv = (TextView) txtCell.findViewById(R.id.cell);
+        tv.setTag(cellNo + "");
+        tv.setOnClickListener(onCl);
+        tv.setClickable(true);
         return tv;
 
     }

@@ -1,11 +1,13 @@
 package gruppnan.timeline;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TableLayout;
+import android.widget.TextView;
 
 import gruppnan.timeline.view.week_view_fragment;
 
@@ -28,10 +30,18 @@ public class week_view extends Fragment {
 
         View view  = inflater.inflate(R.layout.fragment_week_view, container, false);
         TableLayout tl = (TableLayout) view.findViewById(R.id.weekView);
-        week_view_fragment wwf =new week_view_fragment(view.getContext(),tl);
+        View.OnClickListener on = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView o = (TextView)v;
+                o.setText((String)o.getTag());
+            }
+        };
+        week_view_fragment wwf =new week_view_fragment(view.getContext(),tl,on);
         wwf.createTable();
         return view;
     }
+
 
 
 }
