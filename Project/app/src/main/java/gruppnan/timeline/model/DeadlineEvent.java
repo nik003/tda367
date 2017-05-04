@@ -1,17 +1,14 @@
 package gruppnan.timeline.model;
 
-import java.util.Date;
+public class DeadlineEvent {
 
-
-public class DeadlineEvent extends Event {
-
-    protected Date endDate;
+    protected int endDate;
     protected String description, name;
     protected Course course;
     protected boolean status;
 
-    public DeadlineEvent(Course course, String name, String description, Date endDate, boolean status){
-        super(course, name, endDate, description);
+    public DeadlineEvent(Course course, String name, String description, int endDate, boolean status){
+        //super(course, name, endDate, description);
         this.course = course;
         this.name = name;
         this.description = description;
@@ -19,12 +16,20 @@ public class DeadlineEvent extends Event {
         this.status = status;
     }
 
+    public String getCourseID(){
+        return course.getCourseID();
+    }
+
     public String getName(){
         return name;
     }
 
-    public String getDate(){
-        return "28 June";
+    public String getDateAsString(){
+        return "Date " + Integer.toString(endDate) ;
+    }
+
+    public int getDate(){
+        return endDate;
     }
 
     public boolean isDone(){

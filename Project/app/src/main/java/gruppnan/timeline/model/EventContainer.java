@@ -35,7 +35,8 @@ public class EventContainer {
     public DefaultEvent createDefaultEvent(Course course, String name, String desc, Date startDate, Date endDate){
         return new DefaultEvent(course,name,desc,startDate,endDate);
     }
-    public DeadlineEvent createDeadlineEvent(Course course, String name, String desc, Date endDate){
+
+    public DeadlineEvent createDeadlineEvent(Course course, String name, String desc, int endDate){
         return new DeadlineEvent(course,name,desc,endDate,false);
     }
 
@@ -68,10 +69,12 @@ public class EventContainer {
         }
         return this.defaultEventMap;
     }
+
     /**
      * iterates through main map of all events and returns all instances of DeadlineEvent
      * @return Hashmap of deadlineEvents
      */
+    /*
     public HashMap <Integer, DeadlineEvent> getDeadlineEventMap(){
         for (Map.Entry<Integer, Event> entry : eventMap.entrySet()){
             if (entry.getValue() instanceof DeadlineEvent){
@@ -80,6 +83,7 @@ public class EventContainer {
         }
         return this.deadlineEventMap;
     }
+    */
 
 
 
