@@ -1,8 +1,12 @@
 package gruppnan.timeline;
 
-import android.app.AlertDialog;
+import java.util.Calendar;
+import java.util.Observable;
+import java.util.Observer;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,16 +15,11 @@ import android.widget.TextView;
 
 import gruppnan.timeline.view.week_view_fragment;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link week_view.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link week_view#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class week_view extends Fragment {
+import static gruppnan.timeline.model.dateCalc.*;
 
+
+public class week_view extends Fragment implements View.OnClickListener{
+    private week_view_fragment wwf;
 
 
     @Override
@@ -33,15 +32,24 @@ public class week_view extends Fragment {
         View.OnClickListener on = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView o = (TextView)v;
-                o.setText((String)o.getTag());
+
             }
         };
-        week_view_fragment wwf =new week_view_fragment(view.getContext(),tl,on);
+        wwf =new week_view_fragment(view.getContext(),tl,this);
+        wwf.setWeekDatesText(getCurrentWeekDates());
         wwf.createTable();
+
         return view;
     }
 
 
-
+    @Override
+    public void onClick(View v) {
+        TextView clickedCell = (TextView) v;
+       Log.d("EventDbg","apan sover");
+        if(clickedCell.getId() == R.id.nxtWeek|| clickedCell.getId() == R.id.prevWeek) {
+            Log.d("EventDbg",((Calendar)clickedCell.getTag()).toString());
+            wwf.setWeekDatesText(getWeekDates((Calendar)clickedCell.getTag()));
+        }
+    }
 }

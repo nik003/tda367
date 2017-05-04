@@ -13,6 +13,10 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 import org.xmlpull.v1.XmlPullParser;
 
+import java.util.Calendar;
+import java.util.Observable;
+import java.util.Observer;
+
 import gruppnan.timeline.R;
 
 /**
@@ -40,6 +44,12 @@ public class week_view_fragment {
 
         inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
+        tv  = (TextView)tl.findViewById(R.id.nxtWeek);
+        tv.setClickable(true);
+        tv.setOnClickListener(onCl);
+        tv  = (TextView)tl.findViewById(R.id.prevWeek);
+        tv.setClickable(true);
+        tv.setOnClickListener(onCl);
         /*
         tv = (TextView) txtCell.findViewById(R.id.cell);
         tv.setText("Back");
@@ -55,12 +65,13 @@ public class week_view_fragment {
         tv.setText("Next");
         tr.addView(tv);
         tl.addView(tr);
-        */
+
+
         tr = new TableRow(context);
-        tr.setId(View.generateViewId());
+
         txtCell = inflater.inflate(R.layout.textcell,null);
         tv = (TextView) txtCell.findViewById(R.id.cell);
-        tv.setText("W 27");
+
         tr.addView(tv);
 
         txtCell = inflater.inflate(R.layout.textcell,null);
@@ -97,7 +108,7 @@ public class week_view_fragment {
         tv = (TextView) txtCell.findViewById(R.id.cell);
         tv.setText("Sun");
         tr.addView(tv);
-        tl.addView(tr);
+        tl.addView(tr);*/
        /* tr.setGravity(Gravity.CENTER);
         tv.setClickable(true);
         tv.setText("<<");
@@ -165,5 +176,22 @@ public class week_view_fragment {
         return tv;
 
     }
+    public void setWeekDatesText(Calendar[] dates){
+        String fromDate = dates[0].get(Calendar.DAY_OF_MONTH)+"/" + dates[0].get(Calendar.MONTH);
+        String toDate = dates[1].get(Calendar.DAY_OF_MONTH)+"/" + dates[1].get(Calendar.MONTH);
+        TextView dateView  = (TextView)tl.findViewById(R.id.tableDate);
+        dateView.setText(fromDate+ "-" + toDate);
+
+        dateView  = (TextView)tl.findViewById(R.id.weekText);
+        dateView.setText("W "+ dates[0].get(Calendar.WEEK_OF_YEAR));
+
+        dateView  = (TextView)tl.findViewById(R.id.nxtWeek);
+        dateView.setTag(dates[2]);
+
+        dateView  = (TextView)tl.findViewById(R.id.prevWeek);
+        dateView.setTag(dates[3]);
+    }
+
+
 }
 
