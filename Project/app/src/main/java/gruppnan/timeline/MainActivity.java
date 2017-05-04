@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_timer);
+        setContentView(R.layout.fragment_timer);
 
         stopWatchText = (TextView) findViewById(R.id.stopWatchText);
         stopWatchRestartButton = (Button) findViewById(R.id.stopWatchRestartButton);
