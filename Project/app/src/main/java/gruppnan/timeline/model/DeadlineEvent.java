@@ -8,13 +8,15 @@ public class DeadlineEvent extends Event {
     protected Date endDate;
     protected String description, name;
     protected Course course;
+    protected boolean status;
 
-    public DeadlineEvent(Course course, String name, String description, Date endDate){
+    public DeadlineEvent(Course course, String name, String description, Date endDate, boolean status){
         super(course, name, endDate, description);
         this.course = course;
         this.name = name;
         this.description = description;
         this.endDate = endDate;
+        this.status = status;
     }
 
     public String getName(){
@@ -23,6 +25,10 @@ public class DeadlineEvent extends Event {
 
     public String getDate(){
         return "28 June";
+    }
+
+    public boolean isDone(){
+        return status;
     }
 
 }

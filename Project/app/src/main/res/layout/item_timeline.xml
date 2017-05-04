@@ -3,22 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
     >
 
     <com.github.vipulasri.timelineview.TimelineView
         android:id="@+id/time_marker"
+        app:marker="@drawable/marker_inactive"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         app:line="@color/timelineColor"
         app:lineSize="2dp"
-        app:markerSize="20dp" />
+        app:markerSize="20dp"
+        />
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginBottom="15dp"
         android:layout_marginLeft="10dp"

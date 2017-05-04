@@ -1,13 +1,10 @@
 package gruppnan.timeline.model;
 
-import android.support.v4.app.INotificationSideChannel;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * Singleton Class that handles and stores the created events.
@@ -39,7 +36,7 @@ public class EventContainer {
         return new DefaultEvent(course,name,desc,startDate,endDate);
     }
     public DeadlineEvent createDeadlineEvent(Course course, String name, String desc, Date endDate){
-        return new DeadlineEvent(course,name,desc,endDate);
+        return new DeadlineEvent(course,name,desc,endDate,false);
     }
 
 

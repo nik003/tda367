@@ -36,17 +36,26 @@ public class ContentTimelineFragment extends Fragment {
         // in content do not change the layout size of the RecyclerView
         mRecyclerView.setHasFixedSize(true);
         deadlineEvents = new ArrayList<>();
-        deadlineEvents.add(0,new DeadlineEvent(new Course("hdhdh","eiei"), "Projekt", "hej", new Date()));
-
-        deadlineEvents.add(1,new DeadlineEvent(new Course("hdh","ei"), "Matte", "hej", new Date()));
 
 
         // specify an adapter (see also next example)
         mAdapter = new ItemListAdapter(deadlineEvents);
-        mRecyclerView.setAdapter(mAdapter);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
+        //mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerView.setAdapter(mAdapter);
+
+        deadlineEvents.add(0,new DeadlineEvent(new Course("hdhdh","eiei"), "Projekt", "hej", new Date(), true));
+        deadlineEvents.add(1,new DeadlineEvent(new Course("hdh","ei"), "Matte", "hej", new Date(), false));
+        deadlineEvents.add(2,new DeadlineEvent(new Course("hdhdh","eiei"), "Klä på mig", "hej", new Date(), false));
+        deadlineEvents.add(3,new DeadlineEvent(new Course("hdh","ei"), "Osv", "hej", new Date(), false));
+        deadlineEvents.add(4,new DeadlineEvent(new Course("hdhdh","eiei"), "Projekt", "hej", new Date(), false));
+        deadlineEvents.add(5,new DeadlineEvent(new Course("hdh","ei"), "Hej", "hej", new Date(), false));
+        deadlineEvents.add(6,new DeadlineEvent(new Course("hdhdh","eiei"), "Då", "hej", new Date(), false));
+        deadlineEvents.add(7,new DeadlineEvent(new Course("hdh","ei"), "TDA355", "hej", new Date(), false));
+
+        mAdapter.notifyDataSetChanged();
         return view;
     }
 
