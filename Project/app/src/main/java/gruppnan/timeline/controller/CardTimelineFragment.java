@@ -8,29 +8,26 @@ import android.view.ViewGroup;
 
 import gruppnan.timeline.R;
 
-public class ItemTimelineFragment extends Fragment {
+/**
+ * Created by Melina on 05/05/2017.
+ */
 
-
+public class CardTimelineFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View v= inflater.inflate(R.layout.item_timeline, container, false);
+        View view = inflater.inflate(R.layout.card_timeline,
+                container, false);
 
-        return v;
-
-
+        return view;
     }
+
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
     }
-
-
-
-
-
 }

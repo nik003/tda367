@@ -35,10 +35,8 @@ public class ContentTimelineFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.content_timeline,
                 container, false);
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
 
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
 
         dEvents = new ArrayList<>();
@@ -47,35 +45,30 @@ public class ContentTimelineFragment extends Fragment {
         a2 = new ArrayList<>();
         dest = new ArrayList<>();
 
+        //temporary code
+        dEvents.add(0,new DeadlineEvent(new Course("course1","eiei"), "Laboration 1", "hej", 1, true));
+        dEvents.add(1,new DeadlineEvent(new Course("course1","ei"), "Laboration 2", "hej", 2, true));
+        dEvents.add(2,new DeadlineEvent(new Course("course1","eiei"), "Laboration 3", "hej", 7, false));
+        dEvents.add(3,new DeadlineEvent(new Course("course2","ei"), "Inlämning 1", "hej", 2, false));
+        dEvents.add(4,new DeadlineEvent(new Course("course2","eiei"), "Seminarie", "hej", 3, false));
+        dEvents.add(5,new DeadlineEvent(new Course("course2","ei"), "Inlämning 2", "hej", 5, false));
+        dEvents.add(6,new DeadlineEvent(new Course("course1","eiei"), "Laboration 4", "hej", 8, false));
+        dEvents.add(7,new DeadlineEvent(new Course("course2","ei"), "Tenta", "hej",10, false));
+
+
+        sortEvents();
         addEvents();
 
-        // specify an adapter (see also next example)
         mAdapter = new ItemListAdapter(dest);
-
         mLayoutManager = new LinearLayoutManager(getActivity());
+
         mRecyclerView.setLayoutManager(mLayoutManager);
-
-        //mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(mAdapter);
-
         mAdapter.notifyDataSetChanged();
+
         return view;
     }
 
-    public void addEvents(){
-
-        dEvents.add(0,new DeadlineEvent(new Course("course1","eiei"), "Projekt", "hej", 1, true));
-        dEvents.add(1,new DeadlineEvent(new Course("course1","ei"), "Matte", "hej", 2, true));
-        dEvents.add(2,new DeadlineEvent(new Course("course1","eiei"), "Klä på mig", "hej", 7, false));
-        dEvents.add(3,new DeadlineEvent(new Course("course2","ei"), "Osv", "hej", 5, false));
-        dEvents.add(4,new DeadlineEvent(new Course("course2","eiei"), "Projekt", "hej", 3, false));
-        dEvents.add(5,new DeadlineEvent(new Course("course2","ei"), "Hej", "hej", 2, false));
-        dEvents.add(6,new DeadlineEvent(new Course("course1","eiei"), "Då", "hej", 8, false));
-        dEvents.add(7,new DeadlineEvent(new Course("course2","ei"), "TDA355", "hej",10, false));
-
-        sortEvents();
-
-    }
 
     public void sortEvents(){
         Collections.sort(dEvents, new Comparator<DeadlineEvent>() {
@@ -84,6 +77,10 @@ public class ContentTimelineFragment extends Fragment {
                 return deadlineEvent.getDate() - t1.getDate();
             }
         });
+    }
+
+    public void addEvents(){
+        //separate the events by courses
         for(DeadlineEvent item : dEvents){
             if(item.getCourseID() == "course1"){
                 a1.add(item);
@@ -92,16 +89,12 @@ public class ContentTimelineFragment extends Fragment {
             }
         }
 
+        //set the events in pairs in order to be displayed chronologically in the view
         int i = 0;
         int j = 0;
-        System.out.println("size: "+dEvents.size());
         while(i+j < dEvents.size()){
-            System.out.println("i:" + i);
-            System.out.println("j:" + j);
             DeadlineEvent d1 = i < a1.size() ? a1.get(i) : null;
             DeadlineEvent d2 = j < a2.size() ? a2.get(j) : null;
-            System.out.println("d1 "+ d1);
-            System.out.println("d2 "+ d2);
             if( d1 == null && d2 == null) {
                 break;
             } else if ( d1 == null ) {
@@ -123,7 +116,6 @@ public class ContentTimelineFragment extends Fragment {
             }
 
         }
-
     }
 
 

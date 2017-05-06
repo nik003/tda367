@@ -25,7 +25,7 @@ public class DeadlineEvent {
     }
 
     public String getDateAsString(){
-        return "Date " + Integer.toString(endDate) ;
+        return Integer.toString(endDate) + " Maj" ;
     }
 
     public int getDate(){

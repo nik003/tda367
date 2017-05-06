@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_timeline"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="10dp"
@@ -11,8 +12,8 @@
     >
 
     <com.github.vipulasri.timelineview.TimelineView
-        android:id="@+id/time_marker"
-        app:marker="@drawable/marker_inactive"
+        android:id="@+id/course1"
+        app:marker="@drawable/blue_marker_inactive"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         app:line="@color/timelineColor"
@@ -28,10 +29,12 @@
         android:layout_gravity="center_vertical"
         android:layout_marginBottom="15dp"
         android:layout_marginLeft="10dp"
+        android:layout_marginRight="5dp"
         android:layout_marginTop="15dp"
         app:cardElevation="1dp"
         app:contentPadding="15dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:clickable="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -53,14 +56,13 @@
                 android:layout_marginTop="5dp"
                 android:textColor="@android:color/black" />
 
-
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
 
     <com.github.vipulasri.timelineview.TimelineView
-        android:id="@+id/time_marker2"
-        app:marker="@drawable/marker_inactive2"
+        android:id="@+id/course2"
+        app:marker="@drawable/red_marker_inactive"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         app:line="@color/timelineColor2"
@@ -79,7 +81,8 @@
         android:layout_marginTop="15dp"
         app:cardElevation="1dp"
         app:contentPadding="15dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:clickable="true">
 
         <LinearLayout
             android:layout_width="match_parent"
