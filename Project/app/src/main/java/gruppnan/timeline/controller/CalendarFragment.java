@@ -2,9 +2,6 @@ package gruppnan.timeline.controller;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Context;
-import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.util.Log;
@@ -12,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.TextView;
 
 import com.github.clans.fab.FloatingActionButton;
@@ -25,14 +23,14 @@ public class CalendarFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private Button chooseEventButton, eventButton, deadlineButton;
-    private FloatingActionButton fab;
+    private FloatingActionButton fab1,fab2;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
     private FragmentManager fragmentManager;
     private FragmentTransaction ft;
+    private CalendarView calendarView;
 
     public CalendarFragment() {
         // Required empty public constructor
@@ -67,13 +65,12 @@ public class CalendarFragment extends Fragment {
     }
     private void setUpViewComponents(View v){
 
-        eventButton = (Button) v.findViewById(R.id.eventButton);
-        eventButton.setOnClickListener(btnListener);
-        deadlineButton = (Button) v.findViewById(R.id.deadlineButton);
-        deadlineButton.setOnClickListener(btnListener);
+        fab1 = (FloatingActionButton) v.findViewById(R.id.fab1);
+        fab2 = (FloatingActionButton) v.findViewById(R.id.fab2);
+        fab1.setOnClickListener(btnListener);
+        fab2.setOnClickListener(btnListener);
 
-        fab = (FloatingActionButton) v.findViewById(R.id.fab);
-
+        calendarView = (CalendarView) v.findViewById(R.id.calendarView);
 
         fragmentManager = getActivity().getFragmentManager();
         ft = fragmentManager.beginTransaction();
@@ -85,17 +82,18 @@ public class CalendarFragment extends Fragment {
 
             Bundle bundle = new Bundle();
 
-            if (view.equals(eventButton)){
-                eventButton.setBackgroundColor(Color.GREEN);
+
+            if (view.equals(fab1)){
                 addEventFragment newFragment = new addEventFragment();
                 bundle.putString("type", "event");
+
+
                 newFragment.setArguments(bundle);
                 ft.replace(android.R.id.content, newFragment).addToBackStack(null).commit();
 
 
             }
-            else if (view.equals(deadlineButton)){
-                eventButton.setBackgroundColor(Color.BLUE);
+            else if (view.equals(fab2)){
                 bundle.putString("type", "deadline");
                 addEventFragment newFragment = new addEventFragment();
                 newFragment.setArguments(bundle);

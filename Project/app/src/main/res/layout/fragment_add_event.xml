@@ -7,16 +7,16 @@
     <!-- TODO: Update blank fragment layout -->
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/saveEventBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="69dp"
-        android:layout_toEndOf="@+id/descText"
-        android:text="Save" />
+        android:layout_marginTop="50dp"
+        android:text="Save"
+        android:layout_below="@+id/startTimeBtn"
+        android:layout_alignParentStart="true" />
 
     <EditText
-        android:id="@+id/descText"
+        android:id="@+id/descTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -24,11 +24,11 @@
         android:ems="10"
         android:hint="Description"
         android:inputType="textMultiLine"
-        android:layout_below="@+id/editText"
-        android:layout_alignStart="@+id/editText" />
+        android:layout_below="@+id/eventNameTxt"
+        android:layout_alignStart="@+id/eventNameTxt" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/eventNameTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -47,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/editText"
+        android:layout_alignStart="@+id/eventNameTxt"
         android:clickable="false"
         android:textSize="28dp"
         android:layout_marginTop="18dp"
@@ -59,7 +59,25 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:layout_below="@+id/eventTitleLabel"
-        android:layout_alignEnd="@+id/editText"
+        android:layout_alignEnd="@+id/eventNameTxt"
         android:layout_alignStart="@+id/eventTitleLabel" />
+
+    <Button
+        android:id="@+id/startTimeBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start time"
+        android:layout_alignBaseline="@+id/endTimeBtn"
+        android:layout_alignBottom="@+id/endTimeBtn"
+        android:layout_alignStart="@+id/descTxt" />
+
+    <Button
+        android:id="@+id/endTimeBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="end time"
+        android:layout_below="@+id/descTxt"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="41dp" />
 
 </RelativeLayout>

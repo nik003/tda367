@@ -6,23 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/eventButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Event"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/fab" />
-
-    <Button
-        android:id="@+id/deadlineButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignStart="@+id/eventButton"
-        android:layout_below="@+id/eventButton"
-        android:text="New Deadline" />
-
     <ListView
         android:id="@+id/listView"
         android:layout_width="280dp"
@@ -90,7 +73,7 @@
         fab:menu_fab_hide_animation="@anim/my_hide_animation">
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/fab"
+            android:id="@+id/fab1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/calendarView"
@@ -99,6 +82,22 @@
             android:layout_marginStart="13dp"
             android:layout_toEndOf="@+id/listView"
             android:src="@drawable/plus"
+            app:fab_label="Add new event"
+            app:fab_colorNormal="#f4bc42"
+            fab:fab_colorPressed="@color/app_primary_pressed"
+            fab:fab_colorRipple="@color/app_ripple" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/calendarView"
+            android:layout_gravity="bottom|right"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="13dp"
+            android:layout_toEndOf="@+id/listView"
+            android:src="@drawable/plus"
+            app:fab_label="Add new deadline"
             app:fab_colorNormal="#f4bc42"
             fab:fab_colorPressed="@color/app_primary_pressed"
             fab:fab_colorRipple="@color/app_ripple" />
