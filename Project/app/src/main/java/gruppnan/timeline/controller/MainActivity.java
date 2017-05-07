@@ -1,5 +1,6 @@
 package gruppnan.timeline.controller;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -9,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import gruppnan.timeline.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initDrawer() {
-        /*
+
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView navView = (NavigationView) findViewById(R.id.navigation);
         navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -50,10 +53,12 @@ public class MainActivity extends AppCompatActivity {
                 int itemId = menuItem.getItemId();
 
                 if (itemId == R.id.timeline) {
-                    //setContentView(R.id.timelineView);
+                    Intent i = new Intent(MainActivity.this, TimelineActivity.class);
+                    startActivity(i);
                     mDrawerLayout.closeDrawers();
                 } else if (itemId == R.id.timer) {
-                    //setContentView(R.id.timerView);
+                    //Intent i = new Intent(MainActivity.this, TimerActivity.class);
+                    //startActivity(i);
                     mDrawerLayout.closeDrawers();
                 }
 
@@ -74,8 +79,9 @@ public class MainActivity extends AppCompatActivity {
             //case
         }
 
+
         return true;
-        */
+
     }
 
 }

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Timeline</string>
+
+    <string name="timeline_view">Timeline</string>
+    <string name="timer_view">Timer</string>
+
 </resources>
