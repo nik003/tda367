@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/timeline"
+            android:title="@string/timeline_view"
+            android:icon="@mipmap/ic_launcher"/>
+
+        <item android:id="@+id/timer"
+            android:title="@string/timer_view"
+            android:icon="@mipmap/ic_launcher"/>
+    </group>
+</menu>
