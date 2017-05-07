@@ -12,9 +12,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+
+import com.github.clans.fab.FloatingActionButton;
 
 import gruppnan.timeline.R;
-
+import gruppnan.timeline.model.DeadlineEvent;
 
 
 public class CalendarFragment extends Fragment {
@@ -23,6 +26,7 @@ public class CalendarFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private Button chooseEventButton, eventButton, deadlineButton;
+    private FloatingActionButton fab;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -57,9 +61,9 @@ public class CalendarFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_calendar,container,false);
-        setUpViewComponents(v);
-        return v;
+        View view = inflater.inflate(R.layout.fragment_calendar,container,false);
+        setUpViewComponents(view);
+        return view;
     }
     private void setUpViewComponents(View v){
 
@@ -68,6 +72,9 @@ public class CalendarFragment extends Fragment {
         deadlineButton = (Button) v.findViewById(R.id.deadlineButton);
         deadlineButton.setOnClickListener(btnListener);
 
+        fab = (FloatingActionButton) v.findViewById(R.id.fab);
+
+
         fragmentManager = getActivity().getFragmentManager();
         ft = fragmentManager.beginTransaction();
     }
@@ -75,14 +82,25 @@ public class CalendarFragment extends Fragment {
     private View.OnClickListener btnListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+
+            Bundle bundle = new Bundle();
+
             if (view.equals(eventButton)){
                 eventButton.setBackgroundColor(Color.GREEN);
                 addEventFragment newFragment = new addEventFragment();
-                ft.replace(android.R.id.content, newFragment).commit();
+                bundle.putString("type", "event");
+                newFragment.setArguments(bundle);
+                ft.replace(android.R.id.content, newFragment).addToBackStack(null).commit();
+
 
             }
             else if (view.equals(deadlineButton)){
                 eventButton.setBackgroundColor(Color.BLUE);
+                bundle.putString("type", "deadline");
+                addEventFragment newFragment = new addEventFragment();
+                newFragment.setArguments(bundle);
+                ft.replace(android.R.id.content, newFragment).addToBackStack(null).commit();
+
             }
         }
     };

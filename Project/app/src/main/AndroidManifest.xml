@@ -19,9 +19,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".controller.CalendarController" >
-            <!--Default Intent Filter-->
-            android:exported="true"
+        <activity android:name=".controller.CalendarController"
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".controller.CalendarController"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>

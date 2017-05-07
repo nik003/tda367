@@ -37,17 +37,20 @@ public class CalendarController extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initFragment();
 
+
+    }
+
+    private void initFragment(){
         setContentView(R.layout.calendar_view);
-        Log.d("TAG", "onCreate: loggg i activity");
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
         CalendarFragment calendarFragment = new CalendarFragment();
 
-        ft.add(android.R.id.content, calendarFragment).commit();
-
+        ft.add(android.R.id.content, calendarFragment).addToBackStack(null)
+                .commit();
     }
-
 
 
 }

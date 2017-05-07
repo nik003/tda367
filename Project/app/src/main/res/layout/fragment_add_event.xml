@@ -6,62 +6,60 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <ScrollView
+    <Button
+        android:id="@+id/button"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="69dp"
+        android:layout_toEndOf="@+id/descText"
+        android:text="Save" />
+
+    <EditText
+        android:id="@+id/descText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_weight="1"
+        android:ems="10"
+        android:hint="Description"
+        android:inputType="textMultiLine"
+        android:layout_below="@+id/editText"
+        android:layout_alignStart="@+id/editText" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_weight="1"
+        android:ems="10"
+        android:hint="Event name"
+        android:inputType="textNoSuggestions|textPersonName"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="88dp"
+        android:layout_below="@+id/eventTitleLabel"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/eventTitleLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignStart="@+id/editText"
+        android:clickable="false"
+        android:textSize="28dp"
+        android:layout_marginTop="18dp"
+        android:text="Add new event" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:id="@+id/button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="69dp"
-                android:layout_toEndOf="@+id/editText2"
-                android:text="Save" />
-
-            <EditText
-                android:id="@+id/editText2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/editText"
-                android:layout_below="@+id/descLabel"
-                android:layout_marginTop="14dp"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textMultiLine"
-                android:singleLine="false" />
-
-            <EditText
-                android:id="@+id/editText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="31dp"
-                android:layout_marginTop="62dp"
-                android:layout_weight="1"
-                android:ems="10"
-                android:hint="Event name"
-                android:inputType="textNoSuggestions|textPersonName" />
-
-            <TextView
-                android:id="@+id/descLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/editText2"
-                android:layout_below="@+id/editText"
-                android:layout_marginTop="38dp"
-                android:layout_weight="1"
-                android:clickable="false"
-                android:text="Description"
-                android:textSize="20dp" />
-        </RelativeLayout>
-    </ScrollView>
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/eventTitleLabel"
+        android:layout_alignEnd="@+id/editText"
+        android:layout_alignStart="@+id/eventTitleLabel" />
 
 </RelativeLayout>
