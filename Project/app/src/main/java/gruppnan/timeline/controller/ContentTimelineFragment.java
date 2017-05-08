@@ -26,7 +26,6 @@ public class ContentTimelineFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
 
     private List<DeadlineEvent> dEvents, a1, a2;
-    private List<List<DeadlineEvent>> dEventList;
     private List<DeadlineEventSet> dest;
 
 
@@ -38,9 +37,7 @@ public class ContentTimelineFragment extends Fragment {
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
-
         dEvents = new ArrayList<>();
-        dEventList = new ArrayList<>();
         a1 = new ArrayList<>();
         a2 = new ArrayList<>();
         dest = new ArrayList<>();
@@ -117,6 +114,7 @@ public class ContentTimelineFragment extends Fragment {
 
         }
     }
+
 
 
     @Override

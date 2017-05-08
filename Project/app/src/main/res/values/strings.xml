@@ -1,7 +1,12 @@
 <resources>
     <string name="app_name">Timeline</string>
-
+    <string name="home_view">Home</string>
     <string name="timeline_view">Timeline</string>
     <string name="timer_view">Timer</string>
+
+    <string name="calendar_view">Calendar</string>
+
+    <string name="timeline_settings">Timeline Settings</string>
+    <string name="timer_settings">Timer Settings</string>
 
 </resources>

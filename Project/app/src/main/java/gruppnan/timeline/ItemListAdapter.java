@@ -2,6 +2,7 @@ package gruppnan.timeline;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -33,6 +34,8 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
         this.data = deadlineEvents;
     }
 
+
+    DeadlineEventSet dEvent;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -81,24 +84,26 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        DeadlineEventSet dEvent = data.get(position);
+        dEvent = data.get(position);
 
-        updateContent(dEvent, holder,position);
+        updateContent(dEvent,holder,position);
 
-        //setCardListener(holder,position);
-
-
+        setCardListener(holder,position);
 
     }
 
-    private void setCardListener(ViewHolder holder, int position) {
+    private void setCardListener(ViewHolder holder, final int position) {
 
         holder.courseCard1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Fragment ft = new CardTimelineFragment();
+                Bundle args = new Bundle();
+                args.putInt("Position", position);
+                args.putInt("Course", 1);
+                ft.setArguments(args);
                 ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.item_timeline,ft)
+                        .add(R.id.frame,ft)
                         .commit();
             }
         });
@@ -107,8 +112,12 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
             @Override
             public void onClick(View view) {
                 Fragment ft = new CardTimelineFragment();
+                Bundle args = new Bundle();
+                args.putInt("Position", position);
+                args.putInt("Course", 2);
+                ft.setArguments(args);
                 ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.item_timeline,ft)
+                        .add(R.id.frame,ft)
                         .commit();
             }
         });
@@ -217,5 +226,6 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
     public int getItemCount() {
         return data.size();
     }
+
 
 }

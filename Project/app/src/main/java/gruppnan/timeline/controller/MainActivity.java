@@ -1,8 +1,9 @@
 package gruppnan.timeline.controller;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -21,51 +22,67 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.frame, new ContentTimelineFragment()).commit();
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
-
+        NavigationView navView = (NavigationView) findViewById(R.id.nav_view);
         configureToolbar();
-        initDrawer();
+        setupDrawer(navView);
 
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_items, menu);
+        getMenuInflater().inflate(R.menu.settings_items, menu);
         return true;
     }
 
-    private void configureToolbar() {
+    protected void configureToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionbar = getSupportActionBar();
-        //actionbar.setHomeAsUpIndicator(R.drawable.);
         actionbar.setDisplayHomeAsUpEnabled(true);
     }
 
-    private void initDrawer() {
+    private void setupDrawer(NavigationView navigationView) {
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        selectDrawerItem(menuItem);
+                        return true;
+                    }
+                });
+    }
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        NavigationView navView = (NavigationView) findViewById(R.id.navigation);
-        navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
 
+
+    protected void selectDrawerItem(MenuItem menuItem) {
                 int itemId = menuItem.getItemId();
+                Fragment fragment = null;
+                Class fragmentClass = null;
 
-                if (itemId == R.id.timeline) {
-                    Intent i = new Intent(MainActivity.this, TimelineActivity.class);
-                    startActivity(i);
-                    mDrawerLayout.closeDrawers();
-                } else if (itemId == R.id.timer) {
-                    //Intent i = new Intent(MainActivity.this, TimerActivity.class);
-                    //startActivity(i);
-                    mDrawerLayout.closeDrawers();
+                if (itemId == R.id.home) {
+                    fragmentClass = ContentTimelineFragment.class;
+                } else if (itemId == R.id.calendar) {
+                    fragmentClass = ContentTimelineFragment.class;
+                }  else if (itemId == R.id.timer) {
+                    fragmentClass = ContentTimelineFragment.class;
                 }
 
-                return false;
+                try {
+                    fragment = (Fragment) fragmentClass.newInstance();
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
 
-            }
-        });
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.frame, fragment).commit();
+
+                menuItem.setChecked(true);
+                setTitle(menuItem.getTitle());
+
+                mDrawerLayout.closeDrawers();
+
     }
 
     @Override
@@ -76,12 +93,20 @@ public class MainActivity extends AppCompatActivity {
             case android.R.id.home:
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 return true;
-            //case
         }
 
 
         return true;
 
+    }
+
+    @Override
+    public void onBackPressed(){
+        if(mDrawerLayout.isDrawerOpen(GravityCompat.START)){
+            mDrawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 
 }
