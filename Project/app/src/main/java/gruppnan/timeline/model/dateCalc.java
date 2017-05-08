@@ -1,7 +1,7 @@
 package gruppnan.timeline.model;
 
 import java.util.Calendar;
-import java.util.Observable;
+
 
 /**
  * Created by Nikolai on 2017-05-04.
@@ -10,11 +10,13 @@ import java.util.Observable;
 public abstract class dateCalc{
 
     public static Calendar[] getCurrentWeekDates() {
+
         Calendar cal = Calendar.getInstance();
         Calendar[] dates = new Calendar[4];
         cal.setFirstDayOfWeek(cal.MONDAY);
 
-        cal.add(cal.DAY_OF_MONTH,(2-(cal.get(cal.DAY_OF_WEEK))));
+        cal.add(Calendar.DAY_OF_MONTH,(2-(cal.get(cal.DAY_OF_WEEK))));
+
         dates[0] = (Calendar) cal.clone();
         dates[3] = getPrevMonday(cal);
 
@@ -33,6 +35,7 @@ public abstract class dateCalc{
     private static Calendar getPrevMonday(Calendar day){
         Calendar prevDay = (Calendar)day.clone();
         prevDay.add(prevDay.DAY_OF_MONTH,-7);
+        int prev = prevDay.get(Calendar.DAY_OF_MONTH);
         return prevDay;
     }
     public static Calendar[] getWeekDates(Calendar monday){

@@ -1,8 +1,6 @@
 package gruppnan.timeline;
 
 import java.util.Calendar;
-import java.util.Observable;
-import java.util.Observer;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -50,6 +48,9 @@ public class week_view extends Fragment implements View.OnClickListener{
         if(clickedCell.getId() == R.id.nxtWeek|| clickedCell.getId() == R.id.prevWeek) {
             Log.d("EventDbg",((Calendar)clickedCell.getTag()).toString());
             wwf.setWeekDatesText(getWeekDates((Calendar)clickedCell.getTag()));
+        }
+        if(clickedCell.getId() == R.id.cell){
+             clickedCell.setText((String)clickedCell.getTag());
         }
     }
 }

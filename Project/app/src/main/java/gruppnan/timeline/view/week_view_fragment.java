@@ -1,23 +1,21 @@
 package gruppnan.timeline.view;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-import org.xmlpull.v1.XmlPullParser;
-
 import java.util.Calendar;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+
 
 import gruppnan.timeline.R;
+
 
 /**
  * Created by Nikolai on 2017-05-04.
@@ -28,6 +26,7 @@ public class week_view_fragment {
     private TableLayout tl;
     private LayoutInflater inflater;
     private View.OnClickListener onCl;
+
     public week_view_fragment(Context c, TableLayout tl, View.OnClickListener onCl){
         context = c;
         this.tl = tl;
@@ -37,9 +36,6 @@ public class week_view_fragment {
 
 
     private void createWeekView(){
-
-        View txtCell;
-        TableRow tr;
         TextView tv;
 
         inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -50,93 +46,7 @@ public class week_view_fragment {
         tv  = (TextView)tl.findViewById(R.id.prevWeek);
         tv.setClickable(true);
         tv.setOnClickListener(onCl);
-        /*
-        tv = (TextView) txtCell.findViewById(R.id.cell);
-        tv.setText("Back");
-        tr.addView(tv);
 
-        txtCell = inflater.inflate(R.layout.textcell,null);
-        tv = (TextView) txtCell.findViewById(R.id.cell);
-        tv.setText("Week 27");
-        tr.addView(tv);
-
-        txtCell = inflater.inflate(R.layout.textcell,null);
-        tv = (TextView) txtCell.findViewById(R.id.cell);
-        tv.setText("Next");
-        tr.addView(tv);
-        tl.addView(tr);
-
-
-        tr = new TableRow(context);
-
-        txtCell = inflater.inflate(R.layout.textcell,null);
-        tv = (TextView) txtCell.findViewById(R.id.cell);
-
-        tr.addView(tv);
-
-        txtCell = inflater.inflate(R.layout.textcell,null);
-        tv = (TextView) txtCell.findViewById(R.id.cell);
-        tv.setText("Mon");
-        tr.addView(tv);
-
-        txtCell = inflater.inflate(R.layout.textcell,null);
-        tv = (TextView) txtCell.findViewById(R.id.cell);
-        tv.setText("Tue");
-        tr.addView(tv);
-
-        txtCell = inflater.inflate(R.layout.textcell,null);
-        tv = (TextView) txtCell.findViewById(R.id.cell);
-        tv.setText("Wed");
-        tr.addView(tv);
-
-        txtCell = inflater.inflate(R.layout.textcell,null);
-        tv = (TextView) txtCell.findViewById(R.id.cell);
-        tv.setText("Thu");
-        tr.addView(tv);
-
-        txtCell = inflater.inflate(R.layout.textcell,null);
-        tv = (TextView) txtCell.findViewById(R.id.cell);
-        tv.setText("Fri");
-        tr.addView(tv);
-
-        txtCell = inflater.inflate(R.layout.textcell,null);
-        tv = (TextView) txtCell.findViewById(R.id.cell);
-        tv.setText("Sat");
-        tr.addView(tv);
-
-        txtCell = inflater.inflate(R.layout.textcell,null);
-        tv = (TextView) txtCell.findViewById(R.id.cell);
-        tv.setText("Sun");
-        tr.addView(tv);
-        tl.addView(tr);*/
-       /* tr.setGravity(Gravity.CENTER);
-        tv.setClickable(true);
-        tv.setText("<<");
-        tv.setBackgroundResource(R.drawable.cell_shape);
-        tv.setPadding(3,3,3,3);
-
-        tr.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT,TableRow.LayoutParams.FILL_PARENT,1.0f));
-        tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        tr.addView(tv);
-
-
-        tv = new TextView(context);
-        tv.setClickable(true);
-        tv.setText("Week 27");
-        tv.setBackgroundResource(R.drawable.cell_shape);
-        tv.setPadding(3,3,3,3);
-        tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        tr.addView(tv);
-
-
-        tv = new TextView(context);
-        tv.setClickable(true);
-        tv.setText(">>");
-        tv.setBackgroundResource(R.drawable.cell_shape);
-        tv.setPadding(3,3,3,3);
-
-        tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        tr.addView(tv);*/
 
         for(int i = 0;i<24;i++)
              tl.addView(createRow(i));
@@ -177,8 +87,8 @@ public class week_view_fragment {
 
     }
     public void setWeekDatesText(Calendar[] dates){
-        String fromDate = dates[0].get(Calendar.DAY_OF_MONTH)+"/" + dates[0].get(Calendar.MONTH);
-        String toDate = dates[1].get(Calendar.DAY_OF_MONTH)+"/" + dates[1].get(Calendar.MONTH);
+        String fromDate = dates[0].get(Calendar.DAY_OF_MONTH)+"/" + (dates[0].get(Calendar.MONTH)+1);
+        String toDate = dates[1].get(Calendar.DAY_OF_MONTH)+"/" + (dates[1].get(Calendar.MONTH)+1);
         TextView dateView  = (TextView)tl.findViewById(R.id.tableDate);
         dateView.setText(fromDate+ "-" + toDate);
 
@@ -190,6 +100,24 @@ public class week_view_fragment {
 
         dateView  = (TextView)tl.findViewById(R.id.prevWeek);
         dateView.setTag(dates[3]);
+    }
+    private void renderEvents(HashMap<String,Calendar[]> event){
+        for(Map.Entry<String,Calendar[]> e: event.entrySet()){
+            String name  = e.getKey();
+            Calendar startDate = e.getValue()[0];
+            Calendar endDate = e.getValue()[1];
+            int hour;
+            if(startDate.get(startDate.MINUTE)>=30){
+                startDate.add(Calendar.HOUR_OF_DAY,1);
+
+            }
+            if(endDate.get(startDate.MINUTE)>=30) {
+                endDate.add(Calendar.HOUR_OF_DAY, 1);
+
+            }
+            
+        }
+
     }
 
 
