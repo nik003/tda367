@@ -47,6 +47,7 @@ public class addEventFragment extends Fragment implements TimePickerDialog.OnTim
     private int startH, startM, endH, endM;
     private int startHF, startMF, endHF, endMF;
     private Boolean timePickBoolean;
+    private Button whichButton;
 
     TimePickerDialog startTimePicker, endTimePicker;
 
@@ -121,11 +122,13 @@ public class addEventFragment extends Fragment implements TimePickerDialog.OnTim
                 startTimePicker = new TimePickerDialog(getActivity(),addEventFragment.this, startH, startM, android.text.format.DateFormat.is24HourFormat(getActivity()));
                 startTimePicker.show();
                 timePickBoolean = true;
+                whichButton = startTimeBtn;
             }
             else if (v.equals(endTimeBtn)){
                 endTimePicker = new TimePickerDialog(getActivity(),addEventFragment.this, endH, endM, android.text.format.DateFormat.is24HourFormat(getActivity()));
                 endTimePicker.show();
                 timePickBoolean = false;
+                whichButton = endTimeBtn;
             }
             else if (v.equals(saveEventBtn)){
 
@@ -154,12 +157,12 @@ public class addEventFragment extends Fragment implements TimePickerDialog.OnTim
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
-        if (timePickBoolean){
+        if (whichButton.equals(startTimeBtn)){
             startHF = hourOfDay;
             startMF = minute;
             startTimeBtn.setText(startHF +" : " + startMF);
         }
-        else if (!timePickBoolean){
+        else if (whichButton.equals(endTimeBtn)){
             endHF = hourOfDay;
             endMF = minute;
             endTimeBtn.setText(endHF + " : " + endMF);
