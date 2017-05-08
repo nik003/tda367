@@ -52,5 +52,6 @@ public class week_view extends Fragment implements View.OnClickListener{
         if(clickedCell.getId() == R.id.cell){
              clickedCell.setText((String)clickedCell.getTag());
         }
+
     }
 }

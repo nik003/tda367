@@ -1,12 +1,15 @@
 package gruppnan.timeline.view;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -54,9 +57,9 @@ public class week_view_fragment {
 
 
     }
-    public void createTable(){
+    public void createTable(HashMap<String,Calendar[]> events){
         createWeekView();
-
+        renderEvents(events);
     }
     private TableRow createRow(int i){
         TableRow tr = new TableRow(context);
@@ -106,7 +109,7 @@ public class week_view_fragment {
             String name  = e.getKey();
             Calendar startDate = e.getValue()[0];
             Calendar endDate = e.getValue()[1];
-            int hour;
+
             if(startDate.get(startDate.MINUTE)>=30){
                 startDate.add(Calendar.HOUR_OF_DAY,1);
 
@@ -115,11 +118,27 @@ public class week_view_fragment {
                 endDate.add(Calendar.HOUR_OF_DAY, 1);
 
             }
-            
+            TextView cell = (TextView)tl.findViewWithTag((startDate.get(startDate.DAY_OF_WEEK)-1)+"");
+            while(startDate.before(endDate)){
+                int cellNum = startDate.get(startDate.DAY_OF_WEEK) - 1 ;
+               // Log.d("stuff", startDate.get(startDate.HOUR_OF_DAY)+ " "+ startDate.get(startDate.DAY_OF_MONTH));
+
+                cell = (TextView) tl.findViewWithTag((cellNum + ((startDate.get(startDate.HOUR_OF_DAY)) * 7))+"");
+                if(cell==null){
+                    Log.d("ERROR", cellNum + ((startDate.get(startDate.HOUR_OF_DAY)) * 7) +", " + startDate.get(startDate.HOUR_OF_DAY) + ", "+ startDate.get(startDate.DAY_OF_WEEK) );
+                }
+                if(cell!=null) {
+                    cell.setBackgroundResource(R.color.cellcolor);
+                }
+
+                startDate.add(startDate.HOUR_OF_DAY, 1);
+
+                if(startDate.get(startDate.HOUR_OF_DAY)> 23){
+                        Log.d("stuff", startDate.get(startDate.HOUR_OF_DAY)+ " "+ startDate.get(startDate.DAY_OF_MONTH));
+
+                }
+            }
         }
-
     }
-
-
 }
 
