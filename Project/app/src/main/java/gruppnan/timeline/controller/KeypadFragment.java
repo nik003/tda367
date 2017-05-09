@@ -18,8 +18,8 @@ import gruppnan.timeline.view.KeypadView;
 public class KeypadFragment extends Fragment implements View.OnClickListener {
 
     KeypadView keypadView;
-    String seconds, minutes, hours;
-    Button oneButton, twoButton, threeButton,fourButton, fiveButton, sixButton, sevenButton, eightButton, nineButton, zeroButton;
+    int seconds, minutes, hours;
+    Button oneButton, twoButton, threeButton,fourButton, fiveButton, sixButton, sevenButton, eightButton, nineButton, zeroButton, deleteButton, okButton;
     EditText timeText;
     int time;
 
@@ -33,11 +33,6 @@ public class KeypadFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_keypad, container, false);
-    }
-
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
         oneButton = (Button) getView().findViewById(R.id.oneButton);
         oneButton.setOnClickListener(this);
@@ -59,8 +54,19 @@ public class KeypadFragment extends Fragment implements View.OnClickListener {
         nineButton.setOnClickListener(this);
         zeroButton = (Button) getView().findViewById(R.id.zeroButton);
         zeroButton.setOnClickListener(this);
+        deleteButton = (Button) getView().findViewById(R.id.deleteButton);
+        deleteButton.setOnClickListener(this);
+        okButton = (Button) getView().findViewById(R.id.okButton);
+        okButton.setOnClickListener(this);
 
         timeText = (EditText) getView().findViewById(R.id.editText);
+        return inflater.inflate(R.layout.fragment_keypad, container, false);
+    }
+
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        
 
         textBuilder.append("000000");
     }
@@ -109,32 +115,45 @@ public class KeypadFragment extends Fragment implements View.OnClickListener {
                 addDigit(zeroButton.getText().toString());
                 break;
 
+            case R.id.deleteButton:
+                removeDigit();
+                break;
+
+            case R.id.okButton:
+                continueToTimer();
+                break;
+
             default:
                 break;
         }
-
-
-
     }
-
-/**
-    private String updateTime() {
-        seconds = time.substring(time.length()-2, time.length());
-        minutes = time.substring(time.length()-4, time.length()-2);
-        hours = time.substring(time.length()-6, time.length()-4);
-
-        return "";
-    }
-**/
 
 
     private void addDigit(String number) {
         textBuilder.append(number);
         textBuilder.delete(0, 1);
+        updateTime();
+        displayText();
     }
 
     private void removeDigit() {
         textBuilder.delete(textBuilder.length()-1, textBuilder.length());
         textBuilder.insert(0, "0");
+        updateTime();
+        displayText();
+    }
+
+    private void displayText() {
+        timeText.setText(String.format("%02d:%02d:%02d", hours, minutes, seconds));
+    }
+
+    private void updateTime() {
+        seconds = Integer.parseInt(textBuilder.substring(textBuilder.length()-2, textBuilder.length()));
+        minutes = Integer.parseInt(textBuilder.substring(textBuilder.length()-4, textBuilder.length()-2));
+        hours = Integer.parseInt(textBuilder.substring(textBuilder.length()-6, textBuilder.length()-4));
+    }
+
+    private void continueToTimer() {
+
     }
 }
