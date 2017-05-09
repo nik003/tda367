@@ -103,42 +103,66 @@ public class week_view_fragment {
 
         dateView  = (TextView)tl.findViewById(R.id.prevWeek);
         dateView.setTag(dates[3]);
+
     }
-    private void renderEvents(HashMap<String,Calendar[]> event){
+    public void renderEvents(HashMap<String,Calendar[]> event){
+        clearTable();
         for(Map.Entry<String,Calendar[]> e: event.entrySet()){
             String name  = e.getKey();
             Calendar startDate = e.getValue()[0];
             Calendar endDate = e.getValue()[1];
 
-            if(startDate.get(startDate.MINUTE)>=30){
-                startDate.add(Calendar.HOUR_OF_DAY,1);
 
-            }
             if(endDate.get(startDate.MINUTE)>=30) {
                 endDate.add(Calendar.HOUR_OF_DAY, 1);
 
             }
-            TextView cell = (TextView)tl.findViewWithTag((startDate.get(startDate.DAY_OF_WEEK)-1)+"");
-            while(startDate.before(endDate)){
-                int cellNum = startDate.get(startDate.DAY_OF_WEEK) - 1 ;
-               // Log.d("stuff", startDate.get(startDate.HOUR_OF_DAY)+ " "+ startDate.get(startDate.DAY_OF_MONTH));
+            if(startDate != null) {
+                if (startDate.get(startDate.MINUTE) >= 30) {
+                    startDate.add(Calendar.HOUR_OF_DAY, 1);
 
-                cell = (TextView) tl.findViewWithTag((cellNum + ((startDate.get(startDate.HOUR_OF_DAY)) * 7))+"");
-                if(cell==null){
-                    Log.d("ERROR", cellNum + ((startDate.get(startDate.HOUR_OF_DAY)) * 7) +", " + startDate.get(startDate.HOUR_OF_DAY) + ", "+ startDate.get(startDate.DAY_OF_WEEK) );
                 }
-                if(cell!=null) {
+                TextView cell;
+                while (startDate.before(endDate)) {
+                    int cellNum = startDate.get(startDate.DAY_OF_WEEK) - 1;
+                    // Log.d("stuff", startDate.get(startDate.HOUR_OF_DAY)+ " "+ startDate.get(startDate.DAY_OF_MONTH));
+
+                    cell = (TextView) tl.findViewWithTag((cellNum + ((startDate.get(startDate.HOUR_OF_DAY)) * 7)) + "");
+                    if (cell == null) {
+                        Log.d("ERROR", cellNum + ((startDate.get(startDate.HOUR_OF_DAY)) * 7) + ", " + startDate.get(startDate.HOUR_OF_DAY) + ", " + startDate.get(startDate.DAY_OF_WEEK));
+                    }
+                    if (cell != null) {
+                        cell.setBackgroundResource(R.color.cellcolor);
+                    }
+
+                    startDate.add(startDate.HOUR_OF_DAY, 1);
+
+                    if (startDate.get(startDate.HOUR_OF_DAY) > 23) {
+                        Log.d("stuff", startDate.get(startDate.HOUR_OF_DAY) + " " + startDate.get(startDate.DAY_OF_MONTH));
+
+                    }
+                }
+            }else{
+                int cellNum = endDate.get(endDate.DAY_OF_WEEK) - 1;
+                TextView cell = (TextView) tl.findViewWithTag((cellNum + ((endDate.get(endDate.HOUR_OF_DAY)) * 7)) + "");
+                if (cell != null) {
                     cell.setBackgroundResource(R.color.cellcolor);
-                }
-
-                startDate.add(startDate.HOUR_OF_DAY, 1);
-
-                if(startDate.get(startDate.HOUR_OF_DAY)> 23){
-                        Log.d("stuff", startDate.get(startDate.HOUR_OF_DAY)+ " "+ startDate.get(startDate.DAY_OF_MONTH));
-
                 }
             }
         }
+    }
+    private void clearTable(){
+        for (int i = 1; i<=168;i++){
+            TextView v = (TextView)tl.findViewWithTag(i+"");
+            if(v!=null) {
+                v.setBackgroundResource(R.drawable.cell_shape);
+                v.setText("");
+            }
+
+        }
+
+
+
     }
 }
 

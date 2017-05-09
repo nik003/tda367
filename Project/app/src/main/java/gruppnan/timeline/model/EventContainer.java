@@ -4,6 +4,8 @@ import android.support.v4.app.INotificationSideChannel;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -85,6 +87,23 @@ public class EventContainer {
     }
 
 
+    public ArrayList<Event> getEventsByDates(Calendar start, Calendar end){
+        Calendar date = Calendar.getInstance();
+        ArrayList<Event> datesEvents = new ArrayList<>();
+        for (Map.Entry<Integer, Event> entry : eventMap.entrySet()){
+            date.setTime(entry.getValue().getEndDate());
+            if(start.before(date) && end.after(date)){
+                datesEvents.add(entry.getValue());
+
+            }else if((entry.getValue() instanceof DefaultEvent)  ){
+                date.setTime(((DefaultEvent) entry.getValue()).getStartDate());
+                if(start.before(date) && end.after(date)){
+                    datesEvents.add(entry.getValue());
+                }
+            }
+        }
+    return datesEvents;
+    }
 
     public void removeEvent(Event event){
        eventMap.remove(event.getKey());
