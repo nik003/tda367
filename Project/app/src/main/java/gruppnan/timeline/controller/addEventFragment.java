@@ -24,6 +24,7 @@ import android.widget.TimePicker;
 import org.w3c.dom.Text;
 
 import gruppnan.timeline.R;
+import gruppnan.timeline.model.Course;
 import gruppnan.timeline.model.DefaultEvent;
 
 
@@ -44,10 +45,12 @@ public class addEventFragment extends Fragment implements TimePickerDialog.OnTim
     private TextView titleTxt, nameTxt, descTxt;
     private Button startTimeBtn, endTimeBtn, saveEventBtn;
 
-    private int startH, startM, endH, endM;
+    private int startH, startM;
     private int startHF, startMF, endHF, endMF;
     private Boolean timePickBoolean;
     private Button whichButton;
+    private String eventName, eventDescription;
+    private Course corse;
 
     TimePickerDialog startTimePicker, endTimePicker;
 
@@ -106,8 +109,10 @@ public class addEventFragment extends Fragment implements TimePickerDialog.OnTim
         startTimeBtn.setOnClickListener(onClickListener);
         endTimeBtn.setOnClickListener(onClickListener);
 
+
         nameTxt = (TextView) v.findViewById(R.id.eventNameTxt);
         descTxt = (TextView) v.findViewById(R.id.descTxt);
+
     }
 
     private View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -117,17 +122,15 @@ public class addEventFragment extends Fragment implements TimePickerDialog.OnTim
             Calendar c = Calendar.getInstance();
             startH = c.get(Calendar.HOUR_OF_DAY);
             startM = c.get(Calendar.MINUTE);
-
+            
             if (v.equals(startTimeBtn)){
-                startTimePicker = new TimePickerDialog(getActivity(),addEventFragment.this, startH, startM, android.text.format.DateFormat.is24HourFormat(getActivity()));
+                startTimePicker = new TimePickerDialog(getActivity(), addEventFragment.this, startH,startM,true);
                 startTimePicker.show();
-                timePickBoolean = true;
                 whichButton = startTimeBtn;
             }
             else if (v.equals(endTimeBtn)){
-                endTimePicker = new TimePickerDialog(getActivity(),addEventFragment.this, endH, endM, android.text.format.DateFormat.is24HourFormat(getActivity()));
+                endTimePicker = new TimePickerDialog(getActivity(),addEventFragment.this, startH,startM,true);
                 endTimePicker.show();
-                timePickBoolean = false;
                 whichButton = endTimeBtn;
             }
             else if (v.equals(saveEventBtn)){
@@ -147,12 +150,8 @@ public class addEventFragment extends Fragment implements TimePickerDialog.OnTim
             titleTxt.setText("Add new deadline");
             nameTxt.setHint("Deadline name");
             startTimeBtn.setVisibility(View.INVISIBLE);
-
         }
-
-
     }
-
 
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -167,6 +166,11 @@ public class addEventFragment extends Fragment implements TimePickerDialog.OnTim
             endMF = minute;
             endTimeBtn.setText(endHF + " : " + endMF);
         }
+    }
+
+    public void getEventInfo(){
+        eventName = nameTxt.getText().toString();
+        eventDescription = descTxt.getText().toString();
 
     }
 }
