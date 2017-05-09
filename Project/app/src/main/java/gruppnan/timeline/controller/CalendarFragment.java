@@ -81,12 +81,12 @@ public class CalendarFragment extends Fragment {
         public void onClick(View view) {
 
             Bundle bundle = new Bundle();
-
+            Long dateLong = calendarView.getDate();
 
             if (view.equals(fab1)){
                 addEventFragment newFragment = new addEventFragment();
                 bundle.putString("type", "event");
-
+                bundle.putLong("date", dateLong);
 
                 newFragment.setArguments(bundle);
                 ft.replace(android.R.id.content, newFragment).addToBackStack(null).commit();
@@ -95,6 +95,7 @@ public class CalendarFragment extends Fragment {
             }
             else if (view.equals(fab2)){
                 bundle.putString("type", "deadline");
+                bundle.putLong("date", dateLong);
                 addEventFragment newFragment = new addEventFragment();
                 newFragment.setArguments(bundle);
                 ft.replace(android.R.id.content, newFragment).addToBackStack(null).commit();
