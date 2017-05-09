@@ -3,6 +3,7 @@ package gruppnan.timeline.controller;
 import android.app.Activity;
 import android.os.Bundle;
 
+import gruppnan.timeline.R;
 import gruppnan.timeline.view.TimerView;
 
 /**
@@ -15,11 +16,9 @@ public class TimerActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         timerView = new TimerView(this);
 
-        setContentView(timerView);
-
+        setContentView(R.layout.activity_timer);
 
 
 
