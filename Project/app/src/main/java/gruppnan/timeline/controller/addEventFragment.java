@@ -5,12 +5,14 @@ import android.app.TimePickerDialog;
 import java.util.Calendar;
 import java.util.Date;
 
+import android.hardware.input.InputManager;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -21,7 +23,7 @@ import gruppnan.timeline.model.Course;
 import gruppnan.timeline.model.EventContainer;
 
 
-public class addEventFragment extends Fragment implements TimePickerDialog.OnTimeSetListener {
+public class addEventFragment extends Fragment implements TimePickerDialog.OnTimeSetListener, View.OnFocusChangeListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -96,6 +98,8 @@ public class addEventFragment extends Fragment implements TimePickerDialog.OnTim
         view = inflater.inflate(R.layout.fragment_add_event, container, false);
         setUpComponents(view);
 
+
+
         getData();
         customizeFragment(eventType);
         return view;
@@ -119,6 +123,8 @@ public class addEventFragment extends Fragment implements TimePickerDialog.OnTim
 
         nameTxt = (TextView) v.findViewById(R.id.eventNameTxt);
         descTxt = (TextView) v.findViewById(R.id.descTxt);
+        nameTxt.setOnFocusChangeListener(this);
+        descTxt.setOnFocusChangeListener(this);
         startTimeLbl = (TextView) v.findViewById(R.id.startTimeLbl);
     }
 
@@ -158,7 +164,6 @@ public class addEventFragment extends Fragment implements TimePickerDialog.OnTim
 
 
             }
-
         }
     };
 
@@ -178,6 +183,13 @@ public class addEventFragment extends Fragment implements TimePickerDialog.OnTim
 
         }
     }
+
+    public void hideKeyboard(View view){
+        InputMethodManager inputMethodManager =(InputMethodManager)getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+
 
     /** set up different components depending on what type of event is chosen */
     private void customizeFragment(String eventType){
@@ -231,5 +243,12 @@ public class addEventFragment extends Fragment implements TimePickerDialog.OnTim
         completeEndDate = calendar.getTime();
 
 
+    }
+
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        if (!hasFocus){
+            hideKeyboard(v);
+        }
     }
 }
