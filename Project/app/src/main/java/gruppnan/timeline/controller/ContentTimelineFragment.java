@@ -15,7 +15,6 @@ import java.util.List;
 import edu.emory.mathcs.backport.java.util.Collections;
 import gruppnan.timeline.ItemListAdapter;
 import gruppnan.timeline.R;
-import gruppnan.timeline.model.Course;
 import gruppnan.timeline.model.DeadlineEvent;
 import gruppnan.timeline.model.DeadlineEventSet;
 
@@ -42,7 +41,7 @@ public class ContentTimelineFragment extends Fragment {
         a2 = new ArrayList<>();
         dest = new ArrayList<>();
 
-        //temporary code
+        /*temporary code
         dEvents.add(0,new DeadlineEvent(new Course("course1","eiei"), "Laboration 1", "hej", 1, true));
         dEvents.add(1,new DeadlineEvent(new Course("course1","ei"), "Laboration 2", "hej", 2, true));
         dEvents.add(2,new DeadlineEvent(new Course("course1","eiei"), "Laboration 3", "hej", 7, false));
@@ -51,7 +50,7 @@ public class ContentTimelineFragment extends Fragment {
         dEvents.add(5,new DeadlineEvent(new Course("course2","ei"), "Inlämning 2", "hej", 5, false));
         dEvents.add(6,new DeadlineEvent(new Course("course1","eiei"), "Laboration 4", "hej", 8, false));
         dEvents.add(7,new DeadlineEvent(new Course("course2","ei"), "Tenta", "hej",10, false));
-
+*/
 
         sortEvents();
         addEvents();
@@ -71,7 +70,7 @@ public class ContentTimelineFragment extends Fragment {
         Collections.sort(dEvents, new Comparator<DeadlineEvent>() {
             @Override
             public int compare(DeadlineEvent deadlineEvent, DeadlineEvent t1) {
-                return deadlineEvent.getDate() - t1.getDate();
+                return deadlineEvent.getDayofYear() - t1.getDayofYear();
             }
         });
     }
@@ -100,10 +99,10 @@ public class ContentTimelineFragment extends Fragment {
             } else if ( d2 == null ) {
                 dest.add(new DeadlineEventSet(d1, null));
                 i++;
-            } else if(d1.getDate() < d2.getDate()) {
+            } else if(d1.getDayofYear() < d2.getDayofYear()) {
                 dest.add(new DeadlineEventSet(d1, null));
                 i++;
-            } else if(d1.getDate() > d2.getDate()) {
+            } else if(d1.getDayofYear() > d2.getDayofYear()) {
                 dest.add(new DeadlineEventSet(null,d2));
                 j++;
             } else {

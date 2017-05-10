@@ -1,13 +1,16 @@
 package gruppnan.timeline.model;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class DeadlineEvent {
 
-    protected int endDate;
+    protected Date endDate;
     protected String description, name;
     protected Course course;
     protected boolean status;
 
-    public DeadlineEvent(Course course, String name, String description, int endDate, boolean status){
+    public DeadlineEvent(Course course, String name, String description, Date endDate, boolean status){
         //super(course, name, endDate, description);
         this.course = course;
         this.name = name;
@@ -24,16 +27,26 @@ public class DeadlineEvent {
         return name;
     }
 
-    public String getDateAsString(){
-        return Integer.toString(endDate) + " Maj" ;
+    public int getDayofMonth(){
+        return toCalendar(endDate).get(Calendar.DATE);
     }
 
-    public int getDate(){
-        return endDate;
+    public int getMonth(){
+        return toCalendar(endDate).get(Calendar.MONTH);
+    }
+
+    public int getDayofYear(){
+        return toCalendar(endDate).get(Calendar.DAY_OF_YEAR);
     }
 
     public boolean isDone(){
         return status;
+    }
+
+    public static Calendar toCalendar(Date date){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        return cal;
     }
 
 }
