@@ -5,4 +5,8 @@
     <color name="colorAccent">#FF4081</color>
     <color name="cellcolor">#000000</color>
     <color name="clearcellcolor">#FFFFFF</color>
+    <color name="colorBackground">#fdfdfd</color>
+    <color name="timelineColor">#56b3cd</color>
+    <color name="timelineColor2">#ff6666</color>
+
 </resources>

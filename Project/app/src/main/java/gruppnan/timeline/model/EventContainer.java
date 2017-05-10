@@ -1,15 +1,12 @@
 package gruppnan.timeline.model;
 
-import android.support.v4.app.INotificationSideChannel;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * Singleton Class that handles and stores the created events.
@@ -38,10 +35,15 @@ public class EventContainer {
     }
 
     public DefaultEvent createDefaultEvent(Course course, String name, String desc, Date startDate, Date endDate){
-        return new DefaultEvent(course,name,desc,startDate,endDate);
+        DefaultEvent de = new DefaultEvent(course,name,desc,startDate,endDate);
+        addEvent(de);
+        return de;
     }
+
     public DeadlineEvent createDeadlineEvent(Course course, String name, String desc, Date endDate){
-        return new DeadlineEvent(course,name,desc,endDate);
+        DeadlineEvent de = new DeadlineEvent(course,name,desc,endDate,false);
+        addEvent(de);
+        return de;
     }
 
 
@@ -73,10 +75,12 @@ public class EventContainer {
         }
         return this.defaultEventMap;
     }
+
     /**
      * iterates through main map of all events and returns all instances of DeadlineEvent
      * @return Hashmap of deadlineEvents
      */
+    /*
     public HashMap <Integer, DeadlineEvent> getDeadlineEventMap(){
         for (Map.Entry<Integer, Event> entry : eventMap.entrySet()){
             if (entry.getValue() instanceof DeadlineEvent){
@@ -85,6 +89,7 @@ public class EventContainer {
         }
         return this.deadlineEventMap;
     }
+    */
 
 
     public ArrayList<Event> getEventsByDates(Calendar start, Calendar end){
