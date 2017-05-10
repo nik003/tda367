@@ -1,10 +1,8 @@
 package gruppnan.timeline.controller;
 
-import android.app.Activity;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,30 +30,36 @@ public class TimerFragment extends Fragment {
     Handler timerHandler, stopWatchHandler;
     Runnable timerRunnable, stopWatchRunnable;
 
+    private static final String ARG_SECTION_NUMBER = "section_number";
+
+    public static TimerFragment newInstance(int sectionNumber) {
+        TimerFragment fragment = new TimerFragment();
+        Bundle args = new Bundle();
+        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+
     public TimerFragment() {
         // Required empty public constructor
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstances) {
-        return inflater.inflate(R.layout.fragment_timer, container, false);
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        View view = inflater.inflate(R.layout.fragment_timer, container, false);
 
         timerView = new TimerView(getActivity());
 
 
-        stopWatchText = (TextView) getView().findViewById(R.id.stopWatchText);
-        stopWatchRestartButton = (Button) getView().findViewById(R.id.stopWatchRestartButton);
+        stopWatchText = (TextView) view.findViewById(R.id.stopWatchText);
+        stopWatchRestartButton = (Button) view.findViewById(R.id.stopWatchRestartButton);
         stopWatchRestartButton.setEnabled(false);
-        stopWatchButton = (ToggleButton) getView().findViewById(R.id.stopWatchButton);
+        stopWatchButton = (ToggleButton) view.findViewById(R.id.stopWatchButton);
         stopWatchButton.setText("Stopwatch");
-        timerText = (TextView) getView().findViewById(R.id.timerText);
-        timerRestartButton = (Button) getView().findViewById(R.id.timerRestartButton);
+        timerText = (TextView) view.findViewById(R.id.timerText);
+        timerRestartButton = (Button) view.findViewById(R.id.timerRestartButton);
         timerRestartButton.setEnabled(false);
-        timerButton = (ToggleButton) getView().findViewById(R.id.timerButton);
+        timerButton = (ToggleButton) view.findViewById(R.id.timerButton);
         timerButton.setText("Timer");
 
         stopWatchHandler = new Handler();
@@ -136,7 +140,9 @@ public class TimerFragment extends Fragment {
             }
         });
 
+        return view;
     }
+
 
     private String getTime(long time, boolean isStopwatch) {
 

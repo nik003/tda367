@@ -12,6 +12,11 @@ import android.widget.EditText;
 import gruppnan.timeline.R;
 import gruppnan.timeline.view.KeypadView;
 
+
+/**
+ * Created by carlo on 2017-05-02.
+ */
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -34,41 +39,36 @@ public class KeypadFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        oneButton = (Button) getView().findViewById(R.id.oneButton);
+        View view = inflater.inflate(R.layout.fragment_keypad, container, false);
+
+        oneButton = (Button) view.findViewById(R.id.oneButton);
         oneButton.setOnClickListener(this);
-        twoButton = (Button) getView().findViewById(R.id.twoButton);
+        twoButton = (Button) view.findViewById(R.id.twoButton);
         twoButton.setOnClickListener(this);
-        threeButton = (Button) getView().findViewById(R.id.threeButton);
+        threeButton = (Button) view.findViewById(R.id.threeButton);
         threeButton.setOnClickListener(this);
-        fourButton = (Button) getView().findViewById(R.id.fourButton);
+        fourButton = (Button) view.findViewById(R.id.fourButton);
         fourButton.setOnClickListener(this);
-        fiveButton = (Button) getView().findViewById(R.id.fiveButton);
+        fiveButton = (Button) view.findViewById(R.id.fiveButton);
         fiveButton.setOnClickListener(this);
-        sixButton = (Button) getView().findViewById(R.id.sixButton);
+        sixButton = (Button) view.findViewById(R.id.sixButton);
         sixButton.setOnClickListener(this);
-        sevenButton = (Button) getView().findViewById(R.id.sevenButton);
+        sevenButton = (Button) view.findViewById(R.id.sevenButton);
         sevenButton.setOnClickListener(this);
-        eightButton = (Button) getView().findViewById(R.id.eightButton);
+        eightButton = (Button) view.findViewById(R.id.eightButton);
         eightButton.setOnClickListener(this);
-        nineButton = (Button) getView().findViewById(R.id.nineButton);
+        nineButton = (Button) view.findViewById(R.id.nineButton);
         nineButton.setOnClickListener(this);
-        zeroButton = (Button) getView().findViewById(R.id.zeroButton);
+        zeroButton = (Button) view.findViewById(R.id.zeroButton);
         zeroButton.setOnClickListener(this);
-        deleteButton = (Button) getView().findViewById(R.id.deleteButton);
+        deleteButton = (Button) view.findViewById(R.id.deleteButton);
         deleteButton.setOnClickListener(this);
-        okButton = (Button) getView().findViewById(R.id.okButton);
+        okButton = (Button) view.findViewById(R.id.okButton);
         okButton.setOnClickListener(this);
 
-        timeText = (EditText) getView().findViewById(R.id.editText);
-        return inflater.inflate(R.layout.fragment_keypad, container, false);
-    }
-
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        
-
+        timeText = (EditText) view.findViewById(R.id.editText);
         textBuilder.append("000000");
+        return view;
     }
 
 
