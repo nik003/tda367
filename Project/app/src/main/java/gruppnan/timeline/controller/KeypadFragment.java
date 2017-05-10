@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.TextView;
 
 import gruppnan.timeline.R;
 import gruppnan.timeline.view.KeypadView;
@@ -25,10 +25,14 @@ public class KeypadFragment extends Fragment implements View.OnClickListener {
     KeypadView keypadView;
     int seconds, minutes, hours;
     Button oneButton, twoButton, threeButton,fourButton, fiveButton, sixButton, sevenButton, eightButton, nineButton, zeroButton, deleteButton, okButton;
-    EditText timeText;
-    int time;
+    TextView timeText;
+    int nbrOfDigits;
 
     StringBuilder textBuilder;
+
+    public static KeypadFragment newInstance() {
+        return new KeypadFragment();
+    }
 
     public KeypadFragment() {
         // Required empty public constructor
@@ -66,8 +70,10 @@ public class KeypadFragment extends Fragment implements View.OnClickListener {
         okButton = (Button) view.findViewById(R.id.okButton);
         okButton.setOnClickListener(this);
 
-        timeText = (EditText) view.findViewById(R.id.editText);
+        timeText = (TextView) view.findViewById(R.id.editText);
+        textBuilder = new StringBuilder();
         textBuilder.append("000000");
+        timeText.setText("00:00:00");
         return view;
     }
 
@@ -130,10 +136,13 @@ public class KeypadFragment extends Fragment implements View.OnClickListener {
 
 
     private void addDigit(String number) {
-        textBuilder.append(number);
-        textBuilder.delete(0, 1);
-        updateTime();
-        displayText();
+        if(nbrOfDigits < 6) {
+            textBuilder.append(number);
+            textBuilder.delete(0, 1);
+            updateTime();
+            displayText();
+            nbrOfDigits++;
+        }
     }
 
     private void removeDigit() {
@@ -141,6 +150,8 @@ public class KeypadFragment extends Fragment implements View.OnClickListener {
         textBuilder.insert(0, "0");
         updateTime();
         displayText();
+        if(nbrOfDigits < 0)
+            nbrOfDigits--;
     }
 
     private void displayText() {

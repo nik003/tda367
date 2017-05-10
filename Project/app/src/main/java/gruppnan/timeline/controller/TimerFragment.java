@@ -50,7 +50,6 @@ public class TimerFragment extends Fragment {
 
         timerView = new TimerView(getActivity());
 
-
         stopWatchText = (TextView) view.findViewById(R.id.stopWatchText);
         stopWatchRestartButton = (Button) view.findViewById(R.id.stopWatchRestartButton);
         stopWatchRestartButton.setEnabled(false);
