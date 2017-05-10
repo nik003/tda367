@@ -146,12 +146,13 @@ public class KeypadFragment extends Fragment implements View.OnClickListener {
     }
 
     private void removeDigit() {
-        textBuilder.delete(textBuilder.length()-1, textBuilder.length());
-        textBuilder.insert(0, "0");
-        updateTime();
-        displayText();
-        if(nbrOfDigits < 0)
+        if(nbrOfDigits > 0) {
+            textBuilder.delete(textBuilder.length() - 1, textBuilder.length());
+            textBuilder.insert(0, "0");
+            updateTime();
+            displayText();
             nbrOfDigits--;
+        }
     }
 
     private void displayText() {
