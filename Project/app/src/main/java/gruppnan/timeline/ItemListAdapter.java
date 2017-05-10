@@ -180,7 +180,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
 
 
     private void setTextDate(TextView v, DeadlineEvent event) {
-        v.setText(event.getDayofMonth() + " " + event.getMonth());
+        v.setText(event.getDayofMonth() + " " + event.getMonthAsString());
     }
 
     private void setTextTitle(TextView v, DeadlineEvent event){

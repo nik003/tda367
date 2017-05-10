@@ -36,7 +36,7 @@ public class EventContainer {
         return new DefaultEvent(course,name,desc,startDate,endDate);
     }
 
-    public DeadlineEvent createDeadlineEvent(Course course, String name, String desc, int endDate){
+    public DeadlineEvent createDeadlineEvent(Course course, String name, String desc, Date endDate, boolean isDone){
         return new DeadlineEvent(course,name,desc,endDate,false);
     }
 
