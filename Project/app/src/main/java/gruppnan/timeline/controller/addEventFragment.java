@@ -1,5 +1,7 @@
 package gruppnan.timeline.controller;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.app.TimePickerDialog;
 
 import java.util.Calendar;
@@ -51,6 +53,8 @@ public class addEventFragment extends Fragment implements TimePickerDialog.OnTim
     private Date yearMonthDay, completeStartDate, completeEndDate;
     private Calendar calendar;
     private EventContainer eventContainer;
+    private FragmentManager fragmentManager;
+    private FragmentTransaction ft;
 
 
 
@@ -135,6 +139,8 @@ public class addEventFragment extends Fragment implements TimePickerDialog.OnTim
 
         yearMonthDay = new Date(dateL);
         eventContainer = EventContainer.getEventContainer();
+        fragmentManager = getActivity().getFragmentManager();
+        ft = fragmentManager.beginTransaction();
     }
 
 
@@ -161,6 +167,9 @@ public class addEventFragment extends Fragment implements TimePickerDialog.OnTim
 
                 getEventInfo();
                 createEvent();
+
+                Fragment newFragment = new CalendarFragment();
+                ft.replace(android.R.id.content, newFragment).commit();
 
 
             }
