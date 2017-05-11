@@ -1,30 +1,19 @@
 package gruppnan.timeline.controller;
 
-import android.app.Activity;
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Intent;
-import android.content.res.Configuration;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
+import android.support.v4.app.FragmentActivity;
 
 import gruppnan.timeline.R;
-import gruppnan.timeline.model.DefaultEvent;
 import gruppnan.timeline.model.EventContainer;
 
 /**
  * Created by Hannes on 01/05/2017.
  */
 
-public class CalendarController extends Activity {
+public class CalendarController extends FragmentActivity {
 
     private EventContainer container;
 
@@ -48,8 +37,7 @@ public class CalendarController extends Activity {
         FragmentTransaction ft = fragmentManager.beginTransaction();
         CalendarFragment calendarFragment = new CalendarFragment();
 
-        ft.add(android.R.id.content, calendarFragment).addToBackStack(null)
-                .commit();
+        //ft.add(android.R.id.content, calendarFragment).addToBackStack(null).commit();
     }
 
 

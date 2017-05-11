@@ -13,7 +13,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import gruppnan.timeline.R;
-import gruppnan.timeline.week_view;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -60,24 +59,18 @@ public class MainActivity extends AppCompatActivity {
     protected void selectDrawerItem(MenuItem menuItem) {
                 int itemId = menuItem.getItemId();
                 Fragment fragment = null;
-                Class fragmentClass = null;
 
                 if (itemId == R.id.home) {
-                    fragmentClass = ContentTimelineFragment.class;
+                    fragment = new ContentTimelineFragment();
                 } else if (itemId == R.id.calendar) {
-                    fragmentClass = week_view.class;
+                    fragment = new CalendarFragment();
                 }  else if (itemId == R.id.timer) {
-                    fragmentClass = ContentTimelineFragment.class;
-                }
+                    fragment = new TimerFragment();
+                } else {
 
-                try {
-                    fragment = (Fragment) fragmentClass.newInstance();
-                } catch (Exception e){
-                    e.printStackTrace();
                 }
-
                 FragmentManager fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.frame, fragment).commit();
+                fragmentManager.beginTransaction().replace(R.id.frame, fragment).addToBackStack(null).commit();
 
                 menuItem.setChecked(true);
                 setTitle(menuItem.getTitle());
@@ -105,7 +98,8 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed(){
         if(mDrawerLayout.isDrawerOpen(GravityCompat.START)){
             mDrawerLayout.closeDrawer(GravityCompat.START);
-        } else {
+        }
+        else {
             super.onBackPressed();
         }
     }

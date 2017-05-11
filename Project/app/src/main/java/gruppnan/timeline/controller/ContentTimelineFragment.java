@@ -9,11 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
-import edu.emory.mathcs.backport.java.util.Collections;
 import gruppnan.timeline.ItemListAdapter;
 import gruppnan.timeline.R;
 import gruppnan.timeline.model.Course;
@@ -43,20 +44,11 @@ public class ContentTimelineFragment extends Fragment {
         a2 = new ArrayList<>();
         dest = new ArrayList<>();
 
-        //temporary code
-       /* dEvents.add(0,new DeadlineEvent(new Course("course1","eiei"), "Laboration 1", "hej", 1, true));
-        dEvents.add(1,new DeadlineEvent(new Course("course1","ei"), "Laboration 2", "hej", 2, true));
-        dEvents.add(2,new DeadlineEvent(new Course("course1","eiei"), "Laboration 3", "hej", 7, false));
-        dEvents.add(3,new DeadlineEvent(new Course("course2","ei"), "Inlämning 1", "hej", 2, false));
-        dEvents.add(4,new DeadlineEvent(new Course("course2","eiei"), "Seminarie", "hej", 3, false));
-        dEvents.add(5,new DeadlineEvent(new Course("course2","ei"), "Inlämning 2", "hej", 5, false));
-        dEvents.add(6,new DeadlineEvent(new Course("course1","eiei"), "Laboration 4", "hej", 8, false));
-        dEvents.add(7,new DeadlineEvent(new Course("course2","ei"), "Tenta", "hej",10, false));
 
-
+        temporaryaddEvents();
         sortEvents();
         addEvents();
-        */
+
         mAdapter = new ItemListAdapter(dest);
         mLayoutManager = new LinearLayoutManager(getActivity());
 
@@ -67,15 +59,15 @@ public class ContentTimelineFragment extends Fragment {
         return view;
     }
 
-
-   /* public void sortEvents(){
+    public void sortEvents(){
         Collections.sort(dEvents, new Comparator<DeadlineEvent>() {
             @Override
             public int compare(DeadlineEvent deadlineEvent, DeadlineEvent t1) {
-                return deadlineEvent.getDate() - t1.getDate();
+                return deadlineEvent.getDayofYear() - t1.getDayofYear();
             }
         });
-    }*/
+    }
+
 
     public void addEvents(){
         //separate the events by courses
@@ -101,10 +93,10 @@ public class ContentTimelineFragment extends Fragment {
             } else if ( d2 == null ) {
                 dest.add(new DeadlineEventSet(d1, null));
                 i++;
-            } else if(d1.getDate().getTime() < d2.getDate().getTime()) {
+            } else if(d1.getDayofYear() < d2.getDayofYear()) {
                 dest.add(new DeadlineEventSet(d1, null));
                 i++;
-            } else if(d1.getDate().getTime() > d2.getDate().getTime()) {
+            } else if(d1.getDayofYear() > d2.getDayofYear()) {
                 dest.add(new DeadlineEventSet(null,d2));
                 j++;
             } else {
@@ -116,6 +108,25 @@ public class ContentTimelineFragment extends Fragment {
         }
     }
 
+    public void temporaryaddEvents(){
+        Calendar calendar = new GregorianCalendar();
+        calendar.set(2017,4,3);
+        dEvents.add(0,new DeadlineEvent(new Course("course1","eiei"), "Laboration 1", "hej", DeadlineEvent.toDate(calendar), true));
+        calendar.set(2017,4,4);
+        dEvents.add(1,new DeadlineEvent(new Course("course1","ei"), "Laboration 2", "hej", DeadlineEvent.toDate(calendar), true));
+        calendar.set(2017,5,7);
+        dEvents.add(2,new DeadlineEvent(new Course("course1","eiei"), "Laboration 3", "hej", DeadlineEvent.toDate(calendar), false));
+        calendar.set(2017,5,7);
+        dEvents.add(3,new DeadlineEvent(new Course("course2","ei"), "Inlämning 1", "hej", DeadlineEvent.toDate(calendar), false));
+        calendar.set(2017,5,20);
+        dEvents.add(4,new DeadlineEvent(new Course("course2","eiei"), "Seminarie", "hej",DeadlineEvent.toDate(calendar), false));
+        calendar.set(2017,5,26);
+        dEvents.add(5,new DeadlineEvent(new Course("course2","ei"), "Inlämning 2", "hej", DeadlineEvent.toDate(calendar), false));
+        calendar.set(2017,5,28);
+        dEvents.add(6,new DeadlineEvent(new Course("course1","eiei"), "Laboration 4", "hej", DeadlineEvent.toDate(calendar), false));
+        calendar.set(2017,5,28);
+        dEvents.add(7,new DeadlineEvent(new Course("course2","ei"), "Tenta", "hej",DeadlineEvent.toDate(calendar), false));
+    }
 
 
     @Override
