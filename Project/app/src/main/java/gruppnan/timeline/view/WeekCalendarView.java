@@ -29,13 +29,13 @@ import gruppnan.timeline.model.EventContainer;
  * Created by Nikolai on 2017-05-04.
  */
 
-public class week_view_fragment {
+public class WeekCalendarView {
     private Context context;
     private TableLayout tl;
     private LayoutInflater inflater;
     private View.OnClickListener onCl;
 
-    public week_view_fragment(Context c, TableLayout tl, View.OnClickListener onCl){
+    public WeekCalendarView(Context c, TableLayout tl, View.OnClickListener onCl){
         context = c;
         this.tl = tl;
         this.onCl = onCl;

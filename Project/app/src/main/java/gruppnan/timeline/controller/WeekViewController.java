@@ -1,9 +1,7 @@
 package gruppnan.timeline.controller;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,18 +14,15 @@ import android.widget.TextView;
 
 import gruppnan.timeline.R;
 import gruppnan.timeline.model.Course;
-import gruppnan.timeline.model.DeadlineEvent;
-import gruppnan.timeline.model.DefaultEvent;
-import gruppnan.timeline.model.Event;
 import gruppnan.timeline.model.EventContainer;
 import gruppnan.timeline.model.dateCalc;
-import gruppnan.timeline.view.week_view_fragment;
+import gruppnan.timeline.view.WeekCalendarView;
 
 import static gruppnan.timeline.model.dateCalc.*;
 
 
 public class WeekViewController extends Fragment implements View.OnClickListener{
-    private week_view_fragment wwf;
+    private WeekCalendarView wwf;
 
 
     @Override
@@ -37,7 +32,7 @@ public class WeekViewController extends Fragment implements View.OnClickListener
 
         View view  = inflater.inflate(R.layout.fragment_week_view, container, false);
         TableLayout tl = (TableLayout) view.findViewById(R.id.weekView);
-        wwf =new week_view_fragment(view.getContext(),tl,this);
+        wwf =new WeekCalendarView(view.getContext(),tl,this);
 
         Calendar[] dates = dateCalc.getCurrentWeekDates();
         EventContainer ec = EventContainer.getEventContainer();
@@ -56,7 +51,7 @@ public class WeekViewController extends Fragment implements View.OnClickListener
             Log.d("EventDbg",((Calendar)clickedCell.getTag()).toString());
             Calendar[] weekDates = getWeekDates((Calendar)clickedCell.getTag());
             wwf.updateView(weekDates);
-            
+
         }
         if(clickedCell.getId() == R.id.cell){
              clickedCell.setText((String)clickedCell.getTag());
