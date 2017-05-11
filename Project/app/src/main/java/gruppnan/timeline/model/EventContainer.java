@@ -35,17 +35,18 @@ public class EventContainer {
     }
 
     public DefaultEvent createDefaultEvent(Course course, String name, String desc, Date startDate, Date endDate){
+
         DefaultEvent de = new DefaultEvent(course,name,desc,startDate,endDate);
         addEvent(de);
         return de;
     }
 
-    public DeadlineEvent createDeadlineEvent(Course course, String name, String desc, Date endDate){
-        DeadlineEvent de = new DeadlineEvent(course,name,desc,endDate,false);
+
+    public DeadlineEvent createDeadlineEvent(Course course, String name, String desc, Date endDate) {
+        DeadlineEvent de = new DeadlineEvent(course, name, desc, endDate, false);
         addEvent(de);
         return de;
     }
-
 
     /** adds event instance to map, gives key and increments key for next entry */
     public void addEvent(Event event){

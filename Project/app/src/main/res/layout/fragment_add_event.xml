@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:clickable="true"
     android:focusableInTouchMode="true"
-    tools:context="gruppnan.timeline.controller.addEventFragment">
+    android:background="@android:color/white"
+    tools:context="gruppnan.timeline.controller.AddEventFragment">
 
     <!-- TODO: Update blank fragment layout -->
 

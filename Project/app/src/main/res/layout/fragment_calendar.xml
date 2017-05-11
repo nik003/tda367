@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:fab="http://schemas.android.com/tools"
+    android:id="@+id/calendar_fragment"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -10,10 +11,8 @@
         android:id="@+id/listView"
         android:layout_width="280dp"
         android:layout_height="match_parent"
-        android:layout_alignBottom="@+id/deadlineButton"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/calendarView"
-        android:layout_toStartOf="@+id/deadlineButton" />
+        android:layout_below="@+id/calendarView" />
 
     <CalendarView
         android:id="@+id/calendarView"
