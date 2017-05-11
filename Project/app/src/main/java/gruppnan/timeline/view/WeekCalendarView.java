@@ -23,6 +23,7 @@ import gruppnan.timeline.model.DeadlineEvent;
 import gruppnan.timeline.model.DefaultEvent;
 import gruppnan.timeline.model.Event;
 import gruppnan.timeline.model.EventContainer;
+import gruppnan.timeline.model.WeekDates;
 
 
 /**
@@ -93,22 +94,22 @@ public class WeekCalendarView {
         return tv;
 
     }
-    public void updateView(Calendar[] dates){
-        String fromDate = dates[0].get(Calendar.DAY_OF_MONTH)+"/" + (dates[0].get(Calendar.MONTH)+1);
-        String toDate = dates[1].get(Calendar.DAY_OF_MONTH)+"/" + (dates[1].get(Calendar.MONTH)+1);
+    public void updateView(WeekDates dates){
+        String fromDate = dates.getThisMonday().get(Calendar.DAY_OF_MONTH)+"/" + (dates.getThisMonday().get(Calendar.MONTH)+1);
+        String toDate = dates.getThisSunday().get(Calendar.DAY_OF_MONTH)+"/" + (dates.getThisSunday().get(Calendar.MONTH)+1);
         TextView dateView  = (TextView)tl.findViewById(R.id.tableDate);
-        List<Event> events = EventContainer.getEventContainer().getEventsByDates(dates[0],dates[1]);
+        List<Event> events = EventContainer.getEventContainer().getEventsByDates(dates.getThisMonday(),dates.getThisSunday());
 
         dateView.setText(fromDate+ "-" + toDate);
 
         dateView  = (TextView)tl.findViewById(R.id.weekText);
-        dateView.setText("W "+ dates[0].get(Calendar.WEEK_OF_YEAR));
+        dateView.setText("W "+ dates.getThisMonday().get(Calendar.WEEK_OF_YEAR));
 
         dateView  = (TextView)tl.findViewById(R.id.nxtWeek);
-        dateView.setTag(dates[2]);
+        dateView.setTag(dates.getNextMonday());
 
         dateView  = (TextView)tl.findViewById(R.id.prevWeek);
-        dateView.setTag(dates[3]);
+        dateView.setTag(dates.getPrevMonday());
         renderEvents(events);
     }
     public void renderEvents(List<Event> events){
