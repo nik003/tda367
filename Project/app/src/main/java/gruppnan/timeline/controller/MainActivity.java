@@ -13,7 +13,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import gruppnan.timeline.R;
-import gruppnan.timeline.week_view;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -65,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 if (itemId == R.id.home) {
                     fragmentClass = ContentTimelineFragment.class;
                 } else if (itemId == R.id.calendar) {
-                    fragmentClass = week_view.class;
+                    fragmentClass = ContentTimelineFragment.class;
                 }  else if (itemId == R.id.timer) {
                     fragmentClass = ContentTimelineFragment.class;
                 }
