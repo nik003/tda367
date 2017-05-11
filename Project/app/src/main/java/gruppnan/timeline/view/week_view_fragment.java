@@ -14,10 +14,15 @@ import org.w3c.dom.Text;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 
 
 import gruppnan.timeline.R;
+import gruppnan.timeline.model.DeadlineEvent;
+import gruppnan.timeline.model.DefaultEvent;
+import gruppnan.timeline.model.Event;
+import gruppnan.timeline.model.EventContainer;
 
 
 /**
@@ -57,9 +62,8 @@ public class week_view_fragment {
 
 
     }
-    public void createTable(HashMap<String,Calendar[]> events){
+    public void createTable(){
         createWeekView();
-        renderEvents(events);
     }
     private TableRow createRow(int i){
         TableRow tr = new TableRow(context);
@@ -89,10 +93,12 @@ public class week_view_fragment {
         return tv;
 
     }
-    public void setWeekDatesText(Calendar[] dates){
+    public void updateView(Calendar[] dates){
         String fromDate = dates[0].get(Calendar.DAY_OF_MONTH)+"/" + (dates[0].get(Calendar.MONTH)+1);
         String toDate = dates[1].get(Calendar.DAY_OF_MONTH)+"/" + (dates[1].get(Calendar.MONTH)+1);
         TextView dateView  = (TextView)tl.findViewById(R.id.tableDate);
+        List<Event> events = EventContainer.getEventContainer().getEventsByDates(dates[0],dates[1]);
+
         dateView.setText(fromDate+ "-" + toDate);
 
         dateView  = (TextView)tl.findViewById(R.id.weekText);
@@ -103,21 +109,20 @@ public class week_view_fragment {
 
         dateView  = (TextView)tl.findViewById(R.id.prevWeek);
         dateView.setTag(dates[3]);
-
+        renderEvents(events);
     }
-    public void renderEvents(HashMap<String,Calendar[]> event){
+    public void renderEvents(List<Event> events){
         clearTable();
-        for(Map.Entry<String,Calendar[]> e: event.entrySet()){
-            String name  = e.getKey();
-            Calendar startDate = e.getValue()[0];
-            Calendar endDate = e.getValue()[1];
+        for(Event e : events){
+            Calendar endDate = e.dateToCalendar(e.getEndDate());
 
 
-            if(endDate.get(startDate.MINUTE)>=30) {
+            if(endDate.get(endDate.MINUTE)>=30) {
                 endDate.add(Calendar.HOUR_OF_DAY, 1);
 
             }
-            if(startDate != null) {
+            if(e instanceof DefaultEvent) {
+                Calendar startDate = e.dateToCalendar(((DefaultEvent)e).getStartDate());
                 if (startDate.get(startDate.MINUTE) >= 30) {
                     startDate.add(Calendar.HOUR_OF_DAY, 1);
 
