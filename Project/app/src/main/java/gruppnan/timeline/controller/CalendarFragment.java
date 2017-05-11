@@ -1,9 +1,12 @@
 package gruppnan.timeline.controller;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+
 import android.os.Bundle;
-import android.app.Fragment;
+//import android.app.Fragment;
+
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -72,7 +75,7 @@ public class CalendarFragment extends Fragment {
 
         calendarView = (CalendarView) v.findViewById(R.id.calendarView);
 
-        fragmentManager = getActivity().getFragmentManager();
+        fragmentManager = getActivity().getSupportFragmentManager();
         ft = fragmentManager.beginTransaction();
     }
 
@@ -94,15 +97,19 @@ public class CalendarFragment extends Fragment {
 
             }
             else if (view.equals(fab2)){
+                addEventFragment newFragment = new addEventFragment();
                 bundle.putString("type", "deadline");
                 bundle.putLong("date", dateLong);
-                addEventFragment newFragment = new addEventFragment();
+
                 newFragment.setArguments(bundle);
                 ft.replace(android.R.id.content, newFragment).addToBackStack(null).commit();
 
             }
         }
     };
+
+    //FragmentManager fragmentManager = getSupportFragmentManager();
+               // fragmentManager.beginTransaction().replace(R.id.frame, fragment).commit();
 
 
 
