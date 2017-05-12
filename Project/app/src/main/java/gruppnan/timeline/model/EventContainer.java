@@ -35,6 +35,7 @@ public class EventContainer {
     }
 
     public DefaultEvent createDefaultEvent(Course course, String name, String desc, Date startDate, Date endDate){
+
         DefaultEvent de = new DefaultEvent(course,name,desc,startDate,endDate);
         addEvent(de);
         return de;

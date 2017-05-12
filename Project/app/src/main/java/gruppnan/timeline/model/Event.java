@@ -1,5 +1,6 @@
 package gruppnan.timeline.model;
 
+import java.util.Calendar;
 import java.util.Date;
 
 
@@ -35,6 +36,14 @@ public abstract class Event implements EventInterface{
     }
     public int getKey(){
         return this.key;
+    }
+    public Calendar dateToCalendar(Date date){
+        Calendar cal = null;
+        if(date !=null) {
+           cal = Calendar.getInstance();
+            cal.setTime(date);
+        }
+        return cal;
     }
 
 
