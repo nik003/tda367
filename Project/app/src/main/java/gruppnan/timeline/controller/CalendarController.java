@@ -1,5 +1,6 @@
 package gruppnan.timeline.controller;
 
+
 import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -11,8 +12,12 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
+
+
 import gruppnan.timeline.R;
-import gruppnan.timeline.model.DefaultEvent;
 import gruppnan.timeline.model.EventContainer;
 
 /**
@@ -42,6 +47,7 @@ public class CalendarController extends FragmentActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
         CalendarFragment calendarFragment = new CalendarFragment();
+
 
         ft.add(android.R.id.content, calendarFragment).addToBackStack(null).commit();
 

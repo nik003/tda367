@@ -1,24 +1,24 @@
 package gruppnan.timeline.controller;
 
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.View;
+import gruppnan.timeline.R;
+import gruppnan.timeline.controller.AddEventFragment;
+
 
 import android.os.Bundle;
-//import android.app.Fragment;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CalendarView;
-import android.widget.TextView;
 
 import com.github.clans.fab.FloatingActionButton;
 
 import gruppnan.timeline.R;
-import gruppnan.timeline.model.DeadlineEvent;
 
 
 public class CalendarFragment extends Fragment {
@@ -62,8 +62,9 @@ public class CalendarFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_calendar,container,false);
+        View view = inflater.inflate(R.layout.calendar_view,container,false);
         setUpViewComponents(view);
+
         return view;
     }
     private void setUpViewComponents(View v){
@@ -75,8 +76,6 @@ public class CalendarFragment extends Fragment {
 
         calendarView = (CalendarView) v.findViewById(R.id.calendarView);
 
-        fragmentManager = getActivity().getSupportFragmentManager();
-        ft = fragmentManager.beginTransaction();
     }
 
     private View.OnClickListener btnListener = new View.OnClickListener() {
@@ -87,29 +86,32 @@ public class CalendarFragment extends Fragment {
             Long dateLong = calendarView.getDate();
 
             if (view.equals(fab1)){
-                addEventFragment newFragment = new addEventFragment();
+                Fragment newFragment = new AddEventFragment();
                 bundle.putString("type", "event");
                 bundle.putLong("date", dateLong);
 
                 newFragment.setArguments(bundle);
-                ft.replace(android.R.id.content, newFragment).addToBackStack(null).commit();
+
+                fragmentManager = getActivity().getSupportFragmentManager();
+                ft = fragmentManager.beginTransaction();
+                ft.replace(R.id.calendar_fragment, newFragment).addToBackStack(null).commit();
+
 
 
             }
             else if (view.equals(fab2)){
-                addEventFragment newFragment = new addEventFragment();
                 bundle.putString("type", "deadline");
                 bundle.putLong("date", dateLong);
-
+                Fragment newFragment = new AddEventFragment();
                 newFragment.setArguments(bundle);
-                ft.replace(android.R.id.content, newFragment).addToBackStack(null).commit();
+
+                fragmentManager = getActivity().getSupportFragmentManager();
+                ft = fragmentManager.beginTransaction();
+                ft.replace(R.id.calendar_fragment, newFragment).addToBackStack(null).commit();
 
             }
         }
     };
-
-    //FragmentManager fragmentManager = getSupportFragmentManager();
-               // fragmentManager.beginTransaction().replace(R.id.frame, fragment).commit();
 
 
 

@@ -2,13 +2,8 @@ package gruppnan.timeline.controller;
 
 
 import android.app.TimePickerDialog;
-
-import java.util.Calendar;
-import java.util.Date;
-
-import android.hardware.input.InputManager;
 import android.os.Bundle;
-//import android.app.Fragment;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -22,12 +17,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import gruppnan.timeline.R;
 import gruppnan.timeline.model.Course;
 import gruppnan.timeline.model.EventContainer;
 
 
-public class addEventFragment extends Fragment implements TimePickerDialog.OnTimeSetListener, View.OnFocusChangeListener {
+public class AddEventFragment extends Fragment implements TimePickerDialog.OnTimeSetListener, View.OnFocusChangeListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -60,13 +58,12 @@ public class addEventFragment extends Fragment implements TimePickerDialog.OnTim
 
 
 
-
     TimePickerDialog startTimePicker, endTimePicker;
 
 
 
 
-    public addEventFragment() {
+    public AddEventFragment() {
         // Required empty public constructor
     }
 
@@ -78,8 +75,8 @@ public class addEventFragment extends Fragment implements TimePickerDialog.OnTim
      * @return A new instance of fragment addEventFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static addEventFragment newInstance(String param1) {
-        addEventFragment fragment = new addEventFragment();
+    public static AddEventFragment newInstance(String param1) {
+        AddEventFragment fragment = new AddEventFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         fragment.setArguments(args);
@@ -103,11 +100,9 @@ public class addEventFragment extends Fragment implements TimePickerDialog.OnTim
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         view = inflater.inflate(R.layout.fragment_add_event, container, false);
         setUpComponents(view);
-
-
-
         getData();
         customizeFragment(eventType);
+
         return view;
     }
 
@@ -116,6 +111,8 @@ public class addEventFragment extends Fragment implements TimePickerDialog.OnTim
         startTimeBtn = (Button) v.findViewById(R.id.startTimeBtn);
         endTimeBtn = (Button) v.findViewById(R.id.endTimeBtn);
         saveEventBtn = (Button) v.findViewById(R.id.saveEventBtn);
+
+
 
         saveEventBtn.setOnClickListener(onClickListener);
         startTimeBtn.setOnClickListener(onClickListener);
@@ -156,12 +153,12 @@ public class addEventFragment extends Fragment implements TimePickerDialog.OnTim
             nrMinute = calendar.get(Calendar.MINUTE);
             
             if (v.equals(startTimeBtn)){
-                startTimePicker = new TimePickerDialog(getActivity(), addEventFragment.this, nrHour, nrMinute,true);
+                startTimePicker = new TimePickerDialog(getActivity(), AddEventFragment.this, nrHour, nrMinute,true);
                 startTimePicker.show();
                 whichButton = startTimeBtn;
             }
             else if (v.equals(endTimeBtn)){
-                endTimePicker = new TimePickerDialog(getActivity(),addEventFragment.this, nrHour, nrMinute,true);
+                endTimePicker = new TimePickerDialog(getActivity(),AddEventFragment.this, nrHour, nrMinute,true);
                 endTimePicker.show();
                 whichButton = endTimeBtn;
             }
@@ -170,13 +167,20 @@ public class addEventFragment extends Fragment implements TimePickerDialog.OnTim
                 getEventInfo();
                 createEvent();
 
-                Fragment newFragment = new CalendarFragment();
-                ft.replace(android.R.id.content, newFragment).commit();
+                removeFragment();
 
 
             }
         }
     };
+
+    public void removeFragment(){
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        fragmentTransaction.remove(this);
+        fragmentTransaction.commit();
+    }
 
     /** checks if data is correctly entered, creates event or deadline */
     private void createEvent(){
@@ -262,4 +266,6 @@ public class addEventFragment extends Fragment implements TimePickerDialog.OnTim
             hideKeyboard(v);
         }
     }
+
+
 }

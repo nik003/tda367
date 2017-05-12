@@ -1,6 +1,18 @@
 <resources>
     <string name="app_name">Timeline</string>
 
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="title_activity_timer">TimerActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="home_view">Home</string>
+    <string name="timeline_view">Timeline</string>
+    <string name="timer_view">Timer</string>
+    <string name="calendar_view">Calendar</string>
+    <string name="timeline_settings">Timeline Settings</string>
+    <string name="timer_settings">Timer Settings</string>
+
 </resources>
