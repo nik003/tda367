@@ -18,9 +18,9 @@ public class EventContainer {
     private static EventContainer eventContainer = new EventContainer();
 
 
-    private HashMap<Integer, Event> eventMap = new HashMap<>();
-    private HashMap<Integer, DeadlineEvent> deadlineEventMap = new HashMap<>();
-    private HashMap<Integer, DefaultEvent> defaultEventMap = new HashMap<>();
+    private Map<Integer, Event> eventMap = new HashMap<>();
+    private Map<Integer, DeadlineEvent> deadlineEventMap = new HashMap<>();
+    private Map<Integer, DefaultEvent> defaultEventMap = new HashMap<>();
     private static int nrOfEvents = 1;
 
     /**Preventing from new instantiations of eventContainer*/
@@ -41,8 +41,8 @@ public class EventContainer {
     }
 
 
-    public DeadlineEvent createDeadlineEvent(Course course, String name, String desc, Date endDate) {
-        DeadlineEvent de = new DeadlineEvent(course, name, desc, endDate, false);
+    public DeadlineEvent createDeadlineEvent(Course course, String name, String desc, Date endDate, boolean isDone) {
+        DeadlineEvent de = new DeadlineEvent(course, name, desc, endDate, isDone);
         addEvent(de);
         return de;
     }
@@ -59,7 +59,7 @@ public class EventContainer {
         }
     }
 
-    public HashMap<Integer, Event> getEventMap(){
+    public Map<Integer, Event> getEventMap(){
         return this.eventMap;
     }
 
@@ -67,7 +67,7 @@ public class EventContainer {
      * iterates through hashmap of all events and returns all instances of DefaultEvent
      * @return Hashmap of defaultEvents
      */
-    public HashMap<Integer, DefaultEvent> getDefaultEventMap(){
+    public Map<Integer, DefaultEvent> getDefaultEventMap(){
         for (Map.Entry<Integer, Event> entry : eventMap.entrySet()){
             if (entry.getValue() instanceof DefaultEvent){
                 defaultEventMap.put(entry.getKey(),(DefaultEvent) entry.getValue());
@@ -80,8 +80,8 @@ public class EventContainer {
      * iterates through main map of all events and returns all instances of DeadlineEvent
      * @return Hashmap of deadlineEvents
      */
-    /*
-    public HashMap <Integer, DeadlineEvent> getDeadlineEventMap(){
+
+    public Map <Integer, DeadlineEvent> getDeadlineEventMap(){
         for (Map.Entry<Integer, Event> entry : eventMap.entrySet()){
             if (entry.getValue() instanceof DeadlineEvent){
                 deadlineEventMap.put(entry.getKey(),(DeadlineEvent) entry.getValue());
@@ -89,7 +89,7 @@ public class EventContainer {
         }
         return this.deadlineEventMap;
     }
-    */
+
 
 
     public ArrayList<Event> getEventsByDates(Calendar start, Calendar end){
