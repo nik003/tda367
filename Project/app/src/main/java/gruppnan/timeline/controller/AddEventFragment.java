@@ -56,7 +56,6 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
 
 
 
-
     TimePickerDialog startTimePicker, endTimePicker;
 
 
@@ -110,6 +109,8 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
         startTimeBtn = (Button) v.findViewById(R.id.startTimeBtn);
         endTimeBtn = (Button) v.findViewById(R.id.endTimeBtn);
         saveEventBtn = (Button) v.findViewById(R.id.saveEventBtn);
+
+
 
         saveEventBtn.setOnClickListener(onClickListener);
         startTimeBtn.setOnClickListener(onClickListener);
