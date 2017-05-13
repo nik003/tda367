@@ -8,9 +8,11 @@
         <item android:id="@+id/calendar"
             android:title="@string/calendar_view"
             android:icon="@mipmap/calendar_icon"/>
-
         <item android:id="@+id/timer"
             android:title="@string/timer_view"
             android:icon="@mipmap/camera_timer"/>
+        <item android:id="@+id/settings"
+            android:title="@string/settings_view"
+            android:icon="@drawable/ic_settings"/>
     </group>
 </menu>
