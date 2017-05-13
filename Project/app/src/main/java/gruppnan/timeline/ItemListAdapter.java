@@ -146,9 +146,9 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
 
             //Initializing timeline with a marker
             if(position == 0) {
-                holder.courseView2.setMarker(getDrawable(mContext,R.drawable.red_marker));
+                holder.courseView2.setMarker(getDrawable(mContext,R.drawable.second_course_marker));
             } else {
-                holder.courseView2.setMarker(getDrawable(mContext, R.drawable.red_line));
+                holder.courseView2.setMarker(getDrawable(mContext, R.drawable.second_course_line));
             }
             //Set the other course's card invisible
             holder.courseCard2.setVisibility(View.INVISIBLE);
@@ -164,9 +164,9 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
 
             //Initializing timeline with a marker
             if(position == 0) {
-                holder.courseView1.setMarker(getDrawable(mContext, R.drawable.blue_marker));
+                holder.courseView1.setMarker(getDrawable(mContext, R.drawable.first_course_marker));
             } else {
-                holder.courseView1.setMarker(getDrawable(mContext, R.drawable.blue_line));
+                holder.courseView1.setMarker(getDrawable(mContext, R.drawable.first_course_line));
             }
 
             //Set the other course's card invisible
@@ -188,17 +188,17 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
 
     public void updateCourse1Markers(ViewHolder holder, DeadlineEventSet dEvent){
         if (!dEvent.getD1().isDone()) {
-            holder.courseView1.setMarker(getDrawable(mContext, R.drawable.blue_marker_inactive));
+            holder.courseView1.setMarker(getDrawable(mContext, R.drawable.first_course_marker_inactive));
         } else {
-            holder.courseView1.setMarker(getDrawable(mContext, R.drawable.blue_marker));
+            holder.courseView1.setMarker(getDrawable(mContext, R.drawable.first_course_marker));
         }
     }
 
     private void updateCourse2Markers(ViewHolder holder, DeadlineEventSet dEvent){
         if(!dEvent.getD2().isDone()) {
-            holder.courseView2.setMarker(getDrawable(mContext, R.drawable.red_marker_inactive));
+            holder.courseView2.setMarker(getDrawable(mContext, R.drawable.second_course_marker_inactive));
         } else  {
-            holder.courseView2.setMarker(getDrawable(mContext, R.drawable.red_marker));
+            holder.courseView2.setMarker(getDrawable(mContext, R.drawable.second_course_marker));
         }
     }
 

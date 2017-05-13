@@ -82,6 +82,18 @@ public class DeadlineEvent extends Event{
         this.isDone = isDone;
     }
 
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public void setDescription(String description){
+        this.description = description;
+    }
+
+    public void setEndDate(Date endDate){
+        this.endDate = endDate;
+    }
+
     public static Calendar toCalendar(Date date){
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
