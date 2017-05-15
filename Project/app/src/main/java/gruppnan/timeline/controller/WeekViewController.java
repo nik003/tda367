@@ -1,8 +1,5 @@
 package gruppnan.timeline.controller;
 
-import java.util.Calendar;
-import java.util.Date;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -12,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import gruppnan.timeline.R;
 import gruppnan.timeline.model.Course;
 import gruppnan.timeline.model.EventContainer;
@@ -19,7 +19,8 @@ import gruppnan.timeline.model.WeekDates;
 import gruppnan.timeline.model.dateCalc;
 import gruppnan.timeline.view.WeekCalendarView;
 
-import static gruppnan.timeline.model.dateCalc.*;
+import static gruppnan.timeline.model.dateCalc.getCurrentWeekDates;
+import static gruppnan.timeline.model.dateCalc.getWeekDates;
 
 
 public class WeekViewController extends Fragment implements View.OnClickListener{
@@ -37,7 +38,7 @@ public class WeekViewController extends Fragment implements View.OnClickListener
 
         WeekDates dates = dateCalc.getCurrentWeekDates();
         EventContainer ec = EventContainer.getEventContainer();
-        ec.createDeadlineEvent(new Course("stuff","stuf"),"Sak","denna saken", new Date());
+        ec.createDeadlineEvent(new Course("stuff","stuf"),"Sak","denna saken", new Date(),false);
         wwf.createTable();
         wwf.updateView(getCurrentWeekDates());
         return view;

@@ -41,17 +41,17 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
+
         TextView dateText1, titleText1, dateText2, titleText2;
         TimelineView courseView1, courseView2;
         CardView courseCard1, courseCard2;
 
         public ViewHolder(View v, int viewType) {
             super(v);
-            courseView1 = (TimelineView) itemView.findViewById(R.id.course1);
+            courseView1 = (TimelineView) v.findViewById(R.id.course1);
             courseView1.initLine(viewType);
 
-            courseView2 = (TimelineView) itemView.findViewById(R.id.course2);
+            courseView2 = (TimelineView) v.findViewById(R.id.course2);
             courseView2.initLine(viewType);
 
             dateText1 = (TextView) v.findViewById(R.id.date1_timeline);
@@ -88,22 +88,21 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
 
         updateContent(dEvent,holder,position);
 
-        setCardListener(holder,position);
+        setCardListener(dEvent, holder,position);
 
     }
 
-    private void setCardListener(ViewHolder holder, final int position) {
-
+    private void setCardListener(final DeadlineEventSet dEvent, ViewHolder holder, final int position) {
         holder.courseCard1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Fragment ft = new CardTimelineFragment();
                 Bundle args = new Bundle();
-                args.putInt("Position", position);
+                args.putInt("ID", dEvent.getD1().getKey());
                 args.putInt("Course", 1);
                 ft.setArguments(args);
                 ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction()
-                        .add(R.id.frame,ft)
+                        .replace(R.id.frame,ft)
                         .commit();
             }
         });
@@ -113,11 +112,11 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
             public void onClick(View view) {
                 Fragment ft = new CardTimelineFragment();
                 Bundle args = new Bundle();
-                args.putInt("Position", position);
+                args.putInt("ID", dEvent.getD2().getKey());
                 args.putInt("Course", 2);
                 ft.setArguments(args);
                 ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction()
-                        .add(R.id.frame,ft)
+                        .replace(R.id.frame,ft)
                         .commit();
             }
         });
@@ -147,9 +146,9 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
 
             //Initializing timeline with a marker
             if(position == 0) {
-                holder.courseView2.setMarker(getDrawable(mContext,R.drawable.red_marker));
+                holder.courseView2.setMarker(getDrawable(mContext,R.drawable.second_course_marker));
             } else {
-                holder.courseView2.setMarker(getDrawable(mContext, R.drawable.red_line));
+                holder.courseView2.setMarker(getDrawable(mContext, R.drawable.second_course_line));
             }
             //Set the other course's card invisible
             holder.courseCard2.setVisibility(View.INVISIBLE);
@@ -165,9 +164,9 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
 
             //Initializing timeline with a marker
             if(position == 0) {
-                holder.courseView1.setMarker(getDrawable(mContext, R.drawable.blue_marker));
+                holder.courseView1.setMarker(getDrawable(mContext, R.drawable.first_course_marker));
             } else {
-                holder.courseView1.setMarker(getDrawable(mContext, R.drawable.blue_line));
+                holder.courseView1.setMarker(getDrawable(mContext, R.drawable.first_course_line));
             }
 
             //Set the other course's card invisible
@@ -187,19 +186,19 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
         v.setText(event.getName());
     }
 
-    private void updateCourse1Markers(ViewHolder holder, DeadlineEventSet dEvent){
+    public void updateCourse1Markers(ViewHolder holder, DeadlineEventSet dEvent){
         if (!dEvent.getD1().isDone()) {
-            holder.courseView1.setMarker(getDrawable(mContext, R.drawable.blue_marker_inactive));
+            holder.courseView1.setMarker(getDrawable(mContext, R.drawable.first_course_marker_inactive));
         } else {
-            holder.courseView1.setMarker(getDrawable(mContext, R.drawable.blue_marker));
+            holder.courseView1.setMarker(getDrawable(mContext, R.drawable.first_course_marker));
         }
     }
 
     private void updateCourse2Markers(ViewHolder holder, DeadlineEventSet dEvent){
         if(!dEvent.getD2().isDone()) {
-            holder.courseView2.setMarker(getDrawable(mContext, R.drawable.red_marker_inactive));
+            holder.courseView2.setMarker(getDrawable(mContext, R.drawable.second_course_marker_inactive));
         } else  {
-            holder.courseView2.setMarker(getDrawable(mContext, R.drawable.red_marker));
+            holder.courseView2.setMarker(getDrawable(mContext, R.drawable.second_course_marker));
         }
     }
 

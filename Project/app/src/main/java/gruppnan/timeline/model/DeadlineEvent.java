@@ -5,23 +5,25 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+
+
 public class DeadlineEvent extends Event{
 
     protected Date endDate;
     protected String description, name;
     protected Course course;
-    protected boolean status;
+    protected boolean isDone;
 
     private List<DeadlineEvent> dEvents;
 
-    public DeadlineEvent(Course course, String name, String description, Date endDate, boolean status){
+    public DeadlineEvent(Course course, String name, String description, Date endDate, boolean isDone){
         super(course, name, endDate, description);
 
         this.course = course;
         this.name = name;
         this.description = description;
         this.endDate = endDate;
-        this.status = status;
+        this.isDone = isDone;
     }
 
     public String getCourseID(){
@@ -32,6 +34,9 @@ public class DeadlineEvent extends Event{
         return name;
     }
 
+    public String getDescription(){
+        return description;
+    }
 
     public Date getDate() {
         return endDate;
@@ -70,7 +75,23 @@ public class DeadlineEvent extends Event{
     }
 
     public boolean isDone(){
-        return status;
+        return isDone;
+    }
+
+    public void setDone(boolean isDone){
+        this.isDone = isDone;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public void setDescription(String description){
+        this.description = description;
+    }
+
+    public void setEndDate(Date endDate){
+        this.endDate = endDate;
     }
 
     public static Calendar toCalendar(Date date){

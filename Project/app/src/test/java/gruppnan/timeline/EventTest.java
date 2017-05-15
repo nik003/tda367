@@ -33,16 +33,16 @@ public class EventTest {
 
     @Test
     public void testEventsValues(){
-        container.addEvent(container.createDeadlineEvent(null, "tenta", "Examinations for biology", firstJan));
+        container.addEvent(container.createDeadlineEvent(null, "tenta", "Examinations for biology", firstJan,false));
         assertEquals("tenta", container.getEventMap().get(1).getName());
     }
 
     /** test if instances are stored correctly in the different maps */
     @Test
     public void testEventMaps(){
-        Event e = container.createDeadlineEvent(null, "tenta","Examinations for biology", firstJan);
+        Event e = container.createDeadlineEvent(null, "tenta","Examinations for biology", firstJan,false);
         container.addEvent(e);
-        Event k = container.createDeadlineEvent(null, "presentation","Presentation for math", ninthFeb);
+        Event k = container.createDeadlineEvent(null, "presentation","Presentation for math", ninthFeb,false);
         container.addEvent(k);
         Event c = container.createDefaultEvent(null,"lecture","some random lecture",tenthFeb, tenthFeb);
         container.addEvent(c);
@@ -53,9 +53,9 @@ public class EventTest {
 
     @Test
     public void testAddAndRemove(){
-        Event e = container.createDeadlineEvent(null, "tenta","Examinations for biology", firstJan);
+        Event e = container.createDeadlineEvent(null, "tenta","Examinations for biology", firstJan,false);
         container.addEvent(e);
-        Event k = container.createDeadlineEvent(null, "presentation","Presentation for math", ninthFeb);
+        Event k = container.createDeadlineEvent(null, "presentation","Presentation for math", ninthFeb,false);
         container.addEvent(k);
         Event c = container.createDefaultEvent(null,"lecture","some random lecture",tenthFeb, tenthFeb);
         container.addEvent(c);
@@ -68,7 +68,7 @@ public class EventTest {
 
     @Test
     public void getKey(){
-        Event e = container.createDeadlineEvent(null, "presentation", "Presentation for math", ninthFeb);
+        Event e = container.createDeadlineEvent(null, "presentation", "Presentation for math", ninthFeb,false);
         container.addEvent(e);
         Event c = container.createDefaultEvent(null,"lecture","some random lecture",tenthFeb, tenthFeb);
         container.addEvent(c);

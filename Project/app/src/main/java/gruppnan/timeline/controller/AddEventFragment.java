@@ -190,7 +190,7 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
                 eventContainer.createDefaultEvent(course,eventName,eventDescription,completeStartDate,completeEndDate);
             }
             else if (eventType.equals("deadline")){
-                eventContainer.createDeadlineEvent(course,eventName,eventDescription,completeEndDate);
+                eventContainer.createDeadlineEvent(course,eventName,eventDescription,completeEndDate,false);
             }
 
 
