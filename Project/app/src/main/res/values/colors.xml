@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#42a1bc</color>
+    <color name="colorPrimaryDark">#41879b</color>
+    <color name="colorAccent">#42a1bc</color>
     <color name="cellcolor">#000000</color>
     <color name="clearcellcolor">#FFFFFF</color>
     <color name="colorBackground">#fdfdfd</color>
-    <color name="timelineColor">#56b3cd</color>
-    <color name="timelineColor2">#ff6666</color>
+    <color name="timelineColor">#80bbcc</color>
+    <color name="timelineColor2">#41879b</color>
+    <color name="white">#ffffff</color>
 
 </resources>
