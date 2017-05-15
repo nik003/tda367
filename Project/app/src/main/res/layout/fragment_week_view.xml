@@ -14,7 +14,7 @@
             android:id="@+id/weekViewBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Week view"
+            android:text="Month view"
             android:visibility="visible" />
 
        <TableRow
