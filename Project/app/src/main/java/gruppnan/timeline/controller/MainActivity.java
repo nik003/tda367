@@ -1,5 +1,6 @@
 package gruppnan.timeline.controller;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -18,16 +19,23 @@ public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
 
+    Fragment contentTimeLineFragment, calendarFragment;
+    FragmentManager fragmentManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.frame, new ContentTimelineFragment()).commit();
-        mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
-        NavigationView navView = (NavigationView) findViewById(R.id.nav_view);
+        setContentView(R.layout.activity_test);
         configureToolbar();
-        setupDrawer(navView);
+        configureNavigationDrawer();
+
+        contentTimeLineFragment = new ContentTimelineFragment();
+        calendarFragment = new CalendarFragment();
+
+        fragmentManager = getSupportFragmentManager();
+        //fragmentManager.beginTransaction().replace(R.id.frame, contentTimeLineFragment).commit();
+
+
 
     }
     @Override
@@ -41,6 +49,13 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         ActionBar actionbar = getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    protected void configureNavigationDrawer() {
+        mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
+        NavigationView navView = (NavigationView) findViewById(R.id.nav_view);
+        configureToolbar();
+        setupDrawer(navView);
     }
 
     private void setupDrawer(NavigationView navigationView) {
@@ -58,20 +73,21 @@ public class MainActivity extends AppCompatActivity {
 
     protected void selectDrawerItem(MenuItem menuItem) {
                 int itemId = menuItem.getItemId();
-                Fragment fragment = null;
-
+                Intent intent = null;
                 if (itemId == R.id.home) {
-                    fragment = new ContentTimelineFragment();
+                    intent = new Intent(this, TestActivity.class);
                 } else if (itemId == R.id.calendar) {
-                    fragment = new CalendarFragment();
+                    intent = new Intent(this, TimerActivity.class);
                 }  else if (itemId == R.id.timer) {
-                    fragment = new TimerFragment();
+                    intent = new Intent(this, TestActivity2.class);
                 } else {
 
                 }
+                /**
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.frame, fragment).addToBackStack(null).commit();
-
+                **/
+                startActivity(intent);
                 menuItem.setChecked(true);
                 setTitle(menuItem.getTitle());
 
