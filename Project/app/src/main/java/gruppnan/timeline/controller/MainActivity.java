@@ -90,25 +90,25 @@ public class MainActivity extends AppCompatActivity {
 
 
     protected void selectDrawerItem(MenuItem menuItem) {
-                int itemId = menuItem.getItemId();
-                Fragment fragment = null;
+        int itemId = menuItem.getItemId();
+        Fragment fragment = null;
 
-                if (itemId == R.id.home) {
-                    fragment = new ContentTimelineFragment();
-                } else if (itemId == R.id.calendar) {
-                    fragment = new CalendarFragment();
-                }  else if (itemId == R.id.timer) {
-                    fragment = new TimerFragment();
-                } else {
+        if (itemId == R.id.home) {
+            fragment = new ContentTimelineFragment();
+        } else if (itemId == R.id.calendar) {
+            fragment = new CalendarFragment();
+        }  else if (itemId == R.id.timer) {
+            fragment = new TimerMainFragment();
+        } else {
 
-                }
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.frame, fragment).addToBackStack(null).commit();
+        }
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.frame, fragment).addToBackStack(null).commit();
 
-                menuItem.setChecked(true);
-                setTitle(menuItem.getTitle());
+        menuItem.setChecked(true);
+        setTitle(menuItem.getTitle());
 
-                mDrawerLayout.closeDrawers();
+        mDrawerLayout.closeDrawers();
 
     }
 
