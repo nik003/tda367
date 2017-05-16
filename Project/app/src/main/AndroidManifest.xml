@@ -20,22 +20,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".controller.TestActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".controller.TestActivity2">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
         <activity
             android:name=".controller.CalendarController"
             android:parentActivityName=".controller.CalendarController"
