@@ -14,7 +14,7 @@
 
     <com.github.vipulasri.timelineview.TimelineView
         android:id="@+id/course1"
-        app:marker="@drawable/blue_marker_inactive"
+        app:marker="@drawable/first_course_marker_inactive"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         app:line="@color/timelineColor"
@@ -63,7 +63,7 @@
 
     <com.github.vipulasri.timelineview.TimelineView
         android:id="@+id/course2"
-        app:marker="@drawable/red_marker_inactive"
+        app:marker="@drawable/second_course_marker_inactive"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         app:line="@color/timelineColor2"

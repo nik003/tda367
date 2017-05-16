@@ -30,7 +30,8 @@
         android:focusableInTouchMode="true"
         android:hint="Description"
         android:inputType="textMultiLine"
-        android:maxLines="2" />
+        android:maxLines="2"
+        />
 
     <EditText
         android:id="@+id/eventNameTxt"
