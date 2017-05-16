@@ -93,13 +93,13 @@ public class MainActivity extends AppCompatActivity {
         int itemId = menuItem.getItemId();
         Fragment fragment = null;
 
-        if (itemId == R.id.home) {
-            fragment = new ContentTimelineFragment();
-        } else if (itemId == R.id.calendar) {
-            fragment = new CalendarFragment();
-        }  else if (itemId == R.id.timer) {
-            fragment = new TimerMainFragment();
-        } else {
+                if (itemId == R.id.home) {
+                    fragment = new ContentTimelineFragment();
+                } else if (itemId == R.id.calendar) {
+                    fragment = new CalendarFragment();
+                }  else if (itemId == R.id.timer) {
+                    fragment = new TimerMainFragment();
+                } else {
 
         }
         FragmentManager fragmentManager = getSupportFragmentManager();
