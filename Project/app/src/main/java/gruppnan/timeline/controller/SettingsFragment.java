@@ -11,8 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -130,11 +132,15 @@ public class SettingsFragment extends Fragment {
 
     }
 
-    public void showCourseDialog(final LayoutInflater inflater, String search){
+    public void showCourseDialog(final LayoutInflater inflater, final String search){
         View cView = inflater.inflate(R.layout.course_result_dialog, null);
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
-        
+        String courses[] = {"hej","dä","hej","dä","hej","dä","hej","dä","hej","dä","hej","dä","hej","dä","hej","dä"};
+        final ListView listView = (ListView) cView.findViewById(R.id.course_list);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(inflater.getContext(),android.R.layout.simple_list_item_1,courses);
+        listView.setAdapter(adapter);
+
 
         //Start dialog
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(inflater.getContext());
@@ -159,7 +165,18 @@ public class SettingsFragment extends Fragment {
                         });
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                String s = listView.getItemAtPosition(i).toString();
+
+            }
+        });
     }
+
+
 
 
     @Override
