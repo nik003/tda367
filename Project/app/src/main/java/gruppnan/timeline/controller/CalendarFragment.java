@@ -1,6 +1,7 @@
 package gruppnan.timeline.controller;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -16,9 +17,15 @@ import android.R.layout.*;
 import com.github.clans.fab.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import gruppnan.timeline.R;
-
+import gruppnan.timeline.model.Event;
+import gruppnan.timeline.model.EventContainer;
+import gruppnan.timeline.model.EventInterface;
 
 
 public class CalendarFragment extends Fragment {
@@ -37,6 +44,11 @@ public class CalendarFragment extends Fragment {
     private CalendarView calendarView;
     private ListView eventListView;
 
+    final ArrayList<Event> list = new ArrayList<>();
+    final Calendar start = Calendar.getInstance();
+    final Calendar end = Calendar.getInstance();
+    final EventContainer ev = EventContainer.getEventContainer();
+    private Long dateLong;
     public CalendarFragment() {
         // Required empty public constructor
     }
@@ -59,6 +71,7 @@ public class CalendarFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
@@ -66,6 +79,7 @@ public class CalendarFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.calendar_view,container,false);
         setUpViewComponents(view);
+
 
         return view;
     }
@@ -77,34 +91,49 @@ public class CalendarFragment extends Fragment {
         fab2.setOnClickListener(btnListener);
 
         eventListView = (ListView) v.findViewById(R.id.eventListView);
-        setUpListView();
+
 
         weekViewButton = (Button) v.findViewById(R.id.weekViewBtn);
         weekViewButton.setOnClickListener(btnListener);
 
         calendarView = (CalendarView) v.findViewById(R.id.calendarView);
 
+        setUpListView();
+
     }
+
 
     private void setUpListView(){
-        //String values [] = new String[]{"hej", "okej", "nej"};
-        ArrayList<String> lista = new ArrayList<>();
-        lista.add("this");
-        lista.add("is");
-        lista.add("a");
-        lista.add("list");
-        lista.add("does it scroll?");
 
-        ArrayAdapter adapter = new ArrayAdapter(getContext(),android.R.layout.simple_list_item_1,lista );
-        eventListView.setAdapter(adapter);
+
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+
+                Calendar cal = Calendar.getInstance();
+                cal.set(year,month,dayOfMonth);
+                dateLong = cal.getTimeInMillis();
+                list.clear();
+                start.set(year,month,dayOfMonth,0,0);
+                end.set(year, month, dayOfMonth, 23, 59);
+
+                EventAdapter adapter = new EventAdapter(getContext(),R.layout.event_list_item, list);
+                list.addAll(ev.getEventsByDates(start,end));
+                eventListView.setAdapter(adapter);
+            }
+        });
+
+
     }
+
 
     private View.OnClickListener btnListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
 
             Bundle bundle = new Bundle();
-            Long dateLong = calendarView.getDate();
+            //Long dateLong = calendarView.getDate();
+
 
             if (view.equals(fab1)){
                 Fragment newFragment = new AddEventFragment();

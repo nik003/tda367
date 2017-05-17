@@ -39,8 +39,6 @@ public class WeekViewController extends Fragment implements View.OnClickListener
         wwf =new WeekCalendarView(view.getContext(),tl,this);
 
         WeekDates dates = dateCalc.getCurrentWeekDates();
-        EventContainer ec = EventContainer.getEventContainer();
-        ec.createDeadlineEvent(new Course("stuff","stuf"),"Sak","denna saken", new Date(),false);
         wwf.createTable();
         wwf.updateView(getCurrentWeekDates());
         return view;
