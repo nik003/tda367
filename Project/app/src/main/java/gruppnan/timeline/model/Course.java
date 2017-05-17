@@ -5,6 +5,7 @@ public class Course implements CourseInterface{
 
     private String name, courseID;
     private Timer week, session;
+    private int weeklyGoal;
     public Course(){}
 
     public Course(String courseID, String name){
@@ -18,6 +19,14 @@ public class Course implements CourseInterface{
 
     public String getCourseID(){
         return this.courseID;
+    }
+
+    public void setWeeklyGoal(int weeklyGoal){
+        this.weeklyGoal = weeklyGoal;
+    }
+
+    public int getWeeklyGoal(){
+        return weeklyGoal;
     }
 
 
