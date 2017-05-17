@@ -4,7 +4,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -31,6 +30,7 @@ public class SettingsFragment extends Fragment {
     NumberPicker numberPicker;
     TextView timeText;
     LinearLayout settingsLayout;
+    ArrayAdapter<String> adapter;
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
@@ -43,12 +43,13 @@ public class SettingsFragment extends Fragment {
         courseSpinner = (Spinner) view.findViewById(R.id.settings_course_spinner);
         timeText = (TextView)view.findViewById(R.id.time_picker_text);
 
+
         courseSpinner.setPrompt("Choose course");
 
         //Temporary
         String[] courses = { "TDA367", "TMV027","TDA545"};
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>
+        adapter = new ArrayAdapter<>
                 (inflater.getContext(),android.R.layout.select_dialog_item, courses);
 
         searchView.setThreshold(1);
@@ -83,8 +84,9 @@ public class SettingsFragment extends Fragment {
 
     public void showTimeDialog(final LayoutInflater inflater){
         View npView = inflater.inflate(R.layout.time_picker_dialog, null);
-
         numberPicker = (NumberPicker) npView.findViewById(R.id.number_picker);
+
+        //Configure numberpicker
         String[] data = new String[]{"0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"};
         numberPicker.setMinValue(0);
         numberPicker.setMaxValue(data.length-1);
@@ -92,6 +94,7 @@ public class SettingsFragment extends Fragment {
         numberPicker.setDisplayedValues(data);
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
+        //Start dialog with numberpicker
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(inflater.getContext());
         alertDialogBuilder.setTitle("Select number of hours");
         alertDialogBuilder.setView(npView);
@@ -103,7 +106,6 @@ public class SettingsFragment extends Fragment {
                                                 int id) {
                                 String s = "" + numberPicker.getValue();
                                 timeText.setText(s);
-                                Log.e("","New Quantity Value : "+ numberPicker.getValue());
 
                             }
                         })
