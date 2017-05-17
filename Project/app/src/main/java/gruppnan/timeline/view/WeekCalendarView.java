@@ -24,6 +24,7 @@ import gruppnan.timeline.model.DefaultEvent;
 import gruppnan.timeline.model.Event;
 import gruppnan.timeline.model.EventContainer;
 import gruppnan.timeline.model.WeekDates;
+import gruppnan.timeline.model.WeekEventClickData;
 
 
 /**
@@ -88,7 +89,7 @@ public class WeekCalendarView {
         int cellNo = ((row)*7)+(col+1);
         txtCell = inflater.inflate(R.layout.textcell,null);
         TextView tv = (TextView) txtCell.findViewById(R.id.cell);
-        tv.setTag(cellNo + "");
+        tv.setTag(new WeekEventClickData(null,cellNo));
         tv.setOnClickListener(onCl);
         tv.setClickable(true);
         return tv;
@@ -133,12 +134,13 @@ public class WeekCalendarView {
                     int cellNum = startDate.get(startDate.DAY_OF_WEEK) - 1;
                     // Log.d("stuff", startDate.get(startDate.HOUR_OF_DAY)+ " "+ startDate.get(startDate.DAY_OF_MONTH));
 
-                    cell = (TextView) tl.findViewWithTag((cellNum + ((startDate.get(startDate.HOUR_OF_DAY)) * 7)) + "");
+                    cell = (TextView) tl.findViewWithTag(new WeekEventClickData(null,(cellNum + ((startDate.get(startDate.HOUR_OF_DAY)) * 7))));
                     if (cell == null) {
                         Log.d("ERROR", cellNum + ((startDate.get(startDate.HOUR_OF_DAY)) * 7) + ", " + startDate.get(startDate.HOUR_OF_DAY) + ", " + startDate.get(startDate.DAY_OF_WEEK));
                     }
                     if (cell != null) {
                         cell.setBackgroundResource(R.color.cellcolor);
+
                     }
 
                     startDate.add(startDate.HOUR_OF_DAY, 1);
@@ -150,16 +152,19 @@ public class WeekCalendarView {
                 }
             }else{
                 int cellNum = endDate.get(endDate.DAY_OF_WEEK) - 1;
-                TextView cell = (TextView) tl.findViewWithTag((cellNum + ((endDate.get(endDate.HOUR_OF_DAY)) * 7)) + "");
+                TextView cell = (TextView) tl.findViewWithTag(new WeekEventClickData(null,(cellNum + ((endDate.get(endDate.HOUR_OF_DAY)) * 7))));
                 if (cell != null) {
+                    WeekEventClickData cellData =(WeekEventClickData)cell.getTag();
+                    cellData.setEvent(e);
                     cell.setBackgroundResource(R.color.cellcolor);
+                    cell.setTag(cellData);
                 }
             }
         }
     }
     private void clearTable(){
         for (int i = 1; i<=168;i++){
-            TextView v = (TextView)tl.findViewWithTag(i+"");
+            TextView v = (TextView)tl.findViewWithTag(new WeekEventClickData(null,i));
             if(v!=null) {
                 v.setBackgroundResource(R.drawable.cell_shape);
                 v.setText("");

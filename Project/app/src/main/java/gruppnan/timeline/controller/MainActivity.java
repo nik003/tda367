@@ -98,9 +98,9 @@ public class MainActivity extends AppCompatActivity {
                 } else if (itemId == R.id.calendar) {
                     fragment = new CalendarFragment();
                 }  else if (itemId == R.id.timer) {
-                    fragment = new TimerFragment();
-                } else {
-
+                    fragment = new TimerMainFragment();
+                } else if(itemId == R.id.settings){
+                    fragment = new SettingsFragment();
                 }
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.frame, fragment).addToBackStack(null).commit();

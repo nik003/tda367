@@ -63,6 +63,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
             courseCard1 = (CardView) v.findViewById(R.id.card1);
             courseCard2 = (CardView) v.findViewById(R.id.card2);
 
+
         }
     }
 
@@ -123,6 +124,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
 
 
     }
+
 
     private void updateContent(DeadlineEventSet dEvent, ViewHolder holder, int position) {
 
