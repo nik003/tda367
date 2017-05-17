@@ -4,11 +4,16 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -21,22 +26,51 @@ import gruppnan.timeline.R;
 
 public class SettingsFragment extends Fragment {
 
-    private SearchView searchView;
+    private AutoCompleteTextView searchView;
     private Spinner courseSpinner;
     NumberPicker numberPicker;
     TextView timeText;
+    LinearLayout settingsLayout;
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.settings_layout,
                 container, false);
-        searchView = (SearchView) view.findViewById(R.id.search);
-        searchView.setQueryHint("Search code (TDA367)");
+
+        searchView = (AutoCompleteTextView) view.findViewById(R.id.search);
+        settingsLayout = (LinearLayout) view.findViewById(R.id.settings_layout);
         courseSpinner = (Spinner) view.findViewById(R.id.settings_course_spinner);
+        timeText = (TextView)view.findViewById(R.id.time_picker_text);
+
         courseSpinner.setPrompt("Choose course");
 
-        timeText = (TextView)view.findViewById(R.id.time_picker_text);
+        //Temporary
+        String[] courses = { "TDA367", "TMV027","TDA545"};
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>
+                (inflater.getContext(),android.R.layout.select_dialog_item, courses);
+
+        searchView.setThreshold(1);
+        searchView.setAdapter(adapter);
+
+        setListeners(inflater);
+
+        return view;
+    }
+
+    public void setListeners(final LayoutInflater inflater){
+        settingsLayout.setOnTouchListener(new View.OnTouchListener()
+        {
+            @Override
+            public boolean onTouch(View view, MotionEvent ev)
+            {
+                hideKeyboard();
+                searchView.showDropDown();
+                return false;
+            }
+        });
+
 
         timeText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,7 +79,6 @@ public class SettingsFragment extends Fragment {
             }
         });
 
-        return view;
     }
 
     public void showTimeDialog(final LayoutInflater inflater){
@@ -57,6 +90,7 @@ public class SettingsFragment extends Fragment {
         numberPicker.setMaxValue(data.length-1);
         numberPicker.setValue(15);
         numberPicker.setDisplayedValues(data);
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(inflater.getContext());
         alertDialogBuilder.setTitle("Select number of hours");
@@ -86,10 +120,18 @@ public class SettingsFragment extends Fragment {
 
     }
 
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+    }
+
+
+
+    private void hideKeyboard(){
+        InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(getContext().INPUT_METHOD_SERVICE);
+        inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
 }

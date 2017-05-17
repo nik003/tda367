@@ -1,42 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
+    android:id="@+id/settings_layout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/notification_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="start"
-        android:textSize="18sp"
-        android:text="Notifications"
-        />
-
-    <CheckBox
-        android:id="@+id/settings_checkbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="10dp"
-        android:text="Allow push notifications for deadlines"
-        android:buttonTint="@color/colorPrimary"
-        android:textSize="18sp"
-        />
-
-    <CheckBox
-        android:id="@+id/settings_checkbox2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="10dp"
-        android:text="Allow push notifications for goals"
-        android:buttonTint="@color/colorPrimary"
-        android:textSize="18sp"
-        />
 
         <TextView
             android:id="@+id/search_course_text"
@@ -52,10 +20,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-    <android.support.v7.widget.SearchView
+    <AutoCompleteTextView
         android:id="@+id/search"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         app:iconifiedByDefault="false"/>
 
         <Button
@@ -134,6 +103,40 @@
 
 
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/notification_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="start"
+        android:textSize="18sp"
+        android:text="Notifications"
+        />
+
+    <CheckBox
+        android:id="@+id/settings_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="10dp"
+        android:text="Allow push notifications for deadlines"
+        android:buttonTint="@color/colorPrimary"
+        android:textSize="18sp"
+        />
+
+    <CheckBox
+        android:id="@+id/settings_checkbox2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="10dp"
+        android:text="Allow push notifications for goals"
+        android:buttonTint="@color/colorPrimary"
+        android:textSize="18sp"
+        />
+
 
 
 
