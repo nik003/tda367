@@ -1,7 +1,9 @@
 package gruppnan.timeline.controller;
 
+
 import android.app.TimePickerDialog;
 import android.os.Bundle;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -45,7 +47,8 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
     private Spinner courseSpinner;
     private Button whichButton;
     private String eventName, eventDescription, showEndTime, showStarTime;
-    private Course course;
+    //TODO fix course when possible.
+    private Course course = new Course("course1", null);
     private long dateL;
     private int year, month,day;
     private Date yearMonthDay, completeStartDate, completeEndDate;
@@ -53,7 +56,6 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
     private EventContainer eventContainer;
     private FragmentManager fragmentManager;
     private FragmentTransaction ft;
-
 
 
 
@@ -66,21 +68,7 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @return A new instance of fragment addEventFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static AddEventFragment newInstance(String param1) {
-        AddEventFragment fragment = new AddEventFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        fragment.setArguments(args);
-        return fragment;
-    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -110,6 +98,8 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
         startTimeBtn = (Button) v.findViewById(R.id.startTimeBtn);
         endTimeBtn = (Button) v.findViewById(R.id.endTimeBtn);
         saveEventBtn = (Button) v.findViewById(R.id.saveEventBtn);
+
+
 
         saveEventBtn.setOnClickListener(onClickListener);
         startTimeBtn.setOnClickListener(onClickListener);
