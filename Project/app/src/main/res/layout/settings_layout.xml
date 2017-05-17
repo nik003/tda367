@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/settings_layout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/search_course_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp"
+            android:text="Add course"
+            />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    <AutoCompleteTextView
+        android:id="@+id/search"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        app:iconifiedByDefault="false"/>
+
+        <Button
+            android:id="@+id/addEventButton"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:clickable="true"
+            android:layout_toEndOf="@id/search"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:text="Add"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/weekly_goal_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:textSize="18sp"
+        android:text="Set weekly goal"
+        />
+
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="10dp">
+
+       <TextView
+           android:id="@+id/weekly_goal_course_text"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginStart="20dp"
+           android:layout_gravity="start"
+           android:textSize="18sp"
+           android:textColor="@android:color/black"
+           android:text="Course:"
+           />
+
+       <Spinner
+           android:id="@+id/settings_course_spinner"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_toEndOf="@id/weekly_goal_course_text"
+           android:layout_marginStart="20dp"
+           android:spinnerMode="dropdown"
+           android:entries="@array/course_arrays"/>
+
+   </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:id="@+id/weekly_goal_time_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_gravity="start"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:text="Hours:"
+            />
+
+        <TextView
+            android:id="@+id/time_picker_text"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="10"
+            android:textSize="18sp"
+            android:clickable="true"
+            android:layout_toEndOf="@id/weekly_goal_time_text"
+            android:layout_marginStart="35dp"/>
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/notification_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="start"
+        android:textSize="18sp"
+        android:text="Notifications"
+        />
+
+    <CheckBox
+        android:id="@+id/settings_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="10dp"
+        android:text="Allow push notifications for deadlines"
+        android:buttonTint="@color/colorPrimary"
+        android:textSize="18sp"
+        />
+
+    <CheckBox
+        android:id="@+id/settings_checkbox2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="10dp"
+        android:text="Allow push notifications for goals"
+        android:buttonTint="@color/colorPrimary"
+        android:textSize="18sp"
+        />
+
+</LinearLayout>
