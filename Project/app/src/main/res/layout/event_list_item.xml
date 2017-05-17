@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1">
 
@@ -8,16 +8,20 @@
         android:id="@+id/eventNameTxt1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name: "
-        android:layout_marginRight="@dimen/labels_text_size"
-        android:layout_weight="0.32" />
+        android:layout_margin="15dp"
+        android:layout_weight="0.08"
+        android:text="Name: " />
 
     <TextView
         android:id="@+id/typeTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/labels_text_size"
+        android:layout_gravity="right"
         android:text="Type:"
-        android:layout_weight="0.16" />
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignBaseline="@+id/eventNameTxt1"
+        android:layout_alignBottom="@+id/eventNameTxt1"
+        android:layout_alignParentEnd="true" />
 
-</LinearLayout>
+</RelativeLayout>
