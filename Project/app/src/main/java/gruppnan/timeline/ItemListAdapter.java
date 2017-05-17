@@ -183,8 +183,11 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
             setTextTitle(holder.titleText2, dEvent.getD2());
         }
 
+        setCourseText(holder);
     }
 
+    private void setCourseText(ViewHolder holder){
+        String s = "TDA367";
         holder.courseTextCard.setText(s);
         s = "TMV027";
         holder.courseTextCard2.setText(s);

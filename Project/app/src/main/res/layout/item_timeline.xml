@@ -9,7 +9,6 @@
     android:layout_marginRight="10dp"
     android:orientation="horizontal"
     android:weightSum="2"
-
     >
 
     <com.github.vipulasri.timelineview.TimelineView
@@ -45,16 +44,27 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/course_timeline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:textSize="12sp"
+                />
+
+            <TextView
                 android:id="@+id/date1_timeline"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"/>
+                android:layout_marginTop="5dp"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"/>
 
             <TextView
                 android:id="@+id/text1_timeline"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:textSize="17sp"
                 android:textColor="@android:color/black" />
 
         </LinearLayout>
@@ -93,18 +103,28 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/course2_timeline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:textSize="12sp"
+                />
+
+            <TextView
                 android:id="@+id/date2_timeline"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"/>
+                android:layout_marginTop="5dp"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"/>
 
             <TextView
                 android:id="@+id/text2_timeline"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textColor="@android:color/black" />
-
+                android:textColor="@android:color/black"
+                android:textSize="17sp"/>
 
         </LinearLayout>
 
