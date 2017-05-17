@@ -97,7 +97,7 @@ public class CalendarFragment extends Fragment {
         weekViewButton.setOnClickListener(btnListener);
 
         calendarView = (CalendarView) v.findViewById(R.id.calendarView);
-
+        dateLong = calendarView.getDate();
         setUpListView();
 
     }
