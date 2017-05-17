@@ -17,8 +17,8 @@
     <string name="settings_view">Settings</string>
 
     <string-array name="course_arrays">
-        <item>course1</item>
-        <item>course2</item>
+        <item>TDA367</item>
+        <item>TMV027</item>
     </string-array>
 
 </resources>

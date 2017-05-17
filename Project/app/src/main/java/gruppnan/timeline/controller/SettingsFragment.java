@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -11,13 +12,13 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import gruppnan.timeline.R;
+import gruppnan.timeline.model.Course;
 
 /**
  * Created by Melina on 13/05/2017.
@@ -25,12 +26,13 @@ import gruppnan.timeline.R;
 
 public class SettingsFragment extends Fragment {
 
-    private AutoCompleteTextView searchView;
+    private SearchView searchView;
     private Spinner courseSpinner;
     NumberPicker numberPicker;
     TextView timeText;
     LinearLayout settingsLayout;
     ArrayAdapter<String> adapter;
+    Course course;
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
@@ -38,22 +40,27 @@ public class SettingsFragment extends Fragment {
         View view = inflater.inflate(R.layout.settings_layout,
                 container, false);
 
-        searchView = (AutoCompleteTextView) view.findViewById(R.id.search);
+        searchView = (SearchView) view.findViewById(R.id.search);
         settingsLayout = (LinearLayout) view.findViewById(R.id.settings_layout);
         courseSpinner = (Spinner) view.findViewById(R.id.settings_course_spinner);
         timeText = (TextView)view.findViewById(R.id.time_picker_text);
 
-
         courseSpinner.setPrompt("Choose course");
+        searchView.setQueryHint("Search course (TDA367)");
 
-        //Temporary
-        String[] courses = { "TDA367", "TMV027","TDA545"};
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
 
-        adapter = new ArrayAdapter<>
-                (inflater.getContext(),android.R.layout.select_dialog_item, courses);
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                showCourseDialog(inflater,s);
+                return false;
+            }
 
-        searchView.setThreshold(1);
-        searchView.setAdapter(adapter);
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
+            }
+        });
 
         setListeners(inflater);
 
@@ -67,7 +74,7 @@ public class SettingsFragment extends Fragment {
             public boolean onTouch(View view, MotionEvent ev)
             {
                 hideKeyboard();
-                searchView.showDropDown();
+                //searchView.showDropDown();
                 return false;
             }
         });
@@ -105,6 +112,7 @@ public class SettingsFragment extends Fragment {
                             public void onClick(DialogInterface dialog,
                                                 int id) {
                                 String s = "" + numberPicker.getValue();
+                                //course.setWeeklyGoal(numberPicker.getValue());
                                 timeText.setText(s);
 
                             }
@@ -120,6 +128,37 @@ public class SettingsFragment extends Fragment {
         alertDialog.show();
 
 
+    }
+
+    public void showCourseDialog(final LayoutInflater inflater, String search){
+        View cView = inflater.inflate(R.layout.course_result_dialog, null);
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+
+        
+
+        //Start dialog
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(inflater.getContext());
+        alertDialogBuilder.setTitle("Select course");
+        alertDialogBuilder.setView(cView);
+        alertDialogBuilder
+                .setCancelable(false)
+                .setPositiveButton("Ok",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,
+                                                int id) {
+
+
+                            }
+                        })
+                .setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,
+                                                int id) {
+                                dialog.cancel();
+                            }
+                        });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 
 

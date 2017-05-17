@@ -42,7 +42,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
     // you provide access to all the views for a data item in a view holder
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView dateText1, titleText1, dateText2, titleText2;
+        TextView dateText1, titleText1, dateText2, titleText2, courseTextCard,courseTextCard2;
         TimelineView courseView1, courseView2;
         CardView courseCard1, courseCard2;
 
@@ -62,6 +62,11 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
 
             courseCard1 = (CardView) v.findViewById(R.id.card1);
             courseCard2 = (CardView) v.findViewById(R.id.card2);
+
+            courseTextCard = (TextView) v.findViewById(R.id.course_timeline);
+
+            courseTextCard2 = (TextView) v.findViewById(R.id.course2_timeline);
+
 
 
         }
@@ -177,6 +182,15 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
             setTextDate(holder.dateText2, dEvent.getD2());
             setTextTitle(holder.titleText2, dEvent.getD2());
         }
+
+        setCourseText(holder);
+    }
+
+    private void setCourseText(ViewHolder holder){
+        String s = "TDA367";
+        holder.courseTextCard.setText(s);
+        s = "TMV027";
+        holder.courseTextCard2.setText(s);
     }
 
 
