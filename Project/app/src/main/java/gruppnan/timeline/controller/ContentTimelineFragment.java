@@ -14,9 +14,12 @@ import java.util.List;
 import gruppnan.timeline.ItemListAdapter;
 import gruppnan.timeline.R;
 import gruppnan.timeline.model.DeadlineEventSet;
+import gruppnan.timeline.view.ContentTimelineView;
 import gruppnan.timeline.view.EventSorter;
 
 public class ContentTimelineFragment extends Fragment {
+
+    ContentTimelineView mConentTimelineView;
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -27,25 +30,28 @@ public class ContentTimelineFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.content_timeline,
-                container, false);
+        mConentTimelineView = new ContentTimelineView(inflater,container);
+        mLayoutManager = new LinearLayoutManager(inflater.getContext());
+        initList();
+        return mConentTimelineView.getRootView();
+    }
 
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+    public void initList(){
+
+        mRecyclerView = (RecyclerView) mConentTimelineView.getRootView().findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
 
         EventSorter eventSorter = new EventSorter();
         sortedEventSet = eventSorter.getSortedEventList();
         mAdapter = new ItemListAdapter(sortedEventSet);
-        mLayoutManager = new LinearLayoutManager(getActivity());
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
         mAdapter.notifyDataSetChanged();
 
-        return view;
-    }
 
+    }
 
 
 

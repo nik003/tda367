@@ -16,4 +16,9 @@
     <string name="timer_settings">Timer Settings</string>
     <string name="settings_view">Settings</string>
 
+    <string-array name="course_arrays">
+        <item>course1</item>
+        <item>course2</item>
+    </string-array>
+
 </resources>

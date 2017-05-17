@@ -9,6 +9,6 @@ import android.view.View;
 
 public interface ViewMVC {
 
-    public View getRootView();
-    public Bundle getViewState();
+    View getRootView();
+    Bundle getViewState();
 }
