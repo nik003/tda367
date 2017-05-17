@@ -10,19 +10,16 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 
 import java.util.Calendar;
-import java.util.Date;
 
 import gruppnan.timeline.R;
-import gruppnan.timeline.model.Course;
 import gruppnan.timeline.model.Event;
-import gruppnan.timeline.model.EventContainer;
 import gruppnan.timeline.model.WeekDates;
 import gruppnan.timeline.model.WeekEventClickData;
-import gruppnan.timeline.model.dateCalc;
 import gruppnan.timeline.view.WeekCalendarView;
 
-import static gruppnan.timeline.model.dateCalc.getCurrentWeekDates;
-import static gruppnan.timeline.model.dateCalc.getWeekDates;
+
+import static gruppnan.timeline.model.DateCalc.*;
+
 
 
 public class WeekViewController extends Fragment implements View.OnClickListener{
@@ -38,7 +35,7 @@ public class WeekViewController extends Fragment implements View.OnClickListener
         TableLayout tl = (TableLayout) view.findViewById(R.id.weekView);
         wwf =new WeekCalendarView(view.getContext(),tl,this);
 
-        WeekDates dates = dateCalc.getCurrentWeekDates();
+
         wwf.createTable();
         wwf.updateView(getCurrentWeekDates());
         return view;
@@ -50,7 +47,7 @@ public class WeekViewController extends Fragment implements View.OnClickListener
         TextView clickedCell = (TextView) v;
        Log.d("EventDbg","apan sover");
         if(clickedCell.getId() == R.id.nxtWeek|| clickedCell.getId() == R.id.prevWeek) {
-            Log.d("EventDbg",((WeekEventClickData)clickedCell.getTag()).getCellNum()+"");
+
             WeekDates weekDates = getWeekDates((Calendar)clickedCell.getTag());
             wwf.updateView(weekDates);
 

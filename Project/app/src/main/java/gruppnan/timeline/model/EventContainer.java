@@ -18,10 +18,11 @@ public class EventContainer {
     private static EventContainer eventContainer = new EventContainer();
 
 
-    private Map<Integer, Event> eventMap = new HashMap<>();
-    private Map<Integer, DeadlineEvent> deadlineEventMap = new HashMap<>();
-    private Map<Integer, DefaultEvent> defaultEventMap = new HashMap<>();
-    private static int nrOfEvents = 1;
+    private HashMap<Integer, Event> eventMap = new HashMap<>();
+    private HashMap<Integer, DeadlineEvent> deadlineEventMap = new HashMap<>();
+    private HashMap<Integer, DefaultEvent> defaultEventMap = new HashMap<>();
+    private static int nrOfEvents = 1; //TODO Varför statisk?
+
 
     /**Preventing from new instantiations of eventContainer*/
     private EventContainer(){}
@@ -40,6 +41,11 @@ public class EventContainer {
         addEvent(de);
         return de;
     }
+    public DeadlineEvent createDeadlineEvent(Course course, String name, String desc, Date endDate){
+        DeadlineEvent de = new DeadlineEvent(course,name,desc,endDate,false);
+        addEvent(de);
+        return de;
+    }
 
 
     public DeadlineEvent createDeadlineEvent(Course course, String name, String desc, Date endDate, boolean isDone) {
@@ -52,7 +58,7 @@ public class EventContainer {
     public void addEvent(Event event){
         if (eventMap.containsValue(event)){
             //TODO make this visible on view where user adds event
-            Log.d("duplicate event", "an identical event has already been added to map");
+            //Log.d("duplicate event", "an identical event has already been added to map");
         }else{
             eventMap.put(nrOfEvents, event);
             event.setKey(nrOfEvents);
@@ -98,6 +104,8 @@ public class EventContainer {
         ArrayList<Event> datesEvents = new ArrayList<>();
         for (Map.Entry<Integer, Event> entry : eventMap.entrySet()){
             date.setTime(entry.getValue().getEndDate());
+            Log.d("Before", String.valueOf(start.before(date)));
+            Log.d("After", String.valueOf(end.after(date)));
             if(start.before(date) && end.after(date)){
                 datesEvents.add(entry.getValue());
 

@@ -11,11 +11,11 @@ public class DefaultEvent extends Event {
 
     public DefaultEvent(Course course, String name, String description, Date startDate, Date endDate){
         super(course, name, endDate, description);
-        this.startDate = startDate;
+        this.startDate = new Date(startDate.getTime());
     }
 
     public Date getStartDate(){
-        return this.startDate;
+        return new Date(this.startDate.getTime());
     }
 
 

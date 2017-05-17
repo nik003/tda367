@@ -1,12 +1,21 @@
-
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/weekScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <TableLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+
         android:id="@+id/weekView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:stretchColumns="*">
-
+        <Button
+            android:id="@+id/weekViewBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Month view"
+            android:visibility="visible" />
 
        <TableRow
             android:id="@+id/tableRowWeek">
@@ -90,3 +99,4 @@
 
            </TableRow>
     </TableLayout>
+</ScrollView>
