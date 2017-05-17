@@ -1,6 +1,7 @@
 package gruppnan.timeline.controller;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -16,9 +17,15 @@ import android.R.layout.*;
 import com.github.clans.fab.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import gruppnan.timeline.R;
-
+import gruppnan.timeline.model.Event;
+import gruppnan.timeline.model.EventContainer;
+import gruppnan.timeline.model.EventInterface;
 
 
 public class CalendarFragment extends Fragment {
@@ -77,25 +84,44 @@ public class CalendarFragment extends Fragment {
         fab2.setOnClickListener(btnListener);
 
         eventListView = (ListView) v.findViewById(R.id.eventListView);
-        setUpListView();
+
 
         weekViewButton = (Button) v.findViewById(R.id.weekViewBtn);
         weekViewButton.setOnClickListener(btnListener);
 
         calendarView = (CalendarView) v.findViewById(R.id.calendarView);
+        setUpListView();
 
     }
 
     private void setUpListView(){
-        //String values [] = new String[]{"hej", "okej", "nej"};
-        ArrayList<String> lista = new ArrayList<>();
-        lista.add("this");
-        lista.add("is");
-        lista.add("a");
-        lista.add("list");
-        lista.add("does it scroll?");
 
-        ArrayAdapter adapter = new ArrayAdapter(getContext(),android.R.layout.simple_list_item_1,lista );
+        final ArrayList<Event> list = new ArrayList<>();
+        final Calendar start = Calendar.getInstance();
+        final Calendar end = Calendar.getInstance();
+        final EventContainer ev = EventContainer.getEventContainer();
+
+
+
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+
+                list.clear();
+                start.set(year,month,dayOfMonth,0,0);
+                end.set(year, month, dayOfMonth, 23, 59);
+
+                list.addAll(ev.getEventsByDates(start,end));
+
+
+                weekViewButton.setText(dayOfMonth +" " + list.size() +" " + ev.getEventMap().size());
+            }
+        });
+
+
+
+
+        ArrayAdapter adapter = new ArrayAdapter(getContext(),android.R.layout.simple_list_item_1,list );
         eventListView.setAdapter(adapter);
     }
 
