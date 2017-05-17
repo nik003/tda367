@@ -117,7 +117,7 @@ public class WeekCalendarView {
         clearTable();
         for(Event e : events){
             Calendar endDate = e.dateToCalendar(e.getEndDate());
-
+            Log.d("Event",e.getName());
 
             if(endDate.get(endDate.MINUTE)>=30) {
                 endDate.add(Calendar.HOUR_OF_DAY, 1);
@@ -139,7 +139,11 @@ public class WeekCalendarView {
                         Log.d("ERROR", cellNum + ((startDate.get(startDate.HOUR_OF_DAY)) * 7) + ", " + startDate.get(startDate.HOUR_OF_DAY) + ", " + startDate.get(startDate.DAY_OF_WEEK));
                     }
                     if (cell != null) {
+                        WeekEventClickData eventData =(WeekEventClickData) cell.getTag();
+                        eventData.setEvent(e);
                         cell.setBackgroundResource(R.color.cellcolor);
+                        cell.setTag(eventData);
+
 
                     }
 

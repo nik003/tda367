@@ -1,4 +1,4 @@
-package gruppnan.timeline;
+package gruppnan.timeline.TimeEditSystem;
 
 import org.apache.commons.lang.math.NumberUtils;
 import java.io.BufferedReader;
@@ -8,9 +8,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import 	java.net.HttpURLConnection;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.GZIPInputStream;
@@ -22,6 +24,7 @@ import java.util.zip.GZIPInputStream;
  */
 
 public class TimeEditFetcher {
+    private String courseName;
     HashMap<String,String> SearchHist;
     final String[] icsStructure = {"DTSTART","DTEND","UID:","DTSTAMP:","LAST-MODIFIED:","SUMMARY:","LOCATION:","DESCRIPTION:","END:"};
     public TimeEditFetcher(){
@@ -32,35 +35,42 @@ public class TimeEditFetcher {
         return true;
     }
 
-    public String searchCourse(String Cname){
-        if(Cname == null || Cname == ""){
-            return "No course found";
+    public List<String> searchCourse(String Cname){
+        ArrayList<String> courseList = new ArrayList<>();
+        if(Cname.equals(null) || Cname.equals("")){
+            courseList.add("No course found");
+            return courseList;
         }
         String[] response;
         String courseNam;
+
         Pattern idNumPat = Pattern.compile("data-id=\"(.*?)\"");
         Pattern namCourPat = Pattern.compile("data-name=\"(.*?)\"");
-        StringBuffer sb = new StringBuffer();
+
         response = sendHttpGet("https://se.timeedit.net/web/chalmers/db1/public/objects.html?max=15&fr=t&partajax=t&;im=f&sid=3&l=sv_SE&search_text="+ Cname +"&types=182").split("\\n");
         for(int i = 0;i<response.length; i++){
             Matcher m = namCourPat.matcher(response[i]);
             if(m.find()){
                 courseNam = m.group(1);
-                sb.append(courseNam + "\n");
+                courseList.add(courseNam);
+               // sb.append(courseNam + "\n");
                 m = idNumPat.matcher(response[i]);
                 m.find();
                 SearchHist.put(courseNam,m.group(1));
             }
         }
-        if(sb.length()==0){
-            return "No course found";
+        if(courseList.size()==0){
+            courseList.add("No course found");
+            return null;
         }
         //System.out.println(SearchHist.toString());
         //System.out.println(Arrays.toString(response));
-        return sb.toString();
+        return courseList;
     }
-    public String getIcs(String cname, String fromDate, String toDate){//||!SearchHist.containsKey(cname)
+    public List<TimeEditEvent> getIcs(String cname, String fromDate, String toDate){//||!SearchHist.containsKey(cname)
+        ArrayList<TimeEditEvent> events = null;
         try {
+            courseName = cname;
             if(cname == null || fromDate == null || toDate == null || !NumberUtils.isNumber(fromDate)|| !NumberUtils.isNumber(toDate)){
 
                 //System.out.println(SearchHist.toString()+"\nError "+ cname);
@@ -72,8 +82,8 @@ public class TimeEditFetcher {
             String id = SearchHist.get(cname);
             URL icsUrl = null;
             Pattern namCourPat = Pattern.compile("value=\"(.*?)\"");
-           // response = sendHttpGet("https://se.timeedit.net/web/chalmers/db1/public/ri.html?h=t&sid=3&p="+fromDate+".x%2C"+toDate+".x&objects="+id+"&ox=0&types=0&fe=0#iCalDialogContent").split("\\n");;
-            response = sendHttpGet("https://se.timeedit.net/web/chalmers/db1/public/ri.html?h=t&sid=3&p=20170102.x%2C20170731.x&objects=201969.182&ox=0&types=0&fe=0").split("\\n");
+            response = sendHttpGet("https://se.timeedit.net/web/chalmers/db1/public/ri.html?h=t&sid=3&p="+fromDate+".x%2C"+toDate+".x&objects="+id+"&ox=0&types=0&fe=0#iCalDialogContent").split("\\n");
+            //response = sendHttpGet("https://se.timeedit.net/web/chalmers/db1/public/ri.html?h=t&sid=3&p=20170102.x%2C20170731.x&objects=201969.182&ox=0&types=0&fe=0").split("\\n");
             for(int i = 0;i<response.length;i++){
                 if(response[i].contains("4 veckor")){
                     Matcher m2 = namCourPat.matcher(response[i+1]);
@@ -89,7 +99,7 @@ public class TimeEditFetcher {
             con.setRequestProperty("Accept-Encoding","gzip");
             BufferedReader in = new BufferedReader(new InputStreamReader(new GZIPInputStream(con.getInputStream()),"UTF-8"));
 
-            parseIcs(readInReader(in));
+            events = (ArrayList)parseIcs(readInReader(in));
             con.disconnect();
         }catch(MalformedURLException e){
             e.printStackTrace();
@@ -97,7 +107,9 @@ public class TimeEditFetcher {
             e.printStackTrace();
         }
        // System.out.println(res);
-        return null;
+        if(events==null)
+        {return null;}
+        else{return events;}
 
     }
 
@@ -141,13 +153,15 @@ public class TimeEditFetcher {
         }
         return null;
     }
-    private ArrayList<String[]> parseIcs(String icsFile){
-        ArrayList<String[]>  events = new ArrayList<>();
+    private List<TimeEditEvent> parseIcs(String icsFile){
+        ArrayList<TimeEditEvent>  events = new ArrayList<>();
+        TimeEditEvent teEvent;
         String[] icsLines = icsFile.split("\\r\\n");
         final String[] wantedFields= {"DTSTART","DTEND","SUMMARY:","LOCATION:","DESCRIPTION:","END:"};
 
        // System.out.println(icsFile);
-        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyyMMdd'T'HHmmss'Z'");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd'T'HHmmss'Z'");
+        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMdd");
         Date dateTest;
         int indx =0;
         String[] event = null;
@@ -173,16 +187,28 @@ public class TimeEditFetcher {
                         //System.out.println(event[indx]);
                         try {
                          if(indx==0||indx==1)
-                            event[indx]=sdf.parse(event[indx]).toString();
-                        }catch (ParseException e){}
+
+                             if(!isValiDateFormat(event[indx],sdf)) {
+                                 event[indx] = sdf.format(sdf2.parse(event[indx]));
+                             }
+
+
+
+
+                        }catch (ParseException e){
+                            System.out.println(e);
+                        }
 
                         i = Integer.parseInt(recVars[1]);
                         indx++;
 
                     }else{
-                        events.add(event);
-                        event = null;
+                        if(event!=null) {
+                            teEvent = new TimeEditEvent(sdf.parse(event[0]), sdf.parse(event[1]), event[2], event[3], event[4], courseName);
+                            events.add(teEvent);
 
+                        }
+                        event = null;
                     }
                 }
             } catch(Exception e){
@@ -193,6 +219,20 @@ public class TimeEditFetcher {
 
         return events;
 
+    }
+    private boolean isValiDateFormat(String data, SimpleDateFormat sdf){
+        Date date = null;
+        try{
+            SimpleDateFormat sDF = sdf;
+            date = sdf.parse(data);
+            if (!data.equals(sdf.format(date))) {
+                date = null;
+            }
+
+        }catch (ParseException e) {
+            System.out.println(e);
+        }
+        return date!=null;
     }
     private String[] recuString(String[] file, String nextMatch, int index){
             String[] retVals;

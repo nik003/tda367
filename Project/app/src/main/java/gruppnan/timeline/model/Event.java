@@ -14,12 +14,12 @@ public abstract class Event implements EventInterface{
     public Event(Course course, String name, Date endDate, String description){
         this.course = course;
         this.name = name;
-        this.endDate = endDate;
+        this.endDate = new Date(endDate.getTime());
         this.description = description;
     }
 
     public Date getEndDate (){
-        return this.endDate;
+        return new Date(this.endDate.getTime());
     }
     public String getDescription(){
         return this.description;

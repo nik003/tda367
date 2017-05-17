@@ -24,7 +24,7 @@ public class EventContainer {
     private HashMap<Integer, Event> eventMap = new HashMap<>();
     private HashMap<Integer, DeadlineEvent> deadlineEventMap = new HashMap<>();
     private HashMap<Integer, DefaultEvent> defaultEventMap = new HashMap<>();
-    private static int nrOfEvents = 1;
+    private static int nrOfEvents = 1; //TODO Varför statisk?
 
     /**Preventing from new instantiations of eventContainer*/
     private EventContainer(){}
@@ -38,7 +38,9 @@ public class EventContainer {
     }
 
     public DefaultEvent createDefaultEvent(Course course, String name, String desc, Date startDate, Date endDate){
-        return new DefaultEvent(course,name,desc,startDate,endDate);
+        DefaultEvent de = new DefaultEvent(course,name,desc,startDate,endDate);
+        addEvent(de);
+        return de;
     }
     public DeadlineEvent createDeadlineEvent(Course course, String name, String desc, Date endDate){
         DeadlineEvent de = new DeadlineEvent(course,name,desc,endDate);
@@ -51,7 +53,7 @@ public class EventContainer {
     public void addEvent(Event event){
         if (eventMap.containsValue(event)){
             //TODO make this visible on view where user adds event
-            Log.d("duplicate event", "an identical event has already been added to map");
+            //Log.d("duplicate event", "an identical event has already been added to map");
         }else{
             eventMap.put(nrOfEvents, event);
             event.setKey(nrOfEvents);
@@ -94,6 +96,8 @@ public class EventContainer {
         ArrayList<Event> datesEvents = new ArrayList<>();
         for (Map.Entry<Integer, Event> entry : eventMap.entrySet()){
             date.setTime(entry.getValue().getEndDate());
+            Log.d("Before", String.valueOf(start.before(date)));
+            Log.d("After", String.valueOf(end.after(date)));
             if(start.before(date) && end.after(date)){
                 datesEvents.add(entry.getValue());
 

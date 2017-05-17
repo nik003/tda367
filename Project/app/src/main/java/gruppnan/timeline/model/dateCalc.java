@@ -7,12 +7,14 @@ import java.util.Calendar;
  * Created by Nikolai on 2017-05-04.
  */
 
-public abstract class dateCalc{
+public abstract class DateCalc {
 
     public static WeekDates getCurrentWeekDates() {
-        WeekDates wd = new WeekDates();
+        WeekDates wd;
 
         Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.HOUR_OF_DAY,0);
+        cal.set(Calendar.MINUTE,0);
         Calendar[] dates = new Calendar[4];
         cal.setFirstDayOfWeek(cal.MONDAY);
 
@@ -35,7 +37,7 @@ public abstract class dateCalc{
     private static Calendar getPrevMonday(Calendar day){
         Calendar prevDay = (Calendar)day.clone();
         prevDay.add(prevDay.DAY_OF_MONTH,-7);
-        int prev = prevDay.get(Calendar.DAY_OF_MONTH);
+
         return prevDay;
     }
     public static WeekDates getWeekDates(Calendar monday){
