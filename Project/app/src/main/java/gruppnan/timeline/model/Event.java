@@ -28,8 +28,8 @@ public abstract class Event implements EventInterface{
         return this.name;
     }
 
-    public String getCourse(){
-        return this.course.getCourseID();
+    public Course getCourse(){
+        return this.course;
     }
     public void setID(int id) {
         this.id = this.id == 0 ? id : this.id;

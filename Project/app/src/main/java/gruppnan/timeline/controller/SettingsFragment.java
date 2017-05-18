@@ -33,8 +33,7 @@ public class SettingsFragment extends Fragment {
     NumberPicker numberPicker;
     TextView timeText;
     LinearLayout settingsLayout;
-    ArrayAdapter<String> adapter;
-    Course course;
+
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
@@ -170,7 +169,7 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                String s = listView.getItemAtPosition(i).toString();
+
 
             }
         });

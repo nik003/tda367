@@ -14,5 +14,5 @@ public interface EventInterface {
 
     String getName();
 
-    String getCourse();
+    Course getCourse();
 }

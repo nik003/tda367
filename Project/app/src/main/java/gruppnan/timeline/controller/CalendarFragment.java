@@ -37,8 +37,8 @@ public class CalendarFragment extends Fragment {
     private Button weekViewButton;
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+
+
     private FragmentManager fragmentManager;
     private FragmentTransaction ft;
     private CalendarView calendarView;
@@ -67,10 +67,7 @@ public class CalendarFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
 
     }
 

@@ -26,7 +26,7 @@ import gruppnan.timeline.model.EventContainer;
 
 public class CalendarController extends FragmentActivity {
 
-    private EventContainer container;
+
 
 
     /** Will take in a view and model

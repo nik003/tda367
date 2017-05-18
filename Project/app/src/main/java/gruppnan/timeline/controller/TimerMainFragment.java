@@ -50,7 +50,7 @@ public class TimerMainFragment extends Fragment {
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+    public class SectionsPagerAdapter extends FragmentPagerAdapter {   //TODO TWO CLASSES IN ONE FILE?
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
