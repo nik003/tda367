@@ -7,30 +7,32 @@ import android.support.v4.app.FragmentActivity;
 import android.view.View;
 
 import gruppnan.timeline.R;
-import gruppnan.timeline.model.DeadlineEventSet;
+import gruppnan.timeline.model.DeadlineEvent;
 
 /**
  * Created by Melina on 18/05/2017.
  */
 
-public class FirstCourseListener implements ICardListener {
+public class CardListener implements ICardListener {
 
 
     private Context context;
-    DeadlineEventSet dEvent;
+    DeadlineEvent dEvent;
+    private int courseNumber;
 
 
-    public FirstCourseListener(DeadlineEventSet dEvent, Context context){
+    public CardListener(DeadlineEvent dEvent, Context context, int courseNumber){
         this.dEvent = dEvent;
         this.context = context;
+        this.courseNumber = courseNumber;
     }
 
     @Override
     public void onClick(View view) {
         Fragment ft = new CardTimelineFragment();
         Bundle args = new Bundle();
-        args.putInt("ID", dEvent.getD1().getID());
-        args.putInt("Course", 1);
+        args.putInt("ID", dEvent.getID());
+        args.putInt("Course", courseNumber);
         ft.setArguments(args);
         ((FragmentActivity)context).getSupportFragmentManager().beginTransaction()
                 .replace(R.id.frame,ft)

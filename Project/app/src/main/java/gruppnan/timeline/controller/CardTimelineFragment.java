@@ -80,11 +80,11 @@ public class CardTimelineFragment extends Fragment {
         }
         setTexts();
         //If deadline is done, set checkbox marked
-        /*
+
         if(event.isDone()){
             checkBox.toggle();
         }
-        */
+
     }
 
     public void setTexts(){

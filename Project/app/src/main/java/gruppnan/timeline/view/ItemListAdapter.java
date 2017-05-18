@@ -2,10 +2,7 @@ package gruppnan.timeline.view;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
 import android.support.graphics.drawable.VectorDrawableCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,7 +15,7 @@ import com.github.vipulasri.timelineview.TimelineView;
 import java.util.List;
 
 import gruppnan.timeline.R;
-import gruppnan.timeline.controller.CardTimelineFragment;
+import gruppnan.timeline.controller.CardListener;
 import gruppnan.timeline.model.DeadlineEvent;
 import gruppnan.timeline.model.DeadlineEventSet;
 
@@ -95,44 +92,13 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
 
         updateContent(dEvent,holder,position);
 
-        setCardListener(dEvent, holder);
+        setCardListeners(dEvent, holder);
 
     }
 
-    private void setCardListener(final DeadlineEventSet dEvent, ViewHolder holder) {
-        //holder.courseCard1.setOnClickListener(new FirstCourseListener(dEvent,mContext));
-
-        holder.courseCard1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Fragment ft = new CardTimelineFragment();
-                Bundle args = new Bundle();
-                args.putInt("ID", dEvent.getD1().getID());
-                args.putInt("Course", 1);
-                ft.setArguments(args);
-                ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frame,ft)
-                        .commit();
-            }
-        });
-
-
-
-        holder.courseCard2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Fragment ft = new CardTimelineFragment();
-                Bundle args = new Bundle();
-                args.putInt("ID", dEvent.getD2().getID());
-                args.putInt("Course", 2);
-                ft.setArguments(args);
-                ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frame,ft)
-                        .commit();
-            }
-        });
-
-
+    private void setCardListeners(final DeadlineEventSet dEvent, ViewHolder holder) {
+        holder.courseCard1.setOnClickListener(new CardListener(dEvent.getD1(),mContext,1));
+        holder.courseCard2.setOnClickListener(new CardListener(dEvent.getD2(),mContext,2));
     }
 
 
