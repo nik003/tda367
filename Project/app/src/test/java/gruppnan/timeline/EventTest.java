@@ -8,14 +8,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import gruppnan.timeline.TimeEditSystem.TimeEditFetcher;
 import gruppnan.timeline.controller.TimeEditHandler;
 import gruppnan.timeline.model.Event;
 import gruppnan.timeline.model.EventContainer;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
 
 public class EventTest {
@@ -77,7 +78,7 @@ public class EventTest {
         container.addEvent(e);
         Event c = container.createDefaultEvent(null, "lecture", "some random lecture", tenthFeb, tenthFeb);
         container.addEvent(c);
-        assertTrue(c.getKey() == 2);
+        assertTrue(c.getID() == 2);
 
 
         assertTrue(container.getDeadlineEventMap().get("D0").getName().equals("tenta"));

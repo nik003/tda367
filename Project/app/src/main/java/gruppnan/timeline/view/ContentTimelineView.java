@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import gruppnan.timeline.ItemListAdapter;
 import gruppnan.timeline.R;
 import gruppnan.timeline.model.DeadlineEventSet;
 

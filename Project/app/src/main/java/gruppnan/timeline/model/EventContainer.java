@@ -61,7 +61,7 @@ public class EventContainer {
             //Log.d("duplicate event", "an identical event has already been added to map");
         }else{
             eventMap.put(nrOfEvents, event);
-            event.setKey(nrOfEvents);
+            event.setID(nrOfEvents);
             nrOfEvents++;
         }
     }
@@ -120,7 +120,7 @@ public class EventContainer {
     }
 
     public void removeEvent(Event event){
-       eventMap.remove(event.getKey());
+       eventMap.remove(event.getID());
     }
 
 }

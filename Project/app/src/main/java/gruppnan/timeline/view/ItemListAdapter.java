@@ -1,4 +1,4 @@
-package gruppnan.timeline;
+package gruppnan.timeline.view;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -17,6 +17,7 @@ import com.github.vipulasri.timelineview.TimelineView;
 
 import java.util.List;
 
+import gruppnan.timeline.R;
 import gruppnan.timeline.controller.CardTimelineFragment;
 import gruppnan.timeline.model.DeadlineEvent;
 import gruppnan.timeline.model.DeadlineEventSet;
@@ -104,7 +105,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
             public void onClick(View view) {
                 Fragment ft = new CardTimelineFragment();
                 Bundle args = new Bundle();
-                args.putInt("ID", dEvent.getD1().getKey());
+                args.putInt("ID", dEvent.getD1().getID());
                 args.putInt("Course", 1);
                 ft.setArguments(args);
                 ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction()
@@ -118,7 +119,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
             public void onClick(View view) {
                 Fragment ft = new CardTimelineFragment();
                 Bundle args = new Bundle();
-                args.putInt("ID", dEvent.getD2().getKey());
+                args.putInt("ID", dEvent.getD2().getID());
                 args.putInt("Course", 2);
                 ft.setArguments(args);
                 ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction()
