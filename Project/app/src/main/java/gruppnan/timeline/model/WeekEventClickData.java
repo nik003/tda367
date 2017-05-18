@@ -2,6 +2,7 @@ package gruppnan.timeline.model;
 
 /**
  * Created by Nikolai on 2017-05-15.
+ * The data each cells in the weekview holds as a tag.
  */
 
 public class WeekEventClickData {

@@ -21,6 +21,7 @@ import java.util.zip.GZIPInputStream;
 
 /**
  * Created by Nikolai on 2017-04-06.
+ * Webscrapes the time edit page to get the courses.
  */
 
 public class TimeEditFetcher {
@@ -37,7 +38,7 @@ public class TimeEditFetcher {
 
     public List<String> searchCourse(String Cname){
         ArrayList<String> courseList = new ArrayList<>();
-        if(Cname.equals(null) || Cname.equals("")){
+        if(Cname == null || Cname.equals("")){
             courseList.add("No course found");
             return courseList;
         }

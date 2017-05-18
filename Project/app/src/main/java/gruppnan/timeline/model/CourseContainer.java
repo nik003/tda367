@@ -4,6 +4,7 @@ import java.util.HashSet;
 
 /**
  * Created by Nikolai on 2017-05-17.
+ * A container for the courses
  */
 
 public class CourseContainer {

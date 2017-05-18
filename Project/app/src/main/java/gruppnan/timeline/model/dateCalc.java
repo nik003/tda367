@@ -5,6 +5,7 @@ import java.util.Calendar;
 
 /**
  * Created by Nikolai on 2017-05-04.
+ * Calculates dates from given times
  */
 
 public abstract class DateCalc {
