@@ -95,11 +95,13 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
 
         updateContent(dEvent,holder,position);
 
-        setCardListener(dEvent, holder,position);
+        setCardListener(dEvent, holder);
 
     }
 
-    private void setCardListener(final DeadlineEventSet dEvent, ViewHolder holder, final int position) {
+    private void setCardListener(final DeadlineEventSet dEvent, ViewHolder holder) {
+        //holder.courseCard1.setOnClickListener(new FirstCourseListener(dEvent,mContext));
+
         holder.courseCard1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -113,6 +115,8 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
                         .commit();
             }
         });
+
+
 
         holder.courseCard2.setOnClickListener(new View.OnClickListener() {
             @Override
