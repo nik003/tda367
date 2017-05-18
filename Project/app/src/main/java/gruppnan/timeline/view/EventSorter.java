@@ -6,12 +6,16 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
+import gruppnan.timeline.model.Course;
+import gruppnan.timeline.model.CourseContainer;
 import gruppnan.timeline.model.DeadlineEvent;
 import gruppnan.timeline.model.DeadlineEventSet;
 import gruppnan.timeline.model.EventContainer;
 
 /**
- * Created by Melina on 11/05/2017.
+ * Created by Melina Andersson
+ *
+ * Sorts events to appear in chronological order in timeline view
  */
 
 public class EventSorter {
@@ -58,11 +62,14 @@ public class EventSorter {
 
     public void addEventsInPairs(){
         //separate the events by courses
-        for(DeadlineEvent item : unsortedEvents){
-            if(item.getCourseID() == "course1"){
-                courseEvents1.add(item);
-            } else {
-                  courseEvents2.add(item);
+        for(Course c : CourseContainer.getCourseContainer().getAllCourses()) {
+            String courseID = c.getCourseID();
+            for (DeadlineEvent item : unsortedEvents) {
+                if (item.getCourseID() == courseID) {
+                    courseEvents1.add(item);
+                } else {
+                    courseEvents2.add(item);
+                }
             }
         }
 

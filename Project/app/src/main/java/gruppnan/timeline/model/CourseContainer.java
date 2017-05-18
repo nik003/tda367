@@ -18,6 +18,7 @@ public class CourseContainer {
     }
     public Course createCourse(String name, String courseID){
         Course course = new Course(name,courseID);
+        courses.add(course);
         return course;
     }
     public Course getCourse(String courseID){
@@ -33,5 +34,9 @@ public class CourseContainer {
                 return true;
         }
         return false;
+    }
+
+    public HashSet<Course> getAllCourses(){
+        return courses;
     }
 }

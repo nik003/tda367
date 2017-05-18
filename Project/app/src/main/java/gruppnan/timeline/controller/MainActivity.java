@@ -17,6 +17,7 @@ import java.util.GregorianCalendar;
 
 import gruppnan.timeline.R;
 import gruppnan.timeline.model.Course;
+import gruppnan.timeline.model.CourseContainer;
 import gruppnan.timeline.model.DeadlineEvent;
 import gruppnan.timeline.model.EventContainer;
 
@@ -40,23 +41,26 @@ public class MainActivity extends AppCompatActivity {
         setupDrawer(navView);
 
         //Ligger temporärt här för att de måste ligga nånstans där de bara skapas en gång..
+        CourseContainer courseContainer = CourseContainer.getCourseContainer();
+        Course course1 = courseContainer.createCourse("TDA367", "Objektorienterad prog");
+        Course course2 = courseContainer.createCourse("TMV027", "Matte");
         Calendar calendar = new GregorianCalendar();
         calendar.set(2017, 4, 3);
-        eventContainer.createDeadlineEvent(new Course("course1", "eiei"), "Laboration 1", "hej", DeadlineEvent.toDate(calendar), true);
+        eventContainer.createDeadlineEvent(course2, "Laboration 1", "hej", DeadlineEvent.toDate(calendar), true);
         calendar.set(2017, 4, 4);
-        eventContainer.createDeadlineEvent(new Course("course1", "ei"), "Laboration 2", "hej", DeadlineEvent.toDate(calendar), true);
+        eventContainer.createDeadlineEvent(course2, "Laboration 2", "hej", DeadlineEvent.toDate(calendar), true);
         calendar.set(2017, 5, 7);
-        eventContainer.createDeadlineEvent(new Course("course1", "eiei"), "Laboration 3", "hej", DeadlineEvent.toDate(calendar), false);
+        eventContainer.createDeadlineEvent(course2, "Laboration 3", "hej", DeadlineEvent.toDate(calendar), false);
         calendar.set(2017, 5, 7);
-        eventContainer.createDeadlineEvent(new Course("course2", "ei"), "Inlämning 1", "hej", DeadlineEvent.toDate(calendar), false);
+        eventContainer.createDeadlineEvent(course1, "Inlämning 1", "hej", DeadlineEvent.toDate(calendar), false);
         calendar.set(2017, 5, 20);
-        eventContainer.createDeadlineEvent(new Course("course2", "eiei"), "Seminarie", "hej", DeadlineEvent.toDate(calendar), false);
+        eventContainer.createDeadlineEvent(course1, "Seminarie", "hej", DeadlineEvent.toDate(calendar), false);
         calendar.set(2017, 5, 26);
-        eventContainer.createDeadlineEvent(new Course("course2", "ei"), "Inlämning 2", "hej", DeadlineEvent.toDate(calendar), false);
+        eventContainer.createDeadlineEvent(course1, "Inlämning 2", "hej", DeadlineEvent.toDate(calendar), false);
         calendar.set(2017, 5, 28);
-        eventContainer.createDeadlineEvent(new Course("course1", "eiei"), "Laboration 4", "hej", DeadlineEvent.toDate(calendar), false);
+        eventContainer.createDeadlineEvent(course2, "Laboration 4", "hej", DeadlineEvent.toDate(calendar), false);
         calendar.set(2017, 5, 28);
-        eventContainer.createDeadlineEvent(new Course("course2", "ei"), "Tenta", "hej", DeadlineEvent.toDate(calendar), false);
+        eventContainer.createDeadlineEvent(course1, "Tenta", "hej", DeadlineEvent.toDate(calendar), false);
 
 
 

@@ -10,18 +10,18 @@ import gruppnan.timeline.view.ContentTimelineView;
 
 public class ContentTimelineFragment extends Fragment {
 
-    ContentTimelineView mConentTimelineView;
+    ContentTimelineView contentTimelineView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        mConentTimelineView = new ContentTimelineView(inflater,container);
+        contentTimelineView = new ContentTimelineView(inflater,container);
 
         //Update view
-        mConentTimelineView.getAdapter().notifyDataSetChanged();
+        contentTimelineView.getAdapter().notifyDataSetChanged();
 
-        return mConentTimelineView.getRootView();
+        return contentTimelineView.getRootView();
     }
 
 

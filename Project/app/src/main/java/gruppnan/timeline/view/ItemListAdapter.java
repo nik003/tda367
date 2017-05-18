@@ -20,7 +20,8 @@ import gruppnan.timeline.model.DeadlineEvent;
 import gruppnan.timeline.model.DeadlineEventSet;
 
 /**
- * Created by Melina on 02/05/2017.
+ * Created by Melina Andersson
+ * Initializes and updates the content of the recyclerview in the timeline view
  */
 
 public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
@@ -62,11 +63,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
             courseCard2 = (CardView) v.findViewById(R.id.card2);
 
             courseTextCard = (TextView) v.findViewById(R.id.course_timeline);
-
             courseTextCard2 = (TextView) v.findViewById(R.id.course2_timeline);
-
-
-
         }
     }
 
@@ -101,10 +98,15 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
         holder.courseCard2.setOnClickListener(new CardListener(dEvent.getD2(),mContext,2));
     }
 
+    /**
+     * Updates texts and markers for the current card
+     *
+     * @param dEvent The current set to be updated
+     * @param holder The viewholder for the view element
+     * @param position The position of the DeadlineEventSet in the list
+     */
 
     private void updateContent(DeadlineEventSet dEvent, ViewHolder holder, int position) {
-
-
         if((dEvent.getD1() != null && dEvent.getD2() != null)){
 
             updateCourse1Markers(holder,dEvent);
@@ -116,7 +118,6 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
             setTextDate(holder.dateText2, dEvent.getD2());
             setTextTitle(holder.titleText2, dEvent.getD2());
         }
-
 
         if((dEvent.getD1() != null) && (dEvent.getD2() == null)) {
 
