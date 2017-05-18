@@ -1,6 +1,7 @@
 package gruppnan.timeline.model;
 
 
+
 public class Course implements CourseInterface{
 
     private String name, courseID;

@@ -9,9 +9,7 @@ import java.util.List;
 
 public class DeadlineEvent extends Event{
 
-    protected Date endDate;
-    protected String description, name;
-    protected Course course;
+
     protected boolean isDone;
 
     private List<DeadlineEvent> dEvents;
@@ -19,28 +17,9 @@ public class DeadlineEvent extends Event{
     public DeadlineEvent(Course course, String name, String description, Date endDate, boolean isDone){
         super(course, name, endDate, description);
 
-        this.course = course;
-        this.name = name;
-        this.description = description;
-        this.endDate = endDate;
         this.isDone = isDone;
     }
 
-    public String getCourseID(){
-        return course.getCourseID();
-    }
-
-    public String getName(){
-        return name;
-    }
-
-    public String getDescription(){
-        return description;
-    }
-
-    public Date getDate() {
-        return endDate;
-    }
 
     public int getDayofMonth(){
         return toCalendar(endDate).get(Calendar.DATE);

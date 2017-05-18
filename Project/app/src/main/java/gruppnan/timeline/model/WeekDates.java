@@ -4,6 +4,7 @@ import java.util.Calendar;
 
 /**
  * Created by Nikolai on 2017-05-11.
+ * A class for containing dates used for navigation anc calculation for the weekview
  */
 
 public class WeekDates {
