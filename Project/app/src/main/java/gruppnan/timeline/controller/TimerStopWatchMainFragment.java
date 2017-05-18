@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 
 import gruppnan.timeline.R;
 
-public class TimerMainFragment extends Fragment {
+public class TimerStopWatchMainFragment extends Fragment {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -30,11 +30,27 @@ public class TimerMainFragment extends Fragment {
      */
     private ViewPager mViewPager;
 
+    private int sectionNumber;
+
+    public TimerStopWatchMainFragment() {
+
+    }
+
+    public static TimerStopWatchMainFragment newInstance(int sectionNumber) {
+        TimerStopWatchMainFragment fragment = new TimerStopWatchMainFragment();
+        Bundle args = new Bundle();
+        args.putInt("sectionNumber", sectionNumber);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_timer_main, container, false);
 
-        mSectionsPagerAdapter = new TimerMainFragment.SectionsPagerAdapter(getFragmentManager());
+        sectionNumber = getArguments().getInt("sectionNumber");
+
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) view.findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
@@ -60,19 +76,17 @@ public class TimerMainFragment extends Fragment {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return TimerFragment.newInstance(0);
+                    return TimerStopWatchHolderFragment.newInstance(0);
                 case 1:
-                    return TimerFragment.newInstance(1);
-                case 2:
-                    return KeypadFragment.newInstance();
+                    return new BlankFragment();
             }
             return null;
         }
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 3;
+            // Show 2 total pages.
+            return 2;
         }
 
         @Override
@@ -82,8 +96,6 @@ public class TimerMainFragment extends Fragment {
                     return "Course 1";
                 case 1:
                     return "Course 2";
-                case 2:
-                    return "Course 3";
             }
             return null;
         }

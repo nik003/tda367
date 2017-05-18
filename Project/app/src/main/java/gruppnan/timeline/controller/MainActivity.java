@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 } else if (itemId == R.id.calendar) {
                     fragment = new CalendarFragment();
                 }  else if (itemId == R.id.timer) {
-                    fragment = new TimerMainFragment();
+                    fragment = TimerStopWatchMainFragment.newInstance(0);
                 } else {
 
         }
