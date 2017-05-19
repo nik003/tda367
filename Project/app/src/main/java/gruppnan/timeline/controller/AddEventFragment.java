@@ -26,14 +26,9 @@ import gruppnan.timeline.model.EventContainer;
 
 
 public class AddEventFragment extends Fragment implements TimePickerDialog.OnTimeSetListener, View.OnFocusChangeListener {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+
+
 
     private View view;
 
@@ -55,7 +50,7 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
     private Calendar calendar;
     private EventContainer eventContainer;
     private FragmentManager fragmentManager;
-    private FragmentTransaction ft;
+
 
 
 
@@ -73,10 +68,7 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     /** Set up view according to the type of event user wants to add */
@@ -126,7 +118,7 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
         yearMonthDay = new Date(dateL);
         eventContainer = EventContainer.getEventContainer();
         fragmentManager = getActivity().getSupportFragmentManager();
-        ft = fragmentManager.beginTransaction();
+        fragmentManager.beginTransaction();
     }
 
 

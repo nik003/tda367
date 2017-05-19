@@ -42,6 +42,7 @@ public class SettingsFragment extends Fragment {
     String coursesInSpinner[];
     int currValue;
 
+
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -202,7 +203,7 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                String s = listView.getItemAtPosition(i).toString();
+
 
             }
         });

@@ -48,7 +48,7 @@ public class TimerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstances) {
         View view = inflater.inflate(R.layout.fragment_timer, container, false);
 
-        timerView = new TimerView(getActivity());
+        timerView = new TimerView(getActivity());//TODO WHAT IS THIS DOING?
 
         stopWatchText = (TextView) view.findViewById(R.id.stopWatchText);
         stopWatchRestartButton = (Button) view.findViewById(R.id.stopWatchRestartButton);

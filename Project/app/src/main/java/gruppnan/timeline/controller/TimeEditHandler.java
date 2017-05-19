@@ -11,13 +11,15 @@ import gruppnan.timeline.model.EventContainer;
 
 /**
  * Created by Nikolai on 2017-05-17.
+ * A sybsystem handler for TimeEdit
  */
 
-public abstract class TimeEditHandler {
+public class TimeEditHandler implements CourseSystemInterface {
     static TimeEditFetcher  tf = new TimeEditFetcher();
     static EventContainer  ec= EventContainer.getEventContainer();
     static CourseContainer cc  = CourseContainer.getCourseContainer();
-    public static void addTimeEditEvents(String courseName, Date from, Date to){
+
+    public void  getAddEvents(String courseName, Date from, Date to){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
         List<TimeEditEvent> events = tf.getIcs(courseName,sdf.format(from),sdf.format(to));
         for(TimeEditEvent ev : events){
@@ -31,7 +33,7 @@ public abstract class TimeEditHandler {
             ec.createDefaultEvent(cc.getCourse(courseID),name,courseDesc,ev.getStartDate(),ev.getEndDate());
         }
     }
-    public static List<String>searchCourses(String searchText){
+    public  List<String>searchCourses(String searchText){
         return tf.searchCourse(searchText);
 
     }

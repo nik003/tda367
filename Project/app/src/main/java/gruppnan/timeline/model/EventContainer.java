@@ -21,7 +21,7 @@ public class EventContainer {
     private HashMap<Integer, Event> eventMap = new HashMap<>();
     private HashMap<Integer, DeadlineEvent> deadlineEventMap = new HashMap<>();
     private HashMap<Integer, DefaultEvent> defaultEventMap = new HashMap<>();
-    private static int nrOfEvents = 1; //TODO Varför statisk?
+    private int nrOfEvents = 1; //TODO Varför statisk?
 
 
     /**Preventing from new instantiations of eventContainer*/

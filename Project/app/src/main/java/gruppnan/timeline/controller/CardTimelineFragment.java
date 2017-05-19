@@ -57,7 +57,7 @@ public class CardTimelineFragment extends Fragment {
 
     private void initViewElements(View view) {
         id = getArguments().getInt("ID", 0);
-        courseNumber = getArguments().getInt("Course", 0);
+        courseNumber = getArguments().getInt("Course", 0); //TODO WHAT IS THIS FOR?
         checkBox = (CheckBox) view.findViewById(R.id.checkbox);
         saveButton = (Button) view.findViewById(R.id.done_icon);
         exitMarker = (ImageView) view.findViewById(R.id.exit_icon);
@@ -67,7 +67,7 @@ public class CardTimelineFragment extends Fragment {
     }
 
     public void initContent(){
-        Map<Integer,DeadlineEvent> events = new HashMap<>();
+        Map<Integer,DeadlineEvent> events;
         eventContainer = EventContainer.getEventContainer();
         events = eventContainer.getDeadlineEventMap();
         for(Map.Entry<Integer, DeadlineEvent> entry : events.entrySet()){
@@ -117,8 +117,6 @@ public class CardTimelineFragment extends Fragment {
             public void onClick(View view) {
                 if((checkBox.isChecked() && !event.isDone())){
                     event.setDone(true);
-                } else if(checkBox.isChecked() && event.isDone()) {
-                    event.setDone(false);
                 } else {
                     event.setDone(false);
                 }
