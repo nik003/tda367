@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/stopWatchText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/stopWatchButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="80dp" />
+
+    <TextView
+        android:id="@+id/timerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/stopWatchButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="31dp" />
+
+    <ToggleButton
+        android:id="@+id/stopWatchButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start"
+        android:layout_alignBaseline="@+id/stopWatchRestartButton"
+        android:layout_alignBottom="@+id/stopWatchRestartButton"
+        android:layout_alignStart="@+id/timerButton" />
+
+    <Button
+        android:id="@+id/stopWatchRestartButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Restart"
+        android:layout_marginStart="49dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
+
+    <ToggleButton
+        android:id="@+id/timerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="89dp"
+        android:text="ToggleButton"
+        android:layout_below="@+id/stopWatchRestartButton"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="49dp" />
+
+    <Button
+        android:id="@+id/timerRestartButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/stopWatchRestartButton"
+        android:layout_alignTop="@+id/timerButton"
+        android:text="Restart" />
+
+</RelativeLayout>

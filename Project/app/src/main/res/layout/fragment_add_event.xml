@@ -1,0 +1,112 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusableInTouchMode="true"
+    android:background="@android:color/white"
+    tools:context="gruppnan.timeline.controller.AddEventFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <Button
+        android:id="@+id/saveEventBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="21dp"
+        android:text="Save" />
+
+    <EditText
+        android:id="@+id/descTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/eventNameTxt"
+        android:layout_below="@+id/eventNameTxt"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:focusableInTouchMode="true"
+        android:hint="Description"
+        android:inputType="textMultiLine"
+        android:maxLines="2"
+        />
+
+    <EditText
+        android:id="@+id/eventNameTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/eventTitleLabel"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="88dp"
+        android:layout_weight="1"
+        android:ems="10"
+        android:hint="Event name"
+        android:inputType="textNoSuggestions|textPersonName" />
+
+    <TextView
+        android:id="@+id/eventTitleLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/eventNameTxt"
+        android:layout_marginTop="18dp"
+        android:clickable="false"
+        android:text="Add new event"
+        android:textSize="28dp" />
+
+    <Spinner
+        android:id="@+id/courseSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/eventNameTxt"
+        android:layout_alignStart="@+id/eventTitleLabel"
+        android:layout_below="@+id/eventTitleLabel"
+        android:layout_marginTop="25dp"
+        android:spinnerMode="dialog" />
+
+    <Button
+        android:id="@+id/startTimeBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/eventNameTxt"
+        android:layout_below="@+id/eventNameTxt"
+        android:layout_marginTop="110dp"
+        android:text="Start time" />
+
+    <Button
+        android:id="@+id/endTimeBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/startTimeBtn"
+        android:layout_below="@+id/startTimeBtn"
+        android:layout_marginTop="14dp"
+        android:text="end time" />
+
+    <TextView
+        android:id="@+id/startTimeLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/startTimeBtn"
+        android:layout_alignBottom="@+id/startTimeBtn"
+        android:layout_alignStart="@+id/descTxt"
+        android:clickable="false"
+        android:text="Start time:"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/endTimeLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/endTimeBtn"
+        android:layout_alignBottom="@+id/endTimeBtn"
+        android:layout_alignStart="@+id/startTimeLbl"
+        android:clickable="false"
+        android:text="End time:"
+        android:textSize="18sp" />
+
+</RelativeLayout>

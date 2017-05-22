@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="gruppnan.timeline" >
+    package="gruppnan.timeline">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -9,12 +10,28 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+
+
         android:theme="@style/AppTheme" >
-        <activity android:name=".MainActivity" >
+
+
+
+        <activity android:name=".controller.MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".controller.CalendarController"
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".controller.CalendarController"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
 

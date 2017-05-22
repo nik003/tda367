@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_timeline"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:orientation="horizontal"
+    android:weightSum="2"
+    >
+
+    <com.github.vipulasri.timelineview.TimelineView
+        android:id="@+id/course1"
+        app:marker="@drawable/first_course_marker_inactive"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:line="@color/timelineColor"
+        app:lineSize="2dp"
+        app:markerSize="20dp"
+        app:linePadding="-1dp"
+        />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="15dp"
+        app:cardElevation="1dp"
+        app:contentPadding="15dp"
+        android:layout_weight="1"
+        android:clickable="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/course_timeline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:textSize="12sp"
+                />
+
+            <TextView
+                android:id="@+id/date1_timeline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:id="@+id/text1_timeline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textSize="17sp"
+                android:textColor="@android:color/black" />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <com.github.vipulasri.timelineview.TimelineView
+        android:id="@+id/course2"
+        app:marker="@drawable/second_course_marker_inactive"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:line="@color/timelineColor2"
+        app:lineSize="2dp"
+        app:markerSize="20dp"
+        app:linePadding="-1dp"
+        />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        app:cardElevation="1dp"
+        app:contentPadding="15dp"
+        android:layout_weight="1"
+        android:clickable="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/course2_timeline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:textSize="12sp"
+                />
+
+            <TextView
+                android:id="@+id/date2_timeline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:id="@+id/text2_timeline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@android:color/black"
+                android:textSize="17sp"/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

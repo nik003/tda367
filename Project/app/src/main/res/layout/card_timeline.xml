@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_layout"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card1"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/date_timeline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp"
+            android:clickable="true"
+            />
+
+        <EditText
+            android:id="@+id/title_timeline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="55dp"
+            android:layout_marginLeft="16dp"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:maxLength="30"
+            android:textCursorDrawable="@null"
+            android:textSelectHandle="@color/white"
+            android:inputType="textNoSuggestions|textPersonName"/>
+
+        <EditText
+            android:id="@+id/description_timeline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="105dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="16dp"
+            android:textSize="16sp"
+            android:maxLength="100"
+            android:inputType="textMultiLine"
+            android:textCursorDrawable="@null"
+            android:textSelectHandle="@color/white">
+        </EditText>
+
+        <ImageView
+            android:id="@+id/exit_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_gravity="top|end"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:src="@mipmap/close"/>
+
+        <Button
+            android:id="@+id/done_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="15dp"
+            android:layout_marginRight="15dp"
+            android:text="Save"/>
+
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|start"
+            android:text="Mark as finished"
+            android:buttonTint="@color/colorPrimary"
+            android:layout_marginBottom="15dp"
+            android:layout_marginStart="15dp"
+            android:textSize="18sp"
+            />
+
+
+
+    </android.support.v7.widget.CardView>
+
+</FrameLayout>
