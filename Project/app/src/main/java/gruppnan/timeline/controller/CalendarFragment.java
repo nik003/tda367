@@ -23,6 +23,7 @@ import gruppnan.timeline.view.MonthCalendarView;
 public class CalendarFragment extends Fragment {
 
 
+
     private FragmentManager fragmentManager;
     private FragmentTransaction ft;
     private MonthCalendarView monthCalendarView;
@@ -35,6 +36,7 @@ public class CalendarFragment extends Fragment {
     public CalendarFragment() {
         // Required empty public constructor
     }
+
 
 
 

@@ -23,6 +23,7 @@ public class EventTest {
 
     private EventContainer container = EventContainer.getEventContainer();
     private SimpleDateFormat dateParser = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+    private TimeEditHandler th = new TimeEditHandler();
 
     private TimeEditFetcher tf = new TimeEditFetcher();
     private Date firstJan;
@@ -97,9 +98,9 @@ public class EventTest {
         c.add(Calendar.MONTH,5);
         Date d = c.getTime();
 
-        ArrayList<String> al = (ArrayList)TimeEditHandler.searchCourses("tda367");
+        ArrayList<String> al = (ArrayList)th.searchCourses("tda367");
         assertTrue(al.size()==1);
-        TimeEditHandler.addTimeEditEvents(al.get(0),dc,d);
+        th.getAddEvents(al.get(0),dc,d);
         assertTrue(container.getDefaultEventMap().size()>7);
 
     }

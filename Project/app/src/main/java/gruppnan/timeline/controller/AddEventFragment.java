@@ -18,11 +18,14 @@ import gruppnan.timeline.view.AddEventView;
 
 public class AddEventFragment extends Fragment{
 
+    private View view;
+
+
 
 
     private EventContainer eventContainer;
     private FragmentManager fragmentManager;
-    private FragmentTransaction ft;
+
 
 
     private AddEventView addEventView;
@@ -32,6 +35,12 @@ public class AddEventFragment extends Fragment{
     }
 
 
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
     /** Set up view according to the type of event user wants to add */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,9 +48,23 @@ public class AddEventFragment extends Fragment{
         // Inflate the layout for this fragment
         addEventView = new AddEventView(inflater, container,this);
         fragmentManager = getActivity().getSupportFragmentManager();
+
         eventContainer = EventContainer.getEventContainer();
         return addEventView.getView();
+
     }
+
+
+
+
+    public void removeFragment(){
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        fragmentTransaction.remove(this);
+        fragmentTransaction.commit();
+    }
+
 
     public void createDeadlineEvent(Course course, String name, String eventDescription, Date endDate, boolean isDone){
         eventContainer.createDeadlineEvent(course, name, eventDescription, endDate, isDone);
@@ -51,11 +74,5 @@ public class AddEventFragment extends Fragment{
         eventContainer.createDefaultEvent(course,name,eventDescription,startDate, endDate);
         removeFragment();
     }
-    public void removeFragment(){
 
-        ft = fragmentManager.beginTransaction();
-
-        ft.remove(this);
-        ft.commit();
-    }
 }

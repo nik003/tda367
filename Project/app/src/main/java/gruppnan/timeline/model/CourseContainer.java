@@ -4,6 +4,7 @@ import java.util.HashSet;
 
 /**
  * Created by Nikolai on 2017-05-17.
+ * A container for the courses
  */
 
 public class CourseContainer {
@@ -18,6 +19,7 @@ public class CourseContainer {
     }
     public Course createCourse(String name, String courseID){
         Course course = new Course(name,courseID);
+        courses.add(course);
         return course;
     }
     public Course getCourse(String courseID){
@@ -33,5 +35,9 @@ public class CourseContainer {
                 return true;
         }
         return false;
+    }
+
+    public HashSet<Course> getAllCourses(){
+        return courses;
     }
 }

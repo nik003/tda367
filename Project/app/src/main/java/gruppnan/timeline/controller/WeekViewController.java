@@ -8,9 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TableLayout;
 import android.widget.TextView;
-
 import java.util.Calendar;
-
 import gruppnan.timeline.R;
 import gruppnan.timeline.model.Event;
 import gruppnan.timeline.model.WeekDates;
@@ -20,8 +18,10 @@ import gruppnan.timeline.view.WeekCalendarView;
 
 import static gruppnan.timeline.model.DateCalc.*;
 
-
-
+/**
+ * Created by Nikolai
+ * This controls the Weekview and creates the view from the model
+ */
 public class WeekViewController extends Fragment implements View.OnClickListener{
     private WeekCalendarView wwf;
 

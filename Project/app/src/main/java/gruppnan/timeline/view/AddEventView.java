@@ -155,8 +155,7 @@ public class AddEventView implements TimePickerDialog.OnTimeSetListener, View.On
         if (eventName.equals("")){
             nameTxt.setHintTextColor(Color.RED);
             nameTxt.setHint("Please enter a name");
-        }
-        if (eventType.equals("event")){
+        } else if (eventType.equals("event")){
             fragment.createDefaultEvent(course,eventName,eventDescription,completeStartDate,completeEndDate);
 
         }

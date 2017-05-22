@@ -71,8 +71,7 @@
            android:layout_height="wrap_content"
            android:layout_toEndOf="@id/weekly_goal_course_text"
            android:layout_marginStart="20dp"
-           android:spinnerMode="dropdown"
-           android:entries="@array/course_arrays"/>
+           android:spinnerMode="dropdown"/>
 
    </RelativeLayout>
 
