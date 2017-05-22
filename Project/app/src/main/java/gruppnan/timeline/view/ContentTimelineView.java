@@ -53,9 +53,6 @@ public class ContentTimelineView implements ViewMVC  {
         return mAdapter;
     }
 
-
-
-
     @Override
     public View getRootView() {
         return mRootView;
