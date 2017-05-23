@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,9 +77,9 @@ public class TimerStopWatchMainFragment extends Fragment {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return TimerStopWatchHolderFragment.newInstance(0);
+                    return TimerStopWatchHolderFragment.newInstance(0, "course1");
                 case 1:
-                    return new BlankFragment();
+                    return TimerStopWatchHolderFragment.newInstance(3, "course2");
             }
             return null;
         }

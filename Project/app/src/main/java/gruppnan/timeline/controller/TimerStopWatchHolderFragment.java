@@ -2,6 +2,7 @@ package gruppnan.timeline.controller;
 
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -19,16 +20,18 @@ public class TimerStopWatchHolderFragment extends Fragment {
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private VerticalViewPager mVerticalViewPager;
 
+    private int sectionNumber;
+    private String course;
+
     public TimerStopWatchHolderFragment() {
         // Required empty public constructor
     }
 
-    private int sectionNumber;
-
-    public static TimerStopWatchHolderFragment newInstance(int sectionNumber) {
+    public static TimerStopWatchHolderFragment newInstance(int sectionNumber, String course) {
         TimerStopWatchHolderFragment fragment = new TimerStopWatchHolderFragment();
         Bundle args = new Bundle();
         args.putInt("sectionNumber", sectionNumber);
+        args.putString("course", course);
         fragment.setArguments(args);
         return fragment;
     }
@@ -38,11 +41,16 @@ public class TimerStopWatchHolderFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_timer_holder, container, false);
 
         sectionNumber = getArguments().getInt("sectionNumber");
+        course = getArguments().getString("course");
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
         // Set up the ViewPager with the sections adapter.
-        mVerticalViewPager = (VerticalViewPager) view.findViewById(R.id.container);
+        mVerticalViewPager = (VerticalViewPager) view.findViewById(R.id.vertical_container);
         mVerticalViewPager.setAdapter(mSectionsPagerAdapter);
+        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabDots);
+        tabLayout.setupWithViewPager(mVerticalViewPager, true);
+
+
 
         return view;
     }
@@ -58,34 +66,19 @@ public class TimerStopWatchHolderFragment extends Fragment {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return TimerStopWatchFragment.newInstance(0, true);
+                    return TimerStopWatchFragment.newInstance(sectionNumber, true, "Today");
                 case 1:
-                    return TimerStopWatchFragment.newInstance(1, false);
+                    return TimerStopWatchFragment.newInstance(sectionNumber+1, false, "Week");
                 case 2:
-                    return TimerStopWatchFragment.newInstance(2, false);
+                    return TimerStopWatchFragment.newInstance(sectionNumber+2, false, "Break");
                  }
             return null;
         }
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
             return 3;
         }
 
-        /**
-        @Override
-        public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return "Course 1";
-                case 1:
-                    return "Course 2";
-                case 2:
-                    return "Course 3";
-            }
-            return null;
-        }
-        **/
     }
 }

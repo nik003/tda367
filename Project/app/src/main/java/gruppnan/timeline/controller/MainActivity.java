@@ -96,9 +96,9 @@ public class MainActivity extends AppCompatActivity {
                 if (itemId == R.id.home) {
                     fragment = new ContentTimelineFragment();
                 } else if (itemId == R.id.calendar) {
-                    fragment = new CalendarFragment();
+                    fragment = TimerStopWatchHolderFragment.newInstance(0, "course1");
                 }  else if (itemId == R.id.timer) {
-                    fragment = TimerStopWatchMainFragment.newInstance(0);
+                    fragment = TimerStopWatchHolderFragment.newInstance(3, "course2");
                 } else {
 
         }

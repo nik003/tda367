@@ -3,11 +3,20 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/text"
+        android:id="@+id/typeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true" />
+        android:layout_marginTop="120dp"
+        android:textSize="16dp"/>
+
+    <TextView
+        android:id="@+id/timeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="170dp"
+        android:textSize="32dp"/>
 
     <ToggleButton
         android:id="@+id/toggleButton"
@@ -28,5 +37,17 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="400dp"
         android:layout_marginStart="50dp" />
+
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="230dp"
+        android:layout_height="230dp"
+        android:progressDrawable="@drawable/circular"
+        android:background="@drawable/circular_background"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"/>
+
 
 </RelativeLayout>
