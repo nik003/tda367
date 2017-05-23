@@ -8,7 +8,7 @@ import java.util.Calendar;
  * Calculates dates from given times
  */
 
-public abstract class DateCalc {
+public abstract class DateCalculator {
 
     public static WeekDates getCurrentWeekDates() {
         WeekDates wd;

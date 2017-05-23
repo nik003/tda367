@@ -1,14 +1,11 @@
 package gruppnan.timeline.view;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -16,9 +13,12 @@ import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 import gruppnan.timeline.R;
+import gruppnan.timeline.controller.DialogOnClickListener;
 import gruppnan.timeline.controller.SettingsFragment;
 import gruppnan.timeline.model.Course;
 import gruppnan.timeline.model.CourseContainer;
@@ -42,8 +42,8 @@ public class SettingsView implements ViewMVC {
     HashSet<Course> allCourses = new HashSet<>();
 
     SettingsFragment fragment;
+    LayoutInflater inflater;
 
-    Object selectedCourse;
 
     public SettingsView(LayoutInflater inflater, ViewGroup container, SettingsFragment fragment){
         mRootView = inflater.inflate(R.layout.settings_layout, container, false);
@@ -52,21 +52,24 @@ public class SettingsView implements ViewMVC {
         settingsLayout = (LinearLayout) mRootView.findViewById(R.id.settings_layout);
         courseSpinner = (Spinner) mRootView.findViewById(R.id.settings_course_spinner);
         timeText = (TextView) mRootView.findViewById(R.id.time_picker_text);
+        timeText.setOnClickListener(fragment);
+        timeText.setText("15");
 
         this.fragment = fragment;
+        this.inflater = inflater;
 
         initCourseSpinner();
-        initSearchView(inflater);
-        setListeners(inflater);
+        initSearchView();
 
     }
 
 
-    public void initSearchView(final LayoutInflater inflater){
+    public void initSearchView(){
         searchView.setQueryHint("Search course (TDA367)");
         searchView.setOnQueryTextListener(fragment);
     }
 
+    //The course spinner for setting the weekly goal
     public void initCourseSpinner(){
         courseSpinner.setPrompt("Choose course");
         coursesInSpinner = new String[2];
@@ -78,58 +81,27 @@ public class SettingsView implements ViewMVC {
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(mRootView.getContext(), android.R.layout.simple_spinner_item, coursesInSpinner);
         courseSpinner.setAdapter(adapter);
-    }
-
-    public void setListeners(final LayoutInflater inflater){
-        settingsLayout.setOnTouchListener(new View.OnTouchListener()
-        {
-            @Override
-            public boolean onTouch(View view, MotionEvent ev)
-            {
-                //hideKeyboard();
-                return false;
-            }
-        });
-
-
-        timeText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                initTimeDialog(inflater);
-            }
-        });
-
-        courseSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                selectedCourse =  adapterView.getItemAtPosition(i);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                //Do nothing
-            }
-        });
+        courseSpinner.setOnItemSelectedListener(fragment);
     }
 
 
-    public void initTimeDialog(final LayoutInflater inflater){
+    public void initTimeDialog(){
         View npView = inflater.inflate(R.layout.time_picker_dialog, null);
         numberPicker = (NumberPicker) npView.findViewById(R.id.number_picker);
-        configureNumberPicker(numberPicker);
-        startNumberPickerDialog(inflater,npView);
+        initNumberPicker(numberPicker);
+        openTimeDialog(npView);
     }
 
 
-    public void configureNumberPicker(NumberPicker numberPicker){
+    public void initNumberPicker(NumberPicker numberPicker){
         String[] data = new String[]{"0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"};
         numberPicker.setMinValue(0);
         numberPicker.setMaxValue(data.length-1);
-        numberPicker.setValue(15);
+        numberPicker.setValue(Integer.parseInt(getTimeText()));
         numberPicker.setDisplayedValues(data);
     }
 
-    public void startNumberPickerDialog(final LayoutInflater inflater, View npView){
+    public void openTimeDialog(View npView){
 
         //Start dialog with numberpicker
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(inflater.getContext());
@@ -137,72 +109,53 @@ public class SettingsView implements ViewMVC {
         alertDialogBuilder.setView(npView);
         alertDialogBuilder
                 .setCancelable(false)
-                .setPositiveButton("Ok",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,
-                                                int id) {
-                                String s = "" + numberPicker.getValue();
-                                timeText.setText(s);
-                                //setGoal(numberPicker.getValue());
-
-                            }
-                        })
-                .setNegativeButton("Cancel",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,
-                                                int id) {
-                                dialog.cancel();
-                            }
-                        });
+                .setPositiveButton("Ok",new DialogOnClickListener(fragment,2))
+                .setNegativeButton("Cancel",new DialogOnClickListener(fragment,2));
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }
 
 
-    public void showCourseDialog(final LayoutInflater inflater, final String search){
-        View cView = inflater.inflate(R.layout.course_result_dialog, null);
-        //getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-
-        String searchMatches[] = {"hej","dä","hej","dä","hej","dä","hej","dä","hej","dä","hej","dä","hej","dä","hej","dä"};
-        final ListView listView = (ListView) cView.findViewById(R.id.course_list);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(inflater.getContext(),android.R.layout.simple_list_item_1,searchMatches);
-        listView.setAdapter(adapter);
-
-        startCourseDialog(inflater,cView);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-
-            }
-        });
+    public void updateTimeText(){
+            String value = "" + getNumberPickerValue();
+            timeText.setText(value);
 
     }
 
+    public String getTimeText(){
+        return (String) timeText.getText();
+    }
 
-    public void startCourseDialog(final LayoutInflater inflater, View cView) {
-        //Start dialog
+
+    public int getNumberPickerValue(){
+        return numberPicker.getValue();
+    }
+
+
+    public void initCourseDialog(final String search){
+        View cView = inflater.inflate(R.layout.course_result_dialog, null);
+        //getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+
+        List<String> searchMatches = new ArrayList<>();
+        //TODO Init list of searchmatches here - you have search string as parameter
+
+        final ListView listView = (ListView) cView.findViewById(R.id.course_list);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(inflater.getContext(),android.R.layout.simple_list_item_1,searchMatches);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(fragment);
+
+        openCourseDialog(cView);
+    }
+
+
+    public void openCourseDialog(View cView) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(inflater.getContext());
         alertDialogBuilder.setTitle("Select course");
         alertDialogBuilder.setView(cView);
         alertDialogBuilder
                 .setCancelable(false)
-                .setPositiveButton("Add Course",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,
-                                                int id) {
-                                //add course here
-
-                            }
-                        })
-                .setNegativeButton("Cancel",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,
-                                                int id) {
-                                dialog.cancel();
-                            }
-                        });
+                .setPositiveButton("Add Course",new DialogOnClickListener(fragment,1))
+                .setNegativeButton("Cancel",new DialogOnClickListener(fragment,1));
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
 

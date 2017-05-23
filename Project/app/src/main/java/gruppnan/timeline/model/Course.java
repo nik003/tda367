@@ -27,7 +27,7 @@ public class Course implements CourseInterface{
     }
 
     public int getWeeklyGoal(){
-        return weeklyGoal;
+        return this.weeklyGoal;
     }
 
 

@@ -6,56 +6,28 @@ import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
-import android.widget.NumberPicker;
-import android.widget.Spinner;
-import android.widget.TextView;
-
-import java.util.HashSet;
+import android.widget.AdapterView;
 
 import gruppnan.timeline.model.Course;
+import gruppnan.timeline.model.CourseContainer;
 import gruppnan.timeline.view.SettingsView;
 
 /**
  * Created by Melina on 13/05/2017.
  */
 
-public class SettingsFragment extends Fragment implements SearchView.OnQueryTextListener {
+public class SettingsFragment extends Fragment implements SearchView.OnQueryTextListener, AdapterView.OnItemClickListener, AdapterView.OnItemSelectedListener, View.OnClickListener{
 
-    private SearchView searchView;
-    private Spinner courseSpinner;
-    NumberPicker numberPicker;
-    TextView timeText;
-    LinearLayout settingsLayout;
-    ArrayAdapter<String> adapter;
-    Object selectedCourse;
-    HashSet<Course> allCourses = new HashSet<>();
-    String coursesInSpinner[];
-
-    SettingsView settingsView;
+    String selectedCourseInSpinner;
+    String selectedCourseInDialog;
+    SettingsView mRootView;
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        settingsView = new SettingsView(inflater,container,this);
-
-        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-        return settingsView.getRootView();
-    }
-
-
-
-
-    public void setGoal(int value){
-        for(Course c : allCourses){
-            if(c.equals(selectedCourse)){
-                c.setWeeklyGoal(value);
-            }
-        }
+        mRootView = new SettingsView(inflater,container,this);
+        return mRootView.getRootView();
     }
 
     @Override
@@ -64,8 +36,6 @@ public class SettingsFragment extends Fragment implements SearchView.OnQueryText
 
     }
 
-
-
     private void hideKeyboard(){
         InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(getContext().INPUT_METHOD_SERVICE);
         inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
@@ -73,12 +43,58 @@ public class SettingsFragment extends Fragment implements SearchView.OnQueryText
 
     @Override
     public boolean onQueryTextSubmit(String query) {
-        //Open course dialog
-        return true;
+        mRootView.initCourseDialog(query);
+        return false;
     }
 
     @Override
     public boolean onQueryTextChange(String newText) {
         return false;
     }
+
+    //OnItemClick for listview inside course dialog
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        selectedCourseInDialog = adapterView.getItemAtPosition(i).toString();
+    }
+
+    public String getSelectedCourseInDialog(){
+        return selectedCourseInDialog;
+    }
+
+    public String getSelectedCourseInSpinner(){
+        return selectedCourseInSpinner;
+    }
+
+    public void setGoal(){
+        for(Course course : CourseContainer.getCourseContainer().getAllCourses()) {
+            if(course.getCourseID().equals(getSelectedCourseInSpinner())){
+                course.setWeeklyGoal(mRootView.getNumberPickerValue());
+            }
+        }
+
+    }
+
+    public void updateTimeText(){
+        mRootView.updateTimeText();
+    }
+
+    //OnClick for opening time dialog
+    @Override
+    public void onClick(View view) {
+        mRootView.initTimeDialog();
+    }
+
+    //Course spinner listener
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        selectedCourseInSpinner =  adapterView.getItemAtPosition(i).toString();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+        //Do nothing
+    }
+
+
 }
