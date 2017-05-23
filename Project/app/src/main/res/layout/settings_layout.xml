@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/settings_layout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/search_course_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp"
+            android:text="Add course"
+            />
+
+    <android.support.v7.widget.SearchView
+        android:id="@+id/search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        app:iconifiedByDefault="false"/>
+
+
+    <TextView
+        android:id="@+id/weekly_goal_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:textSize="18sp"
+        android:text="Set weekly goal"
+        />
+
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="10dp">
+
+       <TextView
+           android:id="@+id/weekly_goal_course_text"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginStart="20dp"
+           android:layout_gravity="start"
+           android:textSize="18sp"
+           android:textColor="@android:color/black"
+           android:text="Course:"
+           />
+
+       <Spinner
+           android:id="@+id/settings_course_spinner"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_toEndOf="@id/weekly_goal_course_text"
+           android:layout_marginStart="20dp"
+           android:spinnerMode="dropdown"/>
+
+   </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:id="@+id/weekly_goal_time_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_gravity="start"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:text="Hours:"
+            />
+
+        <TextView
+            android:id="@+id/time_picker_text"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:clickable="true"
+            android:layout_toEndOf="@id/weekly_goal_time_text"
+            android:layout_marginStart="35dp"/>
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

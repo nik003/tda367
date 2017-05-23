@@ -22,7 +22,7 @@ import gruppnan.timeline.view.KeypadView;
  */
 public class KeypadFragment extends Fragment implements View.OnClickListener {
 
-    KeypadView keypadView;
+
     int seconds, minutes, hours;
     Button oneButton, twoButton, threeButton,fourButton, fiveButton, sixButton, sevenButton, eightButton, nineButton, zeroButton, deleteButton, okButton;
     TextView timeText;

@@ -14,5 +14,11 @@
     <string name="calendar_view">Calendar</string>
     <string name="timeline_settings">Timeline Settings</string>
     <string name="timer_settings">Timer Settings</string>
+    <string name="settings_view">Settings</string>
+
+    <string-array name="course_arrays">
+        <item>TDA367</item>
+        <item>TMV027</item>
+    </string-array>
 
 </resources>

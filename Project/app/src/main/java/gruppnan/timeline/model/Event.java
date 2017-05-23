@@ -9,17 +9,17 @@ public abstract class Event implements EventInterface{
     protected Date endDate;
     protected String description, name;
     protected Course course;
-    private int key;
+    private int id;
 
     public Event(Course course, String name, Date endDate, String description){
         this.course = course;
         this.name = name;
-        this.endDate = endDate;
+        this.endDate = new Date(endDate.getTime());
         this.description = description;
     }
 
     public Date getEndDate (){
-        return this.endDate;
+        return new Date(this.endDate.getTime());
     }
     public String getDescription(){
         return this.description;
@@ -31,11 +31,11 @@ public abstract class Event implements EventInterface{
     public Course getCourse(){
         return this.course;
     }
-    public void setKey(int key) {
-        this.key = this.key == 0 ? key : this.key;
+    public void setID(int id) {
+        this.id = this.id == 0 ? id : this.id;
     }
-    public int getKey(){
-        return this.key;
+    public int getID(){
+        return this.id;
     }
     public Calendar dateToCalendar(Date date){
         Calendar cal = null;

@@ -1,11 +1,8 @@
-package gruppnan.timeline;
+package gruppnan.timeline.view;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
 import android.support.graphics.drawable.VectorDrawableCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,12 +14,14 @@ import com.github.vipulasri.timelineview.TimelineView;
 
 import java.util.List;
 
-import gruppnan.timeline.controller.CardTimelineFragment;
+import gruppnan.timeline.R;
+import gruppnan.timeline.controller.CardListener;
 import gruppnan.timeline.model.DeadlineEvent;
 import gruppnan.timeline.model.DeadlineEventSet;
 
 /**
- * Created by Melina on 02/05/2017.
+ * Created by Melina Andersson
+ * Initializes and updates the content of the recyclerview in the timeline view
  */
 
 public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
@@ -42,7 +41,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
     // you provide access to all the views for a data item in a view holder
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView dateText1, titleText1, dateText2, titleText2;
+        TextView dateText1, titleText1, dateText2, titleText2, courseTextCard,courseTextCard2;
         TimelineView courseView1, courseView2;
         CardView courseCard1, courseCard2;
 
@@ -63,6 +62,8 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
             courseCard1 = (CardView) v.findViewById(R.id.card1);
             courseCard2 = (CardView) v.findViewById(R.id.card2);
 
+            courseTextCard = (TextView) v.findViewById(R.id.course_timeline);
+            courseTextCard2 = (TextView) v.findViewById(R.id.course2_timeline);
         }
     }
 
@@ -88,45 +89,24 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
 
         updateContent(dEvent,holder,position);
 
-        setCardListener(dEvent, holder,position);
+        setCardListeners(dEvent, holder);
 
     }
 
-    private void setCardListener(final DeadlineEventSet dEvent, ViewHolder holder, final int position) {
-        holder.courseCard1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Fragment ft = new CardTimelineFragment();
-                Bundle args = new Bundle();
-                args.putInt("ID", dEvent.getD1().getKey());
-                args.putInt("Course", 1);
-                ft.setArguments(args);
-                ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frame,ft)
-                        .commit();
-            }
-        });
-
-        holder.courseCard2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Fragment ft = new CardTimelineFragment();
-                Bundle args = new Bundle();
-                args.putInt("ID", dEvent.getD2().getKey());
-                args.putInt("Course", 2);
-                ft.setArguments(args);
-                ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frame,ft)
-                        .commit();
-            }
-        });
-
-
+    private void setCardListeners(final DeadlineEventSet dEvent, ViewHolder holder) {
+        holder.courseCard1.setOnClickListener(new CardListener(dEvent.getD1(),mContext,1));
+        holder.courseCard2.setOnClickListener(new CardListener(dEvent.getD2(),mContext,2));
     }
+
+    /**
+     * Updates texts and markers for the current card
+     *
+     * @param dEvent The current set to be updated
+     * @param holder The viewholder for the view element
+     * @param position The position of the DeadlineEventSet in the list
+     */
 
     private void updateContent(DeadlineEventSet dEvent, ViewHolder holder, int position) {
-
-
         if((dEvent.getD1() != null && dEvent.getD2() != null)){
 
             updateCourse1Markers(holder,dEvent);
@@ -138,7 +118,6 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
             setTextDate(holder.dateText2, dEvent.getD2());
             setTextTitle(holder.titleText2, dEvent.getD2());
         }
-
 
         if((dEvent.getD1() != null) && (dEvent.getD2() == null)) {
 
@@ -175,6 +154,15 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
             setTextDate(holder.dateText2, dEvent.getD2());
             setTextTitle(holder.titleText2, dEvent.getD2());
         }
+
+        setCourseText(holder);
+    }
+
+    private void setCourseText(ViewHolder holder){
+        String s = "TDA367";
+        holder.courseTextCard.setText(s);
+        s = "TMV027";
+        holder.courseTextCard2.setText(s);
     }
 
 
