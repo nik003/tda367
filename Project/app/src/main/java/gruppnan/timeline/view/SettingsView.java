@@ -58,9 +58,11 @@ public class SettingsView implements ViewMVC {
         this.fragment = fragment;
         this.inflater = inflater;
 
-        initCourseSpinner();
-        initSearchView();
+        if(!CourseContainer.getCourseContainer().getAllCourses().isEmpty()) {
+            initCourseSpinner();
+        }
 
+        initSearchView();
     }
 
 
