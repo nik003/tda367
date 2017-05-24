@@ -55,8 +55,8 @@ public class CardTimelineFragment extends Fragment implements View.OnClickListen
             if(this.id == entry.getKey()){
                 event = entry.getValue();
                 date = event.getDayofMonth() + " " + event.getMonthAsString();
-                hour = "" + event.getHour();
-                minute = "" + event.getMinute();
+                hour = (event.getHour() < 10 ? "0" : "")+ event.getHour();
+                minute = (event.getMinute() < 10 ? "0" : "")+ event.getMinute();
                 title = event.getName();
                 description = event.getDescription();
             }
