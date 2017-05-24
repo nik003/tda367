@@ -33,17 +33,16 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
         this.data = deadlineEvents;
     }
 
+    private DeadlineEventSet dEvent;
 
-    DeadlineEventSet dEvent;
-
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
+    /**
+     * Provides a reference to the views for each data item
+     */
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView dateText1, titleText1, dateText2, titleText2, courseTextCard,courseTextCard2;
-        TimelineView courseView1, courseView2;
-        CardView courseCard1, courseCard2;
+        private TextView dateText1, titleText1, dateText2, titleText2, courseTextCard,courseTextCard2;
+        private TimelineView courseView1, courseView2;
+        private CardView courseCard1, courseCard2;
 
         public ViewHolder(View v, int viewType) {
             super(v);
@@ -67,7 +66,9 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
         }
     }
 
-    // Create new views (invoked by the layout manager)
+    /**
+     * Create new views (invoked by the layout manager)
+     */
     @Override
     public ItemListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                    int viewType) {
@@ -81,21 +82,26 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
 
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
+    /**
+     *  Replace the contents of a view (invoked by the layout manager)
+      */
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-
+        //The current eventset to be updated
         dEvent = data.get(position);
 
         updateContent(dEvent,holder,position);
-
         setCardListeners(dEvent, holder);
-
     }
 
+    /**
+     * Set listener for each card on timeline
+     * @param dEvent The current set to be updated
+     * @param holder The viewholder for the view element
+     */
     private void setCardListeners(final DeadlineEventSet dEvent, ViewHolder holder) {
-        holder.courseCard1.setOnClickListener(new CardListener(dEvent.getD1(),mContext,1));
-        holder.courseCard2.setOnClickListener(new CardListener(dEvent.getD2(),mContext,2));
+        holder.courseCard1.setOnClickListener(new CardListener(dEvent.getD1(),mContext));
+        holder.courseCard2.setOnClickListener(new CardListener(dEvent.getD2(),mContext));
     }
 
     /**
@@ -105,7 +111,6 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
      * @param holder The viewholder for the view element
      * @param position The position of the DeadlineEventSet in the list
      */
-
     private void updateContent(DeadlineEventSet dEvent, ViewHolder holder, int position) {
         if((dEvent.getD1() != null && dEvent.getD2() != null)){
 
@@ -117,6 +122,9 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
 
             setTextDate(holder.dateText2, dEvent.getD2());
             setTextTitle(holder.titleText2, dEvent.getD2());
+
+            setCourseText(dEvent.getD1(),holder.courseTextCard);
+            setCourseText(dEvent.getD2(),holder.courseTextCard2);
         }
 
         if((dEvent.getD1() != null) && (dEvent.getD2() == null)) {
@@ -134,6 +142,9 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
 
             setTextDate(holder.dateText1, dEvent.getD1());
             setTextTitle(holder.titleText1, dEvent.getD1());
+
+
+            setCourseText(dEvent.getD1(),holder.courseTextCard);
 
         }
 
@@ -153,16 +164,15 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
 
             setTextDate(holder.dateText2, dEvent.getD2());
             setTextTitle(holder.titleText2, dEvent.getD2());
+
+            setCourseText(dEvent.getD2(),holder.courseTextCard2);
         }
 
-        setCourseText(holder);
     }
 
-    private void setCourseText(ViewHolder holder){
-        String s = "TDA367";
-        holder.courseTextCard.setText(s);
-        s = "TMV027";
-        holder.courseTextCard2.setText(s);
+
+    private void setCourseText(DeadlineEvent dEvent, TextView v){
+        v.setText(dEvent.getCourseID());
     }
 
 
@@ -170,10 +180,16 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
         v.setText(event.getDayofMonth() + " " + event.getMonthAsString());
     }
 
+
     private void setTextTitle(TextView v, DeadlineEvent event){
         v.setText(event.getName());
     }
 
+    /**
+     * Updates markers for course one according to specific colors
+     * @param holder The viewholder for the view element
+     * @param dEvent The current set to be updated
+     */
     public void updateCourse1Markers(ViewHolder holder, DeadlineEventSet dEvent){
         if (!dEvent.getD1().isDone()) {
             holder.courseView1.setMarker(getDrawable(mContext, R.drawable.first_course_marker_inactive));
@@ -182,6 +198,11 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
         }
     }
 
+    /**
+     * Updates markers for course one according to specific colors
+     * @param holder The viewholder for the view element
+     * @param dEvent The current set to be updated
+     */
     private void updateCourse2Markers(ViewHolder holder, DeadlineEventSet dEvent){
         if(!dEvent.getD2().isDone()) {
             holder.courseView2.setMarker(getDrawable(mContext, R.drawable.second_course_marker_inactive));
@@ -190,8 +211,12 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
         }
     }
 
-
-
+    /**
+     * Help method for updateCourseMarkers
+     * @param context
+     * @param drawableResId
+     * @return
+     */
     public static Drawable getDrawable(Context context, int drawableResId) {
         Drawable drawable;
 
@@ -204,15 +229,20 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
         return drawable;
     }
 
+    /**
+     * Returns the view type at a specific position
+     */
     @Override
     public int getItemViewType(int position) {
         return TimelineView.getTimeLineViewType(position,getItemCount());
     }
 
+    /**
+     * Returns the size of the list in this adapter
+     */
     @Override
     public int getItemCount() {
         return data.size();
     }
-
 
 }
