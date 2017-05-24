@@ -1,10 +1,12 @@
 package gruppnan.timeline.controller;
 
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +29,7 @@ import gruppnan.timeline.view.CardTimelineView;
 public class CardTimelineFragment extends Fragment implements View.OnClickListener{
 
     private int id;
-    private String title, date, description;
+    private String title, date, description, hour, minute;
     EventContainer eventContainer;
     DeadlineEvent event;
 
@@ -53,15 +55,44 @@ public class CardTimelineFragment extends Fragment implements View.OnClickListen
             if(this.id == entry.getKey()){
                 event = entry.getValue();
                 date = event.getDayofMonth() + " " + event.getMonthAsString();
+                hour = "" + event.getHour();
+                minute = "" + event.getMinute();
                 title = event.getName();
                 description = event.getDescription();
             }
         }
-        mRootView.setTexts(date,title,description);
+        mRootView.setTexts(date,title,description,hour,minute);
 
         //If deadline is done, set checkbox marked
         if(event.isDone()){
             mRootView.toggleCheckBox();
+        }
+
+    }
+
+    public void setTime(){
+        int newHour = Integer.parseInt(mRootView.getHourText());
+        int newMinute = Integer.parseInt(mRootView.getMinuteText());
+        if(newHour <= 23 && newMinute <= 59){
+            event.setHour(newHour);
+            event.setMinute(newMinute);
+            removeFragment();
+            hideKeyboard();
+        } else {
+            AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this.getContext());
+
+            dlgAlert.setMessage("Please enter a time between 00:00-23:59");
+            dlgAlert.setTitle("Wrong time format");
+            dlgAlert.setPositiveButton("OK", null);
+            dlgAlert.setCancelable(true);
+            dlgAlert.create().show();
+
+            dlgAlert.setPositiveButton("Ok",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
         }
 
     }
@@ -72,7 +103,6 @@ public class CardTimelineFragment extends Fragment implements View.OnClickListen
         String month = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.US);
         String date = day + " " + month;
         mRootView.updateDateText(date);
-        event.setEndDate(DeadlineEvent.toDate(calendar));
     }
 
     public void removeFragment(){
@@ -121,9 +151,9 @@ public class CardTimelineFragment extends Fragment implements View.OnClickListen
                 break;
             case R.id.done_icon:
                 event.setName(mRootView.getTitleText());
+                event.setEndDate(DeadlineEvent.toDate(calendar));
                 event.setDescription(mRootView.getDescriptionText());
-                removeFragment();
-                hideKeyboard();
+                setTime();
                 break;
         }
     }

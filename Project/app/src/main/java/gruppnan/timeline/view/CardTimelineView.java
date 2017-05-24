@@ -20,7 +20,7 @@ import gruppnan.timeline.controller.CardTimelineFragment;
 public class CardTimelineView implements ViewMVC{
 
     View mRootView;
-    private EditText titleText, descriptionText;
+    private EditText titleText, descriptionText, hourText, minuteText;
     private TextView dateText;
     private ImageView exitMarker;
     private Button saveButton;
@@ -40,6 +40,8 @@ public class CardTimelineView implements ViewMVC{
         saveButton = (Button) view.findViewById(R.id.done_icon);
         exitMarker = (ImageView) view.findViewById(R.id.exit_icon);
         dateText = (TextView) view.findViewById(R.id.date_timeline);
+        hourText = (EditText) view.findViewById(R.id.card_hour);
+        minuteText = (EditText) view.findViewById(R.id.card_minute);
         titleText = (EditText) view.findViewById(R.id.title_timeline);
         descriptionText = (EditText) view.findViewById(R.id.description_timeline);
     }
@@ -52,10 +54,12 @@ public class CardTimelineView implements ViewMVC{
         return checkBox.isChecked();
     }
 
-    public void setTexts(String date, String title, String description){
+    public void setTexts(String date, String title, String description, String hour, String minute){
         dateText.setText(date);
         titleText.setText(title);
         descriptionText.setText(description);
+        hourText.setText(hour);
+        minuteText.setText(minute);
     }
 
     private void initListeners() {
@@ -77,6 +81,15 @@ public class CardTimelineView implements ViewMVC{
     public String getDescriptionText(){
         return descriptionText.getText().toString();
     }
+
+    public String getHourText(){
+        return hourText.getText().toString();
+    }
+
+    public String getMinuteText(){
+        return minuteText.getText().toString();
+    }
+
 
     @Override
     public View getRootView() {

@@ -3,7 +3,6 @@ package gruppnan.timeline.model;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 
 
@@ -11,6 +10,7 @@ public class DeadlineEvent extends Event{
 
 
     protected boolean isDone;
+    private int hour, minute;
 
 
     public DeadlineEvent(Course course, String name, String description, Date endDate, boolean isDone){
@@ -70,6 +70,24 @@ public class DeadlineEvent extends Event{
 
     public void setEndDate(Date endDate){
         this.endDate = new Date(endDate.getTime());
+    }
+
+    public void setHour(int hour){
+
+        this.hour = hour;
+
+    }
+
+    public void setMinute(int minute){
+        this.minute = minute;
+    }
+
+    public int getHour(){
+        return this.hour;
+    }
+
+    public int getMinute(){
+        return this.minute;
     }
 
     public static Calendar toCalendar(Date date){

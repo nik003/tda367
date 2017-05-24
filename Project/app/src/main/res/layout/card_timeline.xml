@@ -15,15 +15,46 @@
         android:layout_marginTop="15dp"
         android:layout_weight="1">
 
-        <TextView
-            android:id="@+id/date_timeline"
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
-            android:textSize="18sp"
-            android:clickable="true"
-            />
+            android:layout_marginStart="20dp">
+
+            <TextView
+                android:id="@+id/date_timeline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:clickable="true"
+                />
+
+            <EditText
+                android:id="@+id/card_hour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/date_timeline"
+                android:layout_marginLeft="20dp"
+                android:layout_alignBaseline="@id/date_timeline"
+                android:maxLength="2" />
+
+            <TextView
+                android:id="@+id/colon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/card_hour"
+                android:layout_alignBaseline="@id/card_hour"
+                android:text=":"/>
+
+            <EditText
+                android:id="@+id/card_minute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/colon"
+                android:layout_alignBaseline="@id/colon"
+                android:maxLength="2"/>
+
+        </RelativeLayout>
 
         <EditText
             android:id="@+id/title_timeline"
