@@ -103,6 +103,7 @@ public class CardTimelineFragment extends Fragment implements View.OnClickListen
         String month = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.US);
         String date = day + " " + month;
         mRootView.updateDateText(date);
+        event.setEndDate(DeadlineEvent.toDate(calendar));
     }
 
     public void removeFragment(){
@@ -151,7 +152,6 @@ public class CardTimelineFragment extends Fragment implements View.OnClickListen
                 break;
             case R.id.done_icon:
                 event.setName(mRootView.getTitleText());
-                event.setEndDate(DeadlineEvent.toDate(calendar));
                 event.setDescription(mRootView.getDescriptionText());
                 setTime();
                 break;
