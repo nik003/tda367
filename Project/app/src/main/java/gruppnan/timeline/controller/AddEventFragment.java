@@ -11,23 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.Date;
 import gruppnan.timeline.model.Course;
-import gruppnan.timeline.model.Event;
 import gruppnan.timeline.model.EventContainer;
 import gruppnan.timeline.view.AddEventView;
 
 
 public class AddEventFragment extends Fragment{
 
-    private View view;
-
-
-
-
     private EventContainer eventContainer;
     private FragmentManager fragmentManager;
-
-
-
     private AddEventView addEventView;
 
     public AddEventFragment() {
@@ -57,7 +48,7 @@ public class AddEventFragment extends Fragment{
 
 
 
-    public void removeFragment(){
+    private void removeFragment(){
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
@@ -65,6 +56,9 @@ public class AddEventFragment extends Fragment{
         fragmentTransaction.commit();
     }
 
+    public void removeEvent(int eventID){
+        eventContainer.removeEvent(eventID);
+    }
 
     public void createDeadlineEvent(Course course, String name, String eventDescription, Date endDate, boolean isDone){
         eventContainer.createDeadlineEvent(course, name, eventDescription, endDate, isDone);

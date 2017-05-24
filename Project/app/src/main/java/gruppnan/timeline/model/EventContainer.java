@@ -119,8 +119,8 @@ public class EventContainer {
     return datesEvents;
     }
 
-    public void removeEvent(Event event){
-       eventMap.remove(event.getID());
+    public void removeEvent(int eventID){
+       eventMap.remove(eventID);
     }
 
 }

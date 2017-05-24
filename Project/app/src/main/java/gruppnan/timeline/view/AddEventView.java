@@ -3,11 +3,7 @@ package gruppnan.timeline.view;
 
 import android.app.TimePickerDialog;
 import android.graphics.Color;
-import android.os.Bundle;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,9 +20,6 @@ import java.util.Date;
 import gruppnan.timeline.R;
 import gruppnan.timeline.controller.AddEventFragment;
 import gruppnan.timeline.model.Course;
-import gruppnan.timeline.model.Event;
-import gruppnan.timeline.model.EventContainer;
-import gruppnan.timeline.view.AddEventView;
 
 
 public class AddEventView implements TimePickerDialog.OnTimeSetListener, View.OnFocusChangeListener {
@@ -38,14 +31,16 @@ public class AddEventView implements TimePickerDialog.OnTimeSetListener, View.On
     private Button startTimeBtn, endTimeBtn, saveEventBtn, whichButton;
 
     private int nrHour, nrMinute;
-    private int startHF=12, startMF=00, endHF=13, endMF=00;
+    private int startHour =12, startMinute =00, endHour =13, endMinute =00;
 
     private Spinner courseSpinner;
     private String eventName, eventDescription, showEndTime, showStarTime;
     //TODO fix course when possible.
     private Course course = new Course("course1", null);
     private long dateL;
+    private long endDate;
     private int year, month,day;
+    private int eventID;
     private Date yearMonthDay, completeStartDate, completeEndDate;
     private Calendar calendar;
     private AddEventFragment fragment;
@@ -100,8 +95,12 @@ public class AddEventView implements TimePickerDialog.OnTimeSetListener, View.On
         startTimeBtn.setOnClickListener(onClickListener);
         endTimeBtn.setOnClickListener(onClickListener);
 
-        startTimeBtn.setText(startHF +" : " +"0"+ startMF);
-        endTimeBtn.setText(endHF + " : " +"0"+ endMF);
+
+        showStarTime = (startHour <10 ? "0" : "")+ startHour + " : " + (this.startMinute <10 ? "0" : "")+ this.startMinute;
+        startTimeBtn.setText(showStarTime);
+        showEndTime = (endHour <10 ? "0" : "")+ endHour + " : " + (endMinute <10 ? "0" : "")+ endMinute;
+        endTimeBtn.setText(showEndTime);
+
 
         courseSpinner = (Spinner) v.findViewById(R.id.courseSpinner);
         courseSpinner.setPrompt("Choose course");
@@ -111,14 +110,32 @@ public class AddEventView implements TimePickerDialog.OnTimeSetListener, View.On
         nameTxt.setOnFocusChangeListener(this);
         descTxt.setOnFocusChangeListener(this);
         startTimeLbl = (TextView) v.findViewById(R.id.startTimeLbl);
+
+
     }
+
 
     /** get user choices from previous fragment */
     private void getData(){
         eventType = fragment.getArguments().getString("type");
         dateL = fragment.getArguments().getLong("date");
+        eventID = fragment.getArguments().getInt("id");
 
-        yearMonthDay = new Date(dateL);
+
+        if (eventID!=0){
+            year = fragment.getArguments().getInt("year");
+            month = fragment.getArguments().getInt("month");
+            day = fragment.getArguments().getInt("day");
+            endHour = fragment.getArguments().getInt("endHour");
+            endMinute = fragment.getArguments().getInt("endMinute");
+            calendar = Calendar.getInstance();
+            calendar.set(year,month,day);
+            yearMonthDay = calendar.getTime();
+
+
+        }else{
+            yearMonthDay = new Date(dateL);
+        }
 
     }
 
@@ -142,8 +159,15 @@ public class AddEventView implements TimePickerDialog.OnTimeSetListener, View.On
                 whichButton = endTimeBtn;
             }
             else if (v.equals(saveEventBtn)){
-
                 getEventInfo();
+
+                /** get correct date if editing previously created event */
+
+                if (eventID!=0){
+                    fragment.removeEvent(eventID);
+
+                }
+
                 createEvent();
             }
         }
@@ -152,10 +176,12 @@ public class AddEventView implements TimePickerDialog.OnTimeSetListener, View.On
 
     /** checks if data is correctly entered, creates event or deadline */
     private void createEvent(){
+
         if (eventName.equals("")){
             nameTxt.setHintTextColor(Color.RED);
             nameTxt.setHint("Please enter a name");
         } else if (eventType.equals("event")){
+            //TODO date is set to 1 jan, get date from original event
             fragment.createDefaultEvent(course,eventName,eventDescription,completeStartDate,completeEndDate);
 
         }
@@ -190,15 +216,15 @@ public class AddEventView implements TimePickerDialog.OnTimeSetListener, View.On
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
         if (whichButton.equals(startTimeBtn)){
-            startHF = hourOfDay;
-            startMF = minute;
-            showStarTime = (startHF <10 ? "0" : "")+startHF + " : " + (startMF <10 ? "0" : "")+startMF ;
+            startHour = hourOfDay;
+            startMinute = minute;
+            showStarTime = (startHour <10 ? "0" : "")+ startHour + " : " + (this.startMinute <10 ? "0" : "")+ this.startMinute;
             startTimeBtn.setText(showStarTime);
         }
         else if (whichButton.equals(endTimeBtn)){
-            endHF = hourOfDay;
-            endMF = minute;
-            showEndTime = (endHF <10 ? "0" : "")+endHF + " : " + (endMF <10 ? "0" : "")+endMF ;
+            endHour = hourOfDay;
+            endMinute = minute;
+            showEndTime = (endHour <10 ? "0" : "")+ endHour + " : " + (endMinute <10 ? "0" : "")+ endMinute;
             endTimeBtn.setText(showEndTime);
         }
     }
@@ -208,21 +234,23 @@ public class AddEventView implements TimePickerDialog.OnTimeSetListener, View.On
         eventName = nameTxt.getText().toString();
         eventDescription = descTxt.getText().toString();
 
-        calendar.setTime(yearMonthDay);
+        calendar.set(year,month,day);
         day = calendar.get(Calendar.DAY_OF_MONTH);
         month = calendar.get(Calendar.MONTH);
         year = calendar.get(Calendar.YEAR);
-        calendar.set(year,month,day,startHF, startMF);
+        calendar.set(year,month,day, startHour, startMinute);
         completeStartDate = calendar.getTime();
 
+
+
         calendar.setTime(yearMonthDay);
         day = calendar.get(Calendar.DAY_OF_MONTH);
         month = calendar.get(Calendar.MONTH);
         year = calendar.get(Calendar.YEAR);
-        calendar.set(year,month,day,startHF, startMF);
+        calendar.set(year,month,day, endHour, endMinute);
         completeEndDate = calendar.getTime();
 
-
+        saveEventBtn.setText(calendar.getTime().toString());
     }
 
     @Override
@@ -236,7 +264,9 @@ public class AddEventView implements TimePickerDialog.OnTimeSetListener, View.On
         return this.view;
     }
 
-    public void setEventName(String eventName){
+
+
+    public void setEventNameTxt(String eventName){
         nameTxt.setText(eventName);
     }
     public void setDescTxt (String eventDescription){
@@ -247,11 +277,12 @@ public class AddEventView implements TimePickerDialog.OnTimeSetListener, View.On
             descTxt.setText(eventDescription);
         }
     }
-    public void setStartTime(int startTime){
-        startTimeBtn.setText(startTime +"");
+    public void setStartTime(int startHour, int startMinute){
+        startTimeBtn.setText((startHour <10 ? "0" : "")+ startHour + " : " + (startMinute <10 ? "0" : "")+ startMinute);
     }
-    public void setEndTime(int endTime){
-        endTimeBtn.setText(endTime +"");
+    public void setEndTime(int endHour, int endMinute){
+        endTimeBtn.setText((endHour <10 ? "0" : "")+ endHour + " : " + (endMinute <10 ? "0" : "")+ endMinute);
+
     }
 
 

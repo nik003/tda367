@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,8 @@ import android.widget.TextView;
 import com.github.clans.fab.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import gruppnan.timeline.R;
 import gruppnan.timeline.model.DeadlineEvent;
@@ -65,7 +68,21 @@ public class EventAdapter extends ArrayAdapter<Event> {
                 Fragment newFragment = new AddEventFragment();
                 bundle.putString("name", eTmp.getName());
                 bundle.putString("description", eTmp.getDescription());
-                bundle.putLong("end", eTmp.getEndDate().getTime());
+                Date endDate = eTmp.getEndDate();
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(endDate);
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+                int endHour = calendar.get(Calendar.HOUR_OF_DAY);
+                int endMinute = calendar.get(Calendar.MINUTE);
+                bundle.putInt("year", year);
+                bundle.putInt("month", month);
+                bundle.putInt("day", day);
+                bundle.putInt("endHour", endHour);
+                bundle.putInt("endMinute", endMinute);
+                bundle.putInt("id", eTmp.getID());
+
                 if (eTmp instanceof DeadlineEvent){
                     bundle.putString("type", "deadline");
                 }
@@ -74,6 +91,7 @@ public class EventAdapter extends ArrayAdapter<Event> {
                 }
 
                 newFragment.setArguments(bundle);
+
 
                 fragmentManager = fragment.getActivity().getSupportFragmentManager();
                 FragmentTransaction ft = fragmentManager.beginTransaction();
