@@ -1,6 +1,5 @@
 package gruppnan.timeline.view;
 
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,9 +16,9 @@ import gruppnan.timeline.model.CourseContainer;
 import gruppnan.timeline.model.DeadlineEventSet;
 
 /**
- * Created by Melina on 30/04/2017.
+ * Created by Melina Andersson
+ * The Timeline View
  */
-
 public class ContentTimelineView implements ViewMVC  {
 
 
@@ -35,12 +34,14 @@ public class ContentTimelineView implements ViewMVC  {
 
     public ContentTimelineView(LayoutInflater inflater, ViewGroup container, ContentTimelineFragment fragment){
         this.fragment = fragment;
+
         //If no courses exists, show how to add a course
         if(CourseContainer.getCourseContainer().getAllCourses().isEmpty()){
             mRootView = inflater.inflate(R.layout.empty_timeline_layout,container,false);
             button = (Button) mRootView.findViewById(R.id.to_settings_button);
             showGuideToAddCourses();
         } else {
+            //Initialize timeline
             mRootView = inflater.inflate(R.layout.content_timeline, container, false);
             mRecyclerView = (RecyclerView) mRootView.findViewById(R.id.recyclerView);
             mLayoutManager = new LinearLayoutManager(inflater.getContext());
@@ -48,6 +49,9 @@ public class ContentTimelineView implements ViewMVC  {
         }
     }
 
+    /**
+     * Inits the list in the recyclerview
+     */
     public void initList(){
 
         mRecyclerView.setHasFixedSize(true);
@@ -61,6 +65,9 @@ public class ContentTimelineView implements ViewMVC  {
 
     }
 
+    /**
+     * Guides the user to settings if no course yet is added
+     */
     public void showGuideToAddCourses(){
         button.setOnClickListener(fragment);
     }
@@ -74,8 +81,4 @@ public class ContentTimelineView implements ViewMVC  {
         return mRootView;
     }
 
-    @Override
-    public Bundle getViewState() {
-        return null;
-    }
 }

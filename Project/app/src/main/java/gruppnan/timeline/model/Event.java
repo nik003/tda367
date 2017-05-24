@@ -18,6 +18,13 @@ public abstract class Event implements EventInterface{
         this.description = description;
     }
 
+    public Event(Course course, String name, Date endDate){
+        this.course = course;
+        this.name = name;
+        this.endDate = new Date(endDate.getTime());
+    }
+
+
     public Date getEndDate (){
         return (Date) endDate.clone();
     }

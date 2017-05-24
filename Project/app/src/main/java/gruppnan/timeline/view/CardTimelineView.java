@@ -1,6 +1,5 @@
 package gruppnan.timeline.view;
 
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +13,9 @@ import gruppnan.timeline.R;
 import gruppnan.timeline.controller.CardTimelineFragment;
 
 /**
- * Created by Melina on 23/05/2017.
+ * Created by Melina Andersson
+ * The view for the detailed cards on timeline
  */
-
 public class CardTimelineView implements ViewMVC{
 
     View mRootView;
@@ -33,7 +32,6 @@ public class CardTimelineView implements ViewMVC{
         initViewElements(mRootView);
         initListeners();
     }
-
 
     private void initViewElements(View view) {
         checkBox = (CheckBox) view.findViewById(R.id.checkbox);
@@ -96,8 +94,4 @@ public class CardTimelineView implements ViewMVC{
         return mRootView;
     }
 
-    @Override
-    public Bundle getViewState() {
-        return null;
-    }
 }

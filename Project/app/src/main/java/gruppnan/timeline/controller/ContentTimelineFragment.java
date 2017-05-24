@@ -12,6 +12,10 @@ import gruppnan.timeline.R;
 import gruppnan.timeline.model.CourseContainer;
 import gruppnan.timeline.view.ContentTimelineView;
 
+/**
+ * Created by Melina Andersson
+ * Controlls the timeline view
+ */
 public class ContentTimelineFragment extends Fragment implements Button.OnClickListener{
 
     ContentTimelineView contentTimelineView;
@@ -27,7 +31,6 @@ public class ContentTimelineFragment extends Fragment implements Button.OnClickL
             contentTimelineView.getAdapter().notifyDataSetChanged();
         }
 
-
         return contentTimelineView.getRootView();
     }
 
@@ -38,7 +41,10 @@ public class ContentTimelineFragment extends Fragment implements Button.OnClickL
 
     }
 
-
+    /**
+     * Handles button click for the empty timeline
+     * @param view
+     */
     @Override
     public void onClick(View view) {
         FragmentManager fragmentManager = getFragmentManager();
