@@ -19,7 +19,7 @@ import gruppnan.timeline.model.WeekEventClickData;
 import gruppnan.timeline.view.WeekCalendarView;
 
 
-import static gruppnan.timeline.model.DateCalculator.*;
+import static gruppnan.timeline.Utils.DateCalculator.*;
 
 /**
  * Created by Nikolai

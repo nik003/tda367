@@ -1,6 +1,8 @@
-package gruppnan.timeline.model;
+package gruppnan.timeline.Utils;
 
 import java.util.Calendar;
+
+import gruppnan.timeline.model.WeekDates;
 
 
 /**
