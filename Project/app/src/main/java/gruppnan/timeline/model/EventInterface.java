@@ -15,4 +15,8 @@ public interface EventInterface {
     String getName();
 
     Course getCourse();
+
+    Date getStartDate();
+
+    int getID();
 }

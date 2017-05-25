@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,8 @@ import android.widget.TextView;
 import com.github.clans.fab.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import gruppnan.timeline.R;
 import gruppnan.timeline.model.DeadlineEvent;
@@ -34,14 +38,14 @@ import gruppnan.timeline.model.EventInterface;
 public class EventAdapter extends ArrayAdapter<Event> {
 
     private int layoutId;
-    private FloatingActionButton editEventBtn;
-    private FragmentManager fragmentManager;
-    private Fragment fragment;
+    private FloatingActionButton editEventBtn, deleteEventBtn;
 
-    public EventAdapter(@NonNull Context context, int layoutResourceId, ArrayList<Event> events, Fragment fragment) {
+
+
+    public EventAdapter(@NonNull Context context, int layoutResourceId, ArrayList<Event> events) {
         super(context, layoutResourceId, events);
         this.layoutId = layoutResourceId;
-        this.fragment = fragment;
+
     }
 
     @Override
@@ -50,36 +54,17 @@ public class EventAdapter extends ArrayAdapter<Event> {
 
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(this.getContext()).inflate(layoutId, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(layoutId, parent, false);
         }
 
         final EventInterface eTmp = getItem(position);
         TextView eventName = (TextView) convertView.findViewById(R.id.eventNameTxt1);
         TextView eventType = (TextView) convertView.findViewById(R.id.typeTxt);
         editEventBtn = (FloatingActionButton) convertView.findViewById(R.id.editEventBtn);
-        editEventBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Bundle bundle = new Bundle();
+        deleteEventBtn = (FloatingActionButton) convertView.findViewById(R.id.deleteEventBtn);
 
-                Fragment newFragment = new AddEventFragment();
-                bundle.putString("name", eTmp.getName());
-                bundle.putString("description", eTmp.getDescription());
-                bundle.putLong("end", eTmp.getEndDate().getTime());
-                if (eTmp instanceof DeadlineEvent){
-                    bundle.putString("type", "deadline");
-                }
-                if (eTmp instanceof DefaultEvent){
-                    bundle.putString("type", "default");
-                }
-
-                newFragment.setArguments(bundle);
-
-                fragmentManager = fragment.getActivity().getSupportFragmentManager();
-                FragmentTransaction ft = fragmentManager.beginTransaction();
-                ft.replace(R.id.calendar_fragment, newFragment).addToBackStack(null).commit();
-            }
-        });
+        editEventBtn.setOnClickListener(new EventListener(getContext(),eTmp));
+        deleteEventBtn.setOnClickListener(new EventListener(getContext(),eTmp));
 
         eventName.setText("Name: " + eTmp.getName() );
 
@@ -92,5 +77,6 @@ public class EventAdapter extends ArrayAdapter<Event> {
 
         return convertView;
     }
+
 
 }

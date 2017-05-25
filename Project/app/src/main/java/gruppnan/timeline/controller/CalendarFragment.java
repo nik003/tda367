@@ -38,8 +38,6 @@ public class CalendarFragment extends Fragment {
     }
 
 
-
-
     @Override
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -75,11 +73,13 @@ public class CalendarFragment extends Fragment {
             end.set(year, month, dayOfMonth, 23, 59);
 
             list.clear();
-            EventAdapter adapter = new EventAdapter(getContext(),R.layout.event_list_item, list, CalendarFragment.this);
+            EventAdapter adapter = new EventAdapter(getContext(),R.layout.event_list_item, list);
             list.addAll(eventContainer.getEventsByDates(start,end));
             monthCalendarView.getEventListView().setAdapter(adapter);
         }
     };
+
+
 
 
     private View.OnClickListener btnListener = new View.OnClickListener() {

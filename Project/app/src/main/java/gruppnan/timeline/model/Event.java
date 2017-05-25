@@ -14,7 +14,7 @@ public abstract class Event implements EventInterface{
     public Event(Course course, String name, Date endDate, String description){
         this.course = course;
         this.name = name;
-        this.endDate = new Date(endDate.getTime());
+        this.endDate = endDate;
         this.description = description;
     }
 
@@ -26,7 +26,12 @@ public abstract class Event implements EventInterface{
 
 
     public Date getEndDate (){
-        return new Date(this.endDate.getTime());
+        return (Date) endDate.clone();
+    }
+
+
+    public Date getStartDate(){
+        return null;
     }
     public String getDescription(){
         return this.description;

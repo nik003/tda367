@@ -18,10 +18,10 @@ public class EventContainer {
     private static EventContainer eventContainer = new EventContainer();
 
 
-    private HashMap<Integer, Event> eventMap = new HashMap<>();
-    private HashMap<Integer, DeadlineEvent> deadlineEventMap = new HashMap<>();
-    private HashMap<Integer, DefaultEvent> defaultEventMap = new HashMap<>();
-    private int nrOfEvents = 1; //TODO Varför statisk?
+    private Map<Integer, Event> eventMap = new HashMap<>();
+    private Map<Integer, DeadlineEvent> deadlineEventMap = new HashMap<>();
+    private Map<Integer, DefaultEvent> defaultEventMap = new HashMap<>();
+    private int nrOfEvents = 1;
 
 
     /**Preventing from new instantiations of eventContainer*/
@@ -58,7 +58,7 @@ public class EventContainer {
     public void addEvent(Event event){
         if (eventMap.containsValue(event)){
             //TODO make this visible on view where user adds event
-            //Log.d("duplicate event", "an identical event has already been added to map");
+
         }else{
             eventMap.put(nrOfEvents, event);
             event.setID(nrOfEvents);
@@ -119,8 +119,8 @@ public class EventContainer {
     return datesEvents;
     }
 
-    public void removeEvent(Event event){
-       eventMap.remove(event.getID());
+    public void removeEvent(int eventID){
+       eventMap.remove(eventID);
     }
 
 }
