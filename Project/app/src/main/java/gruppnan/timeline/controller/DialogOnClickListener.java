@@ -32,6 +32,8 @@ public class DialogOnClickListener implements DialogInterface.OnClickListener {
                     //settingsFragment.getSelectedCourseInDialog() (returns string)
                     dialog.cancel();
                     break;
+                default:
+                    break;
             }
         } else {
             switch (which) {
@@ -43,6 +45,8 @@ public class DialogOnClickListener implements DialogInterface.OnClickListener {
                     settingsFragment.updateTimeText();
                     settingsFragment.setGoal();
                     dialog.cancel();
+                    break;
+                default:
                     break;
             }
         }

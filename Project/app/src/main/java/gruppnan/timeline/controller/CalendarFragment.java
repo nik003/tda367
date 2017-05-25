@@ -39,8 +39,13 @@ public class CalendarFragment extends Fragment {
 
 
     @Override
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        monthCalendarView = new MonthCalendarView(inflater,container);
+
+            if(container != null){
+                container.removeAllViews();
+            }
+            monthCalendarView = new MonthCalendarView(inflater,container);
         dateLong= monthCalendarView.getCalendarView().getDate();
         addListeners();
 

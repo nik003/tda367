@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -47,9 +48,11 @@ public class WeekCalendarView {
 
     private void createWeekView(){
         TextView tv;
-
+        Button btn;
         inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
+        btn = (Button) tl.findViewById(R.id.monthViewBtn);
+        btn.setOnClickListener(onCl);
         tv  = (TextView)tl.findViewById(R.id.nxtWeek);
         tv.setClickable(true);
         tv.setOnClickListener(onCl);
@@ -67,6 +70,7 @@ public class WeekCalendarView {
     public void createTable(){
         createWeekView();
     }
+
     private TableRow createRow(int i){
         TableRow tr = new TableRow(context);
         View txtCell = inflater.inflate(R.layout.textcell,null);

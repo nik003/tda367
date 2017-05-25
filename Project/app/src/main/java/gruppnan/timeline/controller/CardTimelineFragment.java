@@ -156,6 +156,8 @@ public class CardTimelineFragment extends Fragment implements View.OnClickListen
                 event.setDescription(mRootView.getDescriptionText());
                 setTime();
                 break;
+            default:
+                break;
         }
     }
 
