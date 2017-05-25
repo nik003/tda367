@@ -10,21 +10,17 @@ import gruppnan.timeline.R;
 import gruppnan.timeline.model.DeadlineEvent;
 
 /**
- * Created by Melina on 18/05/2017.
+ * Created by Melina Andersson
+ * Helper class for settings listener on every card in timeline
  */
-
-public class CardListener implements ICardListener {
-
+public class CardListener implements View.OnClickListener {
 
     private Context context;
-    DeadlineEvent dEvent;
-    private int courseNumber;
+    private DeadlineEvent dEvent;
 
-
-    public CardListener(DeadlineEvent dEvent, Context context, int courseNumber){
+    public CardListener(DeadlineEvent dEvent, Context context){
         this.dEvent = dEvent;
         this.context = context;
-        this.courseNumber = courseNumber;
     }
 
     @Override
@@ -32,7 +28,6 @@ public class CardListener implements ICardListener {
         Fragment ft = new CardTimelineFragment();
         Bundle args = new Bundle();
         args.putInt("ID", dEvent.getID());
-        args.putInt("Course", courseNumber);
         ft.setArguments(args);
         ((FragmentActivity)context).getSupportFragmentManager().beginTransaction()
                 .replace(R.id.frame,ft)

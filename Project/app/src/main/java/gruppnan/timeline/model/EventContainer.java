@@ -41,15 +41,15 @@ public class EventContainer {
         addEvent(de);
         return de;
     }
-    public DeadlineEvent createDeadlineEvent(Course course, String name, String desc, Date endDate){
-        DeadlineEvent de = new DeadlineEvent(course,name,desc,endDate,false);
+    public DeadlineEvent createDeadlineEvent(Course course, String name, String desc, Date endDate, boolean isDone){
+        DeadlineEvent de = new DeadlineEvent(course,name,desc,endDate,isDone);
         addEvent(de);
         return de;
     }
 
 
-    public DeadlineEvent createDeadlineEvent(Course course, String name, String desc, Date endDate, boolean isDone) {
-        DeadlineEvent de = new DeadlineEvent(course, name, desc, endDate, isDone);
+    public DeadlineEvent createDeadlineEvent(Course course, String name, Date endDate, boolean isDone) {
+        DeadlineEvent de = new DeadlineEvent(course, name, endDate, isDone);
         addEvent(de);
         return de;
     }

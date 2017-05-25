@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1">
 
@@ -18,10 +21,25 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:text="Type:"
-        android:layout_marginTop="15dp"
         android:layout_marginRight="10dp"
-        android:layout_alignBaseline="@+id/eventNameTxt1"
-        android:layout_alignBottom="@+id/eventNameTxt1"
-        android:layout_alignParentEnd="true" />
+        android:layout_marginBottom="10dp"
+        android:layout_alignTop="@+id/eventNameTxt1"
+        android:layout_alignStart="@+id/eventNameTxt1"
+        android:layout_marginTop="20dp" />
+
+    <com.github.clans.fab.FloatingActionButton
+        android:id="@+id/editEventBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="bottom|right"
+        android:layout_marginEnd="21dp"
+        android:layout_marginRight="8dp"
+        android:src="@drawable/fab_add"
+        app:fab_colorNormal="#3282bc"
+        app:fab_size="mini"
+        fab:fab_colorPressed="@color/app_primary_pressed"
+        fab:fab_colorRipple="@color/app_ripple" />
 
 </RelativeLayout>

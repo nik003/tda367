@@ -75,7 +75,7 @@ public class EventTest {
 
     @Test
     public void getKey() {
-        Event e = container.createDeadlineEvent(null, "presentation", "Presentation for math", ninthFeb);
+        Event e = container.createDeadlineEvent(null, "presentation", "Presentation for math", ninthFeb, false);
         container.addEvent(e);
         Event c = container.createDefaultEvent(null, "lecture", "some random lecture", tenthFeb, tenthFeb);
         container.addEvent(c);

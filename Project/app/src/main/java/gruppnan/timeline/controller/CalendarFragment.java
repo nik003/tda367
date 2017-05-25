@@ -1,5 +1,4 @@
 package gruppnan.timeline.controller;
-
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -8,123 +7,79 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CalendarView;
-import android.widget.ListView;
-import android.R.layout.*;
-
-import com.github.clans.fab.FloatingActionButton;
-
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
 import gruppnan.timeline.R;
 import gruppnan.timeline.model.Event;
 import gruppnan.timeline.model.EventContainer;
-import gruppnan.timeline.model.EventInterface;
+import gruppnan.timeline.view.MonthCalendarView;
 
+
+/**
+ * Controller fragment class that
+ */
 
 public class CalendarFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-    private FloatingActionButton fab1,fab2;
-    private Button weekViewButton;
 
-    // TODO: Rename and change types of parameters
 
 
     private FragmentManager fragmentManager;
     private FragmentTransaction ft;
-    private CalendarView calendarView;
-    private ListView eventListView;
+    private MonthCalendarView monthCalendarView;
 
-    final ArrayList<Event> list = new ArrayList<>();
+
     final Calendar start = Calendar.getInstance();
     final Calendar end = Calendar.getInstance();
-    final EventContainer ev = EventContainer.getEventContainer();
+    final EventContainer eventContainer = EventContainer.getEventContainer();
     private Long dateLong;
     public CalendarFragment() {
         // Required empty public constructor
     }
 
 
-    // TODO: Rename and change types and number of parameters
-    public static CalendarFragment newInstance(String param1, String param2) {
-        CalendarFragment fragment = new CalendarFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        if(container != null){
-            container.removeAllViews();
-        }
-        View view = inflater.inflate(R.layout.calendar_view,container,false);
-        setUpViewComponents(view);
-
-
-        return view;
-    }
-    private void setUpViewComponents(View v){
-
-        fab1 = (FloatingActionButton) v.findViewById(R.id.fab1);
-        fab2 = (FloatingActionButton) v.findViewById(R.id.fab2);
-        fab1.setOnClickListener(btnListener);
-        fab2.setOnClickListener(btnListener);
-
-        eventListView = (ListView) v.findViewById(R.id.eventListView);
-
-
-        weekViewButton = (Button) v.findViewById(R.id.weekViewBtn);
-        weekViewButton.setOnClickListener(btnListener);
-
-        calendarView = (CalendarView) v.findViewById(R.id.calendarView);
-        dateLong = calendarView.getDate();
-        setUpListView();
-
-    }
-
-
-    private void setUpListView(){
-
-
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-
-                Calendar cal = Calendar.getInstance();
-                cal.set(year,month,dayOfMonth);
-                dateLong = cal.getTimeInMillis();
-                list.clear();
-                start.set(year,month,dayOfMonth,0,0);
-                end.set(year, month, dayOfMonth, 23, 59);
-
-                EventAdapter adapter = new EventAdapter(getContext(),R.layout.event_list_item, list);
-                list.addAll(ev.getEventsByDates(start,end));
-                eventListView.setAdapter(adapter);
+            if(container != null){
+                container.removeAllViews();
             }
-        });
+            monthCalendarView = new MonthCalendarView(inflater,container);
+        dateLong= monthCalendarView.getCalendarView().getDate();
+        addListeners();
 
-
+        return monthCalendarView.getView();
     }
+
+
+    private void addListeners(){
+        monthCalendarView.getDeadlineFab().setOnClickListener(btnListener);
+        monthCalendarView.getEventFab().setOnClickListener(btnListener);
+        monthCalendarView.getWeekViewButton().setOnClickListener(btnListener);
+        monthCalendarView.getCalendarView().setOnDateChangeListener(dateChangeListener);
+    }
+
+
+    /** changes the list view, that shows events, according to selected date*/
+    private CalendarView.OnDateChangeListener dateChangeListener = new CalendarView.OnDateChangeListener() {
+        @Override
+        public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayOfMonth) {
+            final ArrayList<Event> list = new ArrayList<>();
+            Calendar cal = Calendar.getInstance();
+            cal.set(year,month,dayOfMonth);
+            dateLong = cal.getTimeInMillis();
+            start.set(year,month,dayOfMonth,0,0);
+            end.set(year, month, dayOfMonth, 23, 59);
+
+            list.clear();
+            EventAdapter adapter = new EventAdapter(getContext(),R.layout.event_list_item, list, CalendarFragment.this);
+            list.addAll(eventContainer.getEventsByDates(start,end));
+            monthCalendarView.getEventListView().setAdapter(adapter);
+        }
+    };
 
 
     private View.OnClickListener btnListener = new View.OnClickListener() {
@@ -132,10 +87,7 @@ public class CalendarFragment extends Fragment {
         public void onClick(View view) {
 
             Bundle bundle = new Bundle();
-            //Long dateLong = calendarView.getDate();
-
-
-            if (view.equals(fab1)){
+            if (view.equals(monthCalendarView.getEventFab())){
                 Fragment newFragment = new AddEventFragment();
                 bundle.putString("type", "event");
                 bundle.putLong("date", dateLong);
@@ -146,7 +98,7 @@ public class CalendarFragment extends Fragment {
                 ft = fragmentManager.beginTransaction();
                 ft.replace(R.id.calendar_fragment, newFragment).addToBackStack(null).commit();
             }
-            else if (view.equals(fab2)){
+            else if (view.equals(monthCalendarView.getDeadlineFab())){
                 bundle.putString("type", "deadline");
                 bundle.putLong("date", dateLong);
                 Fragment newFragment = new AddEventFragment();
@@ -157,7 +109,7 @@ public class CalendarFragment extends Fragment {
                 ft.replace(R.id.calendar_fragment, newFragment).addToBackStack(null).commit();
 
             }
-            else if (view.equals(weekViewButton)){
+            else if (view.equals(monthCalendarView.getWeekViewButton())){
                 Fragment weekViewFragment = new WeekViewController();
                 fragmentManager = getActivity().getSupportFragmentManager();
                 ft = fragmentManager.beginTransaction();
