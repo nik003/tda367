@@ -77,14 +77,13 @@ public class WeekViewController extends Fragment implements View.OnClickListener
         } else if(v.getId() == R.id.monthViewBtn) {
             Log.d("Monthview", "onClick: Occurs");
 
-            monthViewBtn = (Button) v;
+
             FragmentManager fragmentManager;
             Fragment monthViewFragment = new CalendarFragment();
             FragmentTransaction ft;
             fragmentManager = getActivity().getSupportFragmentManager();
             ft = fragmentManager.beginTransaction();
-           // ft.remove(fragmentManager.getFragments().get(5)).commit();
-            //Log.d("Fragment",fragmentManager.getFragments().get(4).toString() );
+
            ft.replace(R.id.topLayout, monthViewFragment).addToBackStack(null).commit();
         }
     }

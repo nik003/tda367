@@ -47,7 +47,7 @@ public class AddEventFragment extends Fragment{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         addEventView = new AddEventView(inflater, container,this);
-        fragmentManager = getActivity().getSupportFragmentManager();
+       // fragmentManager = getActivity().getSupportFragmentManager();
 
         eventContainer = EventContainer.getEventContainer();
         return addEventView.getView();
