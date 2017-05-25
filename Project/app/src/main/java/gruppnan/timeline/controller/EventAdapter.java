@@ -31,8 +31,9 @@ import gruppnan.timeline.model.EventInterface;
 
 
 /**
- * Created by Hannes on 15/05/2017.
+ * Created by Hannes
  * Adapter to show specific data from events in list view widget in CalendarFragment class.
+ * Used in CalendarFragment.
  */
 
 public class EventAdapter extends ArrayAdapter<Event> {
@@ -60,6 +61,7 @@ public class EventAdapter extends ArrayAdapter<Event> {
         final EventInterface eTmp = getItem(position);
         TextView eventName = (TextView) convertView.findViewById(R.id.eventNameTxt1);
         TextView eventType = (TextView) convertView.findViewById(R.id.typeTxt);
+
         editEventBtn = (FloatingActionButton) convertView.findViewById(R.id.editEventBtn);
         deleteEventBtn = (FloatingActionButton) convertView.findViewById(R.id.deleteEventBtn);
 
