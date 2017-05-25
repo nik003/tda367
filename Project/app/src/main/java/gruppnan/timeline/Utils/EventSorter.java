@@ -1,4 +1,4 @@
-package gruppnan.timeline.view;
+package gruppnan.timeline.Utils;
 
 import java.util.ArrayList;
 import java.util.Collections;

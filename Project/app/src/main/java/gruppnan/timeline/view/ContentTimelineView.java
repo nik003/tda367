@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gruppnan.timeline.R;
+import gruppnan.timeline.Utils.EventSorter;
 import gruppnan.timeline.controller.ContentTimelineFragment;
 import gruppnan.timeline.model.CourseContainer;
 import gruppnan.timeline.model.DeadlineEventSet;
