@@ -42,4 +42,19 @@
         fab:fab_colorPressed="@color/app_primary_pressed"
         fab:fab_colorRipple="@color/app_ripple" />
 
+    <com.github.clans.fab.FloatingActionButton
+        android:id="@+id/deleteEventBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="bottom|right"
+        android:layout_marginEnd="23dp"
+        android:layout_marginRight="8dp"
+        android:layout_toStartOf="@+id/editEventBtn"
+        android:src="@drawable/fab_add"
+        app:fab_colorNormal="#ae0c2c"
+        app:fab_size="mini"
+        fab:fab_colorPressed="@color/app_primary_pressed"
+        fab:fab_colorRipple="@color/app_ripple" />
+
 </RelativeLayout>
