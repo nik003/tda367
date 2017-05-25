@@ -17,7 +17,9 @@ import gruppnan.timeline.view.MonthCalendarView;
 
 
 /**
- * Controller fragment class that
+ * Created by Hannes
+ * Controller fragment class that initiates a month calendar view,  deals with user interactions
+ * regarding selection of date for creating and showing events.
  */
 
 public class CalendarFragment extends Fragment {
@@ -39,7 +41,6 @@ public class CalendarFragment extends Fragment {
 
 
     @Override
-
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
             if(container != null){
@@ -81,7 +82,7 @@ public class CalendarFragment extends Fragment {
 
 
 
-
+    /** decides which button has been pressed and saves data from view and acts accordingly */
     private View.OnClickListener btnListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
