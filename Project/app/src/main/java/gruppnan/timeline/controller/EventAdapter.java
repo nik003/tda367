@@ -106,10 +106,6 @@ public class EventAdapter extends ArrayAdapter<Event> {
                 if (eTmp instanceof DeadlineEvent){
                     bundle.putString("type", "deadline");
                 }
-                if (eTmp instanceof DefaultEvent){
-                    bundle.putString("type", "default");
-                }
-
                 newFragment.setArguments(bundle);
 
 

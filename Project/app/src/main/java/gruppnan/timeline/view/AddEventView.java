@@ -161,12 +161,7 @@ public class AddEventView implements View.OnFocusChangeListener {
         return descTxt.getText().toString();
     }
 
-    public void showStartTimePicker(){
-        startTimePicker.show();
-    }
-    public void showEndTimePicker(){
-        endTimePicker.show();
-    }
+
     public void userNeedsToEnterName(){
         nameTxt.setHintTextColor(Color.RED);
         nameTxt.setHint("Please enter name");

@@ -32,7 +32,7 @@ public abstract class Event implements EventInterface{
 
     public Date getStartDate(){
         return null;
-    };
+    }
     public String getDescription(){
         return this.description;
     }
