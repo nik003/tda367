@@ -16,5 +16,7 @@ public interface EventInterface {
 
     Course getCourse();
 
+    Date getStartDate();
+
     int getID();
 }

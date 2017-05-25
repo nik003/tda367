@@ -16,7 +16,9 @@
 
 
 
-        <activity android:name=".controller.MainActivity">
+        <activity android:name=".controller.MainActivity"
+            android:screenOrientation="portrait"
+            >
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,15 +27,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".controller.CalendarController"
-            android:windowSoftInputMode="adjustResize"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".controller.CalendarController"
-            >
-            <intent-filter>
-                <action android:name="android.intent.action.DEFAULT" />
-            </intent-filter>
-        </activity>
 
     </application>
 

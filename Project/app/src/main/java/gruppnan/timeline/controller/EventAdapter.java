@@ -40,11 +40,15 @@ public class EventAdapter extends ArrayAdapter<Event> {
     private FloatingActionButton editEventBtn;
     private FragmentManager fragmentManager;
     private Fragment fragment;
+    private Calendar calendar;
+    private int year,month,day;
+
 
     public EventAdapter(@NonNull Context context, int layoutResourceId, ArrayList<Event> events, Fragment fragment) {
         super(context, layoutResourceId, events);
         this.layoutId = layoutResourceId;
         this.fragment = fragment;
+
     }
 
     @Override
@@ -69,11 +73,13 @@ public class EventAdapter extends ArrayAdapter<Event> {
                 bundle.putString("name", eTmp.getName());
                 bundle.putString("description", eTmp.getDescription());
                 Date endDate = eTmp.getEndDate();
-                Calendar calendar = Calendar.getInstance();
+                Date startDate = eTmp.getStartDate();
+                calendar = Calendar.getInstance();
+                setDate(startDate, endDate, bundle, eTmp);
                 calendar.setTime(endDate);
-                int year = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.MONTH);
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
+                year = calendar.get(Calendar.YEAR);
+                month = calendar.get(Calendar.MONTH);
+                day = calendar.get(Calendar.DAY_OF_MONTH);
                 int endHour = calendar.get(Calendar.HOUR_OF_DAY);
                 int endMinute = calendar.get(Calendar.MINUTE);
                 bundle.putInt("year", year);
@@ -81,6 +87,20 @@ public class EventAdapter extends ArrayAdapter<Event> {
                 bundle.putInt("day", day);
                 bundle.putInt("endHour", endHour);
                 bundle.putInt("endMinute", endMinute);
+
+                if (eTmp instanceof DefaultEvent){
+                    calendar.setTime(startDate);
+
+                    int startHour = calendar.get(Calendar.HOUR_OF_DAY);
+                    int startMinute = calendar.get(Calendar.MINUTE);
+                    //TODO kolla bug skapa event
+                    bundle.putString("type", "event");
+                    bundle.putInt("startHour", startHour);
+                    bundle.putInt("startMinute", startMinute);
+                }
+
+
+
                 bundle.putInt("id", eTmp.getID());
 
                 if (eTmp instanceof DeadlineEvent){
@@ -109,6 +129,9 @@ public class EventAdapter extends ArrayAdapter<Event> {
 
 
         return convertView;
+    }
+    private void setDate(Date startDate, Date endDate, Bundle bundle, EventInterface eTmp){
+        //was here
     }
 
 }
