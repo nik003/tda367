@@ -145,22 +145,19 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
 
             if (eventID!=0){
                 eventContainer.removeEvent(eventID);
-                addEventView.getSaveEventBtn().setText("event saknar id");
 
             }
-            addEventView.getSaveEventBtn().setText("framför createevent");
             createEvent();
 
         }
     }
 
     private void createEvent(){
-        addEventView.getSaveEventBtn().setText(eventType);
         if (eventName.equals("")){
             addEventView.userNeedsToEnterName();
-            addEventView.getSaveEventBtn().setText("fastnar här");
+
         } else if (eventType.equals("event")){
-            addEventView.getSaveEventBtn().setText("fastnar event");
+
             eventContainer.createDefaultEvent(course,eventName,eventDesc,completeStartDate,completeEndDate);
             removeFragment();
         }

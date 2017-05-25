@@ -87,21 +87,17 @@ public class EventAdapter extends ArrayAdapter<Event> {
                 bundle.putInt("day", day);
                 bundle.putInt("endHour", endHour);
                 bundle.putInt("endMinute", endMinute);
+                bundle.putInt("id", eTmp.getID());
 
                 if (eTmp instanceof DefaultEvent){
                     calendar.setTime(startDate);
 
                     int startHour = calendar.get(Calendar.HOUR_OF_DAY);
                     int startMinute = calendar.get(Calendar.MINUTE);
-                    //TODO kolla bug skapa event
                     bundle.putString("type", "event");
                     bundle.putInt("startHour", startHour);
                     bundle.putInt("startMinute", startMinute);
                 }
-
-
-
-                bundle.putInt("id", eTmp.getID());
 
                 if (eTmp instanceof DeadlineEvent){
                     bundle.putString("type", "deadline");
