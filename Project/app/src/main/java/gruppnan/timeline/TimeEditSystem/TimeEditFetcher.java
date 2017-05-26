@@ -95,7 +95,7 @@ public class TimeEditFetcher {
             URL icsUrl = null;
             Pattern namCourPat = Pattern.compile("value=\"(.*?)\"");
             response = sendHttpGet("https://se.timeedit.net/web/chalmers/db1/public/ri.html?h=t&sid=3&p="+fromDate+".x%2C"+toDate+".x&objects="+id+"&ox=0&types=0&fe=0#iCalDialogContent").split("\\n");
-            //response = sendHttpGet("https://se.timeedit.net/web/chalmers/db1/public/ri.html?h=t&sid=3&p=20170102.x%2C20170731.x&objects=201969.182&ox=0&types=0&fe=0").split("\\n");
+
             for(int i = 0;i<response.length;i++){
                 if(response[i].contains("4 veckor")){
                     Matcher m2 = namCourPat.matcher(response[i+1]);
