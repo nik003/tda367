@@ -42,7 +42,7 @@ public class CardTimelineFragment extends Fragment implements View.OnClickListen
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mRootView = new CardTimelineView(inflater,container,this);
+        mRootView = new CardTimelineView(inflater,container);
         initContent();
         initListeners();
         return mRootView.getRootView();

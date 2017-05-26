@@ -7,6 +7,7 @@ import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 
 import gruppnan.timeline.model.Course;
@@ -21,7 +22,7 @@ import gruppnan.timeline.view.SettingsView;
  * Uses: SettingsView, Course, CourseRepository
  */
 
-public class SettingsFragment extends Fragment implements SearchView.OnQueryTextListener, AdapterView.OnItemClickListener, AdapterView.OnItemSelectedListener, View.OnClickListener{
+public class SettingsFragment extends Fragment implements SearchView.OnQueryTextListener, AdapterView.OnItemClickListener, AdapterView.OnItemSelectedListener, View.OnClickListener, View.OnFocusChangeListener{
 
     String selectedCourseInSpinner;
     String selectedCourseInDialog;
@@ -41,6 +42,7 @@ public class SettingsFragment extends Fragment implements SearchView.OnQueryText
      */
     public void setListeners(){
         mRootView.getSearchView().setOnQueryTextListener(this);
+        mRootView.getSearchView().setOnFocusChangeListener(this);
         mRootView.getCourseSpinnerView().setOnItemSelectedListener(this);
         mRootView.getTimeTextView().setOnClickListener(this);
     }
@@ -161,6 +163,17 @@ public class SettingsFragment extends Fragment implements SearchView.OnQueryText
         super.onActivityCreated(savedInstanceState);
     }
 
+    /** disengages from UI elements when user changes focus */
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        if (!hasFocus){
+            hideKeyboard(v);
+        }
+    }
+    private void hideKeyboard(View view){
+        InputMethodManager inputMethodManager =(InputMethodManager)getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
 
 
 }

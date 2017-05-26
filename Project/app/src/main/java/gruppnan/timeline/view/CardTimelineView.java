@@ -26,9 +26,8 @@ public class CardTimelineView{
     private CheckBox checkBox;
     CardTimelineFragment fragment;
 
-    public CardTimelineView(LayoutInflater inflater, ViewGroup container,CardTimelineFragment fragment) {
+    public CardTimelineView(LayoutInflater inflater, ViewGroup container) {
         mRootView = inflater.inflate(R.layout.card_timeline, container, false);
-        this.fragment = fragment;
         initViewElements(mRootView);
     }
 
