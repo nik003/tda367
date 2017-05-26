@@ -39,6 +39,13 @@ public class CourseContainer {
         }
         return false;
     }
+    public void removeCourse(String courseID){
+        for(Course c : courses){
+            if(c.getCourseID().equals(courseID))
+                courses.remove(c);
+        }
+
+    }
 
     public HashSet<Course> getAllCourses(){
         return courses;

@@ -1,5 +1,7 @@
 package gruppnan.timeline.model;
 
+import java.util.Objects;
+
 /**
  * Created by Nikolai on 2017-05-15.
  * The data each cells in the weekview holds as a tag.
@@ -39,8 +41,9 @@ public class WeekEventClickData {
         }
         return false;
     }
+
+    @Override
     public int hashCode() {
-        assert false : "hashCode not designed";
-        return 42; // any arbitrary constant will do
+        return Objects.hash(cellNum);
     }
 }
