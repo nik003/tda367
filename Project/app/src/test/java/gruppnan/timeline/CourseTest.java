@@ -26,7 +26,7 @@ public class CourseTest {
             cc.removeCourse(e.getCourseID());
         }
 
-       
+
 
     }
     @Test

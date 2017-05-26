@@ -24,7 +24,7 @@ public class CardTimelineView{
     private ImageView exitMarker;
     private Button saveButton;
     private CheckBox checkBox;
-    CardTimelineFragment fragment;
+
 
     public CardTimelineView(LayoutInflater inflater, ViewGroup container) {
         mRootView = inflater.inflate(R.layout.card_timeline, container, false);
