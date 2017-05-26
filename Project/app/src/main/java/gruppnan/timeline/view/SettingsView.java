@@ -162,12 +162,14 @@ public class SettingsView implements ViewMVC {
         //TODO Init list of searchmatches here - you have search string as parameter
         CourseSystemInterface csi = new TimeEditHandler();
         searchMatches  = csi.searchCourses(search);
-        final ListView listView = (ListView) cView.findViewById(R.id.course_list);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(inflater.getContext(),android.R.layout.simple_list_item_1,searchMatches);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(fragment);
+        if(searchMatches!=null) {
+            final ListView listView = (ListView) cView.findViewById(R.id.course_list);
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(inflater.getContext(), android.R.layout.simple_list_item_1, searchMatches);
+            listView.setAdapter(adapter);
+            listView.setOnItemClickListener(fragment);
 
-        openCourseDialog(cView);
+            openCourseDialog(cView);
+        }
     }
 
     /**
