@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import java.util.Calendar;
@@ -37,8 +38,9 @@ public class WeekViewController extends Fragment implements View.OnClickListener
         container.removeAllViews();
     }
         View view  = inflater.inflate(R.layout.fragment_week_view, container, false);
-        TableLayout tl = (TableLayout) view.findViewById(R.id.weekView);
-        wwf =new WeekCalendarView(view.getContext(),tl,this);
+        RelativeLayout rl = (RelativeLayout) view.findViewById(R.id.topLayout);
+       // TableLayout tl = (TableLayout) view.findViewById(R.id.weekView);
+        wwf =new WeekCalendarView(view.getContext(),rl,this);
 
 
         wwf.createTable();
@@ -63,13 +65,13 @@ public class WeekViewController extends Fragment implements View.OnClickListener
 
             }
             if (clickedCell.getId() == R.id.cell) {
-                clickedCell.setText(((WeekEventClickData) clickedCell.getTag()).getCellNum() + "");
+
                 WeekEventClickData eventData = (WeekEventClickData) clickedCell.getTag();
                 Event event = eventData.getEvent();
                 if (event != null) {
-
+                    wwf.showEvent(event);
                 } else {
-
+                    clickedCell.setText(((WeekEventClickData) clickedCell.getTag()).getCellNum() + "");
 
                 }
                 //TODO PUT EVENT VIEWER HERE
@@ -77,15 +79,18 @@ public class WeekViewController extends Fragment implements View.OnClickListener
         } else if(v.getId() == R.id.monthViewBtn) {
             Log.d("Monthview", "onClick: Occurs");
 
-            monthViewBtn = (Button) v;
+
             FragmentManager fragmentManager;
             Fragment monthViewFragment = new CalendarFragment();
             FragmentTransaction ft;
             fragmentManager = getActivity().getSupportFragmentManager();
             ft = fragmentManager.beginTransaction();
-           // ft.remove(fragmentManager.getFragments().get(5)).commit();
-            //Log.d("Fragment",fragmentManager.getFragments().get(4).toString() );
+
            ft.replace(R.id.topLayout, monthViewFragment).addToBackStack(null).commit();
+        }else if(v.getId() ==R.id.eventViewBack){
+            Log.d("event","At eventViewBack");
+            wwf.hideEvent();
+
         }
     }
 

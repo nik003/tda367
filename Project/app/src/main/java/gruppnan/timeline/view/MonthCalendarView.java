@@ -22,7 +22,7 @@ public class MonthCalendarView {
     private CalendarView calendarView;
     private View view;
     private ListView eventListView;
-    private Long dateLong;
+    //private Long dateLong;
 
 
     public MonthCalendarView(LayoutInflater layoutInflater, ViewGroup container){
@@ -37,7 +37,7 @@ public class MonthCalendarView {
         eventListView = (ListView) view.findViewById(R.id.eventListView);
         weekViewButton = (Button) view.findViewById(R.id.weekViewBtn);
         calendarView = (CalendarView) view.findViewById(R.id.calendarView);
-        dateLong = calendarView.getDate();
+        //dateLong = calendarView.getDate();
     }
 
     public FloatingActionButton getEventFab(){
