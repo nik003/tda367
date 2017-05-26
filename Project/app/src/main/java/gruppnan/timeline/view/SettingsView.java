@@ -78,12 +78,10 @@ public class SettingsView implements ViewMVC {
      */
     public void initCourseSpinner(){
         courseSpinner.setPrompt("Choose course");
-        coursesInSpinner = new String[2];
-        int i=0;
+        List<String> coursesInSpinner = new ArrayList<>();
         for(Course c : CourseContainer.getCourseContainer().getAllCourses()) {
             allCourses.add(c);
-            coursesInSpinner[i] = c.getCourseID();
-            i++;
+            coursesInSpinner.add(c.getCourseID());
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(mRootView.getContext(), android.R.layout.simple_spinner_item, coursesInSpinner);
         courseSpinner.setAdapter(adapter);
