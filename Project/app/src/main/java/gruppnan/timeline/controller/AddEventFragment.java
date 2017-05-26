@@ -73,7 +73,7 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
         super.onCreate(savedInstanceState);
         eventContainer = EventContainer.getEventContainer();
         courseContainer = CourseContainer.getCourseContainer();
-        setUpCourseLists();
+        //setUpCourseLists();
 
     }
     /** Set up view according to the type of event user wants to add */
@@ -82,12 +82,15 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         getData();
+        setUpCourseLists(); //important to init before addEventView
         addEventView = new AddEventView(inflater, container,this);
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         setTimeBtnTexts();
         setSpinnerAdapter();
         setListeners();
         customizeView();
+
+
         return addEventView.getView();
 
     }
@@ -111,6 +114,10 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
         String name = getArguments().getString("name");
         String desc = getArguments().getString("description");
         String eventType = getArguments().getString("type");
+        String course = getArguments().getString("course");
+        if (course!=null){
+            addEventView.getCourseSpinner().setSelection(courseListStr.indexOf(course));
+        }
         addEventView.setUpText(name,desc,eventType);
     }
 
@@ -131,8 +138,10 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
         courseListStr.add("Course");
         while(courseIterator.hasNext()){
             courseListStr.add(courseIterator.next().getCourseID());
-
         }
+
+        //was here
+
     }
 
     /** get user choices from previous fragment */
@@ -241,25 +250,18 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
     /** gets user selected course */
     private void getCourse(){
 
-        Log.d("INNE", "getCourse: ");
-
         for (Course c : courseList){
-            Log.d("provar", c.getCourseID());
             if (c.getCourseID().equalsIgnoreCase(selectedCourseStr)){
                 course = c;
-                Log.d("har valt kurs", course.getCourseID());
             }else{
              course=null;
             }
         }
-
-
     }
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
         selectedCourseStr = adapterView.getItemAtPosition(position).toString();
-        Log.d("hejhej", selectedCourseStr);
     }
 
     @Override

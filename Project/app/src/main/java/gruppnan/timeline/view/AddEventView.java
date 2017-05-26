@@ -78,6 +78,7 @@ public class AddEventView{
         }else{
             descTxt.setText(description);
         }
+
         customizeFragment(eventType);
     }
 
