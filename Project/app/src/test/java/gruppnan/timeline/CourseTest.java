@@ -31,5 +31,8 @@ public class CourseTest {
         assertEquals(cc.getAllCourses().size(),1);
         cc.createCourse("dat067","Projekt");
         assertEquals(cc.getAllCourses().size(),2);
+        System.out.println(cc.getAllCourses());
+        
+        assertEquals(cc.getCourse("dat067").getName(),"Projekt");
     }
 }

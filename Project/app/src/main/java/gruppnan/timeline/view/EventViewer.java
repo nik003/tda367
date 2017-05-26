@@ -40,6 +40,7 @@ public class EventViewer {
         Button btn = (Button)root.findViewById(R.id.eventViewBack);
 
         btn.setOnClickListener(onCl);
+
         TextView t = (TextView) root.findViewById(R.id.eventName);
         t.setText(event.getName());
 
