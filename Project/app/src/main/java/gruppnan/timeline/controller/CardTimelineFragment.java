@@ -19,19 +19,22 @@ import java.util.Map;
 
 import gruppnan.timeline.R;
 import gruppnan.timeline.model.DeadlineEvent;
-import gruppnan.timeline.model.EventContainer;
+import gruppnan.timeline.model.EventRepository;
 import gruppnan.timeline.view.CardTimelineView;
 
 /**
  * Created by Melina Andersson
  * Controlls the detailed card view popping up when pressing a card on timeline
+ *
+ * Used by: DialogOnClickListener
+ * Uses: CardTimelineView, DeadlineEvent, EventRepository
  */
 
 public class CardTimelineFragment extends Fragment implements View.OnClickListener{
 
     private int id;
     private String title, date, description, hour, minute;
-    private EventContainer eventContainer;
+    private EventRepository eventRepository;
     private DeadlineEvent event;
     private final Calendar calendar = Calendar.getInstance();
     CardTimelineView mRootView;
@@ -54,8 +57,8 @@ public class CardTimelineFragment extends Fragment implements View.OnClickListen
 
         //Initialize texts from event
         Map<Integer,DeadlineEvent> events;
-        eventContainer = EventContainer.getEventContainer();
-        events = eventContainer.getDeadlineEventMap();
+        eventRepository = EventRepository.getEventRepository();
+        events = eventRepository.getDeadlineEventMap();
         for(Map.Entry<Integer, DeadlineEvent> entry : events.entrySet()){
             if(this.id == entry.getKey()){
                 event = entry.getValue();

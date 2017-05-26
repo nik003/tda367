@@ -12,13 +12,15 @@ import java.util.List;
 
 import gruppnan.timeline.R;
 import gruppnan.timeline.Utils.EventSorter;
-import gruppnan.timeline.controller.ContentTimelineFragment;
-import gruppnan.timeline.model.CourseContainer;
+import gruppnan.timeline.model.CourseRepository;
 import gruppnan.timeline.model.DeadlineEventSet;
 
 /**
  * Created by Melina Andersson
- * The Timeline View used by ContentTimeLineFragment
+ * The Timeline View
+ *
+ * Used by: ContentTimeLineFragment
+ * Uses: DeadlineEventSet, EventSorter, CourseRepository
  */
 public class ContentTimelineView  {
 
@@ -31,16 +33,13 @@ public class ContentTimelineView  {
     private List<DeadlineEventSet> sortedEventSet = new ArrayList<>();
 
     View mRootView;
-    ContentTimelineFragment fragment;
 
-    public ContentTimelineView(LayoutInflater inflater, ViewGroup container, ContentTimelineFragment fragment){
-        this.fragment = fragment;
+    public ContentTimelineView(LayoutInflater inflater, ViewGroup container){
 
         //If no courses exists, show how to add a course
-        if(CourseContainer.getCourseContainer().getAllCourses().isEmpty()){
+        if(CourseRepository.getCourseRepository().getAllCourses().isEmpty()){
             mRootView = inflater.inflate(R.layout.empty_timeline_layout,container,false);
             button = (Button) mRootView.findViewById(R.id.to_settings_button);
-            showGuideToAddCourses();
         } else {
             //Initialize timeline
             mRootView = inflater.inflate(R.layout.content_timeline, container, false);
@@ -66,11 +65,9 @@ public class ContentTimelineView  {
 
     }
 
-    /**
-     * Guides the user to settings if no course yet is added
-     */
-    public void showGuideToAddCourses(){
-        button.setOnClickListener(fragment);
+
+    public Button getButton(){
+        return button;
     }
 
     public RecyclerView.Adapter getAdapter(){

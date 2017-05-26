@@ -4,7 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import gruppnan.timeline.model.Course;
-import gruppnan.timeline.model.CourseContainer;
+import gruppnan.timeline.model.CourseRepository;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
@@ -15,12 +15,12 @@ import static org.junit.Assert.assertTrue;
 public class CourseTest {
     Course course1;
     Course course2;
-    CourseContainer cc;
+    CourseRepository cc;
     @Before
     public void beforeTests(){
         course1 = new Course("dat255","Software engineering project");
         course2 = new Course("dat067","Projekt");
-        cc = CourseContainer.getCourseContainer();
+        cc = CourseRepository.getCourseRepository();
     }
     @Test
     public void testAddCourse(){

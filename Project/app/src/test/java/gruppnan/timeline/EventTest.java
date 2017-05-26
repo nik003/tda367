@@ -1,19 +1,5 @@
 package gruppnan.timeline;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-
-import gruppnan.timeline.TimeEditSystem.TimeEditFetcher;
-import gruppnan.timeline.controller.TimeEditHandler;
-import gruppnan.timeline.model.Event;
-import gruppnan.timeline.model.EventContainer;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;

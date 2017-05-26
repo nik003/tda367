@@ -9,7 +9,6 @@ import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -19,11 +18,14 @@ import gruppnan.timeline.R;
 import gruppnan.timeline.controller.CourseSystemInterface;
 import gruppnan.timeline.controller.TimeEditHandler;
 import gruppnan.timeline.model.Course;
-import gruppnan.timeline.model.CourseContainer;
+import gruppnan.timeline.model.CourseRepository;
 
 /**
  * Created by Melina Andersson
  * The settings view
+ *
+ * Used by: SettingsFragment
+ * Uses: Course, CourseContainer
  */
 public class SettingsView{
 
@@ -51,7 +53,7 @@ public class SettingsView{
         initSearchView();
 
         //If courses exists the course spinner could be initialized
-        if(!CourseContainer.getCourseContainer().getAllCourses().isEmpty()) {
+        if(!CourseRepository.getCourseRepository().getAllCourses().isEmpty()) {
             initCourseSpinner();
         }
     }
@@ -76,7 +78,7 @@ public class SettingsView{
     public void initCourseSpinner(){
         courseSpinner.setPrompt("Choose course");
         List<String> coursesInSpinner = new ArrayList<>();
-        for(Course c : CourseContainer.getCourseContainer().getAllCourses()) {
+        for(Course c : CourseRepository.getCourseRepository().getAllCourses()) {
             allCourses.add(c);
             coursesInSpinner.add(c.getCourseID());
         }

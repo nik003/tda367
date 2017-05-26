@@ -7,19 +7,18 @@ import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 
 import gruppnan.timeline.model.Course;
-import gruppnan.timeline.model.CourseContainer;
+import gruppnan.timeline.model.CourseRepository;
 import gruppnan.timeline.view.SettingsView;
 
 /**
  * Created by Melina Andersson
  * Controlls the settings view
  *
- * Used by:
- * Uses: SettingsView
+ * Used by: MainActivity
+ * Uses: SettingsView, Course, CourseRepository
  */
 
 public class SettingsFragment extends Fragment implements SearchView.OnQueryTextListener, AdapterView.OnItemClickListener, AdapterView.OnItemSelectedListener, View.OnClickListener{
@@ -37,24 +36,25 @@ public class SettingsFragment extends Fragment implements SearchView.OnQueryText
         return mRootView.getRootView();
     }
 
+    /**
+     * Sets listeners for elements in view
+     */
     public void setListeners(){
         mRootView.getSearchView().setOnQueryTextListener(this);
         mRootView.getCourseSpinnerView().setOnItemSelectedListener(this);
         mRootView.getTimeTextView().setOnClickListener(this);
-
     }
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
 
+    public void updateTimeText(){
+        mRootView.updateTimeText();
     }
 
-    private void hideKeyboard(){
-        InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(getContext().INPUT_METHOD_SERVICE);
-        inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-    }
 
+
+    /**
+     * Invoked when search button is pressed in searchview
+     */
     @Override
     public boolean onQueryTextSubmit(String query) {
         mRootView.initCourseDialog(query);
@@ -68,7 +68,9 @@ public class SettingsFragment extends Fragment implements SearchView.OnQueryText
         return false;
     }
 
-    //OnItemClick for listview inside course dialog
+    /**
+     * Invoked when course is chosen in dialog
+     */
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         selectedCourseInDialog = adapterView.getItemAtPosition(i).toString();
@@ -82,8 +84,12 @@ public class SettingsFragment extends Fragment implements SearchView.OnQueryText
         return selectedCourseInSpinner;
     }
 
+
+    /**
+     * Sets weekly goal for the selected course in spinner
+     */
     public void setGoal(){
-        for(Course course : CourseContainer.getCourseContainer().getAllCourses()) {
+        for(Course course : CourseRepository.getCourseRepository().getAllCourses()) {
             if(course.getCourseID().equals(getSelectedCourseInSpinner())){
                 course.setWeeklyGoal(mRootView.getNumberPickerValue());
             }
@@ -91,18 +97,19 @@ public class SettingsFragment extends Fragment implements SearchView.OnQueryText
 
     }
 
-    public void updateTimeText(){
-        mRootView.updateTimeText();
-    }
-
-    //OnClick for opening time dialog
+    /**
+     * Invoked when click on time text
+     * Inits the time dialog to choose a time
+     */
     @Override
     public void onClick(View view) {
         mRootView.initTimeDialog();
         openTimeDialog();
     }
 
-    //Course spinner listener
+    /**
+     * Invoked when a course is selected in spinner
+     */
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         selectedCourseInSpinner =  adapterView.getItemAtPosition(i).toString();
@@ -146,11 +153,13 @@ public class SettingsFragment extends Fragment implements SearchView.OnQueryText
 
         AlertDialog alertDialog = alertCourseDialogBuilder.create();
         alertDialog.show();
-
     }
 
 
-
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+    }
 
 
 

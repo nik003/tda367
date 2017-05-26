@@ -15,10 +15,10 @@ import java.util.Map;
  * Used in  classes to create events.
  */
 
-public class EventContainer {
+public class EventRepository {
 
 
-    private static EventContainer eventContainer = new EventContainer();
+    private static EventRepository eventRepository = new EventRepository();
 
 
     private Map<Integer, Event> eventMap = new HashMap<>();
@@ -28,14 +28,14 @@ public class EventContainer {
 
 
     /**Preventing from new instantiations of eventContainer*/
-    private EventContainer(){}
+    private EventRepository(){}
 
     /**
      * method to get the only instance of EventContainer
      * @return EventContainer object
      */
-    public static EventContainer getEventContainer(){
-        return eventContainer;
+    public static EventRepository getEventRepository(){
+        return eventRepository;
     }
 
     public void createDefaultEvent(Course course, String name, String desc, Date startDate, Date endDate){
