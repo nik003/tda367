@@ -160,7 +160,7 @@ public class TimeEditFetcher {
         String[] icsLines = icsFile.split("\\r\\n");
         final String[] wantedFields= {"DTSTART","DTEND","SUMMARY:","LOCATION:","DESCRIPTION:","END:"};
 
-       // System.out.println(icsFile);
+
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd'T'HHmmss'Z'");
         SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMdd");
         Date dateTest;
@@ -231,7 +231,7 @@ public class TimeEditFetcher {
             }
 
         }catch (ParseException e) {
-            System.out.println(e);
+            //System.out.println(e);
         }
         return date!=null;
     }

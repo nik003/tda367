@@ -23,7 +23,7 @@ public class DeadlineEvent extends Event{
         this.course = course;
         this.name = name;
         this.description = description;
-        this.endDate = endDate;
+        this.endDate = new Date(endDate.getTime());
         this.isDone = isDone;
     }
 
@@ -31,7 +31,7 @@ public class DeadlineEvent extends Event{
         super(course, name, endDate);
         this.course = course;
         this.name = name;
-        this.endDate = endDate;
+        this.endDate = new Date(endDate.getTime());
         this.isDone = isDone;
     }
 

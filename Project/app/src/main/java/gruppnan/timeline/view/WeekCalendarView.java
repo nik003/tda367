@@ -2,10 +2,13 @@ package gruppnan.timeline.view;
 
 import android.content.Context;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -35,12 +38,15 @@ import gruppnan.timeline.model.WeekEventClickData;
 public class WeekCalendarView {
     private Context context;
     private TableLayout tl;
+    private RelativeLayout rl;
     private LayoutInflater inflater;
     private View.OnClickListener onCl;
+    WeekDates latest;
+    View latestView;
 
-    public WeekCalendarView(Context c, TableLayout tl, View.OnClickListener onCl){
+    public WeekCalendarView(Context c, RelativeLayout rl, View.OnClickListener onCl){
         context = c;
-        this.tl = tl;
+        this.rl = rl;
         this.onCl = onCl;
 
     }
@@ -50,7 +56,7 @@ public class WeekCalendarView {
         TextView tv;
         Button btn;
         inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
+        tl = (TableLayout)rl.findViewById(R.id.weekView);
         btn = (Button) tl.findViewById(R.id.monthViewBtn);
         btn.setOnClickListener(onCl);
         tv  = (TextView)tl.findViewById(R.id.nxtWeek);
@@ -70,7 +76,24 @@ public class WeekCalendarView {
     public void createTable(){
         createWeekView();
     }
+    public void showEvent(Event e){
+        latestView= rl.getChildAt(0);
+        rl.removeAllViews();
+        LinearLayout eventViewRoot = (LinearLayout) inflater.inflate(R.layout.eventviewer,null);
+        EventViewer ev = new EventViewer(eventViewRoot,onCl,context,e);
+        ev.renderView();
+        rl.addView(eventViewRoot);
 
+
+
+
+
+    }
+    public void hideEvent(){
+        rl.removeAllViews();
+        rl.addView(latestView);
+
+    }
     private TableRow createRow(int i){
         TableRow tr = new TableRow(context);
         View txtCell = inflater.inflate(R.layout.textcell,null);
@@ -100,6 +123,7 @@ public class WeekCalendarView {
 
     }
     public void updateView(WeekDates dates){
+        latest = dates;
         String fromDate = dates.getThisMonday().get(Calendar.DAY_OF_MONTH)+"/" + (dates.getThisMonday().get(Calendar.MONTH)+1);
         String toDate = dates.getThisSunday().get(Calendar.DAY_OF_MONTH)+"/" + (dates.getThisSunday().get(Calendar.MONTH)+1);
         TextView dateView  = (TextView)tl.findViewById(R.id.tableDate);
@@ -117,6 +141,7 @@ public class WeekCalendarView {
         dateView.setTag(dates.getPrevMonday());
         renderEvents(events);
     }
+
     public void renderEvents(List<Event> events){
         clearTable();
         for(Event e : events){
@@ -145,7 +170,13 @@ public class WeekCalendarView {
                     if (cell != null) {
                         WeekEventClickData eventData =(WeekEventClickData) cell.getTag();
                         eventData.setEvent(e);
-                        cell.setBackgroundResource(R.color.cellcolor);
+
+                        if(e.getCourse()!=null) {
+                            cell.setText(e.getCourse().getCourseID());
+                        }else{
+                            cell.setBackgroundResource(R.color.cellcolor);
+                        }
+
                         cell.setTag(eventData);
 
 
@@ -165,6 +196,7 @@ public class WeekCalendarView {
                     WeekEventClickData cellData =(WeekEventClickData)cell.getTag();
                     cellData.setEvent(e);
                     cell.setBackgroundResource(R.color.cellcolor);
+
                     cell.setTag(cellData);
                 }
             }

@@ -63,6 +63,7 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
         endTimeStr = (endHour <10 ? "0" : "")+ endHour + " : " + (endMinute <10 ? "0" : "")+ endMinute;
         addEventView.getEndTimeBtn().setText(endTimeStr);
 
+
         eventContainer = EventContainer.getEventContainer();
         return addEventView.getView();
 
