@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
 
     private EventContainer eventContainer = EventContainer.getEventContainer();
 
+    private String tag;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,15 +101,19 @@ public class MainActivity extends AppCompatActivity {
 
                 if (itemId == R.id.home) {
                     fragment = new ContentTimelineFragment();
+                    tag = "contentTimeLine";
                 } else if (itemId == R.id.calendar) {
-                    fragment = TimerStopWatchHolderFragment.newInstance(0, "course1");
+                    fragment = new CalendarFragment();
+                    tag = "calendar";
                 }  else if (itemId == R.id.timer) {
-                    fragment = new TimerStopWatchMainFragment();
+                    fragment = TimerStopWatchMainFragment.newInstance(0);
+                    tag = "timerStopWatchMain";
                 } else if(itemId == R.id.settings){
                     fragment = new SettingsFragment();
+                    tag = "settings";
                 }
                 FragmentManager fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.frame, fragment).addToBackStack(null).commit();
+                fragmentManager.beginTransaction().replace(R.id.frame, fragment, tag).addToBackStack(null).commit();
 
         menuItem.setChecked(true);
         setTitle(menuItem.getTitle());

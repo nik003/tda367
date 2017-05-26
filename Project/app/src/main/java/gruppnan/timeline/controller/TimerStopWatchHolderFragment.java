@@ -11,15 +11,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import gruppnan.timeline.R;
+import gruppnan.timeline.model.TimerStopWatchHolderView;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class TimerStopWatchHolderFragment extends Fragment {
 
+    private TimerStopWatchHolderView timerStopWatchHolderView;
     private SectionsPagerAdapter mSectionsPagerAdapter;
-    private VerticalViewPager mVerticalViewPager;
-
     private int sectionNumber;
     private String course;
 
@@ -38,21 +38,17 @@ public class TimerStopWatchHolderFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_timer_holder, container, false);
+        timerStopWatchHolderView = new TimerStopWatchHolderView(inflater, container);
 
         sectionNumber = getArguments().getInt("sectionNumber");
         course = getArguments().getString("course");
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
         // Set up the ViewPager with the sections adapter.
-        mVerticalViewPager = (VerticalViewPager) view.findViewById(R.id.vertical_container);
-        mVerticalViewPager.setAdapter(mSectionsPagerAdapter);
-        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabDots);
-        tabLayout.setupWithViewPager(mVerticalViewPager, true);
+        timerStopWatchHolderView.getmVerticalViewPager().setAdapter(mSectionsPagerAdapter);
+        timerStopWatchHolderView.getTabLayout().setupWithViewPager(timerStopWatchHolderView.getmVerticalViewPager(), true);
 
-
-
-        return view;
+        return timerStopWatchHolderView.getView();
     }
 
 
@@ -66,11 +62,11 @@ public class TimerStopWatchHolderFragment extends Fragment {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return TimerStopWatchFragment.newInstance(sectionNumber, true, "Today");
+                    return TimerStopWatchFragment.newInstance(sectionNumber, true, "Session", 0);
                 case 1:
-                    return TimerStopWatchFragment.newInstance(sectionNumber+1, false, "Week");
+                    return TimerStopWatchFragment.newInstance(sectionNumber+1, false, "Week", 0);
                 case 2:
-                    return TimerStopWatchFragment.newInstance(sectionNumber+2, false, "Break");
+                    return TimerStopWatchFragment.newInstance(sectionNumber+2, false, "Break", 0);
                  }
             return null;
         }

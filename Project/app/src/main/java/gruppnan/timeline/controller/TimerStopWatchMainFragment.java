@@ -1,21 +1,19 @@
 package gruppnan.timeline.controller;
 
-import android.support.design.widget.TabLayout;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import gruppnan.timeline.R;
+import gruppnan.timeline.model.TimerStopWatchMainView;
 
 public class TimerStopWatchMainFragment extends Fragment {
 
+
+    private TimerStopWatchMainView timerStopWatchMainView;
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -26,10 +24,6 @@ public class TimerStopWatchMainFragment extends Fragment {
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
-    private ViewPager mViewPager;
 
     private int sectionNumber;
 
@@ -47,19 +41,17 @@ public class TimerStopWatchMainFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_timer_main, container, false);
+        timerStopWatchMainView = new TimerStopWatchMainView(inflater, container);
 
         sectionNumber = getArguments().getInt("sectionNumber");
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) view.findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
+        timerStopWatchMainView.getmViewPager().setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(mViewPager);
+        timerStopWatchMainView.getTabLayout().setupWithViewPager(timerStopWatchMainView.getmViewPager());
 
-        return view;
+        return timerStopWatchMainView.getView();
     }
 
 
