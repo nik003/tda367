@@ -2,6 +2,7 @@ package gruppnan.timeline.controller;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,12 +27,21 @@ public class SettingsFragment extends Fragment implements SearchView.OnQueryText
     String selectedCourseInSpinner;
     String selectedCourseInDialog;
     SettingsView mRootView;
+    private AlertDialog.Builder alertCourseDialogBuilder, alertTimeDialogBuilder;
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mRootView = new SettingsView(inflater,container,this);
+        mRootView = new SettingsView(inflater,container);
+        setListeners();
         return mRootView.getRootView();
+    }
+
+    public void setListeners(){
+        mRootView.getSearchView().setOnQueryTextListener(this);
+        mRootView.getCourseSpinnerView().setOnItemSelectedListener(this);
+        mRootView.getTimeTextView().setOnClickListener(this);
+
     }
 
     @Override
@@ -48,6 +58,8 @@ public class SettingsFragment extends Fragment implements SearchView.OnQueryText
     @Override
     public boolean onQueryTextSubmit(String query) {
         mRootView.initCourseDialog(query);
+        openCourseDialog();
+        mRootView.getListView().setOnItemClickListener(this);
         return false;
     }
 
@@ -87,6 +99,7 @@ public class SettingsFragment extends Fragment implements SearchView.OnQueryText
     @Override
     public void onClick(View view) {
         mRootView.initTimeDialog();
+        openTimeDialog();
     }
 
     //Course spinner listener
@@ -99,6 +112,46 @@ public class SettingsFragment extends Fragment implements SearchView.OnQueryText
     public void onNothingSelected(AdapterView<?> adapterView) {
         //Do nothing
     }
+
+    /**
+     * Opens time dialog
+     */
+    public void openTimeDialog(){
+        View npView = mRootView.getNumberPickerView();
+        //Start dialog with numberpicker
+        alertTimeDialogBuilder = new AlertDialog.Builder(getContext());
+        alertTimeDialogBuilder.setTitle("Select number of hours");
+        alertTimeDialogBuilder.setView(npView);
+        alertTimeDialogBuilder
+                .setCancelable(false)
+                .setPositiveButton("Ok",new DialogOnClickListener(this,2))
+                .setNegativeButton("Cancel",new DialogOnClickListener(this,2));
+        AlertDialog alertDialog = alertTimeDialogBuilder.create();
+        alertDialog.show();
+    }
+
+
+    /**
+     * Opens the course dialog
+     */
+    public void openCourseDialog() {
+        View cView = mRootView.getCourseView();
+        alertCourseDialogBuilder = new AlertDialog.Builder(getContext());
+        alertCourseDialogBuilder.setTitle("Select course");
+        alertCourseDialogBuilder.setView(cView);
+        alertCourseDialogBuilder
+                .setCancelable(false)
+                .setPositiveButton("Add Course",new DialogOnClickListener(this,1))
+                .setNegativeButton("Cancel",new DialogOnClickListener(this,1));
+
+        AlertDialog alertDialog = alertCourseDialogBuilder.create();
+        alertDialog.show();
+
+    }
+
+
+
+
 
 
 }

@@ -30,7 +30,6 @@ public class CardTimelineView{
         mRootView = inflater.inflate(R.layout.card_timeline, container, false);
         this.fragment = fragment;
         initViewElements(mRootView);
-        initListeners();
     }
 
     private void initViewElements(View view) {
@@ -60,11 +59,22 @@ public class CardTimelineView{
         minuteText.setText(minute);
     }
 
-    private void initListeners() {
-        saveButton.setOnClickListener(fragment);
-        exitMarker.setOnClickListener(fragment);
-        checkBox.setOnClickListener(fragment);
-        dateText.setOnClickListener(fragment);
+
+
+    public Button getSaveButton(){
+        return saveButton;
+    }
+
+    public ImageView getExitMarker(){
+        return exitMarker;
+    }
+
+    public CheckBox getCheckBox(){
+        return checkBox;
+    }
+
+    public TextView getDateTextView(){
+        return dateText;
     }
 
     public void updateDateText(String text){

@@ -41,6 +41,7 @@ public class CardTimelineFragment extends Fragment implements View.OnClickListen
                              Bundle savedInstanceState) {
         mRootView = new CardTimelineView(inflater,container,this);
         initContent();
+        initListeners();
         return mRootView.getRootView();
     }
 
@@ -72,6 +73,13 @@ public class CardTimelineFragment extends Fragment implements View.OnClickListen
             mRootView.toggleCheckBox();
         }
 
+    }
+
+    public void initListeners() {
+        mRootView.getSaveButton().setOnClickListener(this);
+        mRootView.getExitMarker().setOnClickListener(this);
+        mRootView.getCheckBox().setOnClickListener(this);
+        mRootView.getDateTextView().setOnClickListener(this);
     }
 
     /**
