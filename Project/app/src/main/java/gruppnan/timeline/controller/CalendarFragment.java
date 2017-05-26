@@ -7,13 +7,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.CalendarView;
 import java.util.ArrayList;
 import java.util.Calendar;
 import gruppnan.timeline.R;
 import gruppnan.timeline.model.Event;
-import gruppnan.timeline.model.EventContainer;
+import gruppnan.timeline.model.EventRepository;
 import gruppnan.timeline.view.EventAdapter;
 import gruppnan.timeline.view.MonthCalendarView;
 
@@ -35,7 +34,7 @@ public class CalendarFragment extends Fragment {
 
     final Calendar start = Calendar.getInstance();
     final Calendar end = Calendar.getInstance();
-    final EventContainer eventContainer = EventContainer.getEventContainer();
+    final EventRepository eventRepository = EventRepository.getEventRepository();
     private Long dateLong;
     public CalendarFragment() {
         // Required empty public constructor
@@ -77,7 +76,7 @@ public class CalendarFragment extends Fragment {
 
             list.clear();
             EventAdapter adapter = new EventAdapter(getContext(),R.layout.event_list_item, list);
-            list.addAll(eventContainer.getEventsByDates(start,end));
+            list.addAll(eventRepository.getEventsByDates(start,end));
             monthCalendarView.getEventListView().setAdapter(adapter);
         }
     };

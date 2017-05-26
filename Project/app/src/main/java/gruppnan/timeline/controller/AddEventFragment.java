@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,8 +24,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import gruppnan.timeline.model.Course;
-import gruppnan.timeline.model.CourseContainer;
-import gruppnan.timeline.model.EventContainer;
+import gruppnan.timeline.model.CourseRepository;
+import gruppnan.timeline.model.EventRepository;
 import gruppnan.timeline.view.AddEventView;
 
 /**
@@ -38,8 +37,8 @@ import gruppnan.timeline.view.AddEventView;
 public class AddEventFragment extends Fragment implements TimePickerDialog.OnTimeSetListener,
         View.OnClickListener, AdapterView.OnItemSelectedListener, View.OnFocusChangeListener {
 
-    private EventContainer eventContainer;
-    private CourseContainer courseContainer;
+    private EventRepository eventRepository;
+    private CourseRepository courseRepository;
     private AddEventView addEventView;
 
 
@@ -71,8 +70,8 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        eventContainer = EventContainer.getEventContainer();
-        courseContainer = CourseContainer.getCourseContainer();
+        eventRepository = EventRepository.getEventRepository();
+        courseRepository = CourseRepository.getCourseRepository();
         //setUpCourseLists();
 
     }
@@ -132,7 +131,7 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
 
     /** list for course spinner */
     private void setUpCourseLists(){
-        courseList.addAll(courseContainer.getAllCourses());
+        courseList.addAll(courseRepository.getAllCourses());
 
         courseIterator = courseList.iterator();
         courseListStr.add("Course");
@@ -203,7 +202,7 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
             getEventInfo();
 
             if (eventID!=0){
-                eventContainer.removeEvent(eventID);
+                eventRepository.removeEvent(eventID);
 
             }
             createEvent();
@@ -217,11 +216,11 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
 
         } else if (eventType.equals("event")){
 
-            eventContainer.createDefaultEvent(course,eventName,eventDesc,completeStartDate,completeEndDate);
+            eventRepository.createDefaultEvent(course,eventName,eventDesc,completeStartDate,completeEndDate);
             removeFragment();
         }
         else if (eventType.equals("deadline")){
-            eventContainer.createDeadlineEvent(course,eventName,eventDesc,completeEndDate,false);
+            eventRepository.createDeadlineEvent(course,eventName,eventDesc,completeEndDate,false);
             removeFragment();
 
         }

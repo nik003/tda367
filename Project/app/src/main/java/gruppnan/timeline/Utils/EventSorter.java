@@ -7,10 +7,10 @@ import java.util.List;
 import java.util.Map;
 
 import gruppnan.timeline.model.Course;
-import gruppnan.timeline.model.CourseContainer;
+import gruppnan.timeline.model.CourseRepository;
 import gruppnan.timeline.model.DeadlineEvent;
 import gruppnan.timeline.model.DeadlineEventSet;
-import gruppnan.timeline.model.EventContainer;
+import gruppnan.timeline.model.EventRepository;
 
 /**
  * Created by Melina Andersson
@@ -24,13 +24,13 @@ public class EventSorter {
     private List<DeadlineEvent> courseEvents2 = new ArrayList<>();
     private List<DeadlineEventSet> sortedEventSet = new ArrayList<>();
 
-    private EventContainer eventContainer = EventContainer.getEventContainer();
+    private EventRepository eventRepository = EventRepository.getEventRepository();
     private Map<Integer,DeadlineEvent> eventMap;
 
 
 
     public EventSorter(){
-        eventMap = eventContainer.getDeadlineEventMap();
+        eventMap = eventRepository.getDeadlineEventMap();
         mapToList();
         sortEvents();
         addEventsInPairs();
@@ -61,7 +61,7 @@ public class EventSorter {
 
     public void addEventsInPairs(){
         //separate the events by courses
-        for(Course c : CourseContainer.getCourseContainer().getAllCourses()) {
+        for(Course c : CourseRepository.getCourseRepository().getAllCourses()) {
             String courseID = c.getCourseID();
             for (DeadlineEvent item : unsortedEvents) {
                 if(item.getCourse() == null){
