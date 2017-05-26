@@ -1,6 +1,9 @@
 package gruppnan.timeline.controller;
 
+import android.util.Log;
+
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -19,18 +22,23 @@ public class TimeEditHandler implements CourseSystemInterface {
     static EventContainer  ec= EventContainer.getEventContainer();
     static CourseContainer cc  = CourseContainer.getCourseContainer();
 
-    public void  getAddEvents(String courseName, Date from, Date to){
+    public void  getAddEvents(String courseName, Date from, Date to) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-        List<TimeEditEvent> events = tf.getIcs(courseName,sdf.format(from),sdf.format(to));
-        for(TimeEditEvent ev : events){
-            String courseID = ev.getName().substring(0,5);
-            String name = ev.getName().substring(5,ev.getName().length());
-            String courseDesc = ev.getDescription() + "\n" + ev.getSummary() + "\n" + ev.getLocation();
-            if(!cc.courseExist(courseID)){
-                cc.createCourse(name,courseID);
+        List<TimeEditEvent> events = tf.getIcs(courseName, sdf.format(from), sdf.format(to));
+        if(courseName != null)
+        Log.d("Searchcourse", Integer.toString(events.size()));
+        if (events != null) {
+            for (TimeEditEvent ev : events) {
+                String courseID = ev.getName().substring(0, 6);
+                String name = ev.getName().substring(7, ev.getName().length());
+                String courseDesc = ev.getDescription() + "\n" + ev.getSummary() + "\n" + ev.getLocation();
 
+                if (!cc.courseExist(courseID)) {
+                    cc.createCourse(courseID, name);
+
+                }
+                ec.createDefaultEvent(cc.getCourse(courseID), name, courseDesc, ev.getStartDate(), ev.getEndDate());
             }
-            ec.createDefaultEvent(cc.getCourse(courseID),name,courseDesc,ev.getStartDate(),ev.getEndDate());
         }
     }
     public  List<String>searchCourses(String searchText){

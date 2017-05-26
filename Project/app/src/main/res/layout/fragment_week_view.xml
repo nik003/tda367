@@ -1,102 +1,109 @@
-<ScrollView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/weekScrollView"
+    android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:id="@+id/topLayout"
+    >
+    <ScrollView
 
-    <TableLayout
-
-        android:id="@+id/weekView"
+        android:id="@+id/weekScrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:stretchColumns="*">
-        <Button
-            android:id="@+id/weekViewBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Month view"
-            android:visibility="visible" />
+        android:layout_height="match_parent">
 
-       <TableRow
-            android:id="@+id/tableRowWeek">
-            <TextView
-                android:textAlignment="center"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:id="@+id/prevWeek"
-                android:text="Previous Week"
-                
-                android:background="@drawable/cell_shape"
-                android:padding="3dp"
-                />
-            <TextView
-                android:id="@+id/tableDate"
-                android:textAlignment="center"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:text="Week 27"
-                
-                android:background="@drawable/cell_shape"
-                android:padding="3dp"
-                />
-            <TextView
-                android:textAlignment="center"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:id="@+id/nxtWeek"
-                android:text="Next Week"
-                
-                android:background="@drawable/cell_shape"
-                android:padding="3dp"
-                />
-        </TableRow>
+        <TableLayout
+
+            android:id="@+id/weekView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:stretchColumns="*">
+            <Button
+                android:id="@+id/monthViewBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Month view"
+                android:visibility="visible" />
+
            <TableRow
-               android:id="@+id/tableRowDays"
-               android:layout_width="0dp"
-               android:layout_height="match_parent">
-               <TextView android:textAlignment="center"
-                   android:text="W 27"
-                   android:layout_weight="1"
-                   android:id="@+id/weekText"
+                android:id="@+id/tableRowWeek">
+                <TextView
+                    android:textAlignment="center"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:id="@+id/prevWeek"
+                    android:text="Previous Week"
 
-                   />
-               <TextView android:textAlignment="center"
-                   android:text="Mon"
-                   android:layout_weight="1"
-                   android:background="@drawable/cell_shape"
-                   />
-               <TextView android:textAlignment="center"
-                   android:text="Tue"
-                   android:layout_weight="1"
-                   android:background="@drawable/cell_shape"
-                   />
-               <TextView android:textAlignment="center"
-                   android:layout_weight="1"
-                   android:text="Wed"
-                   android:background="@drawable/cell_shape"
-                   />
+                    android:background="@drawable/cell_shape"
+                    android:padding="3dp"
+                    />
+                <TextView
+                    android:id="@+id/tableDate"
+                    android:textAlignment="center"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:text="Week 27"
 
-               <TextView android:textAlignment="center"
-                   android:text="Thu"
-                   android:layout_weight="1"
-                   android:background="@drawable/cell_shape"
-                   />
-               <TextView android:textAlignment="center"
-                   android:layout_weight="1"
-                   android:text="Fri"
-                   android:background="@drawable/cell_shape"
-                   />
-               <TextView android:textAlignment="center"
-                   android:text="Satu"
-                   android:layout_weight="1"
-                   android:background="@drawable/cell_shape"
-                   />
-               <TextView android:textAlignment="center"
-                   android:text="Sun"
-                   android:layout_weight="1"
-                   android:background="@drawable/cell_shape"
-                   />
+                    android:background="@drawable/cell_shape"
+                    android:padding="3dp"
+                    />
+                <TextView
+                    android:textAlignment="center"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:id="@+id/nxtWeek"
+                    android:text="Next Week"
 
-           </TableRow>
-    </TableLayout>
-</ScrollView>
+                    android:background="@drawable/cell_shape"
+                    android:padding="3dp"
+                    />
+            </TableRow>
+               <TableRow
+                   android:id="@+id/tableRowDays"
+                   android:layout_width="0dp"
+                   android:layout_height="match_parent">
+                   <TextView android:textAlignment="center"
+                       android:text="W 27"
+                       android:layout_weight="1"
+                       android:id="@+id/weekText"
+
+                       />
+                   <TextView android:textAlignment="center"
+                       android:text="Mon"
+                       android:layout_weight="1"
+                       android:background="@drawable/cell_shape"
+                       />
+                   <TextView android:textAlignment="center"
+                       android:text="Tue"
+                       android:layout_weight="1"
+                       android:background="@drawable/cell_shape"
+                       />
+                   <TextView android:textAlignment="center"
+                       android:layout_weight="1"
+                       android:text="Wed"
+                       android:background="@drawable/cell_shape"
+                       />
+
+                   <TextView android:textAlignment="center"
+                       android:text="Thu"
+                       android:layout_weight="1"
+                       android:background="@drawable/cell_shape"
+                       />
+                   <TextView android:textAlignment="center"
+                       android:layout_weight="1"
+                       android:text="Fri"
+                       android:background="@drawable/cell_shape"
+                       />
+                   <TextView android:textAlignment="center"
+                       android:text="Satu"
+                       android:layout_weight="1"
+                       android:background="@drawable/cell_shape"
+                       />
+                   <TextView android:textAlignment="center"
+                       android:text="Sun"
+                       android:layout_weight="1"
+                       android:background="@drawable/cell_shape"
+                       />
+
+               </TableRow>
+        </TableLayout>
+    </ScrollView>
+</RelativeLayout>

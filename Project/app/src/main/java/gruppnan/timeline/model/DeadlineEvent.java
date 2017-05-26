@@ -3,22 +3,41 @@ package gruppnan.timeline.model;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
-
-
+/**
+ * Created by Melina Andersson
+ * Model for Deadline events
+ */
 public class DeadlineEvent extends Event{
 
 
     protected boolean isDone;
+    private int hour, minute;
+    private String name,description;
+    private Course course;
+    private Date endDate;
 
 
     public DeadlineEvent(Course course, String name, String description, Date endDate, boolean isDone){
         super(course, name, endDate, description);
-
+        this.course = course;
+        this.name = name;
+        this.description = description;
+        this.endDate = new Date(endDate.getTime());
         this.isDone = isDone;
     }
 
+    public DeadlineEvent(Course course, String name, Date endDate, boolean isDone){
+        super(course, name, endDate);
+        this.course = course;
+        this.name = name;
+        this.endDate = new Date(endDate.getTime());
+        this.isDone = isDone;
+    }
+
+    public String getCourseID(){
+        return course.getCourseID();
+    }
 
     public int getDayofMonth(){
         return toCalendar(endDate).get(Calendar.DATE);
@@ -70,6 +89,24 @@ public class DeadlineEvent extends Event{
 
     public void setEndDate(Date endDate){
         this.endDate = new Date(endDate.getTime());
+    }
+
+    public void setHour(int hour){
+
+        this.hour = hour;
+
+    }
+
+    public void setMinute(int minute){
+        this.minute = minute;
+    }
+
+    public int getHour(){
+        return this.hour;
+    }
+
+    public int getMinute(){
+        return this.minute;
     }
 
     public static Calendar toCalendar(Date date){

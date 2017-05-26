@@ -68,14 +68,14 @@ public class EventTest {
         container.addEvent(c);
         System.out.println(container.getEventMap().size());
         assertTrue(container.getEventMap().size()==3);
-        container.removeEvent(c);
+        //container.removeEvent(c);
         assertTrue(container.getEventMap().size()==2);
 
     }
 
     @Test
     public void getKey() {
-        Event e = container.createDeadlineEvent(null, "presentation", "Presentation for math", ninthFeb);
+        Event e = container.createDeadlineEvent(null, "presentation", "Presentation for math", ninthFeb, false);
         container.addEvent(e);
         Event c = container.createDefaultEvent(null, "lecture", "some random lecture", tenthFeb, tenthFeb);
         container.addEvent(c);

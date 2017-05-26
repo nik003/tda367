@@ -2,6 +2,8 @@ package gruppnan.timeline.controller;
 
 import android.content.DialogInterface;
 
+import java.util.Calendar;
+
 import static android.content.DialogInterface.BUTTON_NEGATIVE;
 import static android.content.DialogInterface.BUTTON_POSITIVE;
 
@@ -9,7 +11,6 @@ import static android.content.DialogInterface.BUTTON_POSITIVE;
  * Created by Melina
  * Help class as listener for the different dialogs in settings view - to separate which dialog is clicked
  */
-
 public class DialogOnClickListener implements DialogInterface.OnClickListener {
     private int id;
 
@@ -30,8 +31,19 @@ public class DialogOnClickListener implements DialogInterface.OnClickListener {
                     break;
                 case BUTTON_POSITIVE:
                     //TODO add course
-                    //settingsFragment.getSelectedCourseInDialog() (returns string)
+                    CourseSystemInterface csi = new TimeEditHandler();
+                    Calendar cal1  = Calendar.getInstance();
+                    Calendar cal2 = Calendar.getInstance();
+                    cal1.set(Calendar.HOUR_OF_DAY,0);
+                    cal1.set(Calendar.MINUTE,0);
+                    cal1.add(Calendar.WEEK_OF_YEAR,-3);
+                    cal2.setTime(cal1.getTime());
+                    cal2.add(Calendar.MONTH,3);
+
+                    csi.getAddEvents(settingsFragment.getSelectedCourseInDialog(),cal1.getTime(),cal2.getTime());// (returns string)
                     dialog.cancel();
+                    break;
+                default:
                     break;
             }
         } else {
@@ -44,6 +56,8 @@ public class DialogOnClickListener implements DialogInterface.OnClickListener {
                     settingsFragment.updateTimeText();
                     settingsFragment.setGoal();
                     dialog.cancel();
+                    break;
+                default:
                     break;
             }
         }

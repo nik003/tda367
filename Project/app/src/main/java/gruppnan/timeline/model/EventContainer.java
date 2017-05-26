@@ -9,7 +9,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Singleton Class that handles and stores the created events.
+ * Created by Hannes
+ * Singleton Class that handles and stores the different types of created events. Uses facade
+ * pattern to simplify creation of said events.
+ * Used in  classes to create events.
  */
 
 public class EventContainer {
@@ -18,10 +21,10 @@ public class EventContainer {
     private static EventContainer eventContainer = new EventContainer();
 
 
-    private HashMap<Integer, Event> eventMap = new HashMap<>();
-    private HashMap<Integer, DeadlineEvent> deadlineEventMap = new HashMap<>();
-    private HashMap<Integer, DefaultEvent> defaultEventMap = new HashMap<>();
-    private int nrOfEvents = 1; //TODO Varför statisk?
+    private Map<Integer, Event> eventMap = new HashMap<>();
+    private Map<Integer, DeadlineEvent> deadlineEventMap = new HashMap<>();
+    private Map<Integer, DefaultEvent> defaultEventMap = new HashMap<>();
+    private int nrOfEvents = 1;
 
 
     /**Preventing from new instantiations of eventContainer*/
@@ -35,30 +38,29 @@ public class EventContainer {
         return eventContainer;
     }
 
-    public DefaultEvent createDefaultEvent(Course course, String name, String desc, Date startDate, Date endDate){
+    public void createDefaultEvent(Course course, String name, String desc, Date startDate, Date endDate){
 
         DefaultEvent de = new DefaultEvent(course,name,desc,startDate,endDate);
         addEvent(de);
-        return de;
+
     }
-    public DeadlineEvent createDeadlineEvent(Course course, String name, String desc, Date endDate){
-        DeadlineEvent de = new DeadlineEvent(course,name,desc,endDate,false);
+    public void createDeadlineEvent(Course course, String name, String desc, Date endDate, boolean isDone){
+        DeadlineEvent de = new DeadlineEvent(course,name,desc,endDate,isDone);
         addEvent(de);
-        return de;
     }
 
 
-    public DeadlineEvent createDeadlineEvent(Course course, String name, String desc, Date endDate, boolean isDone) {
-        DeadlineEvent de = new DeadlineEvent(course, name, desc, endDate, isDone);
+    public void createDeadlineEvent(Course course, String name, Date endDate, boolean isDone) {
+        DeadlineEvent de = new DeadlineEvent(course, name, endDate, isDone);
         addEvent(de);
-        return de;
+
     }
 
     /** adds event instance to map, gives key and increments key for next entry */
-    public void addEvent(Event event){
+    private void addEvent(Event event){
         if (eventMap.containsValue(event)){
             //TODO make this visible on view where user adds event
-            //Log.d("duplicate event", "an identical event has already been added to map");
+
         }else{
             eventMap.put(nrOfEvents, event);
             event.setID(nrOfEvents);
@@ -98,7 +100,7 @@ public class EventContainer {
     }
 
 
-
+    /** returns array of events within specified time selection */
     public ArrayList<Event> getEventsByDates(Calendar start, Calendar end){
         Calendar date = Calendar.getInstance();
         ArrayList<Event> datesEvents = new ArrayList<>();
@@ -119,8 +121,8 @@ public class EventContainer {
     return datesEvents;
     }
 
-    public void removeEvent(Event event){
-       eventMap.remove(event.getID());
+    public void removeEvent(int eventID){
+       eventMap.remove(eventID);
     }
 
 }

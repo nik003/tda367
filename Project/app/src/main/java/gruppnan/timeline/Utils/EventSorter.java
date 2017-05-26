@@ -1,4 +1,4 @@
-package gruppnan.timeline.view;
+package gruppnan.timeline.Utils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,7 +14,6 @@ import gruppnan.timeline.model.EventContainer;
 
 /**
  * Created by Melina Andersson
- *
  * Sorts events to appear in chronological order in timeline view
  */
 
