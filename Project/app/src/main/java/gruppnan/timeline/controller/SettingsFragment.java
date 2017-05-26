@@ -14,7 +14,11 @@ import gruppnan.timeline.model.CourseContainer;
 import gruppnan.timeline.view.SettingsView;
 
 /**
- * Created by Melina on 13/05/2017.
+ * Created by Melina Andersson
+ * Controlls the settings view
+ *
+ * Used by:
+ * Uses: SettingsView
  */
 
 public class SettingsFragment extends Fragment implements SearchView.OnQueryTextListener, AdapterView.OnItemClickListener, AdapterView.OnItemSelectedListener, View.OnClickListener{
