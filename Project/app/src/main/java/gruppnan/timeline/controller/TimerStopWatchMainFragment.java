@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import gruppnan.timeline.model.TimerStopWatchMainView;
+import gruppnan.timeline.view.TimerStopWatchMainView;
 
 public class TimerStopWatchMainFragment extends Fragment {
 
