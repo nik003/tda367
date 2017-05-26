@@ -157,7 +157,7 @@ public class SettingsView{
         //getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
         List<String> searchMatches = new ArrayList<>();
-        //TODO Init list of searchmatches here - you have search string as parameter
+
         CourseSystemInterface csi = new TimeEditHandler();
         searchMatches  = csi.searchCourses(search);
         if(searchMatches!=null) {

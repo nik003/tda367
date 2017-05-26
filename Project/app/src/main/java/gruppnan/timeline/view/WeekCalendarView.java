@@ -33,6 +33,7 @@ import gruppnan.timeline.model.WeekEventClickData;
 
 /**
  * Created by Nikolai on 2017-05-04.
+ * The view for the Week View in the calendar section
  */
 
 public class WeekCalendarView {
@@ -51,7 +52,9 @@ public class WeekCalendarView {
 
     }
 
-
+    /**
+     * Configures the first row and begins creating the table layout
+     */
     private void createWeekView(){
         TextView tv;
         Button btn;
@@ -76,6 +79,11 @@ public class WeekCalendarView {
     public void createTable(){
         createWeekView();
     }
+
+    /**
+     * Shows the view with information about an event
+     * @param e The event which information should be shown
+     */
     public void showEvent(Event e){
         latestView= rl.getChildAt(0);
         rl.removeAllViews();
@@ -83,17 +91,23 @@ public class WeekCalendarView {
         EventViewer ev = new EventViewer(eventViewRoot,onCl,context,e);
         ev.renderView();
         rl.addView(eventViewRoot);
-
-
-
-
-
     }
+
+    /**
+     * Hides the event viewer and brings back the Week View
+     */
     public void hideEvent(){
         rl.removeAllViews();
         rl.addView(latestView);
 
     }
+
+    /**
+     * Creates row i in order
+     * @param i the row to be created
+     * @return the created row
+     */
+
     private TableRow createRow(int i){
         TableRow tr = new TableRow(context);
         View txtCell = inflater.inflate(R.layout.textcell,null);
@@ -101,17 +115,19 @@ public class WeekCalendarView {
         tv.setText(i + ":00");
         tr.addView(tv);
         for (int j = 0; j < 7; j++) {
-            tr.addView(createCell(tr,i,j));
+            tr.addView(createCell(i,j));
         }
 
-
-
         return tr;
-
-
-
     }
-    private TextView createCell(TableRow tr,int row,int col){
+
+    /**
+     * Creates a cell in the table
+     * @param row The row in which the cell is to be added
+     * @param col The column in which the cell is to be added
+     * @return     The Cell, as a textView
+     */
+    private TextView createCell(int row,int col){
         View txtCell;
         int cellNo = ((row)*7)+(col+1);
         txtCell = inflater.inflate(R.layout.textcell,null);
@@ -122,6 +138,11 @@ public class WeekCalendarView {
         return tv;
 
     }
+
+    /**
+     * Updates the week view to show from certain dates
+     * @param dates The Dates which the view should update from
+     */
     public void updateView(WeekDates dates){
         latest = dates;
         String fromDate = dates.getThisMonday().get(Calendar.DAY_OF_MONTH)+"/" + (dates.getThisMonday().get(Calendar.MONTH)+1);
@@ -142,6 +163,10 @@ public class WeekCalendarView {
         renderEvents(events);
     }
 
+    /**
+     * Renders the events in the week view
+     * @param events the events to be rendered
+     */
     public void renderEvents(List<Event> events){
         clearTable();
         for(Event e : events){
@@ -202,6 +227,10 @@ public class WeekCalendarView {
             }
         }
     }
+
+    /**
+     * Clears the Week View Table
+     */
     private void clearTable(){
         for (int i = 1; i<=168;i++){
             TextView v = (TextView)tl.findViewWithTag(new WeekEventClickData(null,i));
