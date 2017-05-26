@@ -1,13 +1,12 @@
-package gruppnan.timeline.model;
+package gruppnan.timeline.view;
 
 import android.support.design.widget.TabLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TableLayout;
 
 import gruppnan.timeline.R;
-import gruppnan.timeline.controller.VerticalViewPager;
+import gruppnan.timeline.Utils.VerticalViewPager;
 
 /**
  * Created by carlo on 2017-05-26.
