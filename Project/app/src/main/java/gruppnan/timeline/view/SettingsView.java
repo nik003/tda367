@@ -27,7 +27,7 @@ import gruppnan.timeline.model.CourseContainer;
  * Created by Melina Andersson
  * The settings view
  */
-public class SettingsView implements ViewMVC {
+public class SettingsView{
 
     private View mRootView;
     private SearchView searchView;
@@ -187,7 +187,7 @@ public class SettingsView implements ViewMVC {
 
     }
 
-    @Override
+
     public View getRootView() {
         return mRootView;
     }

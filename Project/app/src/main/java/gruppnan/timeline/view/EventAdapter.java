@@ -1,15 +1,7 @@
-package gruppnan.timeline.controller;
+package gruppnan.timeline.view;
 
-import android.app.Activity;
 import android.content.Context;
-import android.os.Bundle;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,20 +11,20 @@ import android.widget.TextView;
 import com.github.clans.fab.FloatingActionButton;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
+
 
 import gruppnan.timeline.R;
+import gruppnan.timeline.controller.EventListener;
 import gruppnan.timeline.model.DeadlineEvent;
-import gruppnan.timeline.model.DefaultEvent;
 import gruppnan.timeline.model.Event;
 import gruppnan.timeline.model.EventInterface;
 
 
 
 /**
- * Created by Hannes on 15/05/2017.
+ * Created by Hannes
  * Adapter to show specific data from events in list view widget in CalendarFragment class.
+ * Used in CalendarFragment.
  */
 
 public class EventAdapter extends ArrayAdapter<Event> {
@@ -60,8 +52,10 @@ public class EventAdapter extends ArrayAdapter<Event> {
         final EventInterface eTmp = getItem(position);
         TextView eventName = (TextView) convertView.findViewById(R.id.eventNameTxt1);
         TextView eventType = (TextView) convertView.findViewById(R.id.typeTxt);
+
         editEventBtn = (FloatingActionButton) convertView.findViewById(R.id.editEventBtn);
         deleteEventBtn = (FloatingActionButton) convertView.findViewById(R.id.deleteEventBtn);
+        //editEventBtn.setImageResource(R.drawable.edit);
 
         editEventBtn.setOnClickListener(new EventListener(getContext(),eTmp));
         deleteEventBtn.setOnClickListener(new EventListener(getContext(),eTmp));

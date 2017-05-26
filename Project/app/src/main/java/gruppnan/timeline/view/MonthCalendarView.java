@@ -12,7 +12,8 @@ import com.github.clans.fab.FloatingActionButton;
 import gruppnan.timeline.R;
 
 /**
- * Created by Hannes on 18/05/2017.
+ * Created by Hannes
+ * View for CalendarFragment. Sets up calendarView, buttons and ListView with created events.
  */
 
 public class MonthCalendarView {
@@ -22,7 +23,7 @@ public class MonthCalendarView {
     private CalendarView calendarView;
     private View view;
     private ListView eventListView;
-    //private Long dateLong;
+
 
 
     public MonthCalendarView(LayoutInflater layoutInflater, ViewGroup container){
@@ -37,7 +38,7 @@ public class MonthCalendarView {
         eventListView = (ListView) view.findViewById(R.id.eventListView);
         weekViewButton = (Button) view.findViewById(R.id.weekViewBtn);
         calendarView = (CalendarView) view.findViewById(R.id.calendarView);
-        //dateLong = calendarView.getDate();
+
     }
 
     public FloatingActionButton getEventFab(){

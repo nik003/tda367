@@ -20,7 +20,8 @@ import gruppnan.timeline.model.EventInterface;
 import gruppnan.timeline.view.AddEventView;
 
 /**
- * Created by Hannes on 25/05/2017.
+ * Created by Hannes
+ * Helper class that handles onClickListeners for buttons in EventAdapter class
  */
 
 public class EventListener implements OnClickListener {
