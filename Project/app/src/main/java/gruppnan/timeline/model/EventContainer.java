@@ -9,7 +9,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Singleton Class that handles and stores the created events.
+ * Created by Hannes
+ * Singleton Class that handles and stores the different types of created events. Uses facade
+ * pattern to simplify creation of said events.
+ * Used in  classes to create events.
  */
 
 public class EventContainer {
@@ -35,27 +38,26 @@ public class EventContainer {
         return eventContainer;
     }
 
-    public DefaultEvent createDefaultEvent(Course course, String name, String desc, Date startDate, Date endDate){
+    public void createDefaultEvent(Course course, String name, String desc, Date startDate, Date endDate){
 
         DefaultEvent de = new DefaultEvent(course,name,desc,startDate,endDate);
         addEvent(de);
-        return de;
+
     }
-    public DeadlineEvent createDeadlineEvent(Course course, String name, String desc, Date endDate, boolean isDone){
+    public void createDeadlineEvent(Course course, String name, String desc, Date endDate, boolean isDone){
         DeadlineEvent de = new DeadlineEvent(course,name,desc,endDate,isDone);
         addEvent(de);
-        return de;
     }
 
 
-    public DeadlineEvent createDeadlineEvent(Course course, String name, Date endDate, boolean isDone) {
+    public void createDeadlineEvent(Course course, String name, Date endDate, boolean isDone) {
         DeadlineEvent de = new DeadlineEvent(course, name, endDate, isDone);
         addEvent(de);
-        return de;
+
     }
 
     /** adds event instance to map, gives key and increments key for next entry */
-    public void addEvent(Event event){
+    private void addEvent(Event event){
         if (eventMap.containsValue(event)){
             //TODO make this visible on view where user adds event
 
@@ -98,7 +100,7 @@ public class EventContainer {
     }
 
 
-
+    /** returns array of events within specified time selection */
     public ArrayList<Event> getEventsByDates(Calendar start, Calendar end){
         Calendar date = Calendar.getInstance();
         ArrayList<Event> datesEvents = new ArrayList<>();

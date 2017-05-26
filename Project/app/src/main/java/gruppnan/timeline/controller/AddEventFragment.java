@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TimePicker;
 
 import java.util.Calendar;
@@ -18,8 +19,14 @@ import gruppnan.timeline.model.Course;
 import gruppnan.timeline.model.EventContainer;
 import gruppnan.timeline.view.AddEventView;
 
+/**
+ * Created by Hannes
+ * Controller class that makes it possible to create events. Initializes AddEventView and gets user
+ * input from said view class.
+ */
 
-public class AddEventFragment extends Fragment implements TimePickerDialog.OnTimeSetListener, View.OnClickListener{
+public class AddEventFragment extends Fragment implements TimePickerDialog.OnTimeSetListener,
+        View.OnClickListener, AdapterView.OnItemSelectedListener {
 
     private EventContainer eventContainer;
     private AddEventView addEventView;
@@ -37,7 +44,7 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
 
     //TODO fix correct course implementation
     private Course course = new Course("course1", null);
-    private TimePickerDialog endTimePicker,startTimePicker;
+
 
     public AddEventFragment() {
         // Required empty public constructor
@@ -71,17 +78,16 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
 
 
 
-
+    /** removes this fragment which is placed on top of CalendarFragment and MonthCalendarView*/
     private void removeFragment(){
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         fragmentTransaction.remove(this);
         fragmentTransaction.commit();
+
+
     }
-
-
-
 
 
     /** get user choices from previous fragment */
@@ -98,14 +104,11 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
             endHour = getArguments().getInt("endHour");
             endMinute = getArguments().getInt("endMinute");
 
-
             startHour = getArguments().getInt("startHour");
             startMinute = getArguments().getInt("startMinute");
 
             calendar.set(year,month,day);
             yearMonthDay = calendar.getTime();
-
-
         }else{
 
             yearMonthDay = new Date(yearMonthDayLong);
@@ -113,7 +116,7 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
 
     }
 
-    /** saves event time that user chooses with timePicker widget */
+    /** saves time for event that user chooses with timePicker widget located in MonthCalendarView */
     @Override
     public void onTimeSet(TimePicker view, int hour, int minute) {
 
@@ -134,12 +137,11 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
     @Override
     public void onClick(View view) {
         if (view.equals(addEventView.getStartTimeBtn())){
-            startTimePicker = addEventView.getStartTimePicker();
-            startTimePicker.show();
+            addEventView.getStartTimePicker().show();
+
             addEventView.setWhichButton(addEventView.getStartTimeBtn());
         }else if (view.equals(addEventView.getEndTimeBtn())){
-            endTimePicker = addEventView.getEndTimePicker();
-            endTimePicker.show();
+            addEventView.getEndTimePicker().show();
             addEventView.setWhichButton(addEventView.getEndTimeBtn());
         }else if (view.equals(addEventView.getSaveEventBtn())){
             getEventInfo();
@@ -184,6 +186,16 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
         calendar.set(year,month,day, endHour, endMinute);
         completeEndDate = calendar.getTime();
 
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
 }
