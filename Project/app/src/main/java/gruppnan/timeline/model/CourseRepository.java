@@ -27,7 +27,7 @@ public class CourseRepository {
     public Course getCourse(String courseID){
         for(Course c : courses){
             if(c.getCourseID().equals(courseID))
-                Log.d("Searchcourse", courseID);
+
                 return c;
         }
         return null;
