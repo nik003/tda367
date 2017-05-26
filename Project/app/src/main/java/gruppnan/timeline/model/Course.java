@@ -5,7 +5,7 @@ package gruppnan.timeline.model;
 public class Course implements CourseInterface{
 
     private String name, courseID;
-    private Timer week, session;  //TODO TO BE USED?
+    private TimerStopWatchModel week, session;  //TODO TO BE USED?
     private int weeklyGoal;
     public Course(){}
 

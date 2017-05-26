@@ -15,6 +15,7 @@ import gruppnan.timeline.model.Event;
 
 /**
  * Created by Nikolai on 2017-05-25.
+ * The creation of a view that shows an event.
  */
 
 public class EventViewer {
@@ -29,6 +30,11 @@ public class EventViewer {
         this.context = context;
         this.event = event;
     }
+
+    /**
+     *
+     * Renders the informational view for an event
+     */
     public void renderView(){
 
         Button btn = (Button)root.findViewById(R.id.eventViewBack);

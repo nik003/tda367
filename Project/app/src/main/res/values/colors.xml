@@ -9,5 +9,7 @@
     <color name="timelineColor">#80bbcc</color>
     <color name="timelineColor2">#41879b</color>
     <color name="white">#ffffff</color>
+    <color name="green">#006600</color>
+    <color name="lightGreen">#B2D1B2</color>
 
 </resources>

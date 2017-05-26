@@ -1,20 +1,19 @@
 package gruppnan.timeline.controller;
 
-import android.support.design.widget.TabLayout;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import gruppnan.timeline.R;
+import gruppnan.timeline.view.TimerStopWatchMainView;
 
-public class TimerMainFragment extends Fragment {
+public class TimerStopWatchMainFragment extends Fragment {
 
+
+    private TimerStopWatchMainView timerStopWatchMainView;
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -25,24 +24,34 @@ public class TimerMainFragment extends Fragment {
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
-    private ViewPager mViewPager;
+
+    private int sectionNumber;
+
+    public TimerStopWatchMainFragment() {
+
+    }
+
+    public static TimerStopWatchMainFragment newInstance(int sectionNumber) {
+        TimerStopWatchMainFragment fragment = new TimerStopWatchMainFragment();
+        Bundle args = new Bundle();
+        args.putInt("sectionNumber", sectionNumber);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_timer_main, container, false);
+        timerStopWatchMainView = new TimerStopWatchMainView(inflater, container);
 
-        mSectionsPagerAdapter = new TimerMainFragment.SectionsPagerAdapter(getFragmentManager());
+        sectionNumber = getArguments().getInt("sectionNumber");
+
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) view.findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
+        timerStopWatchMainView.getmViewPager().setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(mViewPager);
+        timerStopWatchMainView.getTabLayout().setupWithViewPager(timerStopWatchMainView.getmViewPager());
 
-        return view;
+        return timerStopWatchMainView.getView();
     }
 
 
@@ -60,19 +69,17 @@ public class TimerMainFragment extends Fragment {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return TimerFragment.newInstance(0);
+                    return TimerStopWatchHolderFragment.newInstance(0, "course1");
                 case 1:
-                    return TimerFragment.newInstance(1);
-                case 2:
-                    return KeypadFragment.newInstance();
+                    return TimerStopWatchHolderFragment.newInstance(3, "course2");
             }
             return null;
         }
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 3;
+            // Show 2 total pages.
+            return 2;
         }
 
         @Override
@@ -82,8 +89,6 @@ public class TimerMainFragment extends Fragment {
                     return "Course 1";
                 case 1:
                     return "Course 2";
-                case 2:
-                    return "Course 3";
             }
             return null;
         }

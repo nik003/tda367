@@ -24,8 +24,8 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="230dp"
         android:layout_height="230dp"
-        android:progressDrawable="@drawable/circular"
-        android:background="@drawable/circular_background"
+        android:progressDrawable="@drawable/circular_background"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"/>
 
@@ -52,20 +52,5 @@
         android:adjustViewBounds="true"
         android:src="@drawable/restart"
         android:background="@android:color/transparent"/>
-
-    <ImageButton
-        android:id="@+id/editButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:scaleType="fitCenter"
-        android:adjustViewBounds="true"
-        android:src="@drawable/edit_timer"
-        android:background="@android:color/transparent"
-        android:layout_alignTop="@+id/playPauseButton"
-        android:layout_alignBottom="@id/playPauseButton"
-        android:layout_marginStart="270dp" />
-
-
-
 
 </RelativeLayout>
