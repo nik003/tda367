@@ -16,7 +16,7 @@ import gruppnan.timeline.controller.CardTimelineFragment;
  * Created by Melina Andersson
  * The view for the detailed cards on timeline
  */
-public class CardTimelineView implements ViewMVC{
+public class CardTimelineView{
 
     View mRootView;
     private EditText titleText, descriptionText, hourText, minuteText;
@@ -89,7 +89,6 @@ public class CardTimelineView implements ViewMVC{
     }
 
 
-    @Override
     public View getRootView() {
         return mRootView;
     }

@@ -18,9 +18,9 @@ import gruppnan.timeline.model.DeadlineEventSet;
 
 /**
  * Created by Melina Andersson
- * The Timeline View
+ * The Timeline View used by ContentTimeLineFragment
  */
-public class ContentTimelineView implements ViewMVC  {
+public class ContentTimelineView  {
 
 
     private RecyclerView mRecyclerView;
@@ -77,7 +77,6 @@ public class ContentTimelineView implements ViewMVC  {
         return mAdapter;
     }
 
-    @Override
     public View getRootView() {
         return mRootView;
     }

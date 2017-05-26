@@ -38,23 +38,22 @@ public class EventContainer {
         return eventContainer;
     }
 
-    public DefaultEvent createDefaultEvent(Course course, String name, String desc, Date startDate, Date endDate){
+    public void createDefaultEvent(Course course, String name, String desc, Date startDate, Date endDate){
 
         DefaultEvent de = new DefaultEvent(course,name,desc,startDate,endDate);
         addEvent(de);
-        return de;
+
     }
-    public DeadlineEvent createDeadlineEvent(Course course, String name, String desc, Date endDate, boolean isDone){
+    public void createDeadlineEvent(Course course, String name, String desc, Date endDate, boolean isDone){
         DeadlineEvent de = new DeadlineEvent(course,name,desc,endDate,isDone);
         addEvent(de);
-        return de;
     }
 
 
-    public DeadlineEvent createDeadlineEvent(Course course, String name, Date endDate, boolean isDone) {
+    public void createDeadlineEvent(Course course, String name, Date endDate, boolean isDone) {
         DeadlineEvent de = new DeadlineEvent(course, name, endDate, isDone);
         addEvent(de);
-        return de;
+
     }
 
     /** adds event instance to map, gives key and increments key for next entry */

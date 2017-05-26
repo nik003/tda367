@@ -7,12 +7,14 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.CalendarView;
 import java.util.ArrayList;
 import java.util.Calendar;
 import gruppnan.timeline.R;
 import gruppnan.timeline.model.Event;
 import gruppnan.timeline.model.EventContainer;
+import gruppnan.timeline.view.EventAdapter;
 import gruppnan.timeline.view.MonthCalendarView;
 
 
@@ -79,6 +81,7 @@ public class CalendarFragment extends Fragment {
             monthCalendarView.getEventListView().setAdapter(adapter);
         }
     };
+
 
 
 

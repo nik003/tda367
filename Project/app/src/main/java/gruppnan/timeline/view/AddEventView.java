@@ -61,20 +61,17 @@ public class AddEventView implements View.OnFocusChangeListener {
         saveEventBtn = (Button) v.findViewById(R.id.saveEventBtn);
         startTimePicker = new TimePickerDialog(fragment.getActivity(), fragment,12,00,true);
         endTimePicker = new TimePickerDialog(fragment.getActivity(), fragment, 13,00,true);
-
-
-        saveEventBtn.setOnClickListener(fragment);
-        startTimeBtn.setOnClickListener(fragment);
-        endTimeBtn.setOnClickListener(fragment);
-
-
-        courseSpinner = (Spinner) v.findViewById(R.id.courseSpinner);
-        courseSpinner.setPrompt("Choose course");
-
         titleTxt= (TextView) v.findViewById(R.id.eventTitleLabel);
         nameTxt = (TextView) v.findViewById(R.id.eventNameTxt);
         descTxt = (TextView) v.findViewById(R.id.descTxt);
         startTimeLbl = (TextView) v.findViewById(R.id.startTimeLbl);
+        courseSpinner = (Spinner) v.findViewById(R.id.courseSpinner);
+
+        saveEventBtn.setOnClickListener(fragment);
+        startTimeBtn.setOnClickListener(fragment);
+        endTimeBtn.setOnClickListener(fragment);
+        //courseSpinner.setOnItemSelectedListener(fragment);
+
         nameTxt.setOnFocusChangeListener(this);
         descTxt.setOnFocusChangeListener(this);
     }
@@ -151,6 +148,9 @@ public class AddEventView implements View.OnFocusChangeListener {
     }
     public TextView getDescTxt(){
         return descTxt;
+    }
+    public Spinner getCourseSpinner(){
+        return courseSpinner;
     }
 
     public String getEventName(){

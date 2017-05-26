@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TimePicker;
 
 import java.util.Calendar;
@@ -24,7 +25,8 @@ import gruppnan.timeline.view.AddEventView;
  * input from said view class.
  */
 
-public class AddEventFragment extends Fragment implements TimePickerDialog.OnTimeSetListener, View.OnClickListener{
+public class AddEventFragment extends Fragment implements TimePickerDialog.OnTimeSetListener,
+        View.OnClickListener, AdapterView.OnItemSelectedListener {
 
     private EventContainer eventContainer;
     private AddEventView addEventView;
@@ -82,6 +84,8 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
 
         fragmentTransaction.remove(this);
         fragmentTransaction.commit();
+
+
     }
 
 
@@ -181,6 +185,16 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
         calendar.set(year,month,day, endHour, endMinute);
         completeEndDate = calendar.getTime();
 
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
 }
