@@ -64,7 +64,9 @@ public class EventSorter {
         for(Course c : CourseContainer.getCourseContainer().getAllCourses()) {
             String courseID = c.getCourseID();
             for (DeadlineEvent item : unsortedEvents) {
-                if (item.getCourse().getCourseID().equals(courseID)) {
+                if(item.getCourse() == null){
+                    //Do nothing - The deadline has no course and should not be displayed on timeline
+                } else if (item.getCourse().getCourseID().equals(courseID)) {
                     courseEvents1.add(item);
                 } else {
                     courseEvents2.add(item);
