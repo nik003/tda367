@@ -16,8 +16,10 @@ import java.util.HashSet;
 import java.util.List;
 
 import gruppnan.timeline.R;
+import gruppnan.timeline.controller.CourseSystemInterface;
 import gruppnan.timeline.controller.DialogOnClickListener;
 import gruppnan.timeline.controller.SettingsFragment;
+import gruppnan.timeline.controller.TimeEditHandler;
 import gruppnan.timeline.model.Course;
 import gruppnan.timeline.model.CourseContainer;
 
@@ -158,7 +160,8 @@ public class SettingsView implements ViewMVC {
 
         List<String> searchMatches = new ArrayList<>();
         //TODO Init list of searchmatches here - you have search string as parameter
-
+        CourseSystemInterface csi = new TimeEditHandler();
+        searchMatches  = csi.searchCourses(search);
         final ListView listView = (ListView) cView.findViewById(R.id.course_list);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(inflater.getContext(),android.R.layout.simple_list_item_1,searchMatches);
         listView.setAdapter(adapter);

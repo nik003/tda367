@@ -68,7 +68,7 @@ public class EventTest {
         container.addEvent(c);
         System.out.println(container.getEventMap().size());
         assertTrue(container.getEventMap().size()==3);
-        container.removeEvent(c);
+        //container.removeEvent(c);
         assertTrue(container.getEventMap().size()==2);
 
     }

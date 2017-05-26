@@ -12,7 +12,7 @@ import gruppnan.timeline.model.Event;
 import gruppnan.timeline.view.EventViewer;
 import gruppnan.timeline.view.WeekCalendarView;
 
-import static gruppnan.timeline.model.DateCalculator.getCurrentWeekDates;
+import static gruppnan.timeline.Utils.DateCalculator.getCurrentWeekDates;
 
 /**
  * Created by Nikolai on 2017-05-25.

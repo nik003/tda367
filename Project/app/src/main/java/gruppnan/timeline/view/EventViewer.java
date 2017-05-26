@@ -48,7 +48,8 @@ public class EventViewer {
             t.setText(event.getEndDate().toString());
         }
         t =(TextView) root.findViewById(R.id.eventCourseName);
-        t.setText(event.getCourse().getCourseID()+ " "+event.getCourse().getName());
+        if(event.getCourse()!=null)
+            t.setText(event.getCourse().getCourseID()+ " "+event.getCourse().getName());
 
     }
 }
