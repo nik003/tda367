@@ -220,7 +220,11 @@ public class WeekCalendarView {
                 if (cell != null) {
                     WeekEventClickData cellData =(WeekEventClickData)cell.getTag();
                     cellData.setEvent(e);
-                    cell.setBackgroundResource(R.color.cellcolor);
+                    if(e.getCourse()!=null) {
+                        cell.setText(e.getCourse().getCourseID());
+                    }else{
+                        cell.setBackgroundResource(R.color.cellcolor);
+                    }
 
                     cell.setTag(cellData);
                 }

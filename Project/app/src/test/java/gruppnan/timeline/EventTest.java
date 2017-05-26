@@ -20,7 +20,7 @@ import static org.junit.Assert.assertTrue;
 
 
 public class EventTest {
-
+    /*
     private EventContainer container = EventContainer.getEventContainer();
     private SimpleDateFormat dateParser = new SimpleDateFormat("dd/MM/yyyy HH:mm");
     private TimeEditHandler th = new TimeEditHandler();
@@ -44,7 +44,7 @@ public class EventTest {
         assertEquals("tenta", container.getEventMap().get(1).getName());
     }
 
-    /** test if instances are stored correctly in the different maps*/
+    test if instances are stored correctly in the different maps
     @Test
     public void testEventMaps(){
         Event e = container.createDeadlineEvent(null, "tenta","Examinations for biology", firstJan,false);
@@ -53,7 +53,7 @@ public class EventTest {
         container.addEvent(k);
         Event c = container.createDefaultEvent(null,"lecture","some random lecture",tenthFeb, tenthFeb);
         container.addEvent(c);
-        //assertTrue(container.getDeadlineEventMap().size()==2);
+        assertTrue(container.getDeadlineEventMap().size()==2);
         assertTrue(container.getEventMap().size()==3);
         assertTrue(container.getDefaultEventMap().size()==1);
     }
@@ -103,5 +103,7 @@ public class EventTest {
         th.getAddEvents(al.get(0),dc,d);
         assertTrue(container.getDefaultEventMap().size()>7);
 
+
     }
+    */
 }

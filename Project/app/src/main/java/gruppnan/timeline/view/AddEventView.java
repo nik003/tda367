@@ -24,7 +24,7 @@ import gruppnan.timeline.controller.AddEventFragment;
  * AddEventFragment which functions as a controller class.
  */
 
-public class AddEventView implements View.OnFocusChangeListener {
+public class AddEventView{
 
 
     private View view;
@@ -32,23 +32,19 @@ public class AddEventView implements View.OnFocusChangeListener {
     private TextView titleTxt, nameTxt, descTxt, startTimeLbl;
     private Button startTimeBtn, endTimeBtn, saveEventBtn, whichButton;
     private Spinner courseSpinner;
-    private AddEventFragment fragment;
+    //private AddEventFragment fragment;
     private TimePickerDialog startTimePicker, endTimePicker;
+    private Context context;
+    private TimePickerDialog.OnTimeSetListener timeSetListener;
 
 
-    public AddEventView(LayoutInflater layoutInflater, ViewGroup container, AddEventFragment fragment){
+    public AddEventView(LayoutInflater layoutInflater, ViewGroup container, TimePickerDialog.OnTimeSetListener timeSetListener){
         view = layoutInflater.inflate(R.layout.fragment_add_event,container,false);
-        this.fragment = fragment;
-        fragment.getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-        getData();
+
+        this.timeSetListener = timeSetListener;
+        this.context = layoutInflater.getContext();
         setUpView(view);
-        customizeFragment(eventType);
 
-        setUpText();
-    }
-
-    private void getData(){
-        eventType = fragment.getArguments().getString("type");
     }
 
 
@@ -59,36 +55,31 @@ public class AddEventView implements View.OnFocusChangeListener {
         startTimeBtn = (Button) v.findViewById(R.id.startTimeBtn);
         endTimeBtn = (Button) v.findViewById(R.id.endTimeBtn);
         saveEventBtn = (Button) v.findViewById(R.id.saveEventBtn);
-        startTimePicker = new TimePickerDialog(fragment.getActivity(), fragment,12,00,true);
-        endTimePicker = new TimePickerDialog(fragment.getActivity(), fragment, 13,00,true);
+        startTimePicker = new TimePickerDialog(context, timeSetListener,12,00,true);
+        endTimePicker = new TimePickerDialog(context, timeSetListener, 13,00,true);
         titleTxt= (TextView) v.findViewById(R.id.eventTitleLabel);
         nameTxt = (TextView) v.findViewById(R.id.eventNameTxt);
         descTxt = (TextView) v.findViewById(R.id.descTxt);
         startTimeLbl = (TextView) v.findViewById(R.id.startTimeLbl);
         courseSpinner = (Spinner) v.findViewById(R.id.courseSpinner);
 
-        saveEventBtn.setOnClickListener(fragment);
-        startTimeBtn.setOnClickListener(fragment);
-        endTimeBtn.setOnClickListener(fragment);
-        //courseSpinner.setOnItemSelectedListener(fragment);
 
-        nameTxt.setOnFocusChangeListener(this);
-        descTxt.setOnFocusChangeListener(this);
     }
 
-    private void setUpText(){
-        String name = fragment.getArguments().getString("name");
+    public void setUpText(String name, String description, String eventType){
+
         if (name==null){
             nameTxt.setText("");
         }else{
             nameTxt.setText(name);
         }
-        String desc = fragment.getArguments().getString("description");
-        if (desc ==null){
+        if (description ==null){
             descTxt.setText("");
         }else{
-            descTxt.setText(desc);
+            descTxt.setText(description);
         }
+
+        customizeFragment(eventType);
     }
 
     /** set up different components depending on what type of event is chosen */
@@ -104,20 +95,6 @@ public class AddEventView implements View.OnFocusChangeListener {
             startTimeBtn.setVisibility(View.INVISIBLE);
         }
     }
-
-    /** disengages from UI elements when user changes focus */
-    @Override
-    public void onFocusChange(View v, boolean hasFocus) {
-        if (!hasFocus){
-            hideKeyboard(v);
-        }
-    }
-    private void hideKeyboard(View view){
-        InputMethodManager inputMethodManager =(InputMethodManager)fragment.getActivity().getSystemService(fragment.getActivity().INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
-    }
-
-
 
 
     /** getters for UI elements */

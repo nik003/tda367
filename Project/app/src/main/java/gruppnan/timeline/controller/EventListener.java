@@ -65,6 +65,10 @@ public class EventListener implements OnClickListener {
     private void getEventInfo(){
         bundle.putString("name", eTmp.getName());
         bundle.putString("description", eTmp.getDescription());
+        if (eTmp.getCourse()!=null){
+            bundle.putString("course", eTmp.getCourse().getCourseID());
+        }
+
         Date endDate = eTmp.getEndDate();
         Date startDate = eTmp.getStartDate();
         calendar = Calendar.getInstance();
