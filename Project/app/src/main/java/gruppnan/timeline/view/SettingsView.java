@@ -78,12 +78,10 @@ public class SettingsView{
      */
     public void initCourseSpinner(){
         courseSpinner.setPrompt("Choose course");
-        coursesInSpinner = new String[2];
-        int i=0;
+        List<String> coursesInSpinner = new ArrayList<>();
         for(Course c : CourseContainer.getCourseContainer().getAllCourses()) {
             allCourses.add(c);
-            coursesInSpinner[i] = c.getCourseID();
-            i++;
+            coursesInSpinner.add(c.getCourseID());
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(mRootView.getContext(), android.R.layout.simple_spinner_item, coursesInSpinner);
         courseSpinner.setAdapter(adapter);
@@ -162,12 +160,14 @@ public class SettingsView{
         //TODO Init list of searchmatches here - you have search string as parameter
         CourseSystemInterface csi = new TimeEditHandler();
         searchMatches  = csi.searchCourses(search);
-        final ListView listView = (ListView) cView.findViewById(R.id.course_list);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(inflater.getContext(),android.R.layout.simple_list_item_1,searchMatches);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(fragment);
+        if(searchMatches!=null) {
+            final ListView listView = (ListView) cView.findViewById(R.id.course_list);
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(inflater.getContext(), android.R.layout.simple_list_item_1, searchMatches);
+            listView.setAdapter(adapter);
+            listView.setOnItemClickListener(fragment);
 
-        openCourseDialog(cView);
+            openCourseDialog(cView);
+        }
     }
 
     /**
