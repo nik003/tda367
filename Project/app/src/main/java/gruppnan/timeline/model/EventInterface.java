@@ -4,6 +4,9 @@ import java.util.Date;
 
 /**
  * @author Melina Andersson
+ * Used By: EventAdapter, EvetnListener,EventAdapterView, Event
+ * Uses: Course
+ *
  */
 
 public interface EventInterface {

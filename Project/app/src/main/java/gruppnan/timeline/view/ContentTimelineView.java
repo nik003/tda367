@@ -15,7 +15,7 @@ import gruppnan.timeline.model.CourseRepository;
  * The Timeline View
  *
  * Used by: ContentTimeLineFragment
- * Uses: DeadlineEventSet, EventSorter, CourseRepository
+ * Uses: CourseRepository
  */
 public class ContentTimelineView  {
 

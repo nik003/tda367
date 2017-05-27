@@ -13,7 +13,7 @@ import static android.content.DialogInterface.BUTTON_POSITIVE;
  * Help class as listener for the different dialogs in settings view - to separate which dialog is clicked
  *
  * Used by: SettingsFragment
- * Uses: SettingsFragment
+ * Uses: SettingsFragment,TimeEditHandler,CourseSystemInterface
  */
 public class DialogOnClickListener implements DialogInterface.OnClickListener {
     private int id;

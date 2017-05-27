@@ -8,7 +8,8 @@ import java.util.Date;
  * @author Melina Andersson
  * Model for Deadline events
  *
- * Used by: ContentTimelineFragment, CardTimelineFragment
+ * Used by: ContentTimelineFragment, CardTimelineFragment,EventSorter,CardListener,ItemListAdapter,EventLsitener,DeadlineEventSet,EventAdapterView
+ * Uses:Course,Event
  *
  */
 public class DeadlineEvent extends Event{
@@ -82,9 +83,6 @@ public class DeadlineEvent extends Event{
         this.description = description;
     }
 
-    public void setEndDate(Date endDate){
-        this.endDate = new Date(endDate.getTime());
-    }
 
     public void setHour(int hour){
 

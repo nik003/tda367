@@ -16,6 +16,8 @@ import gruppnan.timeline.model.EventInterface;
 
 /**
  * Created by Nikolai on 2017-05-27.
+ * Used by: EventAdapter
+ * Uses:DeadlineEvent,EventInterface,Event
  */
 
 public class EventAdapterView {

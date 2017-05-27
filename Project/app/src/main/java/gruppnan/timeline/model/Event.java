@@ -46,6 +46,9 @@ public abstract class Event implements EventInterface{
     public String getName(){
         return this.name;
     }
+    public void setEndDate(Date endDate){
+        this.endDate = (Date) endDate.clone();
+    }
 
     public Course getCourse(){
         return this.course;

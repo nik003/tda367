@@ -21,7 +21,7 @@ import gruppnan.timeline.controller.AddEventFragment;
 /**
  * Created by Hannes
  * Sets up view with components so user can enter wanted settings for creation of event. Used by
- * AddEventFragment which functions as a controller class.
+ * Used By: AddEventFragment
  */
 
 public class AddEventView{
