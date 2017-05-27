@@ -31,12 +31,14 @@ public class EventAdapter extends ArrayAdapter<Event> {
 
     private int layoutId;
     private FloatingActionButton editEventBtn, deleteEventBtn;
+    private View.OnClickListener listener;
 
 
 
     public EventAdapter(@NonNull Context context, int layoutResourceId, ArrayList<Event> events) {
         super(context, layoutResourceId, events);
         this.layoutId = layoutResourceId;
+
 
     }
 
@@ -55,7 +57,6 @@ public class EventAdapter extends ArrayAdapter<Event> {
 
         editEventBtn = (FloatingActionButton) convertView.findViewById(R.id.editEventBtn);
         deleteEventBtn = (FloatingActionButton) convertView.findViewById(R.id.deleteEventBtn);
-        //editEventBtn.setImageResource(R.drawable.edit);
 
         editEventBtn.setOnClickListener(new EventListener(getContext(),eTmp));
         deleteEventBtn.setOnClickListener(new EventListener(getContext(),eTmp));

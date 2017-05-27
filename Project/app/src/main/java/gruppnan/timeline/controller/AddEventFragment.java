@@ -24,6 +24,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
+import gruppnan.timeline.R;
 import gruppnan.timeline.model.Course;
 import gruppnan.timeline.model.CourseContainer;
 import gruppnan.timeline.model.EventContainer;
@@ -123,11 +124,10 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
 
     /** removes this fragment which is placed on top of CalendarFragment and MonthCalendarView*/
     private void removeFragment(){
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.remove(this).commit();
 
-        fragmentTransaction.remove(this);
-        fragmentTransaction.commit();
     }
 
     /** list for course spinner */
@@ -210,7 +210,7 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
 
         }
     }
-
+    /** uses eventContainer to create new event/deadline. Closes fragment if successful*/
     private void createEvent(){
         if (eventName.equals("")){
             addEventView.userNeedsToEnterName();
