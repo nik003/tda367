@@ -9,7 +9,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Hannes
+ * @author Hannes
+ * Revised by Nikolai
  * Singleton Class that handles and stores the different types of created events. Uses facade
  * pattern to simplify creation of said events.
  * Used By:EventSorter,CalendarFragment,TimeEditHandler,AddEventFragment,EventListener,CardTimelineFragment,WeekCalendarView,MainActivity

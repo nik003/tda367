@@ -17,12 +17,14 @@ import gruppnan.timeline.model.Event;
 import gruppnan.timeline.model.EventRepository;
 
 /**
- * Created by Hannes on 27/05/2017.
+ * @author Hannes
+ * This class tests EventRepository as well as the different Event classes as
+ * EventRepository uses these classes.
  */
 
 public class EventRepositoryTest {
 
-    private int i =0;
+
     private EventRepository eventRepo;
     private Course course;
     private Date date1,date2;

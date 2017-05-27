@@ -48,6 +48,7 @@ public class CalendarFragment extends Fragment {
             if(container != null){
                 container.removeAllViews();
             }
+
             monthCalendarView = new MonthCalendarView(inflater,container);
         dateLong= monthCalendarView.getCalendarView().getDate();
         addListeners();
