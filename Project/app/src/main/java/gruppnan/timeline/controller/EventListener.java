@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -42,7 +43,10 @@ public class EventListener implements OnClickListener {
             getEventInfo();
             changeFragment();
         }else if (view.getId() == R.id.deleteEventBtn){
+
+            Toast.makeText(context, "Event deleted", Toast.LENGTH_SHORT).show();
             eventRepository.removeEvent(eTmp.getID());
+
         }
     }
 

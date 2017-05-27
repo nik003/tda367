@@ -21,13 +21,12 @@ import gruppnan.timeline.model.Event;
 public class EventViewer {
     private LinearLayout root;
     private View.OnClickListener onCl;
-    private Context context;
     private Event event;
 
-    public EventViewer(LinearLayout root, View.OnClickListener onCl, Context context , Event event) {
+    public EventViewer(LinearLayout root, View.OnClickListener onCl , Event event) {
         this.root = root;
         this.onCl = onCl;
-        this.context = context;
+
         this.event = event;
     }
 

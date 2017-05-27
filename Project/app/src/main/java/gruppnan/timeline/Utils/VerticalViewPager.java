@@ -51,10 +51,10 @@ public class VerticalViewPager extends ViewPager {
     }
 
 
-    private class VerticalViewTransformer implements PageTransformer {
+    private static class VerticalViewTransformer implements PageTransformer {
 
         @Override
-        public void transformPage(View page, float position) {
+        public void transformPage(View page, float position) { //TODO CARLOS
 
             if (position < -1) { // [-Infinity,-1)
                 // This page is way off-screen to the left.

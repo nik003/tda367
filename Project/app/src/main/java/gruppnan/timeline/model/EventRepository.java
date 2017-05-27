@@ -59,7 +59,7 @@ public class EventRepository {
     /** adds event instance to map, gives key and increments key for next entry */
     private void addEvent(Event event){
         if (eventMap.containsValue(event)){
-            //TODO make this visible on view where user adds event
+
 
         }else{
             eventMap.put(nrOfEvents, event);

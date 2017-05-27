@@ -20,14 +20,18 @@ import gruppnan.timeline.model.EventInterface;
 
 public class EventAdapterView {
     private FloatingActionButton editEventBtn, deleteEventBtn;
+
+
     private int layoutId;
     private Context context;
     private ViewGroup parent;
+
 
     public EventAdapterView(int layoutId,Context context, ViewGroup parent){
         this.layoutId = layoutId;
         this.parent = parent;
         this.context = context;
+
 
     }
 
@@ -43,7 +47,6 @@ public class EventAdapterView {
 
         editEventBtn = (FloatingActionButton) convertView.findViewById(R.id.editEventBtn);
         deleteEventBtn = (FloatingActionButton) convertView.findViewById(R.id.deleteEventBtn);
-        //editEventBtn.setImageResource(R.drawable.edit);
 
         editEventBtn.setOnClickListener(onCl);
         deleteEventBtn.setOnClickListener(onCl);
