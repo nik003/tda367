@@ -9,12 +9,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import gruppnan.timeline.R;
-import gruppnan.timeline.model.CourseContainer;
+import gruppnan.timeline.model.CourseRepository;
 import gruppnan.timeline.view.ContentTimelineView;
 
 /**
  * Created by Melina Andersson
  * Controlls the timeline view
+ *
+ * Used by: MainActivity
+ * Uses: ContentTimelineView, CourseRepository
  */
 public class ContentTimelineFragment extends Fragment implements Button.OnClickListener{
 
@@ -24,11 +27,12 @@ public class ContentTimelineFragment extends Fragment implements Button.OnClickL
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        contentTimelineView = new ContentTimelineView(inflater,container,this);
+        contentTimelineView = new ContentTimelineView(inflater,container);
 
-        if(!CourseContainer.getCourseContainer().getAllCourses().isEmpty()){
-            //Update view
+        if(!CourseRepository.getCourseRepository().getAllCourses().isEmpty()){
             contentTimelineView.getAdapter().notifyDataSetChanged();
+        } else {
+            showGuideToAddCourses();
         }
 
         return contentTimelineView.getRootView();
@@ -39,6 +43,14 @@ public class ContentTimelineFragment extends Fragment implements Button.OnClickL
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+    }
+
+
+    /**
+     * Guides the user to settings if no course yet is added
+     */
+    public void showGuideToAddCourses(){
+        contentTimelineView.getButton().setOnClickListener(this);
     }
 
     /**

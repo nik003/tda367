@@ -13,15 +13,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import gruppnan.timeline.R;
-import gruppnan.timeline.model.EventContainer;
 
 /**
  * Created by Melina Andersson
+ *
+ * Used by: None
+ * Uses: ContentTimelineFragment, CalendarFragment, TimerStopWatchMainFragment, SettingsFragment
  */
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
-    private EventContainer eventContainer = EventContainer.getEventContainer();
+    //private EventContainer eventContainer = EventContainer.getEventContainer();
 
     private String tag;
 
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+
         setContentView(R.layout.activity_main);
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.frame, new ContentTimelineFragment()).commit();
@@ -117,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
         menuItem.setChecked(true);
         setTitle(menuItem.getTitle());
-
+        mDrawerLayout.closeDrawer(GravityCompat.START);
     }
 
 

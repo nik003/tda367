@@ -9,15 +9,15 @@ import java.util.HashSet;
  * A container for the courses
  */
 
-public class CourseContainer {
+public class CourseRepository {
     HashSet<Course> courses = new HashSet<>();
-    private static CourseContainer courseContainer = new CourseContainer();
-    public CourseContainer(){}
-    public static CourseContainer getCourseContainer(){
-        if(courseContainer == null) {
-            courseContainer = new CourseContainer();
+    private static CourseRepository courseRepository = new CourseRepository();
+    public CourseRepository(){}
+    public static CourseRepository getCourseRepository(){
+        if(courseRepository == null) {
+            courseRepository = new CourseRepository();
         }
-        return courseContainer;
+        return courseRepository;
     }
     public Course createCourse(String name, String courseID){
         Course course = new Course(name,courseID);
@@ -27,7 +27,7 @@ public class CourseContainer {
     public Course getCourse(String courseID){
         for(Course c : courses){
             if(c.getCourseID().equals(courseID))
-                Log.d("Searchcourse", courseID);
+
                 return c;
         }
         return null;
@@ -38,6 +38,13 @@ public class CourseContainer {
                 return true;
         }
         return false;
+    }
+    public void removeCourse(String courseID){
+        for(Course c : courses){
+            if(c.getCourseID().equals(courseID))
+                courses.remove(c);
+        }
+
     }
 
     public HashSet<Course> getAllCourses(){

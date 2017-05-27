@@ -2,7 +2,6 @@ package gruppnan.timeline.view;
 
 import android.content.Context;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -13,20 +12,14 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 
 
 import gruppnan.timeline.R;
-import gruppnan.timeline.model.DeadlineEvent;
 import gruppnan.timeline.model.DefaultEvent;
 import gruppnan.timeline.model.Event;
-import gruppnan.timeline.model.EventContainer;
+import gruppnan.timeline.model.EventRepository;
 import gruppnan.timeline.model.WeekDates;
 import gruppnan.timeline.model.WeekEventClickData;
 
@@ -148,7 +141,7 @@ public class WeekCalendarView {
         String fromDate = dates.getThisMonday().get(Calendar.DAY_OF_MONTH)+"/" + (dates.getThisMonday().get(Calendar.MONTH)+1);
         String toDate = dates.getThisSunday().get(Calendar.DAY_OF_MONTH)+"/" + (dates.getThisSunday().get(Calendar.MONTH)+1);
         TextView dateView  = (TextView)tl.findViewById(R.id.tableDate);
-        List<Event> events = EventContainer.getEventContainer().getEventsByDates(dates.getThisMonday(),dates.getThisSunday());
+        List<Event> events = EventRepository.getEventRepository().getEventsByDates(dates.getThisMonday(),dates.getThisSunday());
 
         dateView.setText(fromDate+ "-" + toDate);
 
@@ -220,7 +213,11 @@ public class WeekCalendarView {
                 if (cell != null) {
                     WeekEventClickData cellData =(WeekEventClickData)cell.getTag();
                     cellData.setEvent(e);
-                    cell.setBackgroundResource(R.color.cellcolor);
+                    if(e.getCourse()!=null) {
+                        cell.setText(e.getCourse().getCourseID());
+                    }else{
+                        cell.setBackgroundResource(R.color.cellcolor);
+                    }
 
                     cell.setTag(cellData);
                 }

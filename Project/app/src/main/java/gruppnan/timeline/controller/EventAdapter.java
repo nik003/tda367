@@ -1,4 +1,4 @@
-package gruppnan.timeline.view;
+package gruppnan.timeline.controller;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -18,7 +18,7 @@ import gruppnan.timeline.controller.EventListener;
 import gruppnan.timeline.model.DeadlineEvent;
 import gruppnan.timeline.model.Event;
 import gruppnan.timeline.model.EventInterface;
-
+import gruppnan.timeline.view.EventAdapterView;
 
 
 /**
@@ -30,8 +30,7 @@ import gruppnan.timeline.model.EventInterface;
 public class EventAdapter extends ArrayAdapter<Event> {
 
     private int layoutId;
-    private FloatingActionButton editEventBtn, deleteEventBtn;
-    private View.OnClickListener listener;
+
 
 
 
@@ -39,35 +38,17 @@ public class EventAdapter extends ArrayAdapter<Event> {
         super(context, layoutResourceId, events);
         this.layoutId = layoutResourceId;
 
-
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-
-
-        if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(layoutId, parent, false);
-        }
-
+        EventAdapterView eav = new EventAdapterView(layoutId,getContext(),parent);
         final EventInterface eTmp = getItem(position);
-        TextView eventName = (TextView) convertView.findViewById(R.id.eventNameTxt1);
-        TextView eventType = (TextView) convertView.findViewById(R.id.typeTxt);
+        EventListener ev = new EventListener(getContext(),eTmp);
+        convertView = eav.createView(eTmp,convertView, ev);
 
-        editEventBtn = (FloatingActionButton) convertView.findViewById(R.id.editEventBtn);
-        deleteEventBtn = (FloatingActionButton) convertView.findViewById(R.id.deleteEventBtn);
 
-        editEventBtn.setOnClickListener(new EventListener(getContext(),eTmp));
-        deleteEventBtn.setOnClickListener(new EventListener(getContext(),eTmp));
-
-        eventName.setText("Name: " + eTmp.getName() );
-
-        if (eTmp instanceof DeadlineEvent){
-            eventType.setText("Type: Deadline");
-        }else if (eTmp instanceof Event){
-            eventType.setText("Type: Event");
-        }
 
 
         return convertView;

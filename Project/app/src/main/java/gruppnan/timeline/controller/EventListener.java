@@ -4,8 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
@@ -16,9 +14,8 @@ import java.util.Date;
 import gruppnan.timeline.R;
 import gruppnan.timeline.model.DeadlineEvent;
 import gruppnan.timeline.model.DefaultEvent;
-import gruppnan.timeline.model.EventContainer;
+import gruppnan.timeline.model.EventRepository;
 import gruppnan.timeline.model.EventInterface;
-import gruppnan.timeline.view.AddEventView;
 
 /**
  * Created by Hannes
@@ -32,7 +29,7 @@ public class EventListener implements OnClickListener {
     private Calendar calendar;
     private int year,month,day;
     private Bundle bundle;
-    private EventContainer eventContainer = EventContainer.getEventContainer();
+    private EventRepository eventRepository = EventRepository.getEventRepository();
 
     public EventListener(Context context, EventInterface event){
         this.context = context;
@@ -46,8 +43,10 @@ public class EventListener implements OnClickListener {
             getEventInfo();
             changeFragment();
         }else if (view.getId() == R.id.deleteEventBtn){
-            eventContainer.removeEvent(eTmp.getID());
+
             Toast.makeText(context, "Event deleted", Toast.LENGTH_SHORT).show();
+            eventRepository.removeEvent(eTmp.getID());
+
         }
     }
 
