@@ -25,6 +25,8 @@ import static gruppnan.timeline.Utils.DateCalculator.*;
 /**
  * Created by Nikolai
  * This controls the Weekview and creates the view from the model
+ * Uses: WeekCalendarView, WeekDates,CalendarFragment,WeekEventClickData,Event,DateCalculator
+ * Used by:CalendarFragment
  */
 public class WeekViewController extends Fragment implements View.OnClickListener{
     private WeekCalendarView wwf;
@@ -74,7 +76,7 @@ public class WeekViewController extends Fragment implements View.OnClickListener
                     clickedCell.setText(((WeekEventClickData) clickedCell.getTag()).getCellNum() + "");
 
                 }
-                //TODO PUT EVENT VIEWER HERE
+
             }
         } else if(v.getId() == R.id.monthViewBtn) {
             Log.d("Monthview", "onClick: Occurs");

@@ -12,7 +12,7 @@ public class TimerStopWatchModel implements TimerStopWatchInterface {
 
 
     public TimerStopWatchModel(){
-        timeLeft = timerTime;
+
     }
 
     public long getTimerTime() {

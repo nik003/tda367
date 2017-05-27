@@ -23,7 +23,7 @@ import gruppnan.timeline.model.EventRepository;
 import gruppnan.timeline.view.CardTimelineView;
 
 /**
- * Created by Melina Andersson
+ * @author Melina Andersson
  * Controlls the detailed card view popping up when pressing a card on timeline
  *
  * Used by: DialogOnClickListener
@@ -196,7 +196,7 @@ public class CardTimelineFragment extends Fragment implements View.OnClickListen
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear,
                               int dayOfMonth) {
-            // TODO Auto-generated method stub
+
             calendar.set(Calendar.YEAR, year);
             calendar.set(Calendar.MONTH, monthOfYear);
             calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);

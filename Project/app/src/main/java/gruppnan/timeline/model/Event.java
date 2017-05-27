@@ -3,7 +3,14 @@ package gruppnan.timeline.model;
 import java.util.Calendar;
 import java.util.Date;
 
-
+/**
+ * @author Everyone
+ * Abstract model class for a Event
+ *
+ * Used by: CardTimelineFragment, WeekCalendarView, ItemListAdapter, DefaultEvent, EventAdapter, WeekViewController, EventAdapterView, DeadlineEvent, CalendarFragment, EventSorter, CardListener, EventRepository, EventViewer, WeekEventClickData
+ * Uses: EventInterface
+ *
+ */
 public abstract class Event implements EventInterface{
 
     protected Date endDate;
@@ -14,14 +21,14 @@ public abstract class Event implements EventInterface{
     public Event(Course course, String name, Date endDate, String description){
         this.course = course;
         this.name = name;
-        this.endDate = endDate;
+        this.endDate = (Date) endDate.clone();
         this.description = description;
     }
 
     public Event(Course course, String name, Date endDate){
         this.course = course;
         this.name = name;
-        this.endDate = new Date(endDate.getTime());
+        this.endDate = (Date) endDate.clone();
     }
 
 

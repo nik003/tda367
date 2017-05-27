@@ -53,11 +53,15 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
     private int year,month,day;
     private Date yearMonthDay, completeStartDate, completeEndDate;
     private Calendar calendar = Calendar.getInstance();
-    private ArrayAdapter<String> spinnerAdapater;
+    private ArrayAdapter<String> spinnerAdapter;
     private List <String> courseListStr = new ArrayList<>();
     private HashSet<Course> courseList = new HashSet<>();
     private Iterator<Course> courseIterator;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1988a6fd05aa94ff1e3f7489eba934cd061ede4a
     private Course course;
 
 
@@ -94,9 +98,9 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
 
     }
     private void setSpinnerAdapter(){
-        spinnerAdapater = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, courseListStr);
-        spinnerAdapater.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        addEventView.getCourseSpinner().setAdapter(spinnerAdapater);
+        spinnerAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, courseListStr);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        addEventView.getCourseSpinner().setAdapter(spinnerAdapter);
     }
 
 

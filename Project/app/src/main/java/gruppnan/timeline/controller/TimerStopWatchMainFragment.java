@@ -25,7 +25,7 @@ public class TimerStopWatchMainFragment extends Fragment {
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
 
-    private int sectionNumber;
+
 
     public TimerStopWatchMainFragment() {
 
@@ -43,7 +43,7 @@ public class TimerStopWatchMainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         timerStopWatchMainView = new TimerStopWatchMainView(inflater, container);
 
-        sectionNumber = getArguments().getInt("sectionNumber");
+
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
         // Set up the ViewPager with the sections adapter.
@@ -59,7 +59,7 @@ public class TimerStopWatchMainFragment extends Fragment {
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {   //TODO TWO CLASSES IN ONE FILE?
+    public static class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);

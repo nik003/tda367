@@ -21,7 +21,9 @@ import java.util.zip.GZIPInputStream;
 
 /**
  * Created by Nikolai on 2017-04-06.
- * Webscrapes the time edit page to get the courses.
+ * Webscrapes the timeEdit page to get the courses.
+ *  Used by:TimeEditHandler
+ *  Uses:TimeEditEvent
  */
 
 public class TimeEditFetcher {

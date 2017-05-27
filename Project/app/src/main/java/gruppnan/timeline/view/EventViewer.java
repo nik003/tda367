@@ -16,18 +16,19 @@ import gruppnan.timeline.model.Event;
 /**
  * Created by Nikolai on 2017-05-25.
  * The creation of a view that shows an event.
+ * Uses:Event,Course,DefaultEvent
+ * Used by: WeekCalendarView
  */
 
 public class EventViewer {
     private LinearLayout root;
     private View.OnClickListener onCl;
-    private Context context;
     private Event event;
 
-    public EventViewer(LinearLayout root, View.OnClickListener onCl, Context context , Event event) {
+    public EventViewer(LinearLayout root, View.OnClickListener onCl , Event event) {
         this.root = root;
         this.onCl = onCl;
-        this.context = context;
+
         this.event = event;
     }
 

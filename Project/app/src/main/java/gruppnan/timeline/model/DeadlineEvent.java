@@ -5,33 +5,30 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by Melina Andersson
+ * @author Melina Andersson
  * Model for Deadline events
+ *
+ * Used by: ContentTimelineFragment, CardTimelineFragment
+ *
  */
 public class DeadlineEvent extends Event{
 
 
     protected boolean isDone;
     private int hour, minute;
-    private String name,description;
-    private Course course;
-    //private Date endDate;
+    
+
 
 
     public DeadlineEvent(Course course, String name, String description, Date endDate, boolean isDone){
         super(course, name, endDate, description);
-        this.course = course;
-        this.name = name;
-        this.description = description;
-        this.endDate = new Date(endDate.getTime());
+
         this.isDone = isDone;
     }
 
     public DeadlineEvent(Course course, String name, Date endDate, boolean isDone){
         super(course, name, endDate);
-        this.course = course;
-        this.name = name;
-        this.endDate = new Date(endDate.getTime());
+
         this.isDone = isDone;
     }
 

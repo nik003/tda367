@@ -13,9 +13,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import gruppnan.timeline.R;
+import gruppnan.timeline.model.EventRepository;
 
 /**
- * Created by Melina Andersson
+ * @author Melina Andersson
  *
  * Used by: None
  * Uses: ContentTimelineFragment, CalendarFragment, TimerStopWatchMainFragment, SettingsFragment
@@ -23,7 +24,7 @@ import gruppnan.timeline.R;
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
-    //private EventContainer eventContainer = EventContainer.getEventContainer();
+    private EventRepository eventRepository = EventRepository.getEventRepository();
 
     private String tag;
 
@@ -44,26 +45,26 @@ public class MainActivity extends AppCompatActivity {
         initDrawer(navView);
 /*
         //Ligger temporärt här för att de måste ligga nånstans där de bara skapas en gång..
-        CourseContainer courseContainer = CourseContainer.getCourseContainer();
+        CourseRepository courseContainer = CourseRepository.getCourseRepository();
         Course course1 = courseContainer.createCourse("TDA367", "Objektorienterad prog");
         Course course2 = courseContainer.createCourse("TMV027", "Matte");
         Calendar calendar = new GregorianCalendar();
         calendar.set(2017, 4, 3);
-        eventContainer.createDeadlineEvent(course2, "Laboration 1", "hej", DeadlineEvent.toDate(calendar), true);
+        eventRepository.createDeadlineEvent(course2, "Laboration 1", "hej", DeadlineEvent.toDate(calendar), true);
         calendar.set(2017, 4, 4);
-        eventContainer.createDeadlineEvent(course2, "Laboration 2", "hej", DeadlineEvent.toDate(calendar), true);
+        eventRepository.createDeadlineEvent(course2, "Laboration 2", "hej", DeadlineEvent.toDate(calendar), true);
         calendar.set(2017, 5, 7);
-        eventContainer.createDeadlineEvent(course2, "Laboration 3", "hej", DeadlineEvent.toDate(calendar), false);
+        eventRepository.createDeadlineEvent(course2, "Laboration 3", "hej", DeadlineEvent.toDate(calendar), false);
         calendar.set(2017, 5, 7);
-        eventContainer.createDeadlineEvent(course1, "Inlämning 1", "hej", DeadlineEvent.toDate(calendar), false);
+        eventRepository.createDeadlineEvent(course1, "Inlämning 1", "hej", DeadlineEvent.toDate(calendar), false);
         calendar.set(2017, 5, 20);
-        eventContainer.createDeadlineEvent(course1, "Seminarie", "hej", DeadlineEvent.toDate(calendar), false);
+        eventRepository.createDeadlineEvent(course1, "Seminarie", "hej", DeadlineEvent.toDate(calendar), false);
         calendar.set(2017, 5, 26);
-        eventContainer.createDeadlineEvent(course1, "Inlämning 2", "hej", DeadlineEvent.toDate(calendar), false);
+        eventRepository.createDeadlineEvent(course1, "Inlämning 2", "hej", DeadlineEvent.toDate(calendar), false);
         calendar.set(2017, 5, 28);
-        eventContainer.createDeadlineEvent(course2, "Laboration 4", "hej", DeadlineEvent.toDate(calendar), false);
+        eventRepository.createDeadlineEvent(course2, "Laboration 4", "hej", DeadlineEvent.toDate(calendar), false);
         calendar.set(2017, 5, 28);
-        eventContainer.createDeadlineEvent(course1, "Tenta", "hej", DeadlineEvent.toDate(calendar), false);
+        eventRepository.createDeadlineEvent(course1, "Tenta", "hej", DeadlineEvent.toDate(calendar), false);
 */
     }
 
