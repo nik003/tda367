@@ -13,6 +13,7 @@ import gruppnan.timeline.view.TimerStopWatchView;
 
 /**
  * Created by carlo on 2017-05-02.
+ * Controller class responsible for timer and stopwatch functionality.
  */
 
 public class TimerStopWatchFragment extends Fragment {
@@ -24,15 +25,15 @@ public class TimerStopWatchFragment extends Fragment {
     private Runnable runnable;
 
 
-    private int sectionNumber;
+    private int position;
 
     public TimerStopWatchFragment() {
     }
 
-    public static TimerStopWatchFragment newInstance(int sectionNumber, boolean isStopWatch, String typeText, long time) {
+    public static TimerStopWatchFragment newInstance(int position, boolean isStopWatch, String typeText, long time) {
         TimerStopWatchFragment fragment = new TimerStopWatchFragment();
         Bundle args = new Bundle();
-        args.putInt("sectionNumber", sectionNumber);
+        args.putInt("position", position);
         args.putBoolean("isStopWatch", isStopWatch);
         args.putString("type", typeText);
         args.putLong("time", time);
@@ -45,14 +46,12 @@ public class TimerStopWatchFragment extends Fragment {
         timerStopWatchView = new TimerStopWatchView(inflater, container, getArguments().getBoolean("isStopWatch"));
         timerStopWatchModel = new TimerStopWatchModel();
 
-        sectionNumber = getArguments().getInt("sectionNumber");
+        position = getArguments().getInt("position");
         timerStopWatchModel.setStopWatch(getArguments().getBoolean("isStopWatch"));
         type = getArguments().getString("type");
         timerStopWatchModel.setTimerTime(getArguments().getLong("time"));
 
-
         timerStopWatchView.getProgressBar().setMax((int)timerStopWatchModel.getTimeLeft());
-
         timerStopWatchView.getTypeText().setText(type);
         timerStopWatchView.getRestartButton().setVisibility(View.INVISIBLE);
         if(timerStopWatchModel.getStopWatch()) {
@@ -62,7 +61,7 @@ public class TimerStopWatchFragment extends Fragment {
             timerStopWatchView.getEditButton().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    KeypadFragment keypadFragment = KeypadFragment.newInstance(type);
+                    KeypadFragment keypadFragment = KeypadFragment.newInstance(position);
                     getFragmentManager().beginTransaction().replace(R.id.frame, keypadFragment, type).addToBackStack(null).commit();
                 }
             });
@@ -71,6 +70,7 @@ public class TimerStopWatchFragment extends Fragment {
         handler = new Handler();
         runnable = new Runnable() {
 
+            // Handles the stopwatch and timer counting.
             @Override
             public void run() {
                 if(timerStopWatchModel.getStopWatch()) {
@@ -91,6 +91,7 @@ public class TimerStopWatchFragment extends Fragment {
             }
         };
 
+        // Starts/pauses the stopwatch or timer.
         timerStopWatchView.getPlayPauseButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,6 +111,7 @@ public class TimerStopWatchFragment extends Fragment {
             }
         });
 
+        // Resets the stopwatch/timer to its original state.
         timerStopWatchView.getRestartButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -117,6 +117,8 @@ public class MainActivity extends AppCompatActivity {
 
         menuItem.setChecked(true);
         setTitle(menuItem.getTitle());
+        mDrawerLayout.closeDrawer(GravityCompat.START);
+
 
     }
 

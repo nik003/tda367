@@ -14,20 +14,19 @@ import gruppnan.timeline.view.KeypadView;
 
 /**
  * Created by carlo on 2017-05-02.
+ * Controller class which deals with the custom keypad interactions.
  */
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class KeypadFragment extends Fragment implements View.OnClickListener {
 
     private KeypadView keypadView;
     private KeypadModel keypadModel;
     private View view;
+    private int position;
 
-    public static KeypadFragment newInstance(String type) {
+    public static KeypadFragment newInstance(int position) {
         KeypadFragment fragment = new KeypadFragment();
-        fragment.getArguments().putString("type", type);
+        fragment.getArguments().putInt("position", position);
         return fragment;
     }
 
@@ -41,6 +40,7 @@ public class KeypadFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
+        position = savedInstanceState.getInt("position");
         keypadModel = new KeypadModel();
         keypadView = new KeypadView(inflater, container);
         view = keypadView.getView();
@@ -113,25 +113,27 @@ public class KeypadFragment extends Fragment implements View.OnClickListener {
         displayText();
     }
 
-
+    /**
+     * Saves the input in a bundle and returns to the previous screen
+     */
     private void continueToTimer() {
-        Fragment fragment = getFragmentManager().findFragmentByTag("timerStopWatchMain");
+        Fragment fragment = getFragmentManager().findFragmentByTag("android:switcher:" + R.id.vertical_container + ":" + position);
         fragment.getArguments().putLong("time", keypadModel.getTime());
         getFragmentManager().popBackStackImmediate();
     }
 
-
-    public void onBackPressed() {
-        getFragmentManager().popBackStackImmediate();
-    }
-
-
+    /**
+     * Add listener to each button.
+     */
     private void addListeners() {
         for(int i = 0; i < keypadView.buttons.length; i++) {
             keypadView.getButton(i).setOnClickListener(this);
         }
     }
 
+    /**
+     * Displays current time passed/left on screen.
+     */
     public void displayText() {
         keypadView.getTimeText().setText(String.format("%02d:%02d:%02d", keypadModel.getHours(), keypadModel.getMinutes(), keypadModel.getSeconds()));
     }

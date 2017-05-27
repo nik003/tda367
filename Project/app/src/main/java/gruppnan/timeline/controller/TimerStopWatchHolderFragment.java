@@ -12,8 +12,11 @@ import android.view.ViewGroup;
 import gruppnan.timeline.view.TimerStopWatchHolderView;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Created by carlo.
+ * Controller class which holds each set of three pages of stopwatch/timers.
+ * Uses a custom vertical ViewPager.
  */
+
 public class TimerStopWatchHolderFragment extends Fragment {
 
     private TimerStopWatchHolderView timerStopWatchHolderView;
@@ -60,11 +63,11 @@ public class TimerStopWatchHolderFragment extends Fragment {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return TimerStopWatchFragment.newInstance(sectionNumber, true, "Session", 0);
+                    return TimerStopWatchFragment.newInstance(position, true, "Session", 0);
                 case 1:
-                    return TimerStopWatchFragment.newInstance(sectionNumber+1, false, "Week", 0);
+                    return TimerStopWatchFragment.newInstance(position, false, "Week", 0);
                 case 2:
-                    return TimerStopWatchFragment.newInstance(sectionNumber+2, false, "Break", 0);
+                    return TimerStopWatchFragment.newInstance(position, false, "Break", 0);
                  }
             return null;
         }
