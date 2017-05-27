@@ -9,9 +9,9 @@ import android.view.View;
  */
 
 public class ItemListAdapterView {
-    private Context context;
-    public ItemListAdapterView(Context context) {
-        this.context = context;
+
+    public ItemListAdapterView() {
+
     }
     public void setCardListeners(CardView card1, View.OnClickListener oncl1, CardView card2, View.OnClickListener oncl2) {
         card1.setOnClickListener(oncl1);

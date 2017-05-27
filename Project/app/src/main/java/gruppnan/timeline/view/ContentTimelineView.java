@@ -27,11 +27,11 @@ public class ContentTimelineView  {
 
 
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+
     private RecyclerView.LayoutManager mLayoutManager;
     private Button button;
 
-    private List<DeadlineEventSet> sortedEventSet = new ArrayList<>();
+
 
     View mRootView;
 
@@ -46,7 +46,7 @@ public class ContentTimelineView  {
             mRootView = inflater.inflate(R.layout.content_timeline, container, false);
             mRecyclerView = (RecyclerView) mRootView.findViewById(R.id.recyclerView);
             mLayoutManager = new LinearLayoutManager(inflater.getContext());
-            initList();
+
         }
     }
 
@@ -57,12 +57,11 @@ public class ContentTimelineView  {
 
         mRecyclerView.setHasFixedSize(true);
 
-        EventSorter eventSorter = new EventSorter();
-        sortedEventSet = eventSorter.getSortedEventList();
-        mAdapter = new ItemListAdapter(sortedEventSet);
+
+
 
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setAdapter(mAdapter);
+
 
     }
 
@@ -71,12 +70,13 @@ public class ContentTimelineView  {
         return button;
     }
 
-    public RecyclerView.Adapter getAdapter(){
-        return mAdapter;
-    }
+
 
     public View getRootView() {
         return mRootView;
     }
 
+    public RecyclerView getmRecyclerView() {
+        return mRecyclerView;
+    }
 }
