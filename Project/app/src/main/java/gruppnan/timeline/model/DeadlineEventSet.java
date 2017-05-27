@@ -4,7 +4,8 @@ package gruppnan.timeline.model;
  * @author Melina Andersson
  * Class for creating events in sets in order to be displayed beside each other in a recyclerview
  *
- * Used by: ItemListAdapter, EventSorter
+ * Used by: ItemListAdapter, EventSorter, ContentLineFragment
+ * Uses:DeadlineEvent
  */
 public class DeadlineEventSet {
 

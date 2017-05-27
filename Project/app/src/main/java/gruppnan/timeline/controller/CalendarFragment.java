@@ -20,6 +20,8 @@ import gruppnan.timeline.view.MonthCalendarView;
  * Created by Hannes
  * Controller fragment class that initiates a month calendar view,  deals with user interactions
  * regarding selection of date for creating and showing events.
+ * Uses:MonthCalendarView, Event, EventAdapter,EventRepository, AddEventFragment, WeekViewController
+ * Used by: MainActivity, WeekViewController
  */
 
 public class CalendarFragment extends Fragment {

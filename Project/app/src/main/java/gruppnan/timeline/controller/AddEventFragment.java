@@ -24,6 +24,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
+
 import gruppnan.timeline.model.Course;
 import gruppnan.timeline.model.CourseRepository;
 import gruppnan.timeline.model.EventRepository;
@@ -33,6 +34,8 @@ import gruppnan.timeline.view.AddEventView;
  * @author Hannes
  * Controller class that makes it possible to create events. Initializes AddEventView and gets user
  * input from said view class.
+ * uses: CourseRepository,AddEventView,Course,EventRepository
+ * used by: CalendarFragment, EventListener
  */
 
 public class AddEventFragment extends Fragment implements TimePickerDialog.OnTimeSetListener,
@@ -58,10 +61,6 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
     private HashSet<Course> courseList = new HashSet<>();
     private Iterator<Course> courseIterator;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 1988a6fd05aa94ff1e3f7489eba934cd061ede4a
     private Course course;
 
 
@@ -76,7 +75,6 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
         super.onCreate(savedInstanceState);
         eventRepository = EventRepository.getEventRepository();
         courseRepository = CourseRepository.getCourseRepository();
-        //setUpCourseLists();
 
     }
     /** Set up view according to the type of event user wants to add */

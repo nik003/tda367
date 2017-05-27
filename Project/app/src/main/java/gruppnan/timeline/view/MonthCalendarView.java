@@ -14,6 +14,7 @@ import gruppnan.timeline.R;
 /**
  * Created by Hannes
  * View for CalendarFragment. Sets up calendarView, buttons and ListView with created events.
+ * Useed by: CalendarFragment
  */
 
 public class MonthCalendarView {

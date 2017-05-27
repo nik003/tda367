@@ -20,8 +20,8 @@ import gruppnan.timeline.view.ContentTimelineView;
  * @author Melina Andersson
  * Controlls the timeline view
  *
- * Used by: MainActivity
- * Uses: ContentTimelineView, CourseRepository
+ * Used by: MainActivity,CardTimelineFragment
+ * Uses: ContentTimelineView, CourseRepository, ItemListAdapter, DeadlineEventSet,EventSorter,SettingsFragment
  */
 public class ContentTimelineFragment extends Fragment implements Button.OnClickListener{
 

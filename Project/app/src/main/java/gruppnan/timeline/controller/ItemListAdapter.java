@@ -25,7 +25,7 @@ import gruppnan.timeline.view.ItemListAdapterView;
  * Placed in controller because each cardview in recycler must create new instance of CardListener
  *
  * Used by: ContentTimelineFragment
- * Uses: ItemListAdapterView
+ * Uses: ItemListAdapterView,Event,CardListener,DeadlineEventSet,DeadlineEvent
  */
 
 public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {

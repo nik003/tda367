@@ -17,7 +17,7 @@ import gruppnan.timeline.model.EventRepository;
  * Sorts events to appear in chronological order in timeline view
  *
  * Used by: ContentTimelineFragment
- * Uses: DeadlineEvent, DeadlineEventSet, EventRepository
+ * Uses: DeadlineEvent, DeadlineEventSet, EventRepository, CourseRepository,Event,Course
  */
 
 public class EventSorter {

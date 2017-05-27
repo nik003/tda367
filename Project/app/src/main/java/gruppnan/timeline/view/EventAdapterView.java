@@ -18,7 +18,8 @@ import gruppnan.timeline.model.EventInterface;
  * @author Hannes
  * @moved by Nikolai
  * Class that draws every item in a listView containing event info.
- * Used by EventListener.
+ * Used by: EventAdapter
+ * Uses:DeadlineEvent,EventInterface,Event
  */
 
 public class EventAdapterView {

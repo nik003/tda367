@@ -12,7 +12,8 @@ import java.util.Map;
  * Created by Hannes
  * Singleton Class that handles and stores the different types of created events. Uses facade
  * pattern to simplify creation of said events.
- * Used in  classes to create events.
+ * Used By:EventSorter,CalendarFragment,TimeEditHandler,AddEventFragment,EventListener,CardTimelineFragment,WeekCalendarView,MainActivity
+ * Uses:Event,DeadlineEvent,Course,DefaultEvent
  */
 
 public class EventRepository {

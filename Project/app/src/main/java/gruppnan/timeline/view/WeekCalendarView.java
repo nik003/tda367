@@ -235,6 +235,7 @@ public class WeekCalendarView {
             TextView v = (TextView)tl.findViewWithTag(new WeekEventClickData(null,i));
             if(v!=null) {
                 v.setBackgroundResource(R.drawable.cell_shape);
+                v.setTag(new WeekEventClickData(null,i));
                 v.setText("");
             }
 

@@ -20,6 +20,8 @@ import gruppnan.timeline.model.EventInterface;
 /**
  * @author Hannes
  * Helper class that handles onClickListeners for buttons in EventAdapter class
+ * Used by: EventAdapter
+ * Uses: DefaultEvent,AddEventFragment,Course,DeadlineEvent,EventRepository,EventInterface
  */
 
 public class EventListener implements OnClickListener {

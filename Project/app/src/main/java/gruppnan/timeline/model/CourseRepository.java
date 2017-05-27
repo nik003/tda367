@@ -5,7 +5,8 @@ import java.util.HashSet;
 /**
  * @author Nikolai
  * A container for the courses
- *
+ * Used By: ContentTimelineView, SettingsView, AddEventFragment,TimeEditHandler,EventSorter,ContentTimelineFragment,SettingsFragment
+ * Uses: Course
  */
 
 public class CourseRepository {
