@@ -28,11 +28,10 @@ public class AddEventView{
 
 
     private View view;
-    private String eventType;
+
     private TextView titleTxt, nameTxt, descTxt, startTimeLbl;
     private Button startTimeBtn, endTimeBtn, saveEventBtn, whichButton;
     private Spinner courseSpinner;
-    //private AddEventFragment fragment;
     private TimePickerDialog startTimePicker, endTimePicker;
     private Context context;
     private TimePickerDialog.OnTimeSetListener timeSetListener;

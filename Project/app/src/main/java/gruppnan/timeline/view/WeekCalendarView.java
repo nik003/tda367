@@ -35,7 +35,7 @@ public class WeekCalendarView {
     private RelativeLayout rl;
     private LayoutInflater inflater;
     private View.OnClickListener onCl;
-    WeekDates latest;
+
     View latestView;
 
     public WeekCalendarView(Context c, RelativeLayout rl, View.OnClickListener onCl){
@@ -81,7 +81,7 @@ public class WeekCalendarView {
         latestView= rl.getChildAt(0);
         rl.removeAllViews();
         LinearLayout eventViewRoot = (LinearLayout) inflater.inflate(R.layout.eventviewer,null);
-        EventViewer ev = new EventViewer(eventViewRoot,onCl,context,e);
+        EventViewer ev = new EventViewer(eventViewRoot,onCl,e);
         ev.renderView();
         rl.addView(eventViewRoot);
     }
@@ -137,7 +137,7 @@ public class WeekCalendarView {
      * @param dates The Dates which the view should update from
      */
     public void updateView(WeekDates dates){
-        latest = dates;
+
         String fromDate = dates.getThisMonday().get(Calendar.DAY_OF_MONTH)+"/" + (dates.getThisMonday().get(Calendar.MONTH)+1);
         String toDate = dates.getThisSunday().get(Calendar.DAY_OF_MONTH)+"/" + (dates.getThisSunday().get(Calendar.MONTH)+1);
         TextView dateView  = (TextView)tl.findViewById(R.id.tableDate);

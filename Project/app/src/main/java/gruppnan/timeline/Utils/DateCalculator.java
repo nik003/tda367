@@ -18,17 +18,9 @@ public abstract class DateCalculator {
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.HOUR_OF_DAY,0);
         cal.set(Calendar.MINUTE,0);
-        Calendar[] dates = new Calendar[4];
         cal.setFirstDayOfWeek(cal.MONDAY);
-
         cal.add(Calendar.DAY_OF_MONTH,(2-(cal.get(cal.DAY_OF_WEEK))));
-        wd = getWeekDates(cal);
-        dates[0] = (Calendar) cal.clone();
-        dates[3] = getPrevMonday(cal);
-
-        cal.add(cal.DAY_OF_MONTH,6);
-        dates[1] = (Calendar)cal.clone();
-        dates[2] = getNextMonday(cal);
+         wd = getWeekDates(cal);
 
         return wd;
     }

@@ -24,7 +24,7 @@ public class TimerStopWatchFragment extends Fragment {
     private Runnable runnable;
 
 
-    private int sectionNumber;
+
 
     public TimerStopWatchFragment() {
     }
@@ -45,7 +45,7 @@ public class TimerStopWatchFragment extends Fragment {
         timerStopWatchView = new TimerStopWatchView(inflater, container, getArguments().getBoolean("isStopWatch"));
         timerStopWatchModel = new TimerStopWatchModel();
 
-        sectionNumber = getArguments().getInt("sectionNumber");
+
         timerStopWatchModel.setStopWatch(getArguments().getBoolean("isStopWatch"));
         type = getArguments().getString("type");
         timerStopWatchModel.setTimerTime(getArguments().getLong("time"));

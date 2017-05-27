@@ -6,7 +6,7 @@ import java.util.Objects;
 public class Course implements CourseInterface{
 
     private String name, courseID;
-    private TimerStopWatchModel week, session;  //TODO TO BE USED?
+    private TimerStopWatchModel week, session;  //TODO TO BE USED? CARLOS
     private int weeklyGoal;
     public Course(){}
 
