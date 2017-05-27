@@ -7,6 +7,9 @@ import java.util.Date;
 /**
  * Created by Melina Andersson
  * Model for Deadline events
+ *
+ * Used by: ContentTimelineFragment, CardTimelineFragment
+ *
  */
 public class DeadlineEvent extends Event{
 

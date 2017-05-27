@@ -15,8 +15,6 @@ import java.util.HashSet;
 import java.util.List;
 
 import gruppnan.timeline.R;
-import gruppnan.timeline.controller.CourseSystemInterface;
-import gruppnan.timeline.controller.TimeEditHandler;
 import gruppnan.timeline.model.Course;
 import gruppnan.timeline.model.CourseRepository;
 

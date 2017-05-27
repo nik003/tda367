@@ -11,11 +11,13 @@ import static android.content.DialogInterface.BUTTON_POSITIVE;
 /**
  * Created by Melina
  * Help class as listener for the different dialogs in settings view - to separate which dialog is clicked
+ *
+ * Used by: SettingsFragment
+ * Uses: SettingsFragment
  */
 public class DialogOnClickListener implements DialogInterface.OnClickListener {
     private int id;
-
-    SettingsFragment settingsFragment;
+    private SettingsFragment settingsFragment;
 
 
     public DialogOnClickListener(SettingsFragment settingsFragment, int id) {

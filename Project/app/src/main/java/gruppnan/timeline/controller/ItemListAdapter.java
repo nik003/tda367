@@ -24,7 +24,8 @@ import gruppnan.timeline.view.ItemListAdapterView;
  * Initializes and updates the content of the recyclerview in the timeline view
  * Placed in controller because each cardview in recycler must create new instance of CardListener
  *
- * Used by: I
+ * Used by: ContentTimelineFragment
+ * Uses: ItemListAdapterView
  */
 
 public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
@@ -78,7 +79,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
                                                    int viewType) {
         mContext = parent.getContext();
         // create a new view
-        ilav = new ItemListAdapterView(mContext);
+        ilav = new ItemListAdapterView();
                 View v = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.item_timeline, parent, false);
                 ViewHolder vh = new ViewHolder(v,viewType);

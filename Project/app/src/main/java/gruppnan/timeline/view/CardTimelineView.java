@@ -10,11 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import gruppnan.timeline.R;
-import gruppnan.timeline.controller.CardTimelineFragment;
 
 /**
  * Created by Melina Andersson
  * The view for the detailed cards on timeline
+ *
+ * Used by: CardTimelineFragment
  */
 public class CardTimelineView{
 
@@ -58,8 +59,6 @@ public class CardTimelineView{
         minuteText.setText(minute);
     }
 
-
-
     public Button getSaveButton(){
         return saveButton;
     }
@@ -79,7 +78,6 @@ public class CardTimelineView{
     public void updateDateText(String text){
         dateText.setText(text);
     }
-
 
     public String getTitleText(){
         return titleText.getText().toString();
