@@ -54,15 +54,17 @@ public class VerticalViewPager extends ViewPager {
         return super.onTouchEvent(swapXandY(motionEvent));
     }
 
+
     /**
      * Deals with the swiping of pages
      */
     private static class VerticalViewTransformer implements PageTransformer {
 
         @Override
-        public void transformPage(View page, float position) {
-            if (position < -1) {
-                // Pages off to the left
+        public void transformPage(View page, float position) { //TODO CARLOS
+
+            if (position < -1) { // [-Infinity,-1)
+                // This page is way off-screen to the left.
                 page.setAlpha(0);
 
             } else if (position <= 1) {

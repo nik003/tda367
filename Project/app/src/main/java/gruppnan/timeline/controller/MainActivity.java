@@ -12,16 +12,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import gruppnan.timeline.R;
-import gruppnan.timeline.model.EventContainer;
+import gruppnan.timeline.model.Course;
+import gruppnan.timeline.model.CourseRepository;
+import gruppnan.timeline.model.DeadlineEvent;
+import gruppnan.timeline.model.EventRepository;
 
 /**
  * Created by Melina Andersson
+ *
+ * Used by: None
+ * Uses: ContentTimelineFragment, CalendarFragment, TimerStopWatchMainFragment, SettingsFragment
  */
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
-    private EventContainer eventContainer = EventContainer.getEventContainer();
+    private EventRepository eventRepository = EventRepository.getEventRepository();
 
     private String tag;
 
@@ -30,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+
         setContentView(R.layout.activity_main);
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.frame, new ContentTimelineFragment()).commit();
@@ -39,29 +49,29 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navView = (NavigationView) findViewById(R.id.nav_view);
         initToolbar();
         initDrawer(navView);
-/*
+
         //Ligger temporärt här för att de måste ligga nånstans där de bara skapas en gång..
-        CourseContainer courseContainer = CourseContainer.getCourseContainer();
+        CourseRepository courseContainer = CourseRepository.getCourseRepository();
         Course course1 = courseContainer.createCourse("TDA367", "Objektorienterad prog");
         Course course2 = courseContainer.createCourse("TMV027", "Matte");
         Calendar calendar = new GregorianCalendar();
         calendar.set(2017, 4, 3);
-        eventContainer.createDeadlineEvent(course2, "Laboration 1", "hej", DeadlineEvent.toDate(calendar), true);
+        eventRepository.createDeadlineEvent(course2, "Laboration 1", "hej", DeadlineEvent.toDate(calendar), true);
         calendar.set(2017, 4, 4);
-        eventContainer.createDeadlineEvent(course2, "Laboration 2", "hej", DeadlineEvent.toDate(calendar), true);
+        eventRepository.createDeadlineEvent(course2, "Laboration 2", "hej", DeadlineEvent.toDate(calendar), true);
         calendar.set(2017, 5, 7);
-        eventContainer.createDeadlineEvent(course2, "Laboration 3", "hej", DeadlineEvent.toDate(calendar), false);
+        eventRepository.createDeadlineEvent(course2, "Laboration 3", "hej", DeadlineEvent.toDate(calendar), false);
         calendar.set(2017, 5, 7);
-        eventContainer.createDeadlineEvent(course1, "Inlämning 1", "hej", DeadlineEvent.toDate(calendar), false);
+        eventRepository.createDeadlineEvent(course1, "Inlämning 1", "hej", DeadlineEvent.toDate(calendar), false);
         calendar.set(2017, 5, 20);
-        eventContainer.createDeadlineEvent(course1, "Seminarie", "hej", DeadlineEvent.toDate(calendar), false);
+        eventRepository.createDeadlineEvent(course1, "Seminarie", "hej", DeadlineEvent.toDate(calendar), false);
         calendar.set(2017, 5, 26);
-        eventContainer.createDeadlineEvent(course1, "Inlämning 2", "hej", DeadlineEvent.toDate(calendar), false);
+        eventRepository.createDeadlineEvent(course1, "Inlämning 2", "hej", DeadlineEvent.toDate(calendar), false);
         calendar.set(2017, 5, 28);
-        eventContainer.createDeadlineEvent(course2, "Laboration 4", "hej", DeadlineEvent.toDate(calendar), false);
+        eventRepository.createDeadlineEvent(course2, "Laboration 4", "hej", DeadlineEvent.toDate(calendar), false);
         calendar.set(2017, 5, 28);
-        eventContainer.createDeadlineEvent(course1, "Tenta", "hej", DeadlineEvent.toDate(calendar), false);
-*/
+        eventRepository.createDeadlineEvent(course1, "Tenta", "hej", DeadlineEvent.toDate(calendar), false);
+
     }
 
     /**
@@ -118,7 +128,6 @@ public class MainActivity extends AppCompatActivity {
         menuItem.setChecked(true);
         setTitle(menuItem.getTitle());
         mDrawerLayout.closeDrawer(GravityCompat.START);
-
 
     }
 

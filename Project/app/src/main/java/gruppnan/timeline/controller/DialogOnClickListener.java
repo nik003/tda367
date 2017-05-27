@@ -1,6 +1,7 @@
 package gruppnan.timeline.controller;
 
 import android.content.DialogInterface;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -30,7 +31,7 @@ public class DialogOnClickListener implements DialogInterface.OnClickListener {
                     dialog.cancel();
                     break;
                 case BUTTON_POSITIVE:
-                    //TODO add course
+
                     CourseSystemInterface csi = new TimeEditHandler();
                     Calendar cal1  = Calendar.getInstance();
                     Calendar cal2 = Calendar.getInstance();
@@ -39,8 +40,9 @@ public class DialogOnClickListener implements DialogInterface.OnClickListener {
                     cal1.add(Calendar.WEEK_OF_YEAR,-3);
                     cal2.setTime(cal1.getTime());
                     cal2.add(Calendar.MONTH,3);
-
                     csi.getAddEvents(settingsFragment.getSelectedCourseInDialog(),cal1.getTime(),cal2.getTime());// (returns string)
+                    Toast.makeText(settingsFragment.getContext(), "Added Course", Toast.LENGTH_LONG).show();
+
                     dialog.cancel();
                     break;
                 default:

@@ -15,25 +15,31 @@ import gruppnan.timeline.model.Event;
 
 /**
  * Created by Nikolai on 2017-05-25.
+ * The creation of a view that shows an event.
  */
 
 public class EventViewer {
     private LinearLayout root;
     private View.OnClickListener onCl;
-    private Context context;
     private Event event;
 
-    public EventViewer(LinearLayout root, View.OnClickListener onCl, Context context , Event event) {
+    public EventViewer(LinearLayout root, View.OnClickListener onCl , Event event) {
         this.root = root;
         this.onCl = onCl;
-        this.context = context;
+
         this.event = event;
     }
+
+    /**
+     *
+     * Renders the informational view for an event
+     */
     public void renderView(){
 
         Button btn = (Button)root.findViewById(R.id.eventViewBack);
 
         btn.setOnClickListener(onCl);
+
         TextView t = (TextView) root.findViewById(R.id.eventName);
         t.setText(event.getName());
 

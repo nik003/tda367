@@ -3,14 +3,13 @@ package gruppnan.timeline.controller;
 import android.util.Log;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import gruppnan.timeline.TimeEditSystem.TimeEditEvent;
 import gruppnan.timeline.TimeEditSystem.TimeEditFetcher;
-import gruppnan.timeline.model.CourseContainer;
-import gruppnan.timeline.model.EventContainer;
+import gruppnan.timeline.model.CourseRepository;
+import gruppnan.timeline.model.EventRepository;
 
 /**
  * Created by Nikolai on 2017-05-17.
@@ -19,8 +18,8 @@ import gruppnan.timeline.model.EventContainer;
 
 public class TimeEditHandler implements CourseSystemInterface {
     static TimeEditFetcher  tf = new TimeEditFetcher();
-    static EventContainer  ec= EventContainer.getEventContainer();
-    static CourseContainer cc  = CourseContainer.getCourseContainer();
+    static EventRepository ec= EventRepository.getEventRepository();
+    static CourseRepository cc  = CourseRepository.getCourseRepository();
 
     /**
      *

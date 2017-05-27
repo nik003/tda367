@@ -10,13 +10,23 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.TimePicker;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+
+import gruppnan.timeline.R;
 import gruppnan.timeline.model.Course;
-import gruppnan.timeline.model.EventContainer;
+import gruppnan.timeline.model.CourseRepository;
+import gruppnan.timeline.model.EventRepository;
 import gruppnan.timeline.view.AddEventView;
 
 /**
@@ -26,9 +36,10 @@ import gruppnan.timeline.view.AddEventView;
  */
 
 public class AddEventFragment extends Fragment implements TimePickerDialog.OnTimeSetListener,
-        View.OnClickListener, AdapterView.OnItemSelectedListener {
+        View.OnClickListener, AdapterView.OnItemSelectedListener, View.OnFocusChangeListener {
 
-    private EventContainer eventContainer;
+    private EventRepository eventRepository;
+    private CourseRepository courseRepository;
     private AddEventView addEventView;
 
 
@@ -36,14 +47,19 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
     private String startTimeStr, endTimeStr;
     private String eventName, eventDesc;
     private String eventType;
+    private String selectedCourseStr;
     private Long yearMonthDayLong;
     private int eventID;
     private int year,month,day;
     private Date yearMonthDay, completeStartDate, completeEndDate;
     private Calendar calendar = Calendar.getInstance();
+    private ArrayAdapter<String> spinnerAdapter;
+    private List <String> courseListStr = new ArrayList<>();
+    private HashSet<Course> courseList = new HashSet<>();
+    private Iterator<Course> courseIterator;
 
-    //TODO fix correct course implementation
-    private Course course = new Course("course1", null);
+
+    private Course course;
 
 
     public AddEventFragment() {
@@ -55,6 +71,9 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        eventRepository = EventRepository.getEventRepository();
+        courseRepository = CourseRepository.getCourseRepository();
+        //setUpCourseLists();
 
     }
     /** Set up view according to the type of event user wants to add */
@@ -63,32 +82,66 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         getData();
-
+        setUpCourseLists(); //important to init before addEventView
         addEventView = new AddEventView(inflater, container,this);
-        startTimeStr = (startHour <10 ? "0" : "")+ startHour + " : " + (startMinute <10 ? "0" : "")+ startMinute;
-        addEventView.getStartTimeBtn().setText(startTimeStr);
-        endTimeStr = (endHour <10 ? "0" : "")+ endHour + " : " + (endMinute <10 ? "0" : "")+ endMinute;
-        addEventView.getEndTimeBtn().setText(endTimeStr);
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        setTimeBtnTexts();
+        setSpinnerAdapter();
+        setListeners();
+        customizeView();
 
 
-        eventContainer = EventContainer.getEventContainer();
         return addEventView.getView();
 
     }
+    private void setSpinnerAdapter(){
+        spinnerAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, courseListStr);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        addEventView.getCourseSpinner().setAdapter(spinnerAdapter);
+    }
 
 
+    private void setListeners(){
+        addEventView.getSaveEventBtn().setOnClickListener(this);
+        addEventView.getEndTimeBtn().setOnClickListener(this);
+        addEventView.getStartTimeBtn().setOnClickListener(this);
+        addEventView.getCourseSpinner().setOnItemSelectedListener(this);
+        addEventView.getNameTxt().setOnFocusChangeListener(this);
+        addEventView.getDescTxt().setOnFocusChangeListener(this);
+    }
+
+    private void customizeView(){
+        String name = getArguments().getString("name");
+        String desc = getArguments().getString("description");
+        String eventType = getArguments().getString("type");
+        String course = getArguments().getString("course");
+        if (course!=null){
+            addEventView.getCourseSpinner().setSelection(courseListStr.indexOf(course));
+        }
+        addEventView.setUpText(name,desc,eventType);
+    }
 
     /** removes this fragment which is placed on top of CalendarFragment and MonthCalendarView*/
     private void removeFragment(){
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-        fragmentTransaction.remove(this);
-        fragmentTransaction.commit();
-
+        fragmentTransaction.remove(this).commit();
 
     }
 
+    /** list for course spinner */
+    private void setUpCourseLists(){
+        courseList.addAll(courseRepository.getAllCourses());
+
+        courseIterator = courseList.iterator();
+        courseListStr.add("Course");
+        while(courseIterator.hasNext()){
+            courseListStr.add(courseIterator.next().getCourseID());
+        }
+
+        //was here
+
+    }
 
     /** get user choices from previous fragment */
     private void getData(){
@@ -103,10 +156,8 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
             day = getArguments().getInt("day");
             endHour = getArguments().getInt("endHour");
             endMinute = getArguments().getInt("endMinute");
-
             startHour = getArguments().getInt("startHour");
             startMinute = getArguments().getInt("startMinute");
-
             calendar.set(year,month,day);
             yearMonthDay = calendar.getTime();
         }else{
@@ -123,14 +174,19 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
         if (addEventView.getWhichButton().equals(addEventView.getStartTimeBtn())){
             startHour = hour;
             startMinute = minute;
-            startTimeStr = (startHour <10 ? "0" : "")+ startHour + " : " + (startMinute <10 ? "0" : "")+ startMinute;
-            addEventView.getStartTimeBtn().setText(startTimeStr);
+            setTimeBtnTexts();
         }else if (addEventView.getWhichButton().equals(addEventView.getEndTimeBtn())){
             endHour = hour;
             endMinute = minute;
-            endTimeStr = (endHour <10 ? "0" : "")+ endHour + " : " + (endMinute <10 ? "0" : "")+ endMinute;
-            addEventView.getEndTimeBtn().setText(endTimeStr);
+            setTimeBtnTexts();
         }
+    }
+
+    private void setTimeBtnTexts(){
+        startTimeStr = (startHour <10 ? "0" : "")+ startHour + " : " + (startMinute <10 ? "0" : "")+ startMinute;
+        addEventView.getStartTimeBtn().setText(startTimeStr);
+        endTimeStr = (endHour <10 ? "0" : "")+ endHour + " : " + (endMinute <10 ? "0" : "")+ endMinute;
+        addEventView.getEndTimeBtn().setText(endTimeStr);
     }
 
     /** identifies which button has been clicked and acts accordingly */
@@ -138,7 +194,6 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
     public void onClick(View view) {
         if (view.equals(addEventView.getStartTimeBtn())){
             addEventView.getStartTimePicker().show();
-
             addEventView.setWhichButton(addEventView.getStartTimeBtn());
         }else if (view.equals(addEventView.getEndTimeBtn())){
             addEventView.getEndTimePicker().show();
@@ -147,26 +202,27 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
             getEventInfo();
 
             if (eventID!=0){
-                eventContainer.removeEvent(eventID);
+                eventRepository.removeEvent(eventID);
 
             }
             createEvent();
 
         }
     }
-
+    /** uses eventContainer to create new event/deadline. Closes fragment if successful*/
     private void createEvent(){
         if (eventName.equals("")){
             addEventView.userNeedsToEnterName();
 
         } else if (eventType.equals("event")){
 
-            eventContainer.createDefaultEvent(course,eventName,eventDesc,completeStartDate,completeEndDate);
+            eventRepository.createDefaultEvent(course,eventName,eventDesc,completeStartDate,completeEndDate);
             removeFragment();
         }
         else if (eventType.equals("deadline")){
-            eventContainer.createDeadlineEvent(course,eventName,eventDesc,completeEndDate,false);
+            eventRepository.createDeadlineEvent(course,eventName,eventDesc,completeEndDate,false);
             removeFragment();
+
         }
     }
 
@@ -181,6 +237,7 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
         year = calendar.get(Calendar.YEAR);
         calendar.set(year,month,day, startHour, startMinute);
         completeStartDate = calendar.getTime();
+        getCourse();
 
 
         calendar.set(year,month,day, endHour, endMinute);
@@ -189,13 +246,37 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
 
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+    /** gets user selected course */
+    private void getCourse(){
 
+        for (Course c : courseList){
+            if (c.getCourseID().equalsIgnoreCase(selectedCourseStr)){
+                course = c;
+            }else{
+             course=null;
+            }
+        }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+        selectedCourseStr = adapterView.getItemAtPosition(position).toString();
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+
+    /** disengages from UI elements when user changes focus */
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        if (!hasFocus){
+            hideKeyboard(v);
+        }
+    }
+    private void hideKeyboard(View view){
+        InputMethodManager inputMethodManager =(InputMethodManager)getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 }

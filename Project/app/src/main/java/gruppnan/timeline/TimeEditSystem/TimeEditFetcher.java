@@ -32,10 +32,13 @@ public class TimeEditFetcher {
         SearchHist = new HashMap<>();
 
     }
-    public boolean courseExist(){
-        return true;
-    }
 
+
+    /**
+     * Gets all courses matching the input in timeEdit
+     * @param Cname the course name to be searched for
+     * @return the list of courses
+     */
     public List<String> searchCourse(String Cname){
         ArrayList<String> courseList = new ArrayList<>();
         if(Cname == null || Cname.equals("")){
@@ -68,6 +71,14 @@ public class TimeEditFetcher {
         //System.out.println(Arrays.toString(response));
         return courseList;
     }
+
+    /**
+     * Gets the ics data from timeedit and parses it into events
+     * @param cname the full course name
+     * @param fromDate   From which date to start get events
+     * @param toDate     To which date to end get events
+     * @return           A list of the received and parsed events
+     */
     public List<TimeEditEvent> getIcs(String cname, String fromDate, String toDate){//||!SearchHist.containsKey(cname)
         ArrayList<TimeEditEvent> events = null;
         try {
@@ -84,7 +95,7 @@ public class TimeEditFetcher {
             URL icsUrl = null;
             Pattern namCourPat = Pattern.compile("value=\"(.*?)\"");
             response = sendHttpGet("https://se.timeedit.net/web/chalmers/db1/public/ri.html?h=t&sid=3&p="+fromDate+".x%2C"+toDate+".x&objects="+id+"&ox=0&types=0&fe=0#iCalDialogContent").split("\\n");
-            //response = sendHttpGet("https://se.timeedit.net/web/chalmers/db1/public/ri.html?h=t&sid=3&p=20170102.x%2C20170731.x&objects=201969.182&ox=0&types=0&fe=0").split("\\n");
+
             for(int i = 0;i<response.length;i++){
                 if(response[i].contains("4 veckor")){
                     Matcher m2 = namCourPat.matcher(response[i+1]);
@@ -114,6 +125,12 @@ public class TimeEditFetcher {
 
     }
 
+    /**
+     * Sends a http get request
+     * @param urlString the url to send to
+     * @return the response
+     */
+
     public String sendHttpGet(String urlString){
         try {
             String s;
@@ -141,6 +158,12 @@ public class TimeEditFetcher {
         return null;
 
     }
+
+    /**
+     * Reads an bufferedReader
+     * @param in the reader to be read
+     * @return the string from the  reader
+     */
     private String readInReader(BufferedReader in){
         StringBuffer sb = new StringBuffer();
         try {
@@ -154,6 +177,12 @@ public class TimeEditFetcher {
         }
         return null;
     }
+
+    /**
+     * Parses the ICS data according to the data structure in timeEdit
+     * @param icsFile the data string to be parsed
+     * @return the list of events created from the parsed data
+     */
     private List<TimeEditEvent> parseIcs(String icsFile){
         ArrayList<TimeEditEvent>  events = new ArrayList<>();
         TimeEditEvent teEvent;
@@ -221,6 +250,13 @@ public class TimeEditFetcher {
         return events;
 
     }
+
+    /**
+     * Checks if the data is in a valid date format
+     * @param data the data to be checked
+     * @param sdf   The date format to be used
+     * @return true if the date is in a valid format, false otherwise
+     */
     private boolean isValiDateFormat(String data, SimpleDateFormat sdf){
         Date date = null;
         try{
@@ -235,6 +271,14 @@ public class TimeEditFetcher {
         }
         return date!=null;
     }
+
+    /**
+     * A recursive function for parsing ics data
+     * @param file      the data to be parsed
+     * @param nextMatch the next field to be found
+     * @param index the index of the data array to be parsed
+     * @return      A string array with all the parsed data
+     */
     private String[] recuString(String[] file, String nextMatch, int index){
             String[] retVals;
             String s;
@@ -251,6 +295,12 @@ public class TimeEditFetcher {
 
 
     }
+
+    /**
+     * gets the next next expected field in the ICS structure
+     * @param curField the current field
+     * @return  the next field in the structure
+     */
     private String getNextField(String curField){
         for(int i = 0;i<icsStructure.length;i++) {
             if (icsStructure[i].equals(curField)) {

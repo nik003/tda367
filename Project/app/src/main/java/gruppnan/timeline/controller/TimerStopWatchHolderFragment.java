@@ -42,7 +42,7 @@ public class TimerStopWatchHolderFragment extends Fragment {
         timerStopWatchHolderView = new TimerStopWatchHolderView(inflater, container);
 
         sectionNumber = getArguments().getInt("sectionNumber");
-        course = getArguments().getString("course");
+        course = getArguments().getString("course"); //TODO CARLOS
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
         // Set up the ViewPager with the sections adapter.

@@ -19,19 +19,22 @@ import java.util.Map;
 
 import gruppnan.timeline.R;
 import gruppnan.timeline.model.DeadlineEvent;
-import gruppnan.timeline.model.EventContainer;
+import gruppnan.timeline.model.EventRepository;
 import gruppnan.timeline.view.CardTimelineView;
 
 /**
  * Created by Melina Andersson
  * Controlls the detailed card view popping up when pressing a card on timeline
+ *
+ * Used by: DialogOnClickListener
+ * Uses: CardTimelineView, DeadlineEvent, EventRepository
  */
 
 public class CardTimelineFragment extends Fragment implements View.OnClickListener{
 
     private int id;
     private String title, date, description, hour, minute;
-    private EventContainer eventContainer;
+    private EventRepository eventRepository;
     private DeadlineEvent event;
     private final Calendar calendar = Calendar.getInstance();
     CardTimelineView mRootView;
@@ -39,8 +42,9 @@ public class CardTimelineFragment extends Fragment implements View.OnClickListen
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mRootView = new CardTimelineView(inflater,container,this);
+        mRootView = new CardTimelineView(inflater,container);
         initContent();
+        initListeners();
         return mRootView.getRootView();
     }
 
@@ -53,8 +57,8 @@ public class CardTimelineFragment extends Fragment implements View.OnClickListen
 
         //Initialize texts from event
         Map<Integer,DeadlineEvent> events;
-        eventContainer = EventContainer.getEventContainer();
-        events = eventContainer.getDeadlineEventMap();
+        eventRepository = EventRepository.getEventRepository();
+        events = eventRepository.getDeadlineEventMap();
         for(Map.Entry<Integer, DeadlineEvent> entry : events.entrySet()){
             if(this.id == entry.getKey()){
                 event = entry.getValue();
@@ -72,6 +76,13 @@ public class CardTimelineFragment extends Fragment implements View.OnClickListen
             mRootView.toggleCheckBox();
         }
 
+    }
+
+    public void initListeners() {
+        mRootView.getSaveButton().setOnClickListener(this);
+        mRootView.getExitMarker().setOnClickListener(this);
+        mRootView.getCheckBox().setOnClickListener(this);
+        mRootView.getDateTextView().setOnClickListener(this);
     }
 
     /**
@@ -185,7 +196,7 @@ public class CardTimelineFragment extends Fragment implements View.OnClickListen
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear,
                               int dayOfMonth) {
-            // TODO Auto-generated method stub
+
             calendar.set(Calendar.YEAR, year);
             calendar.set(Calendar.MONTH, monthOfYear);
             calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);

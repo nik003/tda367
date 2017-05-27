@@ -39,7 +39,7 @@ public class WeekViewController extends Fragment implements View.OnClickListener
     }
         View view  = inflater.inflate(R.layout.fragment_week_view, container, false);
         RelativeLayout rl = (RelativeLayout) view.findViewById(R.id.topLayout);
-       // TableLayout tl = (TableLayout) view.findViewById(R.id.weekView);
+
         wwf =new WeekCalendarView(view.getContext(),rl,this);
 
 
@@ -57,7 +57,7 @@ public class WeekViewController extends Fragment implements View.OnClickListener
             clickedCell = (TextView) v;
 
 
-            Log.d("EventDbg", "apan sover");
+
             if (clickedCell.getId() == R.id.nxtWeek || clickedCell.getId() == R.id.prevWeek) {
 
                 WeekDates weekDates = getWeekDates((Calendar) clickedCell.getTag());
@@ -74,7 +74,7 @@ public class WeekViewController extends Fragment implements View.OnClickListener
                     clickedCell.setText(((WeekEventClickData) clickedCell.getTag()).getCellNum() + "");
 
                 }
-                //TODO PUT EVENT VIEWER HERE
+
             }
         } else if(v.getId() == R.id.monthViewBtn) {
             Log.d("Monthview", "onClick: Occurs");
