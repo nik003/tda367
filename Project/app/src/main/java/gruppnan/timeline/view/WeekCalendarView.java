@@ -27,6 +27,8 @@ import gruppnan.timeline.model.WeekEventClickData;
 /**
  * Created by Nikolai on 2017-05-04.
  * The view for the Week View in the calendar section
+ * Uses:WeekDates,EventRepository,EventViewer,WeekEventClickData,Event,DefaultEvent,Course
+ * Used by:WeekViewController
  */
 
 public class WeekCalendarView {

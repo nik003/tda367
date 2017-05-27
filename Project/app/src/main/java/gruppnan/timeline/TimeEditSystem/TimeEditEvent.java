@@ -5,6 +5,7 @@ import java.util.Date;
 /**
  * Created by Nikolai on 2017-05-17.
  * The representation of an event in TimeEdit
+ * Used by: TimeEditHandler,TimeEditFetcher
  */
 
 public class TimeEditEvent {
