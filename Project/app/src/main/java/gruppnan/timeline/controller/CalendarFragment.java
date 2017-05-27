@@ -13,7 +13,6 @@ import java.util.Calendar;
 import gruppnan.timeline.R;
 import gruppnan.timeline.model.Event;
 import gruppnan.timeline.model.EventRepository;
-import gruppnan.timeline.view.EventAdapter;
 import gruppnan.timeline.view.MonthCalendarView;
 
 

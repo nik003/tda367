@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 
+import java.util.List;
+
 import gruppnan.timeline.model.Course;
 import gruppnan.timeline.model.CourseRepository;
 import gruppnan.timeline.view.SettingsView;
@@ -59,7 +61,9 @@ public class SettingsFragment extends Fragment implements SearchView.OnQueryText
      */
     @Override
     public boolean onQueryTextSubmit(String query) {
-        mRootView.initCourseDialog(query);
+        CourseSystemInterface csi  = new TimeEditHandler();
+        List<String>searchMatches  = csi.searchCourses(query);
+        mRootView.initCourseDialog(searchMatches);
         openCourseDialog();
         mRootView.getListView().setOnItemClickListener(this);
         return false;
@@ -105,6 +109,7 @@ public class SettingsFragment extends Fragment implements SearchView.OnQueryText
      */
     @Override
     public void onClick(View view) {
+
         mRootView.initTimeDialog();
         openTimeDialog();
     }

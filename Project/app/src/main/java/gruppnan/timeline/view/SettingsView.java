@@ -130,14 +130,13 @@ public class SettingsView{
 
     /**
      * Inits the course dialog to display search results
-     * @param search
+     * @param searchMatches
      */
-    public void initCourseDialog(final String search){
+    public void initCourseDialog(List<String> searchMatches){
         cView = inflater.inflate(R.layout.course_result_dialog, null);
-        List<String> searchMatches = new ArrayList<>();
 
-        CourseSystemInterface csi = new TimeEditHandler();
-        searchMatches  = csi.searchCourses(search);
+
+
         if(searchMatches!=null) {
             listView = (ListView) cView.findViewById(R.id.course_list);
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(inflater.getContext(), android.R.layout.simple_list_item_1, searchMatches);
