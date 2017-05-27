@@ -15,7 +15,7 @@ public class DeadlineEvent extends Event{
     private int hour, minute;
     private String name,description;
     private Course course;
-    private Date endDate;
+    //private Date endDate;
 
 
     public DeadlineEvent(Course course, String name, String description, Date endDate, boolean isDone){
@@ -88,7 +88,7 @@ public class DeadlineEvent extends Event{
     }
 
     public void setEndDate(Date endDate){
-        this.endDate = new Date(endDate.getTime());
+        this.endDate = (Date)endDate.clone();
     }
 
     public void setHour(int hour){

@@ -38,23 +38,18 @@ public class EventRepository {
         return eventRepository;
     }
 
-    public void createDefaultEvent(Course course, String name, String desc, Date startDate, Date endDate){
+    public DefaultEvent createDefaultEvent(Course course, String name, String desc, Date startDate, Date endDate){
 
-        DefaultEvent de = new DefaultEvent(course,name,desc,startDate,endDate);
-        addEvent(de);
-
+        DefaultEvent defaultEvent = new DefaultEvent(course,name,desc,startDate,endDate);
+        addEvent(defaultEvent);
+        return defaultEvent;
     }
-    public void createDeadlineEvent(Course course, String name, String desc, Date endDate, boolean isDone){
-        DeadlineEvent de = new DeadlineEvent(course,name,desc,endDate,isDone);
-        addEvent(de);
+    public DeadlineEvent createDeadlineEvent(Course course, String name, String desc, Date endDate, boolean isDone){
+        DeadlineEvent deadlineEvent = new DeadlineEvent(course,name,desc,endDate,isDone);
+        addEvent(deadlineEvent);
+        return deadlineEvent;
     }
 
-
-    public void createDeadlineEvent(Course course, String name, Date endDate, boolean isDone) {
-        DeadlineEvent de = new DeadlineEvent(course, name, endDate, isDone);
-        addEvent(de);
-
-    }
 
     /** adds event instance to map, gives key and increments key for next entry */
     private void addEvent(Event event){
@@ -77,6 +72,8 @@ public class EventRepository {
      * @return Hashmap of defaultEvents
      */
     public Map<Integer, DefaultEvent> getDefaultEventMap(){
+
+        defaultEventMap.clear();
         for (Map.Entry<Integer, Event> entry : eventMap.entrySet()){
             if (entry.getValue() instanceof DefaultEvent){
                 defaultEventMap.put(entry.getKey(),(DefaultEvent) entry.getValue());
@@ -91,6 +88,8 @@ public class EventRepository {
      */
 
     public Map <Integer, DeadlineEvent> getDeadlineEventMap(){
+
+        deadlineEventMap.clear();
         for (Map.Entry<Integer, Event> entry : eventMap.entrySet()){
             if (entry.getValue() instanceof DeadlineEvent){
                 deadlineEventMap.put(entry.getKey(),(DeadlineEvent) entry.getValue());
@@ -106,8 +105,6 @@ public class EventRepository {
         ArrayList<Event> datesEvents = new ArrayList<>();
         for (Map.Entry<Integer, Event> entry : eventMap.entrySet()){
             date.setTime(entry.getValue().getEndDate());
-            Log.d("Before", String.valueOf(start.before(date)));
-            Log.d("After", String.valueOf(end.after(date)));
             if(start.before(date) && end.after(date)){
                 datesEvents.add(entry.getValue());
 
@@ -124,5 +121,7 @@ public class EventRepository {
     public void removeEvent(int eventID){
        eventMap.remove(eventID);
     }
-
+    public void removeAll(){
+        eventMap.clear();
+    }
 }

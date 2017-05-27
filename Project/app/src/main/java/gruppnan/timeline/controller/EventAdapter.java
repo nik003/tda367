@@ -22,7 +22,7 @@ import gruppnan.timeline.view.EventAdapterView;
 
 
 /**
- * Created by Hannes
+ * @author Hannes
  * Adapter to show specific data from events in list view widget in CalendarFragment class.
  * Used in CalendarFragment.
  */
