@@ -14,6 +14,8 @@ import gruppnan.timeline.model.EventRepository;
 /**
  * Created by Nikolai on 2017-05-17.
  * A subsystem handler for TimeEdit
+ * Used by: DialogOnclickListener, SettingsFragment
+ * Uses:CourseRepository,TimeEditEvent,TimeEditFetcher,CourseSystemInterface,EventRepository
  */
 
 public class TimeEditHandler implements CourseSystemInterface {

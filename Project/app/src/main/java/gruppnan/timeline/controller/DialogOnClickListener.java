@@ -13,7 +13,7 @@ import static android.content.DialogInterface.BUTTON_POSITIVE;
  * Help class as listener for the different dialogs in settings view - to separate which dialog is clicked
  *
  * Used by: SettingsFragment
- * Uses: SettingsFragment
+ * Uses: SettingsFragment,TimeEditHandler,CourseSystemInterface
  */
 public class DialogOnClickListener implements DialogInterface.OnClickListener {
     private int id;
@@ -44,8 +44,8 @@ public class DialogOnClickListener implements DialogInterface.OnClickListener {
                     cal2.add(Calendar.MONTH,3);
                     csi.getAddEvents(settingsFragment.getSelectedCourseInDialog(),cal1.getTime(),cal2.getTime());// (returns string)
                     Toast.makeText(settingsFragment.getContext(), "Added Course", Toast.LENGTH_LONG).show();
-
                     dialog.cancel();
+                    settingsFragment.updateFragment();
                     break;
                 default:
                     break;

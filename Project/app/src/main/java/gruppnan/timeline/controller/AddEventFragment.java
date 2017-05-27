@@ -15,6 +15,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -23,16 +24,18 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
-import gruppnan.timeline.R;
+
 import gruppnan.timeline.model.Course;
 import gruppnan.timeline.model.CourseRepository;
 import gruppnan.timeline.model.EventRepository;
 import gruppnan.timeline.view.AddEventView;
 
 /**
- * Created by Hannes
+ * @author Hannes
  * Controller class that makes it possible to create events. Initializes AddEventView and gets user
  * input from said view class.
+ * uses: CourseRepository,AddEventView,Course,EventRepository
+ * used by: CalendarFragment, EventListener
  */
 
 public class AddEventFragment extends Fragment implements TimePickerDialog.OnTimeSetListener,
@@ -58,7 +61,6 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
     private HashSet<Course> courseList = new HashSet<>();
     private Iterator<Course> courseIterator;
 
-
     private Course course;
 
 
@@ -73,7 +75,6 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
         super.onCreate(savedInstanceState);
         eventRepository = EventRepository.getEventRepository();
         courseRepository = CourseRepository.getCourseRepository();
-        //setUpCourseLists();
 
     }
     /** Set up view according to the type of event user wants to add */
@@ -111,6 +112,7 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
     }
 
     private void customizeView(){
+
         String name = getArguments().getString("name");
         String desc = getArguments().getString("description");
         String eventType = getArguments().getString("type");
@@ -139,8 +141,6 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
             courseListStr.add(courseIterator.next().getCourseID());
         }
 
-        //was here
-
     }
 
     /** get user choices from previous fragment */
@@ -149,7 +149,8 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
         yearMonthDayLong = getArguments().getLong("date");
         eventID = getArguments().getInt("id");
 
-        /** if editing already created event */
+
+        /** if editing already created event, set correct info */
         if (eventID!=0){
             year = getArguments().getInt("year");
             month = getArguments().getInt("month");
@@ -218,10 +219,12 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
 
             eventRepository.createDefaultEvent(course,eventName,eventDesc,completeStartDate,completeEndDate);
             removeFragment();
+            Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
         }
         else if (eventType.equals("deadline")){
             eventRepository.createDeadlineEvent(course,eventName,eventDesc,completeEndDate,false);
             removeFragment();
+            Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
 
         }
     }
@@ -258,6 +261,7 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
         }
     }
 
+    /** listener for course spinner */
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
         selectedCourseStr = adapterView.getItemAtPosition(position).toString();

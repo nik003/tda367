@@ -16,6 +16,8 @@ import gruppnan.timeline.model.Event;
 /**
  * Created by Nikolai on 2017-05-25.
  * The creation of a view that shows an event.
+ * Uses:Event,Course,DefaultEvent
+ * Used by: WeekCalendarView
  */
 
 public class EventViewer {

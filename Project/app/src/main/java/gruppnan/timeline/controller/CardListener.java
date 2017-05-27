@@ -14,7 +14,7 @@ import gruppnan.timeline.model.DeadlineEvent;
  * Helper class for settings listener on every card in timeline
  *
  * Used by: ItemListAdapter
- * Uses: CardTimeLineFragment
+ * Uses: CardTimeLineFragment, Event, DeadlineEvent
  */
 public class CardListener implements View.OnClickListener {
 

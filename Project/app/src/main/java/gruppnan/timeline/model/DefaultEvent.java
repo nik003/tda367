@@ -1,7 +1,13 @@
 package gruppnan.timeline.model;
 
 import java.util.Date;
-
+/**
+ * @author Everyone
+ * Model for Default events
+ * Used by: EventListener,EventRepository,WeekCalendarView,EventViewer
+ * Uses:Course,Event
+ *
+ */
 
 public class DefaultEvent extends Event {
 

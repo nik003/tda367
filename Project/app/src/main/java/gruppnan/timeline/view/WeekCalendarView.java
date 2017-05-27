@@ -27,6 +27,8 @@ import gruppnan.timeline.model.WeekEventClickData;
 /**
  * Created by Nikolai on 2017-05-04.
  * The view for the Week View in the calendar section
+ * Uses:WeekDates,EventRepository,EventViewer,WeekEventClickData,Event,DefaultEvent,Course
+ * Used by:WeekViewController
  */
 
 public class WeekCalendarView {
@@ -233,6 +235,7 @@ public class WeekCalendarView {
             TextView v = (TextView)tl.findViewWithTag(new WeekEventClickData(null,i));
             if(v!=null) {
                 v.setBackgroundResource(R.drawable.cell_shape);
+                v.setTag(new WeekEventClickData(null,i));
                 v.setText("");
             }
 

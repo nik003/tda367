@@ -12,20 +12,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-
 import gruppnan.timeline.R;
-import gruppnan.timeline.model.Course;
 import gruppnan.timeline.model.CourseRepository;
-import gruppnan.timeline.model.DeadlineEvent;
 import gruppnan.timeline.model.EventRepository;
 
 /**
  * @author Melina Andersson
  *
  * Used by: None
- * Uses: ContentTimelineFragment, CalendarFragment, TimerStopWatchMainFragment, SettingsFragment
+ * Uses: ContentTimelineFragment, CalendarFragment, TimerStopWatchMainFragment, SettingsFragment,EventRepository
  */
 public class MainActivity extends AppCompatActivity {
 

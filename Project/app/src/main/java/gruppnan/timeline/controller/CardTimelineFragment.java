@@ -27,7 +27,7 @@ import gruppnan.timeline.view.CardTimelineView;
  * Controlls the detailed card view popping up when pressing a card on timeline
  *
  * Used by: DialogOnClickListener
- * Uses: CardTimelineView, DeadlineEvent, EventRepository
+ * Uses: CardTimelineView, DeadlineEvent, EventRepository,ContentTimelineFragment,Event
  */
 
 public class CardTimelineFragment extends Fragment implements View.OnClickListener{

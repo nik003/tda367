@@ -8,6 +8,8 @@ import gruppnan.timeline.model.WeekDates;
 /**
  * Created by Nikolai on 2017-05-04.
  * Calculates dates from given times
+ * Uses:WeekDates
+ * Used by:WeekViewController
  */
 
 public abstract class DateCalculator {

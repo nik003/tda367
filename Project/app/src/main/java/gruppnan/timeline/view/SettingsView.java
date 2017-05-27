@@ -23,7 +23,7 @@ import gruppnan.timeline.model.CourseRepository;
  * The settings view
  *
  * Used by: SettingsFragment
- * Uses: Course, CourseContainer
+ * Uses: Course, CourseRepository
  */
 public class SettingsView{
 

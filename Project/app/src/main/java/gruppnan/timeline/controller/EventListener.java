@@ -18,8 +18,10 @@ import gruppnan.timeline.model.EventRepository;
 import gruppnan.timeline.model.EventInterface;
 
 /**
- * Created by Hannes
+ * @author Hannes
  * Helper class that handles onClickListeners for buttons in EventAdapter class
+ * Used by: EventAdapter
+ * Uses: DefaultEvent,AddEventFragment,Course,DeadlineEvent,EventRepository,EventInterface
  */
 
 public class EventListener implements OnClickListener {
@@ -69,6 +71,7 @@ public class EventListener implements OnClickListener {
         if (eTmp.getCourse()!=null){
             bundle.putString("course", eTmp.getCourse().getCourseID());
         }
+
 
         Date endDate = eTmp.getEndDate();
         Date startDate = eTmp.getStartDate();
