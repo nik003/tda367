@@ -3,6 +3,11 @@ package gruppnan.timeline.model;
 
 import java.util.Objects;
 
+/**
+ * @author Everyone
+ * Used by: WeekCalendarView, CourseRepository, Event, SettingsFragment, DeadlineEvent, EventViewer, DefaultEvent, AddEventFragment, EventSorter, EventListener, EventInterface, SettingsView, EventRepository
+ * Uses: CourseInterface
+ */
 public class Course implements CourseInterface{
 
     private String name, courseID;

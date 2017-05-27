@@ -1,12 +1,11 @@
 package gruppnan.timeline.model;
 
-import android.util.Log;
-
 import java.util.HashSet;
 
 /**
- * Created by Nikolai on 2017-05-17.
+ * @author Nikolai
  * A container for the courses
+ *
  */
 
 public class CourseRepository {
