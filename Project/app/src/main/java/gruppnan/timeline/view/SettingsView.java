@@ -19,7 +19,7 @@ import gruppnan.timeline.model.Course;
 import gruppnan.timeline.model.CourseRepository;
 
 /**
- * Created by Melina Andersson
+ * @author Melina Andersson
  * The settings view
  *
  * Used by: SettingsFragment

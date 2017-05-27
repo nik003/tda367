@@ -7,17 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import gruppnan.timeline.R;
-import gruppnan.timeline.Utils.EventSorter;
-import gruppnan.timeline.controller.ItemListAdapter;
 import gruppnan.timeline.model.CourseRepository;
-import gruppnan.timeline.model.DeadlineEventSet;
 
 /**
- * Created by Melina Andersson
+ * @author Melina Andersson
  * The Timeline View
  *
  * Used by: ContentTimeLineFragment

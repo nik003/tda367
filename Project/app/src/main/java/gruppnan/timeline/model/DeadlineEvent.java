@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by Melina Andersson
+ * @author Melina Andersson
  * Model for Deadline events
  *
  * Used by: ContentTimelineFragment, CardTimelineFragment

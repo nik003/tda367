@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import gruppnan.timeline.R;
@@ -18,7 +17,7 @@ import gruppnan.timeline.model.DeadlineEventSet;
 import gruppnan.timeline.view.ContentTimelineView;
 
 /**
- * Created by Melina Andersson
+ * @author Melina Andersson
  * Controlls the timeline view
  *
  * Used by: MainActivity

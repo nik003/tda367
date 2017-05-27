@@ -9,7 +9,7 @@ import static android.content.DialogInterface.BUTTON_NEGATIVE;
 import static android.content.DialogInterface.BUTTON_POSITIVE;
 
 /**
- * Created by Melina
+ * @author Melina Andersson
  * Help class as listener for the different dialogs in settings view - to separate which dialog is clicked
  *
  * Used by: SettingsFragment

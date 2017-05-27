@@ -13,7 +13,7 @@ import gruppnan.timeline.model.DeadlineEventSet;
 import gruppnan.timeline.model.EventRepository;
 
 /**
- * Created by Melina Andersson
+ * @author Melina Andersson
  * Sorts events to appear in chronological order in timeline view
  *
  * Used by: ContentTimelineFragment

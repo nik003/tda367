@@ -4,7 +4,7 @@ import android.support.v7.widget.CardView;
 import android.view.View;
 
 /**
- * Created by Melina Andersson
+ * @author Melina Andersson
  * Handles card listeners for list adapter to avoid circular dependencies
  *
  * Used by: ItemListAdapter

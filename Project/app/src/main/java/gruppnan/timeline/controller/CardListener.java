@@ -10,7 +10,7 @@ import gruppnan.timeline.R;
 import gruppnan.timeline.model.DeadlineEvent;
 
 /**
- * Created by Melina Andersson
+ * @author Melina Andersson
  * Helper class for settings listener on every card in timeline
  *
  * Used by: ItemListAdapter

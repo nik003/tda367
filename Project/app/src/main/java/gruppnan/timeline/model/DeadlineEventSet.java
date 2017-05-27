@@ -1,7 +1,7 @@
 package gruppnan.timeline.model;
 
 /**
- * Created by Melina Andersson
+ * @author Melina Andersson
  * Class for creating events in sets in order to be displayed beside each other in a recyclerview
  *
  * Used by: ItemListAdapter, EventSorter

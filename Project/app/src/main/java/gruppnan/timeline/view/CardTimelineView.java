@@ -12,7 +12,7 @@ import android.widget.TextView;
 import gruppnan.timeline.R;
 
 /**
- * Created by Melina Andersson
+ * @author Melina Andersson
  * The view for the detailed cards on timeline
  *
  * Used by: CardTimelineFragment
