@@ -2,6 +2,8 @@ package gruppnan.timeline.controller;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
@@ -12,6 +14,7 @@ import android.widget.AdapterView;
 
 import java.util.List;
 
+import gruppnan.timeline.R;
 import gruppnan.timeline.model.Course;
 import gruppnan.timeline.model.CourseRepository;
 import gruppnan.timeline.view.SettingsView;
@@ -178,6 +181,17 @@ public class SettingsFragment extends Fragment implements SearchView.OnQueryText
     private void hideKeyboard(View view){
         InputMethodManager inputMethodManager =(InputMethodManager)getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    /**
+     * Replaces the fragment with itself so that content updates
+     */
+    public void updateFragment(){
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.remove(this);
+        fragmentTransaction.commit();
+        fragmentManager.beginTransaction().replace(R.id.frame, new SettingsFragment()).commit();
     }
 
 

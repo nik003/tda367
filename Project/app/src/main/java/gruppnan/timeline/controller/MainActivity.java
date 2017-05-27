@@ -12,13 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-
 import gruppnan.timeline.R;
-import gruppnan.timeline.model.Course;
-import gruppnan.timeline.model.CourseRepository;
-import gruppnan.timeline.model.DeadlineEvent;
 import gruppnan.timeline.model.EventRepository;
 
 /**
@@ -49,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navView = (NavigationView) findViewById(R.id.nav_view);
         initToolbar();
         initDrawer(navView);
-
+/*
         //Ligger temporärt här för att de måste ligga nånstans där de bara skapas en gång..
         CourseRepository courseContainer = CourseRepository.getCourseRepository();
         Course course1 = courseContainer.createCourse("TDA367", "Objektorienterad prog");
@@ -71,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         eventRepository.createDeadlineEvent(course2, "Laboration 4", "hej", DeadlineEvent.toDate(calendar), false);
         calendar.set(2017, 5, 28);
         eventRepository.createDeadlineEvent(course1, "Tenta", "hej", DeadlineEvent.toDate(calendar), false);
-
+*/
     }
 
     /**

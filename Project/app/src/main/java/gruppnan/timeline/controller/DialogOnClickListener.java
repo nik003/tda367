@@ -44,8 +44,8 @@ public class DialogOnClickListener implements DialogInterface.OnClickListener {
                     cal2.add(Calendar.MONTH,3);
                     csi.getAddEvents(settingsFragment.getSelectedCourseInDialog(),cal1.getTime(),cal2.getTime());// (returns string)
                     Toast.makeText(settingsFragment.getContext(), "Added Course", Toast.LENGTH_LONG).show();
-
                     dialog.cancel();
+                    settingsFragment.updateFragment();
                     break;
                 default:
                     break;
