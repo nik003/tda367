@@ -45,7 +45,7 @@ public class TimerStopWatchMainFragment extends Fragment {
 
 
 
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getChildFragmentManager());
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
         // Set up the ViewPager with the sections adapter.
         timerStopWatchMainView.getmViewPager().setAdapter(mSectionsPagerAdapter);
 

@@ -78,7 +78,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
                                                    int viewType) {
         mContext = parent.getContext();
         // create a new view
-        ilav = new ItemListAdapterView(mContext);
+        ilav = new ItemListAdapterView();
                 View v = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.item_timeline, parent, false);
                 ViewHolder vh = new ViewHolder(v,viewType);
