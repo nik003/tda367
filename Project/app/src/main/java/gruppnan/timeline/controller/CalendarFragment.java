@@ -77,6 +77,7 @@ public class CalendarFragment extends Fragment {
             EventAdapter adapter = new EventAdapter(getContext(),R.layout.event_list_item, list);
             list.addAll(eventRepository.getEventsByDates(start,end));
             monthCalendarView.getEventListView().setAdapter(adapter);
+
         }
     };
 
