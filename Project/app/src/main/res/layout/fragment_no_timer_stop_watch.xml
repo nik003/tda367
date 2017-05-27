@@ -1,0 +1,24 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="gruppnan.timeline.controller.NoTimerStopWatchFragment">
+
+    <TextView
+        android:id="@+id/no_course_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No courses chosen yet, go to settings"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
+
+    <Button
+        android:id="@+id/settingsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Settings"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/no_course_text"
+        android:layout_marginTop="20dp"/>
+
+</RelativeLayout>

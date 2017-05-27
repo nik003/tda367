@@ -24,15 +24,13 @@ public class TimerStopWatchFragment extends Fragment {
     private Handler handler;
     private Runnable runnable;
 
-    private int position;
 
     public TimerStopWatchFragment() {
     }
 
-    public static TimerStopWatchFragment newInstance(int position, boolean isStopWatch, String typeText, long time) {
+    public static TimerStopWatchFragment newInstance(boolean isStopWatch, String typeText, long time) {
         TimerStopWatchFragment fragment = new TimerStopWatchFragment();
         Bundle args = new Bundle();
-        args.putInt("position", position);
         args.putBoolean("isStopWatch", isStopWatch);
         args.putString("type", typeText);
         args.putLong("time", time);
@@ -45,7 +43,6 @@ public class TimerStopWatchFragment extends Fragment {
         timerStopWatchView = new TimerStopWatchView(inflater, container, getArguments().getBoolean("isStopWatch"));
         timerStopWatchModel = new TimerStopWatchModel();
 
-        position = getArguments().getInt("position");
 
         timerStopWatchModel.setStopWatch(getArguments().getBoolean("isStopWatch"));
         type = getArguments().getString("type");
@@ -58,6 +55,8 @@ public class TimerStopWatchFragment extends Fragment {
             timerStopWatchView.getTimeText().setText(timerStopWatchModel.getTime(timerStopWatchModel.getTimePassed()));
         } else {
             timerStopWatchView.getTimeText().setText(timerStopWatchModel.getTime(timerStopWatchModel.getTimeLeft()));
+
+            /**
             timerStopWatchView.getEditButton().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -65,6 +64,8 @@ public class TimerStopWatchFragment extends Fragment {
                     getFragmentManager().beginTransaction().replace(R.id.frame, keypadFragment, type).addToBackStack(null).commit();
                 }
             });
+
+             */
         }
 
         handler = new Handler();

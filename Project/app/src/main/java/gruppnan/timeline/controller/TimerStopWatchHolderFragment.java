@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import gruppnan.timeline.model.CourseRepository;
 import gruppnan.timeline.view.TimerStopWatchHolderView;
 
 /**
@@ -21,17 +22,15 @@ public class TimerStopWatchHolderFragment extends Fragment {
 
     private TimerStopWatchHolderView timerStopWatchHolderView;
     private SectionsPagerAdapter mSectionsPagerAdapter;
-    private int sectionNumber;
     private String course;
 
     public TimerStopWatchHolderFragment() {
         // Required empty public constructor
     }
 
-    public static TimerStopWatchHolderFragment newInstance(int sectionNumber, String course) {
+    public static TimerStopWatchHolderFragment newInstance(String course) {
         TimerStopWatchHolderFragment fragment = new TimerStopWatchHolderFragment();
         Bundle args = new Bundle();
-        args.putInt("sectionNumber", sectionNumber);
         args.putString("course", course);
         fragment.setArguments(args);
         return fragment;
@@ -41,8 +40,7 @@ public class TimerStopWatchHolderFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         timerStopWatchHolderView = new TimerStopWatchHolderView(inflater, container);
 
-        sectionNumber = getArguments().getInt("sectionNumber");
-        course = getArguments().getString("course"); //TODO CARLOS
+        course = getArguments().getString("course");
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
         // Set up the ViewPager with the sections adapter.
@@ -55,19 +53,23 @@ public class TimerStopWatchHolderFragment extends Fragment {
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
+        long weekGoal, breakGoal;
+
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
+            weekGoal = CourseRepository.getCourseRepository().getCourse(course).getWeeklyGoal();
+            breakGoal = CourseRepository.getCourseRepository().getCourse(course).getBreakGoal();
         }
 
         @Override
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return TimerStopWatchFragment.newInstance(position, true, "Session", 0);
+                    return TimerStopWatchFragment.newInstance(true, "Session", 0);
                 case 1:
-                    return TimerStopWatchFragment.newInstance(position, false, "Week", 0);
+                    return TimerStopWatchFragment.newInstance(false, "Week", weekGoal);
                 case 2:
-                    return TimerStopWatchFragment.newInstance(position, false, "Break", 0);
+                    return TimerStopWatchFragment.newInstance(false, "Break", breakGoal);
                  }
             return null;
         }

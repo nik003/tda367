@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         initToolbar();
         initDrawer(navView);
 
+        /**
         //Ligger temporärt här för att de måste ligga nånstans där de bara skapas en gång..
         CourseRepository courseContainer = CourseRepository.getCourseRepository();
         Course course1 = courseContainer.createCourse("TDA367", "Objektorienterad prog");
@@ -71,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         eventRepository.createDeadlineEvent(course2, "Laboration 4", "hej", DeadlineEvent.toDate(calendar), false);
         calendar.set(2017, 5, 28);
         eventRepository.createDeadlineEvent(course1, "Tenta", "hej", DeadlineEvent.toDate(calendar), false);
-
+        */
     }
 
     /**
@@ -116,8 +117,12 @@ public class MainActivity extends AppCompatActivity {
             fragment = new CalendarFragment();
             tag = "calendar";
         } else if (itemId == R.id.timer) {
-            fragment = TimerStopWatchMainFragment.newInstance(0);
-            tag = "timerStopWatchMain";
+            if(CourseRepository.getCourseRepository().getAllCourses().isEmpty()) {
+                fragment = new NoTimerStopWatchFragment();
+            } else {
+                fragment = new TimerStopWatchMainFragment();
+                tag = "timerStopWatchMain";
+            }
         } else if (itemId == R.id.settings) {
             fragment = new SettingsFragment();
             tag = "settings";
