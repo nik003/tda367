@@ -1,4 +1,4 @@
-package gruppnan.timeline.view;
+package gruppnan.timeline.controller;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -15,19 +15,23 @@ import com.github.vipulasri.timelineview.TimelineView;
 import java.util.List;
 
 import gruppnan.timeline.R;
-import gruppnan.timeline.controller.CardListener;
 import gruppnan.timeline.model.DeadlineEvent;
 import gruppnan.timeline.model.DeadlineEventSet;
+import gruppnan.timeline.view.ItemListAdapterView;
 
 /**
  * Created by Melina Andersson
  * Initializes and updates the content of the recyclerview in the timeline view
+ * Placed in controller because each cardview in recycler must create new instance of CardListener
+ *
+ * Used by: I
  */
 
 public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
     private List<DeadlineEventSet> data;
     private Context mContext;
+    private ItemListAdapterView ilav;
 
     public ItemListAdapter(List<DeadlineEventSet> deadlineEvents) {
         this.data = deadlineEvents;
@@ -74,6 +78,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
                                                    int viewType) {
         mContext = parent.getContext();
         // create a new view
+        ilav = new ItemListAdapterView(mContext);
                 View v = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.item_timeline, parent, false);
                 ViewHolder vh = new ViewHolder(v,viewType);
@@ -100,8 +105,9 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
      * @param holder The viewholder for the view element
      */
     private void setCardListeners(final DeadlineEventSet dEvent, ViewHolder holder) {
-        holder.courseCard1.setOnClickListener(new CardListener(dEvent.getD1(),mContext));
-        holder.courseCard2.setOnClickListener(new CardListener(dEvent.getD2(),mContext));
+        View.OnClickListener oncl1 = new CardListener(dEvent.getD1(),mContext);
+        View.OnClickListener oncl2 = new CardListener(dEvent.getD2(),mContext);
+        ilav.setCardListeners(holder.courseCard1,oncl1,holder.courseCard2,oncl2);
     }
 
     /**
