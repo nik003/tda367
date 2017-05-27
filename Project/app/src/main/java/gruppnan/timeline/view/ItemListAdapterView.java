@@ -13,6 +13,11 @@ import android.view.View;
 
 public class ItemListAdapterView {
 
+
+    public ItemListAdapterView() {
+
+    }
+
     public void setCardListeners(CardView card1, View.OnClickListener oncl1, CardView card2, View.OnClickListener oncl2) {
         card1.setOnClickListener(oncl1);
         card2.setOnClickListener(oncl2);

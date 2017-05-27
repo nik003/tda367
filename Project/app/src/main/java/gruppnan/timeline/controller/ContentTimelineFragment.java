@@ -8,8 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import gruppnan.timeline.R;
+import gruppnan.timeline.Utils.EventSorter;
 import gruppnan.timeline.model.CourseRepository;
+import gruppnan.timeline.model.DeadlineEventSet;
 import gruppnan.timeline.view.ContentTimelineView;
 
 /**
@@ -28,9 +33,15 @@ public class ContentTimelineFragment extends Fragment implements Button.OnClickL
                              Bundle savedInstanceState) {
 
         contentTimelineView = new ContentTimelineView(inflater,container);
+        List<DeadlineEventSet> sortedEventSet;
+        EventSorter eventSorter = new EventSorter();
 
         if(!CourseRepository.getCourseRepository().getAllCourses().isEmpty()){
-            contentTimelineView.getAdapter().notifyDataSetChanged();
+            sortedEventSet = eventSorter.getSortedEventList();
+            ItemListAdapter ila = new ItemListAdapter(sortedEventSet);
+            contentTimelineView.initList();
+            contentTimelineView.getmRecyclerView().setAdapter(ila);
+            ila.notifyDataSetChanged();
         } else {
             showGuideToAddCourses();
         }
