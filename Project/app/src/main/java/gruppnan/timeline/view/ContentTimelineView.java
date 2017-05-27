@@ -12,6 +12,7 @@ import java.util.List;
 
 import gruppnan.timeline.R;
 import gruppnan.timeline.Utils.EventSorter;
+import gruppnan.timeline.controller.ItemListAdapter;
 import gruppnan.timeline.model.CourseRepository;
 import gruppnan.timeline.model.DeadlineEventSet;
 
