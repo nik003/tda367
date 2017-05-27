@@ -23,7 +23,7 @@ import gruppnan.timeline.model.EventRepository;
 import gruppnan.timeline.view.CardTimelineView;
 
 /**
- * Created by Melina Andersson
+ * @author Melina Andersson
  * Controlls the detailed card view popping up when pressing a card on timeline
  *
  * Used by: DialogOnClickListener

@@ -17,11 +17,11 @@ import gruppnan.timeline.model.CourseRepository;
 import gruppnan.timeline.view.SettingsView;
 
 /**
- * Created by Melina Andersson
+ * @author Melina Andersson
  * Controlls the settings view
  *
- * Used by: MainActivity
- * Uses: SettingsView, Course, CourseRepository
+ * Used by: MainActivity, DialogOnClickListener
+ * Uses: SettingsView, Course, CourseRepository, DialogOnClickListener
  */
 
 public class SettingsFragment extends Fragment implements SearchView.OnQueryTextListener, AdapterView.OnItemClickListener, AdapterView.OnItemSelectedListener, View.OnClickListener, View.OnFocusChangeListener{

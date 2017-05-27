@@ -22,7 +22,7 @@ import gruppnan.timeline.model.DeadlineEvent;
 import gruppnan.timeline.model.EventRepository;
 
 /**
- * Created by Melina Andersson
+ * @author Melina Andersson
  *
  * Used by: None
  * Uses: ContentTimelineFragment, CalendarFragment, TimerStopWatchMainFragment, SettingsFragment
