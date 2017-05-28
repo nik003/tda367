@@ -48,15 +48,8 @@ public class ContentTimelineView  {
      * Inits the list in the recyclerview
      */
     public void initList(){
-
         mRecyclerView.setHasFixedSize(true);
-
-
-
-
         mRecyclerView.setLayoutManager(mLayoutManager);
-
-
     }
 
 
