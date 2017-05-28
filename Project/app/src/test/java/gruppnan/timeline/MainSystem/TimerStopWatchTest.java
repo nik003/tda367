@@ -1,7 +1,5 @@
 package gruppnan.timeline.MainSystem;
 
-import android.util.Log;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,7 +10,8 @@ import gruppnan.timeline.model.TimerStopWatchModel;
 
 
 /**
- * Created by carlo on 2017-05-26.
+ * @author Carlos Yechouh
+ * Tests TimerStopWatchModel
  */
 
 public class TimerStopWatchTest {

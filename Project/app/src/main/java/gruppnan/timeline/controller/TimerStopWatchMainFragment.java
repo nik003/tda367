@@ -12,6 +12,12 @@ import gruppnan.timeline.model.Course;
 import gruppnan.timeline.model.CourseRepository;
 import gruppnan.timeline.view.TimerStopWatchMainView;
 
+/**
+ * @author Carlos Yechouh
+ * Controller class which holds each courses set of stopwatch and timers
+ * Used by: MainActivity
+ * Uses: TimerStopWatchMainView, TimerStopWatchHolderFragment
+ */
 public class TimerStopWatchMainFragment extends Fragment {
 
 

@@ -9,7 +9,10 @@ import gruppnan.timeline.R;
 import gruppnan.timeline.Utils.VerticalViewPager;
 
 /**
- * Created by carlo on 2017-05-26.
+ * @author Carlos Yechouh
+ * Sets up view with TimerStopWatchHolderFragment
+ * Used by: TimerStopWatchHolderFragment
+ * Uses: VerticalViewPager
  */
 
 public class TimerStopWatchHolderView {

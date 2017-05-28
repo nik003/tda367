@@ -1,7 +1,9 @@
 package gruppnan.timeline.model;
 
 /**
- * Created by carlo on 2017-05-25.
+ * @author Carlos Yechouh
+ * Model class for Keypad
+ * Used by: KeypadFragment
  */
 
 public class KeypadModel {
@@ -16,6 +18,10 @@ public class KeypadModel {
         textBuilder.append("000000");
     }
 
+    /**
+     * Adds digit to textbuilder and updates time
+     * @param number
+     */
     public void addDigit(String number) {
         if(nbrOfDigits < 6) {
             textBuilder.append(number);
@@ -25,6 +31,9 @@ public class KeypadModel {
         }
     }
 
+    /**
+     * Removes digit from textbuilder and updates time
+     */
     public void removeDigit() {
         if(nbrOfDigits > 0) {
             textBuilder.delete(textBuilder.length() - 1, textBuilder.length());
@@ -34,7 +43,9 @@ public class KeypadModel {
         }
     }
 
-
+    /**
+     * Updates seconds, minutes and hours
+     */
     public void updateTime() {
         seconds = Integer.parseInt(textBuilder.substring(textBuilder.length()-2, textBuilder.length()));
         minutes = Integer.parseInt(textBuilder.substring(textBuilder.length()-4, textBuilder.length()-2));

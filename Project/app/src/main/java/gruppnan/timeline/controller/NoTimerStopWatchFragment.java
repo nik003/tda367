@@ -10,8 +10,12 @@ import android.view.ViewGroup;
 import gruppnan.timeline.R;
 import gruppnan.timeline.view.NoTimerStopWatchView;
 
+
 /**
- * A simple {@link Fragment} subclass.
+ * @author Carlos Yechouh
+ * Fragment for when timers have yet to be initiated
+ * Used by: MainActivity
+ * Uses: NoTimerStopWatchView, SettingsFragment
  */
 public class NoTimerStopWatchFragment extends Fragment implements View.OnClickListener {
 

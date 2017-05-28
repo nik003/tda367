@@ -1,7 +1,11 @@
 package gruppnan.timeline.model;
 
 
-
+/**
+ * @author Carlos Yechouh
+ * Model class for TimerStopWatch
+ * Used by: TimerStopWatchFragment
+ */
 public class TimerStopWatchModel implements TimerStopWatchInterface {
 
     private boolean isStopWatch;
@@ -56,8 +60,12 @@ public class TimerStopWatchModel implements TimerStopWatchInterface {
         this.progress = progress;
     }
 
+    /**
+     * Converts time in milliseconds to a formatted string and returns it
+     * @param time
+     * @return
+     */
     public String getTime(long time) {
-
         long millis = time;
         int seconds = (int) ((millis / 1000) % 60);
         int minutes = (int) ((millis / (1000 * 60)) % 60);

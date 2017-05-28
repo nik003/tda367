@@ -13,9 +13,11 @@ import gruppnan.timeline.model.CourseRepository;
 import gruppnan.timeline.view.TimerStopWatchHolderView;
 
 /**
- * Created by carlo.
+ * @author Carlos Yechouh
  * Controller class which holds each set of three pages of stopwatch/timers.
  * Uses a custom vertical ViewPager.
+ * Used by: TimerStopWatchMainFragment
+ * Uses: TimerStopWatchHolderView, TimerStopWatchFragment
  */
 
 public class TimerStopWatchHolderFragment extends Fragment {
@@ -50,7 +52,10 @@ public class TimerStopWatchHolderFragment extends Fragment {
         return timerStopWatchHolderView.getView();
     }
 
-
+    /**
+     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
+     * one of the sections/tabs/pages.
+     */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         boolean isWeek = true;

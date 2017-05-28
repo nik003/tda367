@@ -19,7 +19,7 @@ import gruppnan.timeline.model.CourseRepository;
  * @author Melina Andersson
  *
  * Used by: None
- * Uses: ContentTimelineFragment, CalendarFragment, TimerStopWatchMainFragment, SettingsFragment,EventRepository
+ * Uses: ContentTimelineFragment, CalendarFragment, TimerStopWatchMainFragment, NoTimerStopWatchFragment, SettingsFragment, EventRepository
  */
 public class MainActivity extends AppCompatActivity {
 

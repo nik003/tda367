@@ -14,7 +14,9 @@ import android.widget.ToggleButton;
 import gruppnan.timeline.R;
 
 /**
- * Created by carlo on 2017-05-03.
+ * @author Carlos Yechouh
+ * Sets up view with TimerStopWatchFragment
+ * Used by: TimerStopWatchFragment
  */
 
 public class TimerStopWatchView {

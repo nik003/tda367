@@ -7,8 +7,9 @@ import android.view.MotionEvent;
 import android.view.View;
 
 /**
- * Created by carlo on 2017-05-16.
+ * @author Carlos Yechouh
  * Custom ViewPager class which scrolls vertically
+ * Used by:
  */
 
 public class VerticalViewPager extends ViewPager {

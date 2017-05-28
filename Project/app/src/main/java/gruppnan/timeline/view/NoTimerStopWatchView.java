@@ -8,7 +8,9 @@ import android.widget.Button;
 import gruppnan.timeline.R;
 
 /**
- * Created by carlo on 2017-05-27.
+ * @author Carlos Yechouh
+ * Sets up view with NoTimerStopWatchFragment
+ * Used by: NoTimerStopWatchFragment
  */
 
 public class NoTimerStopWatchView {
