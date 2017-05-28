@@ -1,9 +1,12 @@
 package gruppnan.timeline.model;
 
 /**
- * Created by Melina on 04/05/2017.
+ * @author Melina Andersson
+ * Class for creating events in sets in order to be displayed beside each other in a recyclerview
+ *
+ * Used by: ItemListAdapter, EventSorter, ContentLineFragment
+ * Uses:DeadlineEvent
  */
-
 public class DeadlineEventSet {
 
     private DeadlineEvent d1,d2;
@@ -14,10 +17,10 @@ public class DeadlineEventSet {
     }
 
     public DeadlineEvent getD1(){
-        return d1;
+        return this.d1;
     }
     public DeadlineEvent getD2(){
-        return d2;
+        return this.d2;
     }
 
 }

@@ -6,6 +6,7 @@ import java.util.List;
 /**
  * Created by Nikolai on 2017-05-18.
  * Interface for subsystems that handles events
+ * Used by:DialogOnClickListener,TimeEditHandler,SettingsFragment
  */
 
 public interface CourseSystemInterface {

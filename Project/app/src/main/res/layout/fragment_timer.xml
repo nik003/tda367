@@ -1,57 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/stopWatchText"
+        android:id="@+id/typeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/stopWatchButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="80dp" />
+        android:layout_marginTop="130dp"
+        android:textSize="16dp"/>
 
     <TextView
-        android:id="@+id/timerText"
+        android:id="@+id/timeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/stopWatchButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="31dp" />
+        android:layout_marginTop="180dp"
+        android:textSize="32dp"/>
 
-    <ToggleButton
-        android:id="@+id/stopWatchButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Start"
-        android:layout_alignBaseline="@+id/stopWatchRestartButton"
-        android:layout_alignBottom="@+id/stopWatchRestartButton"
-        android:layout_alignStart="@+id/timerButton" />
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="230dp"
+        android:layout_height="230dp"
+        android:progressDrawable="@drawable/circular"
+        android:background="@drawable/circular_background"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"/>
 
-    <Button
-        android:id="@+id/stopWatchRestartButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Restart"
-        android:layout_marginStart="49dp"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true" />
+    <ImageButton
+        android:id="@+id/playPauseButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/progressBar"
+        android:layout_marginTop="100dp"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:src="@drawable/play_pause_selector"
+        android:background="@android:color/transparent"
+        android:layout_alignStart="@+id/restartButton" />
 
-    <ToggleButton
-        android:id="@+id/timerButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="89dp"
-        android:text="ToggleButton"
-        android:layout_below="@+id/stopWatchRestartButton"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="49dp" />
+    <ImageButton
+        android:id="@+id/restartButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/timeText"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:src="@drawable/restart"
+        android:background="@android:color/transparent"/>
 
-    <Button
-        android:id="@+id/timerRestartButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/stopWatchRestartButton"
-        android:layout_alignTop="@+id/timerButton"
-        android:text="Restart" />
+    <ImageButton
+        android:id="@+id/editButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:src="@drawable/edit_timer"
+        android:background="@android:color/transparent"
+        android:layout_alignTop="@+id/playPauseButton"
+        android:layout_alignBottom="@id/playPauseButton"
+        android:layout_marginStart="270dp" />
+
+
+
 
 </RelativeLayout>

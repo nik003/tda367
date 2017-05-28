@@ -1,6 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mainLayout"
+    android:id="@+id/addFragmentLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clickable="true"
@@ -8,7 +8,7 @@
     android:background="@android:color/white"
     tools:context="gruppnan.timeline.controller.AddEventFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+
 
     <Button
         android:id="@+id/saveEventBtn"
@@ -108,5 +108,6 @@
         android:clickable="false"
         android:text="End time:"
         android:textSize="18sp" />
+
 
 </RelativeLayout>

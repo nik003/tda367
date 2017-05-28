@@ -5,6 +5,7 @@ import java.util.Date;
 /**
  * Created by Nikolai on 2017-05-17.
  * The representation of an event in TimeEdit
+ * Used by: TimeEditHandler,TimeEditFetcher
  */
 
 public class TimeEditEvent {
@@ -46,5 +47,12 @@ public class TimeEditEvent {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String toString() {
+        return "TimeEditEvent{" +
+                "description='" + description + '\'' +
+                '}';
     }
 }

@@ -3,7 +3,10 @@ package gruppnan.timeline.model;
 import java.util.Date;
 
 /**
- * Created by Melina on 06/04/2017.
+ * @author Melina Andersson
+ * Used By: EventAdapter, EvetnListener,EventAdapterView, Event
+ * Uses: Course
+ *
  */
 
 public interface EventInterface {
@@ -15,4 +18,8 @@ public interface EventInterface {
     String getName();
 
     Course getCourse();
+
+    Date getStartDate();
+
+    int getID();
 }

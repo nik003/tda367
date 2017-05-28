@@ -54,8 +54,8 @@
         fab:menu_shadowRadius="4dp"
         fab:menu_shadowXOffset="1dp"
         fab:menu_shadowYOffset="3dp"
-        fab:menu_colorNormal="#DA4336"
-        fab:menu_colorPressed="#E75043"
+        fab:menu_colorNormal="#3651eb"
+        fab:menu_colorPressed="#3651eb"
         fab:menu_colorRipple="#99FFFFFF"
         fab:menu_animationDelayPerItem="50"
         fab:menu_icon="@drawable/fab_add"
@@ -97,7 +97,7 @@
             android:layout_toEndOf="@+id/eventListView"
             android:src="@drawable/plus"
             app:fab_label="Add new event"
-            app:fab_colorNormal="#f4bc42"
+            app:fab_colorNormal="#898786"
             fab:fab_colorPressed="@color/app_primary_pressed"
             fab:fab_colorRipple="@color/app_ripple" />
 
@@ -112,7 +112,7 @@
             android:layout_toEndOf="@+id/eventListView"
             android:src="@drawable/plus"
             app:fab_label="Add new deadline"
-            app:fab_colorNormal="#f4bc42"
+            app:fab_colorNormal="#898786"
             fab:fab_colorPressed="@color/app_primary_pressed"
             fab:fab_colorRipple="@color/app_ripple" />
 
