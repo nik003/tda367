@@ -33,19 +33,22 @@ public class DialogOnClickListener implements DialogInterface.OnClickListener {
                     dialog.cancel();
                     break;
                 case BUTTON_POSITIVE:
+                    String selectedCourse =settingsFragment.getSelectedCourseInDialog();
+                    if(selectedCourse!="No course found") {
+                        CourseSystemInterface csi = new TimeEditHandler();
+                        Calendar cal1 = Calendar.getInstance();
+                        Calendar cal2 = Calendar.getInstance();
+                        cal1.set(Calendar.HOUR_OF_DAY, 0);
+                        cal1.set(Calendar.MINUTE, 0);
+                        cal1.add(Calendar.WEEK_OF_YEAR, -3);
+                        cal2.setTime(cal1.getTime());
+                        cal2.add(Calendar.MONTH, 3);
+                        csi.getAddEvents(settingsFragment.getSelectedCourseInDialog(), cal1.getTime(), cal2.getTime());// (returns string)
+                        Toast.makeText(settingsFragment.getContext(), "Added Course", Toast.LENGTH_LONG).show();
+                    }
+                        dialog.cancel();
+                        settingsFragment.updateFragment();
 
-                    CourseSystemInterface csi = new TimeEditHandler();
-                    Calendar cal1  = Calendar.getInstance();
-                    Calendar cal2 = Calendar.getInstance();
-                    cal1.set(Calendar.HOUR_OF_DAY,0);
-                    cal1.set(Calendar.MINUTE,0);
-                    cal1.add(Calendar.WEEK_OF_YEAR,-3);
-                    cal2.setTime(cal1.getTime());
-                    cal2.add(Calendar.MONTH,3);
-                    csi.getAddEvents(settingsFragment.getSelectedCourseInDialog(),cal1.getTime(),cal2.getTime());// (returns string)
-                    Toast.makeText(settingsFragment.getContext(), "Added Course", Toast.LENGTH_LONG).show();
-                    dialog.cancel();
-                    settingsFragment.updateFragment();
                     break;
                 default:
                     break;

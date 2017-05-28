@@ -69,7 +69,7 @@ public class TimeEditFetcher {
         }
         if(courseList.size()==0){
             courseList.add("No course found");
-            return null;
+
         }
         //System.out.println(SearchHist.toString());
         //System.out.println(Arrays.toString(response));
