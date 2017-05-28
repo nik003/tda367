@@ -47,11 +47,10 @@ public class KeypadFragment extends Fragment implements View.OnClickListener {
         course = getArguments().getString("course");
         isWeek = getArguments().getBoolean("isWeek");
 
-        /**
+        
         if (container != null) {
             container.removeAllViews();
         }
-         */
 
         addListeners();
 
