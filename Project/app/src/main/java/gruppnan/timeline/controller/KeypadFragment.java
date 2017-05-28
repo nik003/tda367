@@ -14,8 +14,10 @@ import gruppnan.timeline.view.KeypadView;
 
 
 /**
- * Created by carlo on 2017-05-02.
+ * @author Carlos Yechouh
  * Controller class which deals with the custom keypad interactions.
+ * Used by: TimerStopWatchFragment
+ * Uses: KeypadView, KeypadModel
  */
 
 public class KeypadFragment extends Fragment implements View.OnClickListener {
@@ -47,11 +49,10 @@ public class KeypadFragment extends Fragment implements View.OnClickListener {
         course = getArguments().getString("course");
         isWeek = getArguments().getBoolean("isWeek");
 
-        /**
+
         if (container != null) {
             container.removeAllViews();
         }
-         */
 
         addListeners();
 
@@ -126,12 +127,11 @@ public class KeypadFragment extends Fragment implements View.OnClickListener {
         } else {
             CourseRepository.getCourseRepository().getCourse(course).setBreakGoal(keypadModel.getTime());
         }
-
         getFragmentManager().popBackStackImmediate();
     }
 
     /**
-     * Add listener to each button.
+     * Adds listener to each button.
      */
     private void addListeners() {
         for(int i = 0; i < keypadView.buttons.length; i++) {
@@ -140,7 +140,7 @@ public class KeypadFragment extends Fragment implements View.OnClickListener {
     }
 
     /**
-     * Displays current time passed/left on screen.
+     * Displays current time chosen on the TextView
      */
     public void displayText() {
         keypadView.getTimeText().setText(String.format("%02d:%02d:%02d", keypadModel.getHours(), keypadModel.getMinutes(), keypadModel.getSeconds()));

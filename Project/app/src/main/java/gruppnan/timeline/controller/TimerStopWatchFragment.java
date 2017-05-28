@@ -1,6 +1,5 @@
 package gruppnan.timeline.controller;
 
-import android.app.FragmentManager;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,8 +13,10 @@ import gruppnan.timeline.model.TimerStopWatchModel;
 import gruppnan.timeline.view.TimerStopWatchView;
 
 /**
- * Created by carlo on 2017-05-02.
+ * @author Carlos Yechouh
  * Controller class responsible for timer and stopwatch functionality.
+ * Used by: TimerStopWatchHolderFragment
+ * Uses: TimerStopWatchView, TimerStopWatchModel, KeypadModel
  */
 
 public class TimerStopWatchFragment extends Fragment implements View.OnClickListener {
@@ -74,9 +75,7 @@ public class TimerStopWatchFragment extends Fragment implements View.OnClickList
             timerStopWatchModel.setTimerTime(time);
             timerStopWatchView.getTimeText().setText(timerStopWatchModel.getTime(timerStopWatchModel.getTimeLeft()));
             timerStopWatchView.getProgressBar().setMax((int)timerStopWatchModel.getTimeLeft());
-
             timerStopWatchView.getEditButton().setOnClickListener(this);
-
         }
 
         handler = new Handler();
@@ -137,6 +136,7 @@ public class TimerStopWatchFragment extends Fragment implements View.OnClickList
                 }
                 timerStopWatchView.getRestartButton().setVisibility(View.INVISIBLE);
                 break;
+            // Displays the Keypad fragment for user input
             case R.id.editButton:
                 KeypadFragment keypadFragment = KeypadFragment.newInstance(course, isWeek);
                 getFragmentManager().beginTransaction().replace(R.id.container, keypadFragment).commit();

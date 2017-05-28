@@ -9,15 +9,16 @@ import android.view.ViewGroup;
 import gruppnan.timeline.R;
 
 /**
- * Created by carlo on 2017-05-26.
+ * @author Carlos Yechouh
+ * Sets up view with TimerStopWatchMainFragment
+ * Used by: TimerStopWatchMainFragment
  */
 
 public class TimerStopWatchMainView {
 
     private View view;
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
+
+    // The ViewPager that will host the section contents.
     private ViewPager mViewPager;
     private TabLayout tabLayout;
 

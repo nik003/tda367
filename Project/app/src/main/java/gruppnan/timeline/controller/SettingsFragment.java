@@ -23,7 +23,7 @@ import gruppnan.timeline.view.SettingsView;
  * @author Melina Andersson
  * Controlls the settings view
  *
- * Used by: MainActivity, DialogOnClickListener,ContentTimelineFragment
+ * Used by: MainActivity, DialogOnClickListener, ContentTimelineFragment, NoTimerStopWatchFragment
  * Uses: SettingsView, Course, CourseRepository, DialogOnClickListener,CourseSystemInterface,TimeEditHandler
  */
 

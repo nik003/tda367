@@ -10,7 +10,9 @@ import android.widget.TextView;
 import gruppnan.timeline.R;
 
 /**
- * Created by carlo on 2017-05-04.
+ * @author Carlos Yechouh
+ * Sets up view with KeypadFragment
+ * Used by: KeypadFragment
  */
 
 public class KeypadView {

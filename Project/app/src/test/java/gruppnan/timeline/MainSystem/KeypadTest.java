@@ -8,7 +8,8 @@ import gruppnan.timeline.model.KeypadModel;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created by carlo on 2017-05-28.
+ * @author Carlos Yechouh
+ * Tests KeypadModel
  */
 
 public class KeypadTest {

@@ -20,7 +20,7 @@ import gruppnan.timeline.model.EventRepository;
  * @author Melina Andersson
  *
  * Used by: None
- * Uses: ContentTimelineFragment, CalendarFragment, TimerStopWatchMainFragment, SettingsFragment,EventRepository
+ * Uses: ContentTimelineFragment, CalendarFragment, TimerStopWatchMainFragment, NoTimerStopWatchFragment, SettingsFragment, EventRepository
  */
 public class MainActivity extends AppCompatActivity {
 
