@@ -206,7 +206,12 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
                 eventRepository.removeEvent(eventID);
 
             }
-            createEvent();
+
+            if(startHour > endHour){
+                Toast.makeText(getContext(), "Invalid time interval", Toast.LENGTH_SHORT).show();
+            } else {
+                createEvent();
+            }
 
         }
     }
