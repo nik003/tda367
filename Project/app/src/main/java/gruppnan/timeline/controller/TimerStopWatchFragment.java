@@ -139,6 +139,7 @@ public class TimerStopWatchFragment extends Fragment implements View.OnClickList
                 break;
             case R.id.editButton:
                 KeypadFragment keypadFragment = KeypadFragment.newInstance(course, isWeek);
+                getFragmentManager().beginTransaction().replace(R.id.container, keypadFragment).commit();
                 break;
             default:
                 break;
