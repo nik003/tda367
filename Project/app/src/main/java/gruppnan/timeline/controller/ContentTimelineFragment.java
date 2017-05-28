@@ -34,7 +34,7 @@ public class ContentTimelineFragment extends Fragment implements Button.OnClickL
         contentTimelineView = new ContentTimelineView(inflater,container);
         List<DeadlineEventSet> sortedEventSet;
         EventSorter eventSorter = new EventSorter();
-
+        //If there exists courses, init timeline
         if(!CourseRepository.getCourseRepository().getAllCourses().isEmpty()){
             sortedEventSet = eventSorter.getSortedEventList();
             ItemListAdapter ila = new ItemListAdapter(sortedEventSet);
@@ -42,9 +42,8 @@ public class ContentTimelineFragment extends Fragment implements Button.OnClickL
             contentTimelineView.getmRecyclerView().setAdapter(ila);
             ila.notifyDataSetChanged();
         } else {
-            showGuideToAddCourses();
+            initGuideToAddCourses();
         }
-
         return contentTimelineView.getRootView();
     }
 
@@ -59,7 +58,7 @@ public class ContentTimelineFragment extends Fragment implements Button.OnClickL
     /**
      * Guides the user to settings if no course yet is added
      */
-    public void showGuideToAddCourses(){
+    public void initGuideToAddCourses(){
         contentTimelineView.getButton().setOnClickListener(this);
     }
 

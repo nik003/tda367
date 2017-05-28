@@ -107,7 +107,7 @@ public class SettingsFragment extends Fragment implements SearchView.OnQueryText
     public void setWeekGoal(){
         for(Course course : CourseRepository.getCourseRepository().getAllCourses()) {
             if(course.getCourseID().equals(getSelectedCourseInSpinner())){
-                course.setWeeklyGoal(mRootView.getNumberPickerValue()*60*60*1000);
+                course.setWeeklyGoal(mRootView.getNumberPickerValue()*60L*60L*1000L);
             }
         }
 
@@ -119,7 +119,7 @@ public class SettingsFragment extends Fragment implements SearchView.OnQueryText
     public void setBreakGoal(){
         for(Course course : CourseRepository.getCourseRepository().getAllCourses()) {
             if(course.getCourseID().equals(getSelectedCourseInSpinner())){
-                course.setBreakGoal(mRootView.getBreakNumberPickerValue()*60*1000);
+                course.setBreakGoal(mRootView.getBreakNumberPickerValue()*60L*1000L);
             }
         }    }
 
