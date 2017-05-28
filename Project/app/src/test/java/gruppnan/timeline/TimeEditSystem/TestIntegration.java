@@ -47,6 +47,7 @@ public class TestIntegration {
         csi.getAddEvents("DAT255, Software engineering project",calFrom.getTime(),calTo.getTime());
         assertEquals(cr.getAllCourses().size(),1);
         assertTrue(er.getEventMap().size()>0);
+		
 
 
 
