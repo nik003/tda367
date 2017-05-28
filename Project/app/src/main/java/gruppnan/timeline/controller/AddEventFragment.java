@@ -258,10 +258,8 @@ public class AddEventFragment extends Fragment implements TimePickerDialog.OnTim
     private void getCourse(){
 
         for (Course c : courseList){
-            if (c.getCourseID().equalsIgnoreCase(selectedCourseStr)){
+            if (c.getCourseID().equalsIgnoreCase(selectedCourseStr)) {
                 course = c;
-            }else{
-             course=null;
             }
         }
     }
