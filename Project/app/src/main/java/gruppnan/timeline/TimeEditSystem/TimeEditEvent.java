@@ -48,4 +48,11 @@ public class TimeEditEvent {
     public String getName() {
         return name;
     }
+
+    @Override
+    public String toString() {
+        return "TimeEditEvent{" +
+                "description='" + description + '\'' +
+                '}';
+    }
 }

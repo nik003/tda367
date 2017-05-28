@@ -1,5 +1,7 @@
 package gruppnan.timeline.TimeEditSystem;
 
+import android.util.Log;
+
 import org.apache.commons.lang.math.NumberUtils;
 import java.io.BufferedReader;
 import java.io.IOException;
