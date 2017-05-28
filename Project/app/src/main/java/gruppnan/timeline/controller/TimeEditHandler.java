@@ -33,7 +33,7 @@ public class TimeEditHandler implements CourseSystemInterface {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
         List<TimeEditEvent> events = tf.getIcs(courseName, sdf.format(from), sdf.format(to));
         if(courseName != null)
-         Log.d("Searchcourse", Integer.toString(events.size()));
+
         if (events != null) {
             for (TimeEditEvent ev : events) {
                 String courseID = ev.getName().substring(0, 6);

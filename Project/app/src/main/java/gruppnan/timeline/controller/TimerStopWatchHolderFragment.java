@@ -53,23 +53,21 @@ public class TimerStopWatchHolderFragment extends Fragment {
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-        long weekGoal, breakGoal;
+        boolean isWeek = true;
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
-            weekGoal = CourseRepository.getCourseRepository().getCourse(course).getWeeklyGoal();
-            breakGoal = CourseRepository.getCourseRepository().getCourse(course).getBreakGoal();
         }
 
         @Override
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return TimerStopWatchFragment.newInstance(true, "Session", 0);
+                    return TimerStopWatchFragment.newInstance(true, "Session", course, !isWeek);
                 case 1:
-                    return TimerStopWatchFragment.newInstance(false, "Week", weekGoal);
+                    return TimerStopWatchFragment.newInstance(false, "Week", course, isWeek);
                 case 2:
-                    return TimerStopWatchFragment.newInstance(false, "Break", breakGoal);
+                    return TimerStopWatchFragment.newInstance(false, "Break", course, !isWeek);
                  }
             return null;
         }

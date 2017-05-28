@@ -1,5 +1,7 @@
 package gruppnan.timeline.TimeEditSystem;
 
+import android.util.Log;
+
 import org.apache.commons.lang.math.NumberUtils;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -67,7 +69,7 @@ public class TimeEditFetcher {
         }
         if(courseList.size()==0){
             courseList.add("No course found");
-            return null;
+
         }
         //System.out.println(SearchHist.toString());
         //System.out.println(Arrays.toString(response));

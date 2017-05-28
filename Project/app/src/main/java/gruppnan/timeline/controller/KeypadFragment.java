@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import gruppnan.timeline.R;
+import gruppnan.timeline.model.CourseRepository;
 import gruppnan.timeline.model.KeypadModel;
 import gruppnan.timeline.view.KeypadView;
 
@@ -21,12 +22,14 @@ public class KeypadFragment extends Fragment implements View.OnClickListener {
 
     private KeypadView keypadView;
     private KeypadModel keypadModel;
-    private View view;
+    private String course;
+    private boolean isWeek;
 
-    public static KeypadFragment newInstance(String course) {
+    public static KeypadFragment newInstance(String course, boolean isWeek) {
         KeypadFragment fragment = new KeypadFragment();
         Bundle args = new Bundle();
         args.putString("course", course);
+        args.putBoolean("isWeek", isWeek);
         fragment.setArguments(args);
         return fragment;
     }
@@ -38,10 +41,11 @@ public class KeypadFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
         keypadModel = new KeypadModel();
         keypadView = new KeypadView(inflater, container);
-        view = keypadView.getView();
+
+        course = getArguments().getString("course");
+        isWeek = getArguments().getBoolean("isWeek");
 
         if (container != null) {
             container.removeAllViews();
@@ -50,7 +54,7 @@ public class KeypadFragment extends Fragment implements View.OnClickListener {
         addListeners();
 
         keypadView.getTimeText().setText("00:00:00");
-        return view;
+        return keypadView.getView();
     }
 
 
@@ -112,9 +116,14 @@ public class KeypadFragment extends Fragment implements View.OnClickListener {
     }
 
     /**
-     * Saves the input in a bundle and returns to the previous screen
+     * Saves the input and returns to the previous screen
      */
     private void continueToTimer() {
+        if(isWeek) {
+            CourseRepository.getCourseRepository().getCourse(course).setWeeklyGoal(keypadModel.getTime());
+        } else {
+            CourseRepository.getCourseRepository().getCourse(course).setBreakGoal(keypadModel.getTime());
+        }
 
         getFragmentManager().popBackStackImmediate();
     }

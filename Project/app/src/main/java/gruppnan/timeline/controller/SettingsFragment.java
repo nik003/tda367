@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,11 +70,15 @@ public class SettingsFragment extends Fragment implements SearchView.OnQueryText
     @Override
     public boolean onQueryTextSubmit(String query) {
         CourseSystemInterface csi  = new TimeEditHandler();
+
         List<String>searchMatches  = csi.searchCourses(query);
+        Log.d("Query",searchMatches.toString());
+
         mRootView.initCourseDialog(searchMatches);
         openCourseDialog();
         mRootView.getListView().setOnItemClickListener(this);
         return false;
+
     }
 
     @Override
