@@ -9,26 +9,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import gruppnan.timeline.model.CourseRepository;
 import gruppnan.timeline.view.TimerStopWatchHolderView;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Created by carlo.
+ * Controller class which holds each set of three pages of stopwatch/timers.
+ * Uses a custom vertical ViewPager.
  */
+
 public class TimerStopWatchHolderFragment extends Fragment {
 
     private TimerStopWatchHolderView timerStopWatchHolderView;
     private SectionsPagerAdapter mSectionsPagerAdapter;
-    private int sectionNumber;
     private String course;
 
     public TimerStopWatchHolderFragment() {
         // Required empty public constructor
     }
 
-    public static TimerStopWatchHolderFragment newInstance(int sectionNumber, String course) {
+    public static TimerStopWatchHolderFragment newInstance(String course) {
         TimerStopWatchHolderFragment fragment = new TimerStopWatchHolderFragment();
         Bundle args = new Bundle();
-        args.putInt("sectionNumber", sectionNumber);
         args.putString("course", course);
         fragment.setArguments(args);
         return fragment;
@@ -38,8 +40,7 @@ public class TimerStopWatchHolderFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         timerStopWatchHolderView = new TimerStopWatchHolderView(inflater, container);
 
-        sectionNumber = getArguments().getInt("sectionNumber");
-        course = getArguments().getString("course"); //TODO CARLOS
+        course = getArguments().getString("course");
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
         // Set up the ViewPager with the sections adapter.
@@ -52,6 +53,8 @@ public class TimerStopWatchHolderFragment extends Fragment {
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
+        boolean isWeek = true;
+
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
@@ -60,11 +63,11 @@ public class TimerStopWatchHolderFragment extends Fragment {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return TimerStopWatchFragment.newInstance(sectionNumber, true, "Session", 0);
+                    return TimerStopWatchFragment.newInstance(true, "Session", course, !isWeek);
                 case 1:
-                    return TimerStopWatchFragment.newInstance(sectionNumber+1, false, "Week", 0);
+                    return TimerStopWatchFragment.newInstance(false, "Week", course, isWeek);
                 case 2:
-                    return TimerStopWatchFragment.newInstance(sectionNumber+2, false, "Break", 0);
+                    return TimerStopWatchFragment.newInstance(false, "Break", course, !isWeek);
                  }
             return null;
         }

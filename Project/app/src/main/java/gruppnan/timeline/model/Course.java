@@ -11,8 +11,8 @@ import java.util.Objects;
 public class Course implements CourseInterface{
 
     private String name, courseID;
-    private TimerStopWatchModel week, session;  //TODO TO BE USED? CARLOS
-    private int weeklyGoal;
+    private long weeklyGoal;
+    private long breakGoal;
     public Course(){}
 
     public Course(String courseID, String name){
@@ -28,12 +28,20 @@ public class Course implements CourseInterface{
         return this.courseID;
     }
 
-    public void setWeeklyGoal(int weeklyGoal){
+    public void setWeeklyGoal(long weeklyGoal){
         this.weeklyGoal = weeklyGoal;
     }
 
-    public int getWeeklyGoal(){
+    public long getWeeklyGoal(){
         return this.weeklyGoal;
+    }
+
+    public void setBreakGoal(long breakGoal) {
+        this.breakGoal = breakGoal;
+    }
+
+    public long getBreakGoal() {
+        return this.breakGoal;
     }
 
     @Override

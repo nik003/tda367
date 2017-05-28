@@ -8,42 +8,44 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import gruppnan.timeline.R;
+import gruppnan.timeline.model.CourseRepository;
 import gruppnan.timeline.model.KeypadModel;
 import gruppnan.timeline.view.KeypadView;
 
 
 /**
  * Created by carlo on 2017-05-02.
+ * Controller class which deals with the custom keypad interactions.
  */
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class KeypadFragment extends Fragment implements View.OnClickListener {
 
     private KeypadView keypadView;
     private KeypadModel keypadModel;
-    private View view;
+    private String course;
+    private boolean isWeek;
 
-    public static KeypadFragment newInstance(String type) {
+    public static KeypadFragment newInstance(String course, boolean isWeek) {
         KeypadFragment fragment = new KeypadFragment();
-        fragment.getArguments().putString("type", type);
+        Bundle args = new Bundle();
+        args.putString("course", course);
+        args.putBoolean("isWeek", isWeek);
+        fragment.setArguments(args);
         return fragment;
     }
 
     public KeypadFragment() {
-        super();
-        setArguments(new Bundle());
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
         keypadModel = new KeypadModel();
         keypadView = new KeypadView(inflater, container);
-        view = keypadView.getView();
+
+        course = getArguments().getString("course");
+        isWeek = getArguments().getBoolean("isWeek");
 
         if (container != null) {
             container.removeAllViews();
@@ -52,7 +54,7 @@ public class KeypadFragment extends Fragment implements View.OnClickListener {
         addListeners();
 
         keypadView.getTimeText().setText("00:00:00");
-        return view;
+        return keypadView.getView();
     }
 
 
@@ -113,25 +115,31 @@ public class KeypadFragment extends Fragment implements View.OnClickListener {
         displayText();
     }
 
-
+    /**
+     * Saves the input and returns to the previous screen
+     */
     private void continueToTimer() {
-        Fragment fragment = getFragmentManager().findFragmentByTag("timerStopWatchMain");
-        fragment.getArguments().putLong("time", keypadModel.getTime());
+        if(isWeek) {
+            CourseRepository.getCourseRepository().getCourse(course).setWeeklyGoal(keypadModel.getTime());
+        } else {
+            CourseRepository.getCourseRepository().getCourse(course).setBreakGoal(keypadModel.getTime());
+        }
+
         getFragmentManager().popBackStackImmediate();
     }
 
-
-    public void onBackPressed() {
-        getFragmentManager().popBackStackImmediate();
-    }
-
-
+    /**
+     * Add listener to each button.
+     */
     private void addListeners() {
         for(int i = 0; i < keypadView.buttons.length; i++) {
             keypadView.getButton(i).setOnClickListener(this);
         }
     }
 
+    /**
+     * Displays current time passed/left on screen.
+     */
     public void displayText() {
         keypadView.getTimeText().setText(String.format("%02d:%02d:%02d", keypadModel.getHours(), keypadModel.getMinutes(), keypadModel.getSeconds()));
     }

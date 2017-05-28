@@ -8,7 +8,7 @@ import android.view.View;
 
 /**
  * Created by carlo on 2017-05-16.
- *
+ * Custom ViewPager class which scrolls vertically
  */
 
 public class VerticalViewPager extends ViewPager {
@@ -27,6 +27,9 @@ public class VerticalViewPager extends ViewPager {
         setOverScrollMode(OVER_SCROLL_NEVER);
     }
 
+    /**
+     * Swaps x and y coordinates of the motion event
+     */
     private MotionEvent swapXandY(MotionEvent motionEvent) {
         float width = getWidth();
         float height = getHeight();
@@ -42,7 +45,7 @@ public class VerticalViewPager extends ViewPager {
     @Override
     public boolean onInterceptTouchEvent(MotionEvent motionEvent){
         boolean intercepted = super.onInterceptTouchEvent(swapXandY(motionEvent));
-        swapXandY(motionEvent); // return touch coordinates to original reference frame for any child views
+        swapXandY(motionEvent);
         return intercepted;
     }
 
@@ -52,6 +55,9 @@ public class VerticalViewPager extends ViewPager {
     }
 
 
+    /**
+     * Deals with the swiping of pages
+     */
     private static class VerticalViewTransformer implements PageTransformer {
 
         @Override
@@ -61,18 +67,16 @@ public class VerticalViewPager extends ViewPager {
                 // This page is way off-screen to the left.
                 page.setAlpha(0);
 
-            } else if (position <= 1) { // [-1,1]
+            } else if (position <= 1) {
                 page.setAlpha(1);
 
-                // Counteract the default slide transition
                 page.setTranslationX(page.getWidth() * -position);
 
-                //set Y position to swipe in from top
                 float yPosition = position * page.getHeight();
                 page.setTranslationY(yPosition);
 
-            } else { // (1,+Infinity]
-                // This page is way off-screen to the right.
+            } else {
+                // Pages off to the right
                 page.setAlpha(0);
             }
         }

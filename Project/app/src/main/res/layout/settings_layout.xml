@@ -73,7 +73,7 @@
             android:layout_gravity="start"
             android:textSize="18sp"
             android:textColor="@android:color/black"
-            android:text="Hours:"
+            android:text="Week:"
             />
 
         <TextView
@@ -83,6 +83,34 @@
             android:textSize="18sp"
             android:clickable="true"
             android:layout_toEndOf="@id/weekly_goal_time_text"
+            android:layout_marginStart="35dp"/>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:id="@+id/break_time_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_gravity="start"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:text="Break:"
+            />
+
+        <TextView
+            android:id="@+id/break_picker_text"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:clickable="true"
+            android:layout_toEndOf="@id/break_time_text"
             android:layout_marginStart="35dp"/>
 
 

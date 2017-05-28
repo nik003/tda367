@@ -21,6 +21,7 @@ public class TimerStopWatchModel implements TimerStopWatchInterface {
 
     public void setTimerTime(long timerTime) {
         this.timerTime = timerTime;
+        this.timeLeft = timerTime;
     }
 
     public boolean getStopWatch() {

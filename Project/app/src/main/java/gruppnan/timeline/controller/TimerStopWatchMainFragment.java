@@ -8,44 +8,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import gruppnan.timeline.model.Course;
+import gruppnan.timeline.model.CourseRepository;
 import gruppnan.timeline.view.TimerStopWatchMainView;
 
 public class TimerStopWatchMainFragment extends Fragment {
 
 
     private TimerStopWatchMainView timerStopWatchMainView;
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
+
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
 
-
-
     public TimerStopWatchMainFragment() {
-
+        // Required empty public constructor
     }
 
-    public static TimerStopWatchMainFragment newInstance(int sectionNumber) {
-        TimerStopWatchMainFragment fragment = new TimerStopWatchMainFragment();
-        Bundle args = new Bundle();
-        args.putInt("sectionNumber", sectionNumber);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         timerStopWatchMainView = new TimerStopWatchMainView(inflater, container);
 
-
-
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getChildFragmentManager());
         // Set up the ViewPager with the sections adapter.
         timerStopWatchMainView.getmViewPager().setAdapter(mSectionsPagerAdapter);
 
@@ -61,36 +45,34 @@ public class TimerStopWatchMainFragment extends Fragment {
      */
     public static class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-        public SectionsPagerAdapter(FragmentManager fm) {
-            super(fm);
+        public int size;
+        private Course[] courses;
+
+        private void setUpCourses() {
+            size = CourseRepository.getCourseRepository().getAllCourses().size();
+            courses = CourseRepository.getCourseRepository().getAllCourses().toArray(new Course[size]);
         }
 
+        public SectionsPagerAdapter(FragmentManager fm) {
+            super(fm);
+            setUpCourses();
+        }
         @Override
         public Fragment getItem(int position) {
-            switch (position) {
-                case 0:
-                    return TimerStopWatchHolderFragment.newInstance(0, "course1");
-                case 1:
-                    return TimerStopWatchHolderFragment.newInstance(3, "course2");
-            }
-            return null;
+            return TimerStopWatchHolderFragment.newInstance(courses[position].getCourseID());
         }
 
         @Override
         public int getCount() {
             // Show 2 total pages.
-            return 2;
+            return size;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return "Course 1";
-                case 1:
-                    return "Course 2";
-            }
-            return null;
+            return courses[position].getCourseID();
         }
+
+
     }
 }

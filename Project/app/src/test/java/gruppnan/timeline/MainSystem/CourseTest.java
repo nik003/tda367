@@ -1,4 +1,4 @@
-package gruppnan.timeline;
+package gruppnan.timeline.MainSystem;
 
 import org.junit.Before;
 import org.junit.Test;
