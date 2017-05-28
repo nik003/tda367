@@ -14,7 +14,6 @@ import android.view.MenuItem;
 
 import gruppnan.timeline.R;
 import gruppnan.timeline.model.CourseRepository;
-import gruppnan.timeline.model.EventRepository;
 
 /**
  * @author Melina Andersson
@@ -25,8 +24,6 @@ import gruppnan.timeline.model.EventRepository;
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
-    private EventRepository eventRepository = EventRepository.getEventRepository();
-
     private String tag;
 
     @Override
@@ -45,32 +42,7 @@ public class MainActivity extends AppCompatActivity {
         initToolbar();
         initDrawer(navView);
 
-/*
-        //Ligger temporärt här för att de måste ligga nånstans där de bara skapas en gång..
-        CourseRepository courseContainer = CourseRepository.getCourseRepository();
-        Course course1 = courseContainer.createCourse("TDA367", "Objektorienterad prog");
-        Course course2 = courseContainer.createCourse("TMV027", "Matte");
-        Course course3 = courseContainer.createCourse("MVE027", "fysik");
 
-        Course course4 = courseContainer.createCourse("MMM222", "fk");
-        Calendar calendar = new GregorianCalendar();
-        calendar.set(2017, 4, 3);
-        eventRepository.createDeadlineEvent(course4, "Laboration 1", "hej", DeadlineEvent.toDate(calendar), true);
-        calendar.set(2017, 4, 4);
-        eventRepository.createDeadlineEvent(course4, "Laboration 2", "hej", DeadlineEvent.toDate(calendar), true);
-        calendar.set(2017, 5, 7);
-        eventRepository.createDeadlineEvent(course2, "Laboration 3", "hej", DeadlineEvent.toDate(calendar), false);
-        calendar.set(2017, 5, 7);
-        eventRepository.createDeadlineEvent(course3, "Inlämning 1", "hej", DeadlineEvent.toDate(calendar), false);
-        calendar.set(2017, 5, 20);
-        eventRepository.createDeadlineEvent(course3, "Seminarie", "hej", DeadlineEvent.toDate(calendar), false);
-        calendar.set(2017, 5, 26);
-        eventRepository.createDeadlineEvent(course1, "Inlämning 2", "hej", DeadlineEvent.toDate(calendar), false);
-        calendar.set(2017, 5, 28);
-        eventRepository.createDeadlineEvent(course2, "Laboration 4", "hej", DeadlineEvent.toDate(calendar), false);
-        calendar.set(2017, 5, 28);
-        eventRepository.createDeadlineEvent(course1, "Tenta", "hej", DeadlineEvent.toDate(calendar), false);
-*/
     }
 
     /**
