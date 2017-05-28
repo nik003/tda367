@@ -22,12 +22,12 @@ public class TimerStopWatchTest {
     @Before
     public void setUp() {
         timerStopWatchModel = new TimerStopWatchModel();
-        timerStopWatchModel.setTimeLeft(100000);
+        timerStopWatchModel.setTimeLeft(72000000);
     }
 
     @Test
     public void testGetTime() {
-        assertEquals("00:01:40", timerStopWatchModel.getTime(timerStopWatchModel.getTimeLeft()));
+        assertEquals("20:00:00", timerStopWatchModel.getTime(timerStopWatchModel.getTimeLeft()));
     }
 
 

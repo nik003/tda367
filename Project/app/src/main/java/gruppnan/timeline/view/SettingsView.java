@@ -30,12 +30,12 @@ public class SettingsView{
     private View mRootView;
     private SearchView searchView;
     private Spinner courseSpinner;
-    private NumberPicker numberPicker;
-    private TextView timeText;
+    private NumberPicker weekNumberPicker, breakNumberPicker;
+    private TextView timeText, breakText;
     private ListView listView;
     private HashSet<Course> allCourses = new HashSet<>();
     private LayoutInflater inflater;
-    private View cView, npView;
+    private View cView, npView, breakNpView;
 
 
 
@@ -46,8 +46,10 @@ public class SettingsView{
         searchView = (SearchView) mRootView.findViewById(R.id.search);
         courseSpinner = (Spinner) mRootView.findViewById(R.id.settings_course_spinner);
         timeText = (TextView) mRootView.findViewById(R.id.time_picker_text);
+        breakText = (TextView) mRootView.findViewById(R.id.break_picker_text);
 
-        initTimeView();
+        initTimeView(timeText);
+        initTimeView(breakText);
         initSearchView();
 
         //If courses exists the course spinner could be initialized
@@ -66,8 +68,8 @@ public class SettingsView{
     /**
      * Inits the time textview
      */
-    public void initTimeView(){
-        timeText.setText("15");
+    public void initTimeView(TextView text){
+        text.setText("15");
     }
 
     /**
@@ -90,8 +92,17 @@ public class SettingsView{
      */
     public void initTimeDialog(){
         npView = inflater.inflate(R.layout.time_picker_dialog, null);
-        numberPicker = (NumberPicker) npView.findViewById(R.id.number_picker);
-        initNumberPicker(numberPicker);
+        weekNumberPicker = (NumberPicker) npView.findViewById(R.id.number_picker);
+        initNumberPicker(weekNumberPicker);
+    }
+
+    /**
+     * Inits the dialog for choosing break time
+     */
+    public void initBreakTimeDialog(){
+        breakNpView = inflater.inflate(R.layout.break_time_picker_dialog, null);
+        breakNumberPicker = (NumberPicker) breakNpView.findViewById(R.id.break_number_picker);
+        initNumberPicker(breakNumberPicker);
     }
 
     /**
@@ -99,7 +110,9 @@ public class SettingsView{
      * @param numberPicker
      */
     public void initNumberPicker(NumberPicker numberPicker){
-        String[] data = new String[]{"0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"};
+        String[] data = new String[]{"0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"
+                ,"21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40"
+                ,"41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60"};
         numberPicker.setMinValue(0);
         numberPicker.setMaxValue(data.length-1);
         numberPicker.setValue(Integer.parseInt(getTimeText()));
@@ -113,7 +126,14 @@ public class SettingsView{
     public void updateTimeText(){
             String value = "" + getNumberPickerValue();
             timeText.setText(value);
+    }
 
+    /**
+     * Sets the chosen time in text
+     */
+    public void updateBreakTimeText(){
+        String value = "" + getBreakNumberPickerValue();
+        breakText.setText(value);
     }
 
     public String getTimeText(){
@@ -122,7 +142,11 @@ public class SettingsView{
 
 
     public int getNumberPickerValue(){
-        return numberPicker.getValue();
+        return weekNumberPicker.getValue();
+    }
+
+    public int getBreakNumberPickerValue() {
+        return breakNumberPicker.getValue();
     }
 
 
@@ -150,6 +174,10 @@ public class SettingsView{
         return timeText;
     }
 
+    public TextView getBreakTextView() {
+        return breakText;
+    }
+
     public Spinner getCourseSpinnerView(){
         return courseSpinner;
     }
@@ -164,6 +192,10 @@ public class SettingsView{
 
     public View getNumberPickerView() {
         return npView;
+    }
+
+    public View getBreakNumberPickerView() {
+        return breakNpView;
     }
 
     public View getCourseView(){

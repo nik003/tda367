@@ -50,6 +50,7 @@ public class SettingsFragment extends Fragment implements SearchView.OnQueryText
         mRootView.getSearchView().setOnFocusChangeListener(this);
         mRootView.getCourseSpinnerView().setOnItemSelectedListener(this);
         mRootView.getTimeTextView().setOnClickListener(this);
+        mRootView.getBreakTextView().setOnClickListener(this);
     }
 
 
@@ -57,6 +58,9 @@ public class SettingsFragment extends Fragment implements SearchView.OnQueryText
         mRootView.updateTimeText();
     }
 
+    public void updateBreakTimeText(){
+        mRootView.updateBreakTimeText();
+    }
 
 
     /**
@@ -97,14 +101,24 @@ public class SettingsFragment extends Fragment implements SearchView.OnQueryText
     /**
      * Sets weekly goal for the selected course in spinner
      */
-    public void setGoal(){
+    public void setWeekGoal(){
         for(Course course : CourseRepository.getCourseRepository().getAllCourses()) {
             if(course.getCourseID().equals(getSelectedCourseInSpinner())){
-                course.setWeeklyGoal(mRootView.getNumberPickerValue());
+                course.setWeeklyGoal(mRootView.getNumberPickerValue()*60*60*1000);
             }
         }
 
     }
+
+    /**
+     * Sets break goal for the selected course in spinner
+     */
+    public void setBreakGoal(){
+        for(Course course : CourseRepository.getCourseRepository().getAllCourses()) {
+            if(course.getCourseID().equals(getSelectedCourseInSpinner())){
+                course.setBreakGoal(mRootView.getBreakNumberPickerValue()*60*1000);
+            }
+        }    }
 
     /**
      * Invoked when click on time text
@@ -112,9 +126,19 @@ public class SettingsFragment extends Fragment implements SearchView.OnQueryText
      */
     @Override
     public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.time_picker_text:
+                mRootView.initTimeDialog();
+                openTimeDialog("Select number of hours", 2, true);
+                break;
+            case R.id.break_picker_text:
+                mRootView.initBreakTimeDialog();
+                openTimeDialog("Select number of minutes", 3, false);
+                break;
+            default:
+                break;
+        }
 
-        mRootView.initTimeDialog();
-        openTimeDialog();
     }
 
     /**
@@ -133,16 +157,21 @@ public class SettingsFragment extends Fragment implements SearchView.OnQueryText
     /**
      * Opens time dialog
      */
-    public void openTimeDialog(){
-        View npView = mRootView.getNumberPickerView();
+    public void openTimeDialog(String title, int id, boolean isWeekNumberPicker){
+        View npView;
+        if(isWeekNumberPicker) {
+            npView = mRootView.getNumberPickerView();
+        } else {
+            npView = mRootView.getBreakNumberPickerView();
+        }
         //Start dialog with numberpicker
         alertTimeDialogBuilder = new AlertDialog.Builder(getContext());
-        alertTimeDialogBuilder.setTitle("Select number of hours");
+        alertTimeDialogBuilder.setTitle(title);
         alertTimeDialogBuilder.setView(npView);
         alertTimeDialogBuilder
                 .setCancelable(false)
-                .setPositiveButton("Ok",new DialogOnClickListener(this,2))
-                .setNegativeButton("Cancel",new DialogOnClickListener(this,2));
+                .setPositiveButton("Ok",new DialogOnClickListener(this,id))
+                .setNegativeButton("Cancel",new DialogOnClickListener(this,id));
         AlertDialog alertDialog = alertTimeDialogBuilder.create();
         alertDialog.show();
     }

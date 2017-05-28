@@ -22,17 +22,16 @@ public class KeypadFragment extends Fragment implements View.OnClickListener {
     private KeypadView keypadView;
     private KeypadModel keypadModel;
     private View view;
-    private int position;
 
-    public static KeypadFragment newInstance(int position) {
+    public static KeypadFragment newInstance(String course) {
         KeypadFragment fragment = new KeypadFragment();
-        fragment.getArguments().putInt("position", position);
+        Bundle args = new Bundle();
+        args.putString("course", course);
+        fragment.setArguments(args);
         return fragment;
     }
 
     public KeypadFragment() {
-        super();
-        setArguments(new Bundle());
     }
 
 
@@ -40,7 +39,6 @@ public class KeypadFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        position = savedInstanceState.getInt("position");
         keypadModel = new KeypadModel();
         keypadView = new KeypadView(inflater, container);
         view = keypadView.getView();
@@ -117,8 +115,7 @@ public class KeypadFragment extends Fragment implements View.OnClickListener {
      * Saves the input in a bundle and returns to the previous screen
      */
     private void continueToTimer() {
-        Fragment fragment = getFragmentManager().findFragmentByTag("android:switcher:" + R.id.vertical_container + ":" + position);
-        fragment.getArguments().putLong("time", keypadModel.getTime());
+
         getFragmentManager().popBackStackImmediate();
     }
 

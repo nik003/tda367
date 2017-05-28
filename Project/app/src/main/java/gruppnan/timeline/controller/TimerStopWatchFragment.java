@@ -21,6 +21,7 @@ public class TimerStopWatchFragment extends Fragment {
     TimerStopWatchView timerStopWatchView;
     TimerStopWatchModel timerStopWatchModel;
     private String type;
+    private long time;
     private Handler handler;
     private Runnable runnable;
 
@@ -43,29 +44,29 @@ public class TimerStopWatchFragment extends Fragment {
         timerStopWatchView = new TimerStopWatchView(inflater, container, getArguments().getBoolean("isStopWatch"));
         timerStopWatchModel = new TimerStopWatchModel();
 
-
         timerStopWatchModel.setStopWatch(getArguments().getBoolean("isStopWatch"));
         type = getArguments().getString("type");
-        timerStopWatchModel.setTimerTime(getArguments().getLong("time"));
+        time = getArguments().getLong("time");
 
-        timerStopWatchView.getProgressBar().setMax((int)timerStopWatchModel.getTimeLeft());
         timerStopWatchView.getTypeText().setText(type);
         timerStopWatchView.getRestartButton().setVisibility(View.INVISIBLE);
         if(timerStopWatchModel.getStopWatch()) {
             timerStopWatchView.getTimeText().setText(timerStopWatchModel.getTime(timerStopWatchModel.getTimePassed()));
         } else {
+            timerStopWatchModel.setTimerTime(time);
             timerStopWatchView.getTimeText().setText(timerStopWatchModel.getTime(timerStopWatchModel.getTimeLeft()));
+            timerStopWatchView.getProgressBar().setMax((int)timerStopWatchModel.getTimeLeft());
 
-            /**
+
+
+
             timerStopWatchView.getEditButton().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    KeypadFragment keypadFragment = KeypadFragment.newInstance(position);
-                    getFragmentManager().beginTransaction().replace(R.id.frame, keypadFragment, type).addToBackStack(null).commit();
+                    KeypadFragment keypadFragment = KeypadFragment.newInstance(type);
+                    getChildFragmentManager().beginTransaction().replace(R.id.frame, keypadFragment).addToBackStack(null).commit();
                 }
             });
-
-             */
         }
 
         handler = new Handler();
@@ -106,7 +107,7 @@ public class TimerStopWatchFragment extends Fragment {
                     }
 
                 } else {
-                    handler.postDelayed(runnable, 0);
+                    handler.postDelayed(runnable, 1000);
                     timerStopWatchView.getRestartButton().setVisibility(View.INVISIBLE);
                 }
             }
